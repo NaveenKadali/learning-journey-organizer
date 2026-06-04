@@ -1,3 +1,82 @@
+
+# 🚀 My AI / Agent Engineering Learning Journey
+
+> Progress: 12 / 62 Topics Completed
+
+## Phase 1 — Foundations
+
+- [x] Python Basics
+- [x] Data Structures
+- [ ] Object-Oriented Programming
+- [ ] Git & GitHub
+- [ ] APIs & JSON
+
+## Phase 2 — AI Fundamentals
+
+- [ ] Machine Learning Basics
+- [ ] Neural Networks
+- [ ] Deep Learning
+- [ ] Transformers
+- [ ] Prompt Engineering
+
+## Phase 3 — LLM Engineering
+
+- [ ] OpenAI APIs
+- [ ] Embeddings
+- [ ] Vector Databases
+- [ ] RAG Systems
+- [ ] Evaluation Frameworks
+
+## Phase 4 — Agent Engineering
+
+- [ ] Agent Architectures
+- [ ] Tool Calling
+- [ ] Memory Systems
+- [ ] Multi-Agent Workflows
+- [ ] Planning & Reasoning
+
+## Phase 5 — Production Systems
+
+- [ ] FastAPI
+- [ ] Docker
+- [ ] CI/CD
+- [ ] Monitoring
+- [ ] Deployment
+
+## Projects
+
+### Project 1 — AI Research Assistant
+- [ ] Design
+- [ ] Development
+- [ ] Testing
+- [ ] Deployment
+
+### Project 2 — Multi-Agent System
+- [ ] Design
+- [ ] Development
+- [ ] Testing
+- [ ] Deployment
+
+---
+
+### Statistics
+
+| Metric | Value |
+|----------|----------|
+| Topics Completed | 12 |
+| Topics Remaining | 50 |
+| Completion | 19% |
+
+---
+
+_Last Updated: June 2026_
+
+
+
+----------------------------------------------------------------------------------------------
+
+
+
 # learning-journey-organizer
 
 # 🤖 My Agent Engineer Journey · 2026 Roadmap
