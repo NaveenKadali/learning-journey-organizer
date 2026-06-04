@@ -28,8 +28,9 @@
 
 ### Module 1.1 — Core Python
 - [ ] Variables, types, control flow
-- [ ] Functions, `*args`/`**kwargs`, decorators
+- [ ] Functions, `*args`/`**kwargs`
 - [ ] List & dict comprehensions
+- [ ] decorators
 - [ ] Generator expressions
 - [ ] Type hints (needed for Pydantic later)
 
