@@ -1,0 +1,8 @@
+title: My Agent Engineer Journey
+description: Tracking progress through the Agent Engineer 2026 Roadmap
+theme: jekyll-theme-cayman
+show_downloads: false
+repository: naveenkadali/learning-journey-organizer
+
+plugins:
+  - jekyll-feed
