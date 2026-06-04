@@ -150,6 +150,12 @@
             transition: width 0.3s ease;
         }
 
+        h1 { 
+            color: #24292e;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
         h2, h3 {
             color: #24292e;
             margin-top: 30px;
@@ -159,6 +165,42 @@
         h2 {
             border-bottom: 2px solid #e1e4e8;
             padding-bottom: 10px;
+            font-size: 20px;
+        }
+
+        h3 {
+            font-size: 16px;
+        }
+
+        p {
+            color: #24292e;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 15px;
+            margin: 15px 0;
+            color: #6a737d;
+            font-style: italic;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        table th, table td {
+            border: 1px solid #e1e4e8;
+            padding: 12px;
+            text-align: left;
+        }
+
+        table th {
+            background: #f6f8fa;
+            font-weight: bold;
         }
 
         .task-list {
@@ -187,7 +229,7 @@
 
         .task-list input[type="checkbox"] {
             margin-right: 12px;
-            margin-top: 2px;
+            margin-top: 4px;
             cursor: pointer;
             width: 20px;
             height: 20px;
@@ -213,26 +255,6 @@
             gap: 10px;
             margin-top: 30px;
             flex-wrap: wrap;
-        }
-
-        .loading {
-            display: inline-block;
-            margin-left: 10px;
-        }
-
-        .spinner {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #667eea;
-            border-radius: 50%;
-            width: 16px;
-            height: 16px;
-            animation: spin 1s linear infinite;
-            display: inline-block;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
 
         .alert {
@@ -264,9 +286,10 @@
             border: 1px solid #bee5eb;
         }
 
-        .section-divider {
-            margin: 40px 0;
+        hr {
+            border: none;
             border-top: 2px solid #e1e4e8;
+            margin: 30px 0;
         }
 
         @media (max-width: 768px) {
@@ -458,10 +481,11 @@
                 await loadProgress();
             } catch (error) {
                 showAlert(`Error loading README: ${error.message}`, 'error');
+                console.error('Error:', error);
             }
         }
 
-        // Render markdown with task lists
+        // Render markdown with task lists - FIXED REGEX
         function renderMarkdown(markdown) {
             let html = '';
             const lines = markdown.split('\n');
@@ -469,10 +493,12 @@
             let taskListHtml = '';
 
             for (let line of lines) {
-                // Task list items
-                if (line.match(/^- \[([ xX])\]/)) {
-                    const isChecked = line.match(/^- \[([xX])\]/)[1].toLowerCase() === 'x';
-                    const taskText = line.replace(/^- \[[ xX]\]\s*/, '');
+                // Fixed regex to handle task list items: - [ ] or - [x]
+                const taskMatch = line.match(/^- \[([ xX])\]\s*(.*)/);
+                
+                if (taskMatch) {
+                    const isChecked = taskMatch[1].toLowerCase() === 'x';
+                    const taskText = taskMatch[2].trim();
                     const taskId = generateTaskId(taskText);
 
                     if (!inTaskList) {
@@ -495,14 +521,28 @@
                         taskListHtml = '';
                     }
 
+                    // Horizontal rule
+                    if (line.trim() === '---') {
+                        html += '<hr>';
+                    }
                     // Headings
-                    if (line.startsWith('# ')) {
+                    else if (line.startsWith('# ')) {
                         html += `<h1>${escapeHtml(line.replace(/^# /, ''))}</h1>`;
                     } else if (line.startsWith('## ')) {
                         html += `<h2>${escapeHtml(line.replace(/^## /, ''))}</h2>`;
                     } else if (line.startsWith('### ')) {
                         html += `<h3>${escapeHtml(line.replace(/^### /, ''))}</h3>`;
-                    } else if (line.trim()) {
+                    }
+                    // Blockquotes
+                    else if (line.startsWith('> ')) {
+                        html += `<blockquote>${escapeHtml(line.replace(/^> /, ''))}</blockquote>`;
+                    }
+                    // Tables (simple detection)
+                    else if (line.includes('|')) {
+                        html += `<p style="font-family: monospace; color: #6a737d;">${escapeHtml(line)}</p>`;
+                    }
+                    // Regular paragraphs
+                    else if (line.trim()) {
                         html += `<p>${escapeHtml(line)}</p>`;
                     }
                 }
@@ -553,7 +593,7 @@
                     });
 
                     updateLastSynced();
-                    showAlert('Progress loaded successfully', 'success');
+                    showAlert('Progress loaded successfully ✅', 'success');
                 } else if (response.status === 404) {
                     // File doesn't exist yet
                     showAlert('No saved progress found. Starting fresh!', 'info');
@@ -627,6 +667,7 @@
                 showAlert('Progress saved to GitHub successfully! ✅', 'success');
             } catch (error) {
                 showAlert(`Failed to save progress: ${error.message}`, 'error');
+                console.error('Error:', error);
             }
         }
 
