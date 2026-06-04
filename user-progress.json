@@ -1,0 +1,6 @@
+{
+  "NaveenKadali": {
+    "task-variables-types-control-flow": true,
+    "task-functions-args-kwargs-decorators": true
+  }
+}
