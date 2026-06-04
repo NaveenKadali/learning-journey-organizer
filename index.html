@@ -1,484 +1,1013 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Agent Engineer Journey · 2026 Roadmap</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Agent Engineer Journey · 2026 Roadmap</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d0f14;
+      --surface: #141720;
+      --surface2: #1c2030;
+      --border: #252a3a;
+      --accent: #5b8dee;
+      --accent2: #8b5cf6;
+      --accent3: #10d9a0;
+      --text: #e4e8f0;
+      --text-muted: #6b7594;
+      --text-dim: #3d4560;
+      --success: #10d9a0;
+      --warning: #f59e0b;
+      --radius: 10px;
+      --font-head: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f6f8fa;
-            padding: 20px;
-        }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
 
-        .header {
-            padding: 40px 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-        }
+    /* ── HEADER ───────────────────────────────── */
+    .site-header {
+      background: linear-gradient(135deg, #0d1228 0%, #161030 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 24px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .site-header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(91,141,238,.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .site-header::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: 30%;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(139,92,246,.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .header-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      color: var(--accent3);
+      background: rgba(16,217,160,.08);
+      border: 1px solid rgba(16,217,160,.2);
+      border-radius: 20px;
+      padding: 3px 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .header-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .header-title span { color: var(--accent); }
+    .header-subtitle {
+      font-size: .9rem;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
 
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
+    /* ── OVERALL PROGRESS BAR ─────────────────── */
+    .overall-progress {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+    }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+    .progress-label-text {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      color: var(--text-muted);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .progress-pct {
+      font-family: var(--font-mono);
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+    .progress-track {
+      width: 100%;
+      height: 6px;
+      background: var(--border);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 100%);
+      border-radius: 99px;
+      transition: width .6s cubic-bezier(.4,0,.2,1);
+      width: 0%;
+    }
 
-        .header p {
-            font-size: 1.1em;
-            opacity: 0.95;
-        }
+    /* ── DASHBOARD CARDS ──────────────────────── */
+    .dashboard {
+      max-width: 900px;
+      margin: 24px auto 0;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 640px) {
+      .dashboard { grid-template-columns: repeat(2, 1fr); }
+    }
+    .dash-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      text-align: center;
+    }
+    .dash-card-val {
+      font-family: var(--font-mono);
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--text);
+      display: block;
+    }
+    .dash-card-val.green  { color: var(--accent3); }
+    .dash-card-val.blue   { color: var(--accent); }
+    .dash-card-val.purple { color: var(--accent2); }
+    .dash-card-label {
+      font-size: .72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      margin-top: 3px;
+    }
+    .synced-val {
+      font-family: var(--font-mono);
+      font-size: .78rem;
+      color: var(--text-muted);
+      display: block;
+    }
 
-        #readme-content {
-            padding: 30px;
-        }
+    /* ── CONTROLS BAR ─────────────────────────── */
+    .controls-bar {
+      max-width: 900px;
+      margin: 18px auto 0;
+      padding: 0 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    .search-wrap {
+      flex: 1;
+      min-width: 180px;
+      position: relative;
+    }
+    .search-wrap svg {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+    .search-input {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: .88rem;
+      padding: 9px 12px 9px 36px;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .search-input:focus { border-color: var(--accent); }
+    .search-input::placeholder { color: var(--text-dim); }
+    .btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-muted);
+      font-family: var(--font-body);
+      font-size: .82rem;
+      padding: 9px 14px;
+      cursor: pointer;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+    .btn:hover { border-color: var(--accent); color: var(--accent); }
+    .btn.danger:hover { border-color: #f87171; color: #f87171; }
 
-        h1 {
-            font-size: 2em;
-            margin: 30px 0 20px 0;
-            color: #1a1a1a;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 10px;
-        }
+    /* ── MAIN CONTENT AREA ────────────────────── */
+    .main {
+      max-width: 900px;
+      margin: 24px auto 60px;
+      padding: 0 24px;
+    }
 
-        h2 {
-            font-size: 1.5em;
-            margin: 25px 0 15px 0;
-            color: #2c3e50;
-        }
+    /* ── SECTION LABEL ────────────────────────── */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 14px;
+      padding-left: 2px;
+    }
 
-        h3 {
-            font-size: 1.2em;
-            margin: 20px 0 10px 0;
-            color: #34495e;
-        }
+    /* ── PHASE ACCORDION ──────────────────────── */
+    .phase-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 40px; }
 
-        p {
-            margin: 10px 0;
-            line-height: 1.8;
-        }
+    .phase-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color .2s;
+    }
+    .phase-card:hover { border-color: #333a55; }
+    .phase-card.highlight { border-color: rgba(91,141,238,.4); }
 
-        blockquote {
-            border-left: 4px solid #667eea;
-            padding-left: 15px;
-            margin: 15px 0;
-            color: #555;
-            font-style: italic;
-        }
+    .phase-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      cursor: pointer;
+      user-select: none;
+      transition: background .2s;
+    }
+    .phase-header:hover { background: var(--surface2); }
 
-        hr {
-            border: none;
-            border-top: 2px solid #e0e0e0;
-            margin: 20px 0;
-        }
+    .phase-num {
+      font-family: var(--font-mono);
+      font-size: .68rem;
+      color: var(--text-dim);
+      min-width: 28px;
+    }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            border: 1px solid #ddd;
-        }
+    .phase-icon {
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
 
-        table th,
-        table td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
+    .phase-meta { flex: 1; min-width: 0; }
+    .phase-name {
+      font-weight: 600;
+      font-size: .95rem;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .phase-sub {
+      font-size: .78rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
 
-        table th {
-            background: #f8f9fa;
-            font-weight: 600;
-            color: #333;
-        }
+    .phase-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
 
-        table tr:hover {
-            background: #f9f9f9;
-        }
+    .phase-progress-pill {
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      padding: 3px 9px;
+      border-radius: 99px;
+      background: var(--surface2);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+    .phase-progress-pill.done {
+      background: rgba(16,217,160,.1);
+      color: var(--accent3);
+      border-color: rgba(16,217,160,.2);
+    }
 
-        .phase-section {
-            margin: 20px 0;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            overflow: hidden;
-        }
+    .phase-mini-bar {
+      width: 48px; height: 4px;
+      background: var(--border);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .phase-mini-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 99px;
+      transition: width .5s ease;
+    }
 
-        .phase-header {
-            background: #f8f9fa;
-            padding: 15px 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: background 0.3s ease;
-            user-select: none;
-        }
+    .phase-chevron {
+      color: var(--text-dim);
+      transition: transform .25s ease;
+      flex-shrink: 0;
+    }
+    .phase-card.open .phase-chevron { transform: rotate(180deg); }
 
-        .phase-header:hover {
-            background: #f0f1f3;
-        }
+    /* ── PHASE BODY ───────────────────────────── */
+    .phase-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s cubic-bezier(.4,0,.2,1);
+    }
+    .phase-card.open .phase-body { max-height: 9999px; }
 
-        .phase-header.expanded {
-            background: #667eea;
-            color: white;
-        }
+    .phase-body-inner {
+      padding: 0 18px 18px;
+      border-top: 1px solid var(--border);
+    }
 
-        .phase-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex: 1;
-        }
+    /* ── MODULE GROUPS ────────────────────────── */
+    .module-group { margin-top: 16px; }
+    .module-title {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      color: var(--accent);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--border);
+    }
 
-        .phase-toggle {
-            display: inline-block;
-            transition: transform 0.3s ease;
-            font-size: 1.2em;
-        }
+    /* ── TASK ITEMS ───────────────────────────── */
+    .task-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
 
-        .phase-header.expanded .phase-toggle {
-            transform: rotate(180deg);
-        }
+    .task-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 7px 10px;
+      border-radius: 6px;
+      transition: background .15s;
+      cursor: pointer;
+    }
+    .task-item:hover { background: var(--surface2); }
+    .task-item.hidden { display: none; }
 
-        .phase-header h2 {
-            margin: 0;
-            font-size: 1.3em;
-        }
+    .task-cb {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 17px; height: 17px;
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      background: transparent;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 2px;
+      position: relative;
+      transition: all .15s;
+    }
+    .task-cb:checked {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+    .task-cb:checked::after {
+      content: '';
+      position: absolute;
+      left: 4px; top: 1.5px;
+      width: 5px; height: 9px;
+      border: 2px solid #fff;
+      border-left: none;
+      border-top: none;
+      transform: rotate(45deg);
+    }
 
-        .phase-header.expanded h2 {
-            color: white;
-        }
+    .task-text {
+      font-size: .875rem;
+      color: var(--text);
+      line-height: 1.5;
+      flex: 1;
+      transition: color .15s;
+    }
+    .task-item input:checked ~ .task-text {
+      color: var(--text-dim);
+      text-decoration: line-through;
+      text-decoration-color: var(--text-dim);
+    }
 
-        .phase-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
+    /* ── CAPSTONES ────────────────────────────── */
+    .capstones-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+    .capstone-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .2s, transform .2s;
+    }
+    .capstone-card:hover { border-color: var(--accent2); transform: translateY(-2px); }
+    .capstone-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+    }
+    .capstone-tag {
+      font-family: var(--font-mono);
+      font-size: .65rem;
+      color: var(--accent2);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .capstone-name {
+      font-weight: 600;
+      font-size: .92rem;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .capstone-check {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      font-size: .78rem;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+    .capstone-cb {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 16px; height: 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      background: transparent;
+      cursor: pointer;
+      position: relative;
+      transition: all .15s;
+    }
+    .capstone-cb:checked { background: var(--accent2); border-color: var(--accent2); }
+    .capstone-cb:checked::after {
+      content: '';
+      position: absolute;
+      left: 3px; top: 1px;
+      width: 5px; height: 9px;
+      border: 2px solid #fff;
+      border-left: none; border-top: none;
+      transform: rotate(45deg);
+    }
 
-        .phase-content.expanded {
-            max-height: 10000px;
-        }
+    /* ── LOADING STATE ────────────────────────── */
+    .loading-state {
+      text-align: center;
+      padding: 80px 24px;
+      color: var(--text-muted);
+    }
+    .loading-spinner {
+      width: 32px; height: 32px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      margin: 0 auto 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
-        .phase-body {
-            padding: 20px;
-            background: white;
-        }
+    /* ── ERROR STATE ──────────────────────────── */
+    .error-state {
+      background: rgba(248,113,113,.08);
+      border: 1px solid rgba(248,113,113,.2);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-align: center;
+      color: #f87171;
+      font-size: .9rem;
+    }
 
-        .task-list {
-            list-style: none;
-            margin: 15px 0;
-        }
+    /* ── NO RESULTS ───────────────────────────── */
+    .no-results {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-muted);
+      font-size: .9rem;
+      display: none;
+    }
 
-        .task-list li {
-            display: flex;
-            align-items: flex-start;
-            padding: 8px 0;
-            margin: 8px 0;
-        }
-
-        .task-checkbox {
-            width: 18px;
-            height: 18px;
-            margin-right: 10px;
-            margin-top: 2px;
-            cursor: pointer;
-            accent-color: #667eea;
-        }
-
-        .task-label {
-            cursor: pointer;
-            flex: 1;
-            user-select: none;
-        }
-
-        .task-list li input[type="checkbox"]:checked + label {
-            text-decoration: line-through;
-            color: #888;
-        }
-
-        .stats {
-            position: sticky;
-            top: 0;
-            background: white;
-            padding: 15px 30px;
-            border-bottom: 2px solid #667eea;
-            font-weight: 600;
-            color: #667eea;
-            z-index: 10;
-        }
-
-        .stats-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        @media (max-width: 768px) {
-            .header {
-                padding: 25px 15px;
-            }
-
-            .header h1 {
-                font-size: 1.8em;
-            }
-
-            #readme-content {
-                padding: 15px;
-            }
-
-            h1 {
-                font-size: 1.5em;
-            }
-
-            h2 {
-                font-size: 1.2em;
-            }
-
-            table {
-                font-size: 0.9em;
-            }
-
-            table th,
-            table td {
-                padding: 8px;
-            }
-        }
-    </style>
+    /* ── SCROLLBAR ────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🤖 My Agent Engineer Journey · 2026 Roadmap</h1>
-            <p>26 weeks · 9 phases · 62 modules · 3 capstones</p>
-        </div>
 
-        <div class="stats">
-            <div class="stats-content">
-                📊 Progress: <span id="stats">Loading...</span>
-            </div>
-        </div>
-
-        <div id="readme-content"></div>
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-badge">🤖 2026 Roadmap</div>
+    <h1 class="header-title">My <span>Agent Engineer</span> Journey</h1>
+    <p class="header-subtitle" id="roadmap-meta">Loading roadmap…</p>
+    <div class="overall-progress">
+      <div class="progress-label">
+        <span class="progress-label-text">Overall Progress</span>
+        <span class="progress-pct" id="overall-pct">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="overall-fill"></div>
+      </div>
     </div>
+  </div>
+</header>
 
-    <script>
-        // Escape HTML to prevent injection attacks
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
+<!-- DASHBOARD -->
+<div class="dashboard">
+  <div class="dash-card">
+    <span class="dash-card-val green" id="dash-done">0</span>
+    <div class="dash-card-label">Completed</div>
+  </div>
+  <div class="dash-card">
+    <span class="dash-card-val blue" id="dash-remain">0</span>
+    <div class="dash-card-label">Remaining</div>
+  </div>
+  <div class="dash-card">
+    <span class="dash-card-val purple" id="dash-pct">0%</span>
+    <div class="dash-card-label">Progress</div>
+  </div>
+  <div class="dash-card">
+    <span class="synced-val" id="dash-sync">—</span>
+    <div class="dash-card-label">Last Synced</div>
+  </div>
+</div>
 
-        // Generate a unique task ID from task text
-        function generateTaskId(taskText) {
-            return 'task-' + taskText.toLowerCase()
-                .replace(/[^\w\s-]/g, '')
-                .replace(/\s+/g, '-')
-                .replace(/-+/g, '-')
-                .slice(0, 50);
-        }
+<!-- CONTROLS -->
+<div class="controls-bar">
+  <div class="search-wrap">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input class="search-input" id="search" type="text" placeholder="Search tasks…" oninput="handleSearch(this.value)">
+  </div>
+  <button class="btn" onclick="expandAll()">Expand All</button>
+  <button class="btn" onclick="collapseAll()">Collapse All</button>
+  <button class="btn danger" onclick="resetProgress()">Reset Progress</button>
+</div>
 
-        // Toggle phase accordion
-        function togglePhase(element) {
-            const header = element;
-            const content = element.nextElementSibling;
-            
-            header.classList.toggle('expanded');
-            content.classList.toggle('expanded');
-        }
+<!-- MAIN -->
+<main class="main" id="main-content">
+  <div class="loading-state">
+    <div class="loading-spinner"></div>
+    <p>Loading your roadmap…</p>
+  </div>
+</main>
 
-        // Update progress stats
-        function updateStats() {
-            const totalCheckboxes = document.querySelectorAll('.task-checkbox').length;
-            const checkedCheckboxes = document.querySelectorAll('.task-checkbox:checked').length;
-            const percentage = totalCheckboxes === 0 ? 0 : Math.round((checkedCheckboxes / totalCheckboxes) * 100);
-            
-            document.getElementById('stats').textContent = 
-                `${checkedCheckboxes}/${totalCheckboxes} tasks completed (${percentage}%)`;
-        }
+<script>
+// ── STORAGE HELPERS ──────────────────────────────────────────────────────────
+const STORAGE_KEY = 'roadmap_progress_v2';
 
-        // Render markdown with collapsible phases
-        function renderMarkdown(markdown) {
-            let html = '';
-            const lines = markdown.split('\n');
-            let inTaskList = false;
-            let taskListHtml = '';
-            let currentPhaseSection = '';
-            let phaseCount = 0;
+function loadProgress() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
+  catch { return {}; }
+}
 
-            for (let i = 0; i < lines.length; i++) {
-                const line = lines[i];
-                const taskMatch = line.match(/^- \[([ xX])\]\s*(.*)/);
-                
-                // Check if this is a phase header (e.g., "## Phase 01 — Python + Async Engineering")
-                const phaseMatch = line.match(/^## (Phase \d+.*)/);
+function saveProgress(key, checked) {
+  const data = loadProgress();
+  data[key] = checked;
+  data.__syncTime = new Date().toISOString();
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  updateDashboard();
+}
 
-                if (phaseMatch) {
-                    // Close previous phase if exists
-                    if (currentPhaseSection) {
-                        if (inTaskList) {
-                            taskListHtml += '</ul>';
-                            currentPhaseSection += taskListHtml;
-                            inTaskList = false;
-                            taskListHtml = '';
-                        }
-                        html += currentPhaseSection + '</div></div>';
-                    }
+function getSyncTime() {
+  const data = loadProgress();
+  return data.__syncTime || null;
+}
 
-                    // Start new phase section
-                    phaseCount++;
-                    const isExpanded = phaseCount === 1 ? ' expanded' : '';
-                    const expandedContent = phaseCount === 1 ? ' expanded' : '';
-                    currentPhaseSection = `
-                        <div class="phase-section">
-                            <div class="phase-header${isExpanded}" onclick="togglePhase(this)">
-                                <div class="phase-title">
-                                    <span class="phase-toggle">▼</span>
-                                    <h2>${escapeHtml(phaseMatch[1])}</h2>
-                                </div>
-                            </div>
-                            <div class="phase-content${expandedContent}">
-                                <div class="phase-body">
-                    `;
-                    continue;
-                }
+// ── PARSE MARKDOWN ───────────────────────────────────────────────────────────
+function parseRoadmap(md) {
+  const lines = md.split('\n');
+  const phases = [];
+  const capstones = [];
+  let currentPhase = null;
+  let currentModule = null;
 
-                // Handle content within a phase
-                if (currentPhaseSection && !phaseMatch) {
-                    if (taskMatch) {
-                        const isChecked = taskMatch[1].toLowerCase() === 'x';
-                        const taskText = taskMatch[2].trim();
-                        const taskId = generateTaskId(taskText);
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
 
-                        if (!inTaskList) {
-                            inTaskList = true;
-                            taskListHtml = '<ul class="task-list">';
-                        }
+    // Phase heading: ## Phase 01 — ...  or  ## Phase 1:
+    const phaseMatch = line.match(/^##\s+(Phase\s+\d+[\s\S]*?)(?:\s*[-—:]\s*(.+))?$/i);
+    if (phaseMatch) {
+      currentPhase = {
+        title: line.replace(/^##\s+/, '').trim(),
+        modules: [],
+        tasks: []  // tasks not under any module
+      };
+      currentModule = null;
+      phases.push(currentPhase);
+      continue;
+    }
 
-                        taskListHtml += `
-                            <li>
-                                <input type="checkbox" id="${escapeHtml(taskId)}" class="task-checkbox" data-task="${escapeHtml(taskId)}" ${isChecked ? 'checked' : ''}>
-                                <label for="${escapeHtml(taskId)}" class="task-label">${escapeHtml(taskText)}</label>
-                            </li>
-                        `;
-                    } else {
-                        // End of task list
-                        if (inTaskList) {
-                            taskListHtml += '</ul>';
-                            currentPhaseSection += taskListHtml;
-                            inTaskList = false;
-                            taskListHtml = '';
-                        }
+    // Capstone heading: ## Capstone ...
+    const capstoneMatch = line.match(/^##\s+(Capstone.+)/i);
+    if (capstoneMatch) {
+      capstones.push({ title: capstoneMatch[1].trim(), id: slugify(capstoneMatch[1]) });
+      currentPhase = null;
+      currentModule = null;
+      continue;
+    }
 
-                        // Horizontal rule
-                        if (line.trim() === '---') {
-                            currentPhaseSection += '<hr>';
-                        }
-                        // Sub-headings within phase
-                        else if (line.startsWith('### ')) {
-                            currentPhaseSection += `<h3>${escapeHtml(line.replace(/^### /, ''))}</h3>`;
-                        }
-                        // Blockquotes
-                        else if (line.startsWith('> ')) {
-                            currentPhaseSection += `<blockquote>${escapeHtml(line.replace(/^> /, ''))}</blockquote>`;
-                        }
-                        // Regular paragraphs
-                        else if (line.trim() && !line.startsWith('#')) {
-                            currentPhaseSection += `<p>${escapeHtml(line)}</p>`;
-                        }
-                    }
-                } else if (!currentPhaseSection && !phaseMatch) {
-                    // Content before any phase (overview, intro)
-                    if (taskMatch) {
-                        const isChecked = taskMatch[1].toLowerCase() === 'x';
-                        const taskText = taskMatch[2].trim();
-                        const taskId = generateTaskId(taskText);
+    if (!currentPhase) continue;
 
-                        if (!inTaskList) {
-                            inTaskList = true;
-                            taskListHtml = '<ul class="task-list">';
-                        }
+    // Module sub-heading: ### ...
+    if (line.match(/^###\s+/)) {
+      currentModule = { title: line.replace(/^###\s+/, '').trim(), tasks: [] };
+      currentPhase.modules.push(currentModule);
+      continue;
+    }
 
-                        taskListHtml += `
-                            <li>
-                                <input type="checkbox" id="${escapeHtml(taskId)}" class="task-checkbox" data-task="${escapeHtml(taskId)}" ${isChecked ? 'checked' : ''}>
-                                <label for="${escapeHtml(taskId)}" class="task-label">${escapeHtml(taskText)}</label>
-                            </li>
-                        `;
-                    } else {
-                        if (inTaskList) {
-                            taskListHtml += '</ul>';
-                            html += taskListHtml;
-                            inTaskList = false;
-                            taskListHtml = '';
-                        }
+    // Task item: - [ ] or - [x]
+    const taskMatch = line.match(/^[-*]\s+\[([ xX✓])\]\s+(.*)/);
+    if (taskMatch) {
+      const checked = taskMatch[1].trim().toLowerCase() === 'x' || taskMatch[1] === '✓';
+      const text = taskMatch[2].trim();
+      const task = { text, checked, id: slugify(text) };
+      if (currentModule) {
+        currentModule.tasks.push(task);
+      } else {
+        currentPhase.tasks.push(task);
+      }
+    }
+  }
 
-                        if (line.trim() === '---') {
-                            html += '<hr>';
-                        } else if (line.startsWith('# ')) {
-                            html += `<h1>${escapeHtml(line.replace(/^# /, ''))}</h1>`;
-                        } else if (line.startsWith('## ')) {
-                            html += `<h2>${escapeHtml(line.replace(/^## /, ''))}</h2>`;
-                        } else if (line.startsWith('> ')) {
-                            html += `<blockquote>${escapeHtml(line.replace(/^> /, ''))}</blockquote>`;
-                        } else if (line.includes('|')) {
-                            // Table row
-                            html += `<p style="font-family: monospace; color: #6a737d;">${escapeHtml(line)}</p>`;
-                        } else if (line.trim()) {
-                            html += `<p>${escapeHtml(line)}</p>`;
-                        }
-                    }
-                }
-            }
+  return { phases, capstones };
+}
 
-            // Close final phase
-            if (currentPhaseSection) {
-                if (inTaskList) {
-                    taskListHtml += '</ul>';
-                    currentPhaseSection += taskListHtml;
-                }
-                html += currentPhaseSection + '</div></div>';
-            }
+function slugify(str) {
+  return 'T' + btoa(encodeURIComponent(str.slice(0, 60))).replace(/[^a-zA-Z0-9]/g, '').slice(0, 32);
+}
 
-            document.getElementById('readme-content').innerHTML = html;
+// ── PHASE COLORS / ICONS ─────────────────────────────────────────────────────
+const PHASE_META = [
+  { icon: '🐍', bg: 'rgba(59,130,246,.15)', border: 'rgba(59,130,246,.3)' },
+  { icon: '🔗', bg: 'rgba(139,92,246,.15)', border: 'rgba(139,92,246,.3)' },
+  { icon: '🤖', bg: 'rgba(16,217,160,.15)', border: 'rgba(16,217,160,.3)' },
+  { icon: '🧠', bg: 'rgba(245,158,11,.15)', border: 'rgba(245,158,11,.3)' },
+  { icon: '🔒', bg: 'rgba(239,68,68,.15)',  border: 'rgba(239,68,68,.3)'  },
+  { icon: '📦', bg: 'rgba(99,102,241,.15)', border: 'rgba(99,102,241,.3)' },
+  { icon: '☁️', bg: 'rgba(6,182,212,.15)',  border: 'rgba(6,182,212,.3)'  },
+  { icon: '🏗️', bg: 'rgba(34,197,94,.15)',  border: 'rgba(34,197,94,.3)'  },
+  { icon: '🚀', bg: 'rgba(249,115,22,.15)', border: 'rgba(249,115,22,.3)' },
+];
 
-            // Attach event listeners to checkboxes
-            document.querySelectorAll('.task-checkbox').forEach(checkbox => {
-                checkbox.addEventListener('change', updateStats);
-            });
+// ── RENDER ───────────────────────────────────────────────────────────────────
+function render(data) {
+  const progress = loadProgress();
+  const { phases, capstones } = data;
 
-            updateStats();
-        }
+  // count total tasks for metadata
+  let totalTasks = 0;
+  let totalModules = 0;
+  phases.forEach(p => {
+    p.tasks.forEach(t => totalTasks++);
+    p.modules.forEach(m => { totalModules++; m.tasks.forEach(() => totalTasks++); });
+  });
 
-        // Fetch and render README.md
-        async function loadReadme() {
-            try {
-                const response = await fetch('https://raw.githubusercontent.com/NaveenKadali/learning-journey-organizer/main/README.md');
-                const markdown = await response.text();
-                renderMarkdown(markdown);
-            } catch (error) {
-                console.error('Error loading README:', error);
-                document.getElementById('readme-content').innerHTML = '<p>Error loading content. Please try refreshing the page.</p>';
-            }
-        }
+  document.getElementById('roadmap-meta').textContent =
+    `26 weeks · ${phases.length} phases · ${totalModules} modules · ${capstones.length} capstones · ${totalTasks} tasks`;
 
-        // Load readme on page load
-        document.addEventListener('DOMContentLoaded', loadReadme);
-    </script>
+  const main = document.getElementById('main-content');
+  main.innerHTML = '';
+
+  // ── Phases section ──
+  const phaseLabel = document.createElement('div');
+  phaseLabel.className = 'section-label';
+  phaseLabel.textContent = '// Learning Phases';
+  main.appendChild(phaseLabel);
+
+  const phaseList = document.createElement('div');
+  phaseList.className = 'phase-list';
+  phaseList.id = 'phase-list';
+
+  phases.forEach((phase, idx) => {
+    const meta = PHASE_META[idx % PHASE_META.length];
+    const allTasks = [...phase.tasks, ...phase.modules.flatMap(m => m.tasks)];
+
+    // Restore saved checked states
+    allTasks.forEach(t => {
+      if (progress[t.id] !== undefined) t.checked = progress[t.id];
+    });
+
+    const done = allTasks.filter(t => t.checked).length;
+    const total = allTasks.length;
+    const pct = total ? Math.round((done / total) * 100) : 0;
+    const isDone = total > 0 && done === total;
+
+    const card = document.createElement('div');
+    card.className = 'phase-card';
+    card.dataset.phaseIdx = idx;
+
+    // Parse phase number + name
+    const numMatch = phase.title.match(/Phase\s+(\d+)/i);
+    const phaseNum = numMatch ? String(numMatch[1]).padStart(2, '0') : String(idx + 1).padStart(2, '0');
+    const phaseName = phase.title.replace(/^Phase\s+\d+\s*[-—:]\s*/i, '').trim() || phase.title;
+
+    card.innerHTML = `
+      <div class="phase-header" onclick="togglePhase(this.parentElement)">
+        <span class="phase-num">${phaseNum}</span>
+        <div class="phase-icon" style="background:${meta.bg}; border:1px solid ${meta.border}">${meta.icon}</div>
+        <div class="phase-meta">
+          <div class="phase-name" title="${esc(phase.title)}">${esc(phaseName)}</div>
+          <div class="phase-sub">${total} tasks${done > 0 ? ` · ${done} done` : ''}</div>
+        </div>
+        <div class="phase-right">
+          <div class="phase-mini-bar">
+            <div class="phase-mini-fill" style="width:${pct}%"></div>
+          </div>
+          <div class="phase-progress-pill ${isDone ? 'done' : ''}">${done}/${total}</div>
+          <svg class="phase-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-body-inner" id="phase-body-${idx}">
+          ${renderPhaseBody(phase, idx, progress)}
+        </div>
+      </div>
+    `;
+
+    phaseList.appendChild(card);
+  });
+
+  main.appendChild(phaseList);
+
+  const noResults = document.createElement('div');
+  noResults.className = 'no-results';
+  noResults.id = 'no-results';
+  noResults.textContent = 'No tasks match your search.';
+  main.appendChild(noResults);
+
+  // ── Capstones section ──
+  if (capstones.length > 0) {
+    const capLabel = document.createElement('div');
+    capLabel.className = 'section-label';
+    capLabel.textContent = '// Capstone Projects';
+    main.appendChild(capLabel);
+
+    const grid = document.createElement('div');
+    grid.className = 'capstones-grid';
+    capstones.forEach((cap, i) => {
+      const saved = progress[cap.id] || false;
+      grid.innerHTML += `
+        <div class="capstone-card">
+          <div class="capstone-tag">Capstone ${i + 1}</div>
+          <div class="capstone-name">${esc(cap.title.replace(/^Capstone\s*\d*\s*[-—:]\s*/i, '').trim() || cap.title)}</div>
+          <label class="capstone-check">
+            <input type="checkbox" class="capstone-cb" id="${cap.id}" data-id="${cap.id}" ${saved ? 'checked' : ''} onchange="onCapstoneChange(this)">
+            Mark complete
+          </label>
+        </div>
+      `;
+    });
+    main.appendChild(grid);
+  }
+
+  // attach task listeners
+  document.querySelectorAll('.task-cb').forEach(cb => {
+    cb.addEventListener('change', () => {
+      saveProgress(cb.dataset.id, cb.checked);
+      updatePhaseProgress(cb.closest('.phase-card'));
+      updateDashboard();
+      if (cb.checked) stampSync();
+    });
+  });
+
+  updateDashboard();
+
+  // auto-expand first phase
+  const firstCard = phaseList.querySelector('.phase-card');
+  if (firstCard) firstCard.classList.add('open');
+}
+
+function renderPhaseBody(phase, phaseIdx, progress) {
+  let html = '';
+
+  // ungrouped tasks (directly under phase, before any module)
+  if (phase.tasks.length > 0) {
+    html += renderTaskList(phase.tasks, progress);
+  }
+
+  // module groups
+  phase.modules.forEach(mod => {
+    html += `<div class="module-group">`;
+    html += `<div class="module-title">${esc(mod.title)}</div>`;
+    html += renderTaskList(mod.tasks, progress);
+    html += `</div>`;
+  });
+
+  if (html === '') html = '<p style="color:var(--text-dim);font-size:.85rem;padding:12px 0">No checklist items found in this phase.</p>';
+  return html;
+}
+
+function renderTaskList(tasks, progress) {
+  if (!tasks.length) return '';
+  let html = '<ul class="task-list">';
+  tasks.forEach(task => {
+    const checked = progress[task.id] !== undefined ? progress[task.id] : task.checked;
+    html += `
+      <li class="task-item" onclick="toggleTask(event, this)">
+        <input type="checkbox" class="task-cb" id="${task.id}" data-id="${task.id}" ${checked ? 'checked' : ''}>
+        <label class="task-text" for="${task.id}">${esc(task.text)}</label>
+      </li>`;
+  });
+  html += '</ul>';
+  return html;
+}
+
+function toggleTask(e, li) {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'LABEL') return;
+  const cb = li.querySelector('.task-cb');
+  cb.checked = !cb.checked;
+  cb.dispatchEvent(new Event('change'));
+}
+
+// ── PHASE ACCORDION ──────────────────────────────────────────────────────────
+function togglePhase(card) {
+  card.classList.toggle('open');
+}
+
+function expandAll() {
+  document.querySelectorAll('.phase-card').forEach(c => c.classList.add('open'));
+}
+
+function collapseAll() {
+  document.querySelectorAll('.phase-card').forEach(c => c.classList.remove('open'));
+}
+
+// ── UPDATE PHASE PROGRESS ─────────────────────────────────────────────────────
+function updatePhaseProgress(card) {
+  if (!card) return;
+  const cbs = card.querySelectorAll('.task-cb');
+  const done = [...cbs].filter(c => c.checked).length;
+  const total = cbs.length;
+  const pct = total ? Math.round((done / total) * 100) : 0;
+  const pill = card.querySelector('.phase-progress-pill');
+  const fill = card.querySelector('.phase-mini-fill');
+  const sub  = card.querySelector('.phase-sub');
+  if (pill) {
+    pill.textContent = `${done}/${total}`;
+    pill.classList.toggle('done', total > 0 && done === total);
+  }
+  if (fill) fill.style.width = pct + '%';
+  if (sub) sub.textContent = `${total} tasks${done > 0 ? ` · ${done} done` : ''}`;
+}
+
+// ── DASHBOARD + OVERALL PROGRESS ─────────────────────────────────────────────
+function updateDashboard() {
+  const allCbs = document.querySelectorAll('.task-cb');
+  const done = [...allCbs].filter(c => c.checked).length;
+  const total = allCbs.length;
+  const pct = total ? Math.round((done / total) * 100) : 0;
+
+  document.getElementById('overall-pct').textContent = pct + '%';
+  document.getElementById('overall-fill').style.width = pct + '%';
+  document.getElementById('dash-done').textContent = done;
+  document.getElementById('dash-remain').textContent = total - done;
+  document.getElementById('dash-pct').textContent = pct + '%';
+
+  const sync = getSyncTime();
+  document.getElementById('dash-sync').textContent = sync ? formatSync(sync) : '—';
+}
+
+function stampSync() {
+  const data = loadProgress();
+  data.__syncTime = new Date().toISOString();
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+function formatSync(iso) {
+  try {
+    const d = new Date(iso);
+    return d.toLocaleString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+  } catch { return iso; }
+}
+
+// ── SEARCH ───────────────────────────────────────────────────────────────────
+function handleSearch(query) {
+  const q = query.trim().toLowerCase();
+  const noRes = document.getElementById('no-results');
+  let anyVisible = false;
+
+  document.querySelectorAll('.phase-card').forEach(card => {
+    const tasks = card.querySelectorAll('.task-item');
+    let phaseHasMatch = false;
+
+    tasks.forEach(item => {
+      const text = item.querySelector('.task-text')?.textContent.toLowerCase() || '';
+      if (!q || text.includes(q)) {
+        item.classList.remove('hidden');
+        phaseHasMatch = true;
+      } else {
+        item.classList.add('hidden');
+      }
+    });
+
+    // also check phase title
+    const title = card.querySelector('.phase-name')?.textContent.toLowerCase() || '';
+    if (q && title.includes(q)) {
+      tasks.forEach(item => item.classList.remove('hidden'));
+      phaseHasMatch = true;
+    }
+
+    card.style.display = (!q || phaseHasMatch) ? '' : 'none';
+    if (!q || phaseHasMatch) anyVisible = true;
+    if (q && phaseHasMatch) card.classList.add('open');
+  });
+
+  if (noRes) noRes.style.display = (q && !anyVisible) ? 'block' : 'none';
+}
+
+// ── RESET ─────────────────────────────────────────────────────────────────────
+function resetProgress() {
+  if (!confirm('Reset all progress? This cannot be undone.')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  document.querySelectorAll('.task-cb, .capstone-cb').forEach(cb => { cb.checked = false; });
+  document.querySelectorAll('.phase-card').forEach(updatePhaseProgress);
+  updateDashboard();
+}
+
+function onCapstoneChange(cb) {
+  saveProgress(cb.dataset.id, cb.checked);
+  stampSync();
+}
+
+// ── UTILS ─────────────────────────────────────────────────────────────────────
+function esc(str) {
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+// ── BOOT ─────────────────────────────────────────────────────────────────────
+async function boot() {
+  try {
+    const res = await fetch('https://raw.githubusercontent.com/NaveenKadali/learning-journey-organizer/main/README.md');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const md = await res.text();
+    const data = parseRoadmap(md);
+
+    if (data.phases.length === 0) {
+      throw new Error('No phases found — check README structure.');
+    }
+
+    render(data);
+  } catch (err) {
+    document.getElementById('main-content').innerHTML = `
+      <div class="error-state">
+        <strong>⚠ Could not load roadmap</strong><br>
+        ${esc(err.message)}<br><br>
+        <small style="color:var(--text-muted)">Check your network or GitHub repository URL, then refresh.</small>
+      </div>`;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', boot);
+</script>
 </body>
 </html>
