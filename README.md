@@ -22,12 +22,14 @@
 ---
 ** Introduction and Things to Begin with goes here**
 
+> section: // Introduction
 ## Intro and Other
 - [ ] Direct item
 ### Sub-Topic Name
 - [ ] Item inside sub-topic
 
 ---
+> section: // Additional Learnings
 ** Additional Learnings and Other things goes here**
 ## Docker Deep Dive
 - [ ] Containers
@@ -35,7 +37,7 @@
 - [ ] ipv4
 
 ---
-
+> section: // Learning Phrases
 ## Phase 01 — Python + Async Engineering
 **Weeks 1–3 · 8 modules · Difficulty: 2/5**
 
@@ -436,7 +438,7 @@
 **🏁 End state:** Dockerize any earlier project, deploy to ECS Fargate behind API Gateway, manage secrets, stream tokens to a chat UI, load-test it, and watch the cost dashboard move only when it should.
 
 ---
-
+> section: // Capstone Projects
 ## 🏆 Capstone Projects
 
 ### Capstone 1 — Distributed Document Ingestion + RAG Pipeline
