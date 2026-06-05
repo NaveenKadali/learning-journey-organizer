@@ -677,52 +677,93 @@ function localSave() {
 // ═══════════════════════════════════════════
 function parseRoadmap(md) {
   const lines = md.split('\n');
-  const phases = [], capstones = [];
-  let curPhase = null, curMod = null, inCapstoneSection = false, curCapstone = null;
+  const phases = [], capstones = [], extras = [];
+  let intro = null;
+  let curPhase = null, curMod = null;
+  let inCapstone = false, curCapstone = null;
+  let inExtra = false, curExtra = null, curExtraMod = null;
+  let inIntro = false, curIntroMod = null;
+
+  function parseTasks(line, target) {
+    const tm = line.match(/^[-*]\s+\[([ xX✓])\]\s+(.*)/);
+    if (tm) {
+      const checked = /^[xX✓]$/.test(tm[1].trim());
+      target.push({ text:tm[2].trim(), checked, id:slug(tm[2].trim()) });
+      return true;
+    }
+    return false;
+  }
+
   for (const line of lines) {
-    // Detect the ## Capstone Projects section header
+    // ── Capstone section ──
     if (/^##\s+.*capstone/i.test(line)) {
-      inCapstoneSection = true;
-      curPhase = null; curMod = null; curCapstone = null; continue;
+      inCapstone=true; inExtra=false; inIntro=false;
+      curPhase=null; curMod=null; curCapstone=null; curExtra=null; curExtraMod=null; curIntroMod=null; continue;
     }
-    // A new ## section (non-capstone) ends the capstone section
-    if (/^##\s+/.test(line) && !/^##\s+.*capstone/i.test(line)) {
-      inCapstoneSection = false; curCapstone = null;
-    }
-    if (inCapstoneSection) {
-      // Each ### Capstone X line starts a new capstone card
+    if (inCapstone) {
       if (/^###\s+capstone\s+\d+/i.test(line)) {
         const title = line.replace(/^###\s+/,'').trim();
-        curCapstone = { title, id: slug(title), tasks:[] };
+        curCapstone = { title, id:slug(title), tasks:[] };
         capstones.push(curCapstone); continue;
       }
-      // Collect tasks inside the current capstone
-      if (curCapstone) {
-        const tm = line.match(/^[-*]\s+\[([ xX✓])\]\s+(.*)/);
-        if (tm) {
-          const checked = /^[xX✓]$/.test(tm[1].trim());
-          curCapstone.tasks.push({ text:tm[2].trim(), checked, id:slug(tm[2].trim()) });
-        }
-      }
+      if (curCapstone) parseTasks(line, curCapstone.tasks);
       continue;
     }
+
+    // ── Intro section (## Intro... at top) ──
+    if (/^##\s+(intro|introduction|getting started|overview)/i.test(line)) {
+      inIntro=true; inExtra=false; inCapstone=false;
+      curPhase=null; curMod=null; curExtra=null; curExtraMod=null; curIntroMod=null;
+      if (!intro) intro = { title:line.replace(/^##\s+/,'').trim(), modules:[], tasks:[], id:slug(line) };
+      continue;
+    }
+    if (inIntro) {
+      if (/^##\s+/.test(line)) { inIntro=false; curIntroMod=null; }
+      else {
+        if (/^###\s+/.test(line)) {
+          curIntroMod = { title:line.replace(/^###\s+/,'').trim(), tasks:[], id:slug(line.replace(/^###\s+/,'').trim()) };
+          intro.modules.push(curIntroMod); continue;
+        }
+        parseTasks(line, (curIntroMod||intro).tasks); continue;
+      }
+    }
+
+    // ── Other / Additional Learnings section ──
+    if (/^##\s+(other|additional)/i.test(line)) {
+      inExtra=true; inIntro=false; inCapstone=false;
+      curPhase=null; curMod=null; curCapstone=null; curIntroMod=null;
+      curExtra=null; curExtraMod=null; continue;
+    }
+    if (inExtra) {
+      if (/^##\s+/.test(line)) { inExtra=false; curExtra=null; curExtraMod=null; }
+      else {
+        if (/^###\s+/.test(line)) {
+          curExtra = { title:line.replace(/^###\s+/,'').trim(), modules:[], tasks:[], id:slug(line.replace(/^###\s+/,'').trim()) };
+          extras.push(curExtra); curExtraMod=null; continue;
+        }
+        if (/^####\s+/.test(line) && curExtra) {
+          curExtraMod = { title:line.replace(/^####\s+/,'').trim(), tasks:[], id:slug(line.replace(/^####\s+/,'').trim()) };
+          curExtra.modules.push(curExtraMod); continue;
+        }
+        if (curExtra) parseTasks(line, (curExtraMod||curExtra).tasks);
+        continue;
+      }
+    }
+
+    // ── Phase sections ──
     if (/^##\s+phase\s+\d+/i.test(line)) {
+      inIntro=false; inExtra=false; inCapstone=false;
       curPhase = { title:line.replace(/^##\s+/,'').trim(), modules:[], tasks:[] };
-      curMod = null; phases.push(curPhase); continue;
+      curMod=null; phases.push(curPhase); continue;
     }
     if (!curPhase) continue;
     if (/^###\s+/.test(line)) {
       curMod = { title:line.replace(/^###\s+/,'').trim(), tasks:[], id:slug(line.replace(/^###\s+/,'').trim()) };
       curPhase.modules.push(curMod); continue;
     }
-    const tm = line.match(/^[-*]\s+\[([ xX✓])\]\s+(.*)/);
-    if (tm) {
-      const checked = /^[xX✓]$/.test(tm[1].trim());
-      const task = { text:tm[2].trim(), checked, id:slug(tm[2].trim()) };
-      (curMod || curPhase).tasks.push(task);
-    }
+    parseTasks(line, (curMod||curPhase).tasks);
   }
-  return { phases, capstones };
+  return { intro, phases, extras, capstones };
 }
 function slug(s) { return 'T'+btoa(encodeURIComponent(s.slice(0,60))).replace(/[^a-zA-Z0-9]/g,'').slice(0,32); }
 
@@ -744,18 +785,74 @@ const PMETA = [
 // ═══════════════════════════════════════════
 //  RENDER
 // ═══════════════════════════════════════════
+// Helper: build a generic accordion card (used for phases, extras)
+function buildAccordionCard(title, labelTag, icon, bg, br, numStr, bodyHtml, progress) {
+  const allCbs = [];
+  const tmpDiv = document.createElement('div');
+  tmpDiv.innerHTML = bodyHtml;
+  tmpDiv.querySelectorAll('.task-cb').forEach(cb => {
+    const saved = progress[cb.dataset.id];
+    if (saved !== undefined) cb.checked = saved;
+    allCbs.push(cb);
+  });
+  const done  = allCbs.filter(c=>c.checked).length;
+  const tot   = allCbs.length;
+  const pct   = tot ? Math.round(done/tot*100) : 0;
+  const state = tot===0?'notstarted':done===tot?'done':done>0?'active':'notstarted';
+  const pillCls = state==='done'?'s-done':state==='active'?'s-active':'';
+  const card = mkEl('div','phase-card');
+  card.dataset.state = state;
+  card.innerHTML = `
+    <div class="phase-header" onclick="togglePhase(this.parentElement)">
+      ${numStr ? `<span class="phase-num">${numStr}</span>` : ''}
+      <div class="phase-icon" style="background:${bg};border:1px solid ${br}">${icon}</div>
+      <div class="phase-meta">
+        <div class="phase-name">${esc(title)}</div>
+        <div class="phase-sub">${tot} items${done>0?' · '+done+' done':''}</div>
+      </div>
+      <div class="phase-right">
+        <div class="phase-mini-bar"><div class="phase-mini-fill" style="width:${pct}%"></div></div>
+        <div class="phase-pill ${pillCls}">${done}/${tot}</div>
+        <svg class="phase-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-body-inner">${bodyHtml}</div>
+    </div>`;
+  return card;
+}
+
 function render(data) {
   const progress  = loadProgress();
   const resources = loadResources();
-  const { phases, capstones } = data;
+  const { intro, phases, extras, capstones } = data;
 
   let total = 0, mods = 0;
-  phases.forEach(p => { p.tasks.forEach(()=>total++); p.modules.forEach(m=>{mods++;m.tasks.forEach(()=>total++);}); });
+  const countSection = s => { s.tasks.forEach(()=>total++); s.modules.forEach(m=>{mods++;m.tasks.forEach(()=>total++);}); };
+  if (intro) countSection(intro);
+  phases.forEach(countSection);
+  extras.forEach(countSection);
   document.getElementById('roadmap-meta').textContent =
-    `26 weeks · ${phases.length} phases · ${mods} modules · ${capstones.length} capstones · ${total} tasks`;
+    `${phases.length} phases · ${extras.length > 0 ? extras.length+' extras · ' : ''}${mods} modules · ${capstones.length} capstones · ${total} items`;
 
   const main = document.getElementById('main-content');
   main.innerHTML = '';
+
+  // ── Intro ──
+  if (intro) {
+    main.appendChild(mkEl('div','section-label','// Introduction'));
+    const ilist = mkEl('div','phase-list'); ilist.id='intro-list';
+    const introBody = renderPhaseBody(intro, progress, resources);
+    const icard = buildAccordionCard(
+      intro.title.replace(/^(intro\w*|getting\s+started|overview)\s*[-—:]\s*/i,'').trim() || intro.title,
+      'Intro', '📖',
+      'rgba(6,182,212,.12)', 'rgba(6,182,212,.28)',
+      '', introBody, progress
+    );
+    icard.classList.add('open');
+    ilist.appendChild(icard);
+    main.appendChild(ilist);
+  }
 
   // ── Phases ──
   main.appendChild(mkEl('div','section-label','// Learning Phases'));
@@ -798,6 +895,27 @@ function render(data) {
   main.appendChild(plist);
   const noRes = mkEl('div','no-results','No phases match.'); noRes.id='no-results';
   main.appendChild(noRes);
+
+  // ── Extras (Other / Additional Learnings) ──
+  if (extras.length) {
+    main.appendChild(mkEl('div','section-label','// Other & Additional Learnings'));
+    const elist = mkEl('div','phase-list'); elist.id='extras-list';
+    const EMETA = [
+      {icon:'📘',bg:'rgba(6,182,212,.12)',  br:'rgba(6,182,212,.28)'},
+      {icon:'🔧',bg:'rgba(245,158,11,.12)', br:'rgba(245,158,11,.28)'},
+      {icon:'🧩',bg:'rgba(99,102,241,.12)', br:'rgba(99,102,241,.28)'},
+      {icon:'📡',bg:'rgba(239,68,68,.12)',  br:'rgba(239,68,68,.28)'},
+      {icon:'⚡',bg:'rgba(34,197,94,.12)',  br:'rgba(34,197,94,.28)'},
+    ];
+    extras.forEach((topic, idx) => {
+      const meta = EMETA[idx % EMETA.length];
+      const name = topic.title.replace(/^(topic\s*\d*\s*[-—:]\s*)/i,'').trim() || topic.title;
+      const body = renderPhaseBody(topic, progress, resources);
+      const card = buildAccordionCard(name, 'Topic', meta.icon, meta.bg, meta.br, '', body, progress);
+      elist.appendChild(card);
+    });
+    main.appendChild(elist);
+  }
 
   // ── Capstones ──
   if (capstones.length) {
@@ -854,7 +972,7 @@ function render(data) {
     });
   }
 
-  // Task listeners
+  // Task listeners — covers intro, phases, extras
   document.querySelectorAll('.task-cb').forEach(cb => {
     cb.addEventListener('change', () => { localSave(); updatePhaseState(cb.closest('.phase-card')); updateDashboard(); });
   });
