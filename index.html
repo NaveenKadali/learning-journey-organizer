@@ -753,7 +753,7 @@ function parseRoadmap(md) {
     // ── Phase sections ──
     if (/^##\s+phase\s+\d+/i.test(line)) {
       inIntro=false; inExtra=false; inCapstone=false;
-      curPhase = { title:line.replace(/^##\s+/,'').trim(), modules:[], tasks:[] };
+      curPhase = { title:line.replace(/^##\s+/,'').trim(), modules:[], tasks:[], id:slug(line.replace(/^##\s+/,'').trim()) };
       curMod=null; phases.push(curPhase); continue;
     }
     if (!curPhase) continue;
@@ -849,7 +849,6 @@ function render(data) {
       'rgba(6,182,212,.12)', 'rgba(6,182,212,.28)',
       '', introBody, progress
     );
-    icard.classList.add('open');
     ilist.appendChild(icard);
     main.appendChild(ilist);
   }
@@ -940,7 +939,7 @@ function render(data) {
           </li>`;
         }).join('') + '</ul>';
       }
-      const cc = mkEl('div','capstone-card open');
+      const cc = mkEl('div','capstone-card');
       cc.innerHTML = `
         <div class="capstone-header" onclick="toggleCapstone(this.parentElement)">
           <div class="capstone-icon">🏆</div>
@@ -979,18 +978,39 @@ function render(data) {
 
   updateDashboard();
   applyCurrentFilter();
-  const first = plist.querySelector('.phase-card');
-  if (first) first.classList.add('open');
 }
+
 
 // ─────────────────────────────────────────
 function renderPhaseBody(phase, progress, resources) {
   let html = '';
-  if (phase.tasks.length) html += renderTaskList(phase.tasks, progress);
+  if (phase.tasks.length) {
+    // Direct tasks — wrap with a resources panel using the phase id
+    const pid = phase.id || slug(phase.title||'phase');
+    const resList = (resources[pid]||[]);
+    const resCnt  = resList.length;
+    html += `<div class="module-group" data-module-id="${pid}">
+      <div class="module-header" onclick="toggleModule(this.parentElement)">
+        <div class="module-title" style="color:var(--text-muted);font-size:.7rem">ITEMS</div>
+        <button class="module-res-toggle" onclick="event.stopPropagation();toggleResPanel('${pid}',this)">
+          📚 RESOURCES <span class="res-count">${resCnt}</span>
+        </button>
+        <svg class="module-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="module-body">
+        <div class="module-body-inner">
+          ${renderTaskList(phase.tasks, progress)}
+          <div class="res-panel" id="res-panel-${pid}" style="display:none" data-module-id="${pid}">
+            ${renderResourcePanelInner(pid, resources)}
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }
   phase.modules.forEach(mod => {
     const resList = (resources[mod.id]||[]);
     const resCnt  = resList.length;
-    html += `<div class="module-group open" data-module-id="${mod.id}">
+    html += `<div class="module-group" data-module-id="${mod.id}">
       <div class="module-header" onclick="toggleModule(this.parentElement)">
         <div class="module-title">${esc(mod.title)}</div>
         <button class="module-res-toggle" onclick="event.stopPropagation();toggleResPanel('${mod.id}',this)">
