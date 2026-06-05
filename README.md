@@ -20,18 +20,19 @@
 | 09 | Cloud + Deployment | 25–26 | 6 | ⬜ Not started |
 
 ---
+** Introduction and Things to Begin with goes here**
 
 ## Intro and Other
 - [ ] Direct item
 ### Sub-Topic Name
 - [ ] Item inside sub-topic
 
-## Other — Additional Learnings
-### Topic 1 — Docker Deep Dive
-#### Sub-Topic: Networking
-- [ ] Item
-### Topic 2 — Flat (no sub-topics)
-- [ ] Item
+---
+** Additional Learnings and Other things goes here**
+## Docker Deep Dive
+- [ ] Containers
+### Networking
+- [ ] ipv4
 
 ---
 
