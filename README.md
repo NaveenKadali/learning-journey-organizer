@@ -438,10 +438,9 @@
 **🏁 End state:** Dockerize any earlier project, deploy to ECS Fargate behind API Gateway, manage secrets, stream tokens to a chat UI, load-test it, and watch the cost dashboard move only when it should.
 
 ---
-> section: // Capstone Projects
-## 🏆 Capstone Projects
+> section: // 🏆 Capstone Projects
 
-### Capstone 1 — Distributed Document Ingestion + RAG Pipeline
+## Capstone 1 — Distributed Document Ingestion + RAG Pipeline
 **Built during Phase 4 · Weeks 10–12**  
 *Domain: Unstructured document Q&A (legal, pharma, technical docs)*  
 `Docling` `Pinecone` `Neo4j` `ECS Fargate` `DynamoDB` `S3` `Bedrock` `LangSmith`
@@ -457,7 +456,7 @@
 
 ---
 
-### Capstone 2 — Multi-Agent Natural Language → SQL on E-commerce Data
+## Capstone 2 — Multi-Agent Natural Language → SQL on E-commerce Data
 **Built during Phase 7 · Weeks 21–22**  
 *Domain: E-commerce analytics for non-technical users*  
 `LangChain` `LangGraph` `LangSmith` `AgentCore` `RDS PostgreSQL` `FastAPI` `Streamlit` `Bedrock`
@@ -473,7 +472,7 @@
 
 ---
 
-### Capstone 3 — Clinical Trials Knowledge Base
+## Capstone 3 — Clinical Trials Knowledge Base
 **Built during Phases 8–9 · Weeks 23–26**  
 *Domain: Life sciences AI (substitute legal, finance, or your industry)*  
 `LangChain` `LangGraph` `Neo4j` `Pinecone` `Bedrock` `AgentCore` `Lambda` `S3` `LangSmith` `MLflow`
