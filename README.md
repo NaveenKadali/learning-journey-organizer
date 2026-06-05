@@ -21,6 +21,11 @@
 
 ---
 
+### Intro
+- [ ] AI Engineer Roadmap 2026
+
+---
+
 ## Phase 01 — Python + Async Engineering
 **Weeks 1–3 · 8 modules · Difficulty: 2/5**
 
