@@ -648,12 +648,33 @@ function localSave() {
 function parseRoadmap(md) {
   const lines = md.split('\n');
   const phases = [], capstones = [];
-  let curPhase = null, curMod = null;
+  let curPhase = null, curMod = null, inCapstoneSection = false, curCapstone = null;
   for (const line of lines) {
+    // Detect the ## Capstone Projects section header
     if (/^##\s+.*capstone/i.test(line)) {
-      const title = line.replace(/^##\s+/,'').trim();
-      capstones.push({ title, id: slug(title) });
-      curPhase = null; curMod = null; continue;
+      inCapstoneSection = true;
+      curPhase = null; curMod = null; curCapstone = null; continue;
+    }
+    // A new ## section (non-capstone) ends the capstone section
+    if (/^##\s+/.test(line) && !/^##\s+.*capstone/i.test(line)) {
+      inCapstoneSection = false; curCapstone = null;
+    }
+    if (inCapstoneSection) {
+      // Each ### Capstone X line starts a new capstone card
+      if (/^###\s+capstone\s+\d+/i.test(line)) {
+        const title = line.replace(/^###\s+/,'').trim();
+        curCapstone = { title, id: slug(title), tasks:[] };
+        capstones.push(curCapstone); continue;
+      }
+      // Collect tasks inside the current capstone
+      if (curCapstone) {
+        const tm = line.match(/^[-*]\s+\[([ xX✓])\]\s+(.*)/);
+        if (tm) {
+          const checked = /^[xX✓]$/.test(tm[1].trim());
+          curCapstone.tasks.push({ text:tm[2].trim(), checked, id:slug(tm[2].trim()) });
+        }
+      }
+      continue;
     }
     if (/^##\s+phase\s+\d+/i.test(line)) {
       curPhase = { title:line.replace(/^##\s+/,'').trim(), modules:[], tasks:[] };
@@ -756,8 +777,19 @@ function render(data) {
       const saved = progress[cap.id]||false;
       const name  = cap.title.replace(/^Capstone\s*\d*\s*[-—:]\s*/i,'').trim()||cap.title;
       const cc = mkEl('div','capstone-card');
+      let tasksHtml = '';
+      if (cap.tasks && cap.tasks.length) {
+        tasksHtml = '<ul class="task-list" style="margin-top:10px">' + cap.tasks.map(t => {
+          const checked = progress[t.id]!==undefined ? progress[t.id] : t.checked;
+          return `<li class="task-item" onclick="toggleTask(event,this)">
+            <input type="checkbox" class="task-cb" data-id="${t.id}" ${checked?'checked':''}>
+            <label class="task-text">${esc(t.text)}</label>
+          </li>`;
+        }).join('') + '</ul>';
+      }
       cc.innerHTML = `<div class="capstone-tag">Capstone ${i+1}</div>
         <div class="capstone-name">${esc(name)}</div>
+        ${tasksHtml}
         <label class="capstone-check">
           <input type="checkbox" class="cap-cb" data-id="${cap.id}" ${saved?'checked':''}>
           Mark complete
@@ -766,6 +798,9 @@ function render(data) {
     });
     main.appendChild(grid);
     grid.querySelectorAll('.cap-cb').forEach(cb => cb.addEventListener('change',()=>{ localSave(); updateDashboard(); }));
+    grid.querySelectorAll('.task-cb').forEach(cb => {
+      cb.addEventListener('change', () => { localSave(); updateDashboard(); });
+    });
   }
 
   // Task listeners
@@ -1019,8 +1054,14 @@ function applyCurrentFilter() {
 // ═══════════════════════════════════════════
 function togglePhase(card) { card.classList.toggle('open'); }
 function toggleModule(group) { group.classList.toggle('open'); }
-function expandAll()  { document.querySelectorAll('.phase-card').forEach(c=>c.classList.add('open')); }
-function collapseAll(){ document.querySelectorAll('.phase-card').forEach(c=>c.classList.remove('open')); }
+function expandAll()  {
+  document.querySelectorAll('.phase-card').forEach(c=>c.classList.add('open'));
+  document.querySelectorAll('.module-group').forEach(m=>m.classList.add('open'));
+}
+function collapseAll(){
+  document.querySelectorAll('.phase-card').forEach(c=>c.classList.remove('open'));
+  document.querySelectorAll('.module-group').forEach(m=>m.classList.remove('open'));
+}
 
 function toggleMoreMenu() { document.getElementById('more-menu').classList.toggle('open'); }
 function closeMoreMenu()  { document.getElementById('more-menu').classList.remove('open'); }
