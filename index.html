@@ -956,6 +956,22 @@ function render(data) {
         <div class="capstone-body">
           <div class="capstone-body-inner">
             ${tasksHtml}
+            <div class="module-group" data-module-id="${cap.id}-res" style="margin-top:10px">
+              <div class="module-header" onclick="toggleModule(this.parentElement)">
+                <div class="module-title"></div>
+                <button class="module-res-toggle" onclick="event.stopPropagation();toggleResPanel('${cap.id}-res',this)">
+                  📚 RESOURCES <span class="res-count">${(resources[cap.id+'-res']||[]).length}</span>
+                </button>
+                <svg class="module-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+              <div class="module-body">
+                <div class="module-body-inner">
+                  <div class="res-panel" id="res-panel-${cap.id}-res" style="display:none" data-module-id="${cap.id}-res">
+                    ${renderResourcePanelInner(cap.id+'-res', resources)}
+                  </div>
+                </div>
+              </div>
+            </div>
             <label class="capstone-check">
               <input type="checkbox" class="cap-cb" data-id="${cap.id}" ${saved?'checked':''}>
               Mark complete
@@ -991,7 +1007,7 @@ function renderPhaseBody(phase, progress, resources) {
     const resCnt  = resList.length;
     html += `<div class="module-group" data-module-id="${pid}">
       <div class="module-header" onclick="toggleModule(this.parentElement)">
-        <div class="module-title" style="color:var(--text-muted);font-size:.7rem">ITEMS</div>
+        <div class="module-title"></div>
         <button class="module-res-toggle" onclick="event.stopPropagation();toggleResPanel('${pid}',this)">
           📚 RESOURCES <span class="res-count">${resCnt}</span>
         </button>
