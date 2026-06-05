@@ -675,6 +675,10 @@ function localSave() {
 // ═══════════════════════════════════════════
 //  PARSE MARKDOWN
 // ═══════════════════════════════════════════
+function slug(s) {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,80);
+}
+
 function parseRoadmap(md) {
   const lines = md.split('\n');
 
