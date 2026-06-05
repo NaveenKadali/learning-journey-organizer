@@ -677,149 +677,71 @@ function localSave() {
 // ═══════════════════════════════════════════
 function parseRoadmap(md) {
   const lines = md.split('\n');
-  const phases = [], capstones = [], extras = [];
-  let intro = null;
-  let curPhase = null, curMod = null;
-  let inCapstone = false, curCapstone = null;
-  let inExtra = false, curExtra = null, curExtraMod = null;
-  let inIntro = false, curIntroMod = null;
 
-  function parseTasks(line, target) {
-    const tm = line.match(/^[-*]\s+\[([ xX✓])\]\s+(.*)/);
-    if (tm) {
-      const checked = /^[xX✓]$/.test(tm[1].trim());
-      target.push({ text:tm[2].trim(), checked, id:slug(tm[2].trim()) });
-      return true;
-    }
-    return false;
+  // Sections: { label, type, items:[ {title, id, modules:[], tasks:[]} ] }
+  const sections = [];
+  let curSection = null, curItem = null, curMod = null, curSubMod = null;
+
+  function detectType(title) {
+    if (/intro|introduction|getting\s+started|overview/i.test(title)) return 'intro';
+    if (/phase\s+\d+/i.test(title))                                    return 'phases';
+    if (/other|additional/i.test(title))                                 return 'extras';
+    if (/capstone/i.test(title))                                         return 'capstones';
+    return 'generic';
+  }
+
+  function pushTask(line, target) {
+    const m = line.match(/^[-*]\s+\[([ xX✓])\]\s+(.*)/);
+    if (!m) return;
+    target.push({ text:m[2].trim(), checked:/^[xX✓]$/.test(m[1].trim()), id:slug(m[2].trim()) });
   }
 
   for (const line of lines) {
-    // ── Capstone section ──
-    if (/^##\s+.*capstone/i.test(line)) {
-      inCapstone=true; inExtra=false; inIntro=false;
-      curPhase=null; curMod=null; curCapstone=null; curExtra=null; curExtraMod=null; curIntroMod=null; continue;
-    }
-    if (inCapstone) {
-      if (/^###\s+capstone\s+\d+/i.test(line)) {
-        const title = line.replace(/^###\s+/,'').trim();
-        curCapstone = { title, id:slug(title), tasks:[] };
-        capstones.push(curCapstone); continue;
-      }
-      if (curCapstone) parseTasks(line, curCapstone.tasks);
-      continue;
+    // Section label comment
+    const secMatch = line.match(/<!--\s*section:\s*(.+?)\s*-->/i);
+    if (secMatch) {
+      curSection = { label:secMatch[1].trim(), type:null, items:[] };
+      sections.push(curSection);
+      curItem=null; curMod=null; curSubMod=null; continue;
     }
 
-    // ── Intro section (## Intro... at top) ──
-    if (/^##\s+(intro|introduction|getting started|overview)/i.test(line)) {
-      inIntro=true; inExtra=false; inCapstone=false;
-      curPhase=null; curMod=null; curExtra=null; curExtraMod=null; curIntroMod=null;
-      if (!intro) intro = { title:line.replace(/^##\s+/,'').trim(), modules:[], tasks:[], id:slug(line) };
-      continue;
+    // ## block → new item inside current section
+    if (/^##\s+/.test(line)) {
+      const title = line.replace(/^##\s+/,'').trim();
+      if (curSection && curSection.type === null) curSection.type = detectType(title);
+      if (!curSection) { curSection={label:'',type:detectType(title),items:[]}; sections.push(curSection); }
+      curItem = { title, id:slug(title), modules:[], tasks:[] };
+      curSection.items.push(curItem);
+      curMod=null; curSubMod=null; continue;
     }
-    if (inIntro) {
-      if (/^##\s+/.test(line)) { inIntro=false; curIntroMod=null; }
-      else {
-        if (/^###\s+/.test(line)) {
-          curIntroMod = { title:line.replace(/^###\s+/,'').trim(), tasks:[], id:slug(line.replace(/^###\s+/,'').trim()) };
-          intro.modules.push(curIntroMod); continue;
-        }
-        parseTasks(line, (curIntroMod||intro).tasks); continue;
-      }
-    }
+    if (!curItem) continue;
 
-    // ── Other / Additional Learnings section ──
-    if (/^##\s+(other|additional)/i.test(line)) {
-      inExtra=true; inIntro=false; inCapstone=false;
-      curPhase=null; curMod=null; curCapstone=null; curIntroMod=null;
-      curExtra=null; curExtraMod=null; continue;
-    }
-    if (inExtra) {
-      if (/^##\s+/.test(line)) { inExtra=false; curExtra=null; curExtraMod=null; }
-      else {
-        if (/^###\s+/.test(line)) {
-          curExtra = { title:line.replace(/^###\s+/,'').trim(), modules:[], tasks:[], id:slug(line.replace(/^###\s+/,'').trim()) };
-          extras.push(curExtra); curExtraMod=null; continue;
-        }
-        if (/^####\s+/.test(line) && curExtra) {
-          curExtraMod = { title:line.replace(/^####\s+/,'').trim(), tasks:[], id:slug(line.replace(/^####\s+/,'').trim()) };
-          curExtra.modules.push(curExtraMod); continue;
-        }
-        if (curExtra) parseTasks(line, (curExtraMod||curExtra).tasks);
-        continue;
-      }
-    }
-
-    // ── Phase sections ──
-    if (/^##\s+phase\s+\d+/i.test(line)) {
-      inIntro=false; inExtra=false; inCapstone=false;
-      curPhase = { title:line.replace(/^##\s+/,'').trim(), modules:[], tasks:[], id:slug(line.replace(/^##\s+/,'').trim()) };
-      curMod=null; phases.push(curPhase); continue;
-    }
-    if (!curPhase) continue;
+    // ### → module
     if (/^###\s+/.test(line)) {
-      curMod = { title:line.replace(/^###\s+/,'').trim(), tasks:[], id:slug(line.replace(/^###\s+/,'').trim()) };
-      curPhase.modules.push(curMod); continue;
+      const title = line.replace(/^###\s+/,'').trim();
+      curMod = { title, id:slug(title), modules:[], tasks:[] };
+      curItem.modules.push(curMod);
+      curSubMod=null; continue;
     }
-    parseTasks(line, (curMod||curPhase).tasks);
+
+    // #### → sub-module
+    if (/^####\s+/.test(line)) {
+      const title = line.replace(/^####\s+/,'').trim();
+      curSubMod = { title, id:slug(title), tasks:[] };
+      (curMod||curItem).modules.push(curSubMod); continue;
+    }
+
+    pushTask(line, (curSubMod||curMod||curItem).tasks);
   }
-  return { intro, phases, extras, capstones };
-}
-function slug(s) { return 'T'+btoa(encodeURIComponent(s.slice(0,60))).replace(/[^a-zA-Z0-9]/g,'').slice(0,32); }
 
-// ═══════════════════════════════════════════
-//  PHASE META
-// ═══════════════════════════════════════════
-const PMETA = [
-  {icon:'🐍',bg:'rgba(59,130,246,.12)', br:'rgba(59,130,246,.28)'},
-  {icon:'🔗',bg:'rgba(139,92,246,.12)', br:'rgba(139,92,246,.28)'},
-  {icon:'🤖',bg:'rgba(34,197,94,.12)',  br:'rgba(34,197,94,.28)'},
-  {icon:'🧠',bg:'rgba(245,158,11,.12)', br:'rgba(245,158,11,.28)'},
-  {icon:'🔒',bg:'rgba(239,68,68,.12)',  br:'rgba(239,68,68,.28)'},
-  {icon:'📦',bg:'rgba(99,102,241,.12)', br:'rgba(99,102,241,.28)'},
-  {icon:'☁️',bg:'rgba(6,182,212,.12)',  br:'rgba(6,182,212,.28)'},
-  {icon:'🏗️',bg:'rgba(34,197,94,.12)',  br:'rgba(34,197,94,.28)'},
-  {icon:'🚀',bg:'rgba(249,115,22,.12)', br:'rgba(249,115,22,.28)'},
-];
-
-// ═══════════════════════════════════════════
-//  RENDER
-// ═══════════════════════════════════════════
-// Helper: build a generic accordion card (used for phases, extras)
-function buildAccordionCard(title, labelTag, icon, bg, br, numStr, bodyHtml, progress) {
-  const allCbs = [];
-  const tmpDiv = document.createElement('div');
-  tmpDiv.innerHTML = bodyHtml;
-  tmpDiv.querySelectorAll('.task-cb').forEach(cb => {
-    const saved = progress[cb.dataset.id];
-    if (saved !== undefined) cb.checked = saved;
-    allCbs.push(cb);
-  });
-  const done  = allCbs.filter(c=>c.checked).length;
-  const tot   = allCbs.length;
-  const pct   = tot ? Math.round(done/tot*100) : 0;
-  const state = tot===0?'notstarted':done===tot?'done':done>0?'active':'notstarted';
-  const pillCls = state==='done'?'s-done':state==='active'?'s-active':'';
-  const card = mkEl('div','phase-card');
-  card.dataset.state = state;
-  card.innerHTML = `
-    <div class="phase-header" onclick="togglePhase(this.parentElement)">
-      ${numStr ? `<span class="phase-num">${numStr}</span>` : ''}
-      <div class="phase-icon" style="background:${bg};border:1px solid ${br}">${icon}</div>
-      <div class="phase-meta">
-        <div class="phase-name">${esc(title)}</div>
-        <div class="phase-sub">${tot} items${done>0?' · '+done+' done':''}</div>
-      </div>
-      <div class="phase-right">
-        <div class="phase-mini-bar"><div class="phase-mini-fill" style="width:${pct}%"></div></div>
-        <div class="phase-pill ${pillCls}">${done}/${tot}</div>
-        <svg class="phase-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-    </div>
-    <div class="phase-body">
-      <div class="phase-body-inner">${bodyHtml}</div>
-    </div>`;
-  return card;
+  // Backwards-compat shape for render()
+  const get = type => sections.filter(s=>s.type===type);
+  return { sections,
+    intro:     get('intro')[0]    || null,
+    phases:    get('phases').flatMap(s=>s.items),
+    extras:    get('extras').flatMap(s=>s.items),
+    capstones: get('capstones').flatMap(s=>s.items),
+  };
 }
 
 function render(data) {
@@ -840,7 +762,7 @@ function render(data) {
 
   // ── Intro ──
   if (intro) {
-    main.appendChild(mkEl('div','section-label','// Introduction'));
+    main.appendChild(mkEl('div','section-label', data.sections.find(s=>s.type==='intro')?.label || '// Introduction'));
     const ilist = mkEl('div','phase-list'); ilist.id='intro-list';
     const introBody = renderPhaseBody(intro, progress, resources);
     const icard = buildAccordionCard(
@@ -854,7 +776,7 @@ function render(data) {
   }
 
   // ── Phases ──
-  main.appendChild(mkEl('div','section-label','// Learning Phases'));
+  main.appendChild(mkEl('div','section-label', data.sections.find(s=>s.type==='phases')?.label || '// Learning Phases'));
   const plist = mkEl('div','phase-list'); plist.id='phase-list';
 
   phases.forEach((phase, idx) => {
@@ -895,9 +817,27 @@ function render(data) {
   const noRes = mkEl('div','no-results','No phases match.'); noRes.id='no-results';
   main.appendChild(noRes);
 
+  // ── Generic sections (any unknown type auto-renders) ──
+  data.sections.filter(s=>s.type==='generic' && s.items.length).forEach(section => {
+    main.appendChild(mkEl('div','section-label', section.label || '// Section'));
+    const glist = mkEl('div','phase-list');
+    const GMETA = [
+      {icon:'📄',bg:'rgba(148,163,184,.12)',br:'rgba(148,163,184,.28)'},
+      {icon:'🔖',bg:'rgba(251,191,36,.12)', br:'rgba(251,191,36,.28)'},
+      {icon:'💡',bg:'rgba(34,211,238,.12)', br:'rgba(34,211,238,.28)'},
+    ];
+    section.items.forEach((item, idx) => {
+      const meta = GMETA[idx % GMETA.length];
+      const body = renderPhaseBody(item, progress, resources);
+      const card = buildAccordionCard(item.title, 'Item', meta.icon, meta.bg, meta.br, '', body, progress);
+      glist.appendChild(card);
+    });
+    main.appendChild(glist);
+  });
+
   // ── Extras (Other / Additional Learnings) ──
   if (extras.length) {
-    main.appendChild(mkEl('div','section-label','// Other & Additional Learnings'));
+    main.appendChild(mkEl('div','section-label', data.sections.find(s=>s.type==='extras')?.label || '// Other & Additional Learnings'));
     const elist = mkEl('div','phase-list'); elist.id='extras-list';
     const EMETA = [
       {icon:'📘',bg:'rgba(6,182,212,.12)',  br:'rgba(6,182,212,.28)'},
@@ -918,7 +858,7 @@ function render(data) {
 
   // ── Capstones ──
   if (capstones.length) {
-    main.appendChild(mkEl('div','section-label','// Capstone Projects'));
+    main.appendChild(mkEl('div','section-label', data.sections.find(s=>s.type==='capstones')?.label || '// Capstone Projects'));
     const clist = mkEl('div','capstones-list');
     capstones.forEach((cap, i) => {
       const saved = progress[cap.id]||false;
