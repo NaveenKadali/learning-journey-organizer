@@ -714,7 +714,7 @@ function parseRoadmap(md) {
       const title = line.replace(/^##\s+/,'').trim();
       if (curSection && curSection.type === null) curSection.type = detectType(title);
       if (!curSection) { curSection={label:'',type:detectType(title),items:[]}; sections.push(curSection); }
-      curItem = { title, id:slug(title), modules:[], tasks:[] };
+      curItem = { title, id:slug(title), modules:[], tasks:[] }; // modules always initialized
       curSection.items.push(curItem);
       curMod=null; curSubMod=null; continue;
     }
@@ -754,7 +754,7 @@ function render(data) {
   const { intro, phases, extras, capstones } = data;
 
   let total = 0, mods = 0;
-  const countSection = s => { s.tasks.forEach(()=>total++); s.modules.forEach(m=>{mods++;m.tasks.forEach(()=>total++);}); };
+  const countSection = s => { (s.tasks||[]).forEach(()=>total++); (s.modules||[]).forEach(m=>{mods++;(m.tasks||[]).forEach(()=>total++);}); };
   if (intro) countSection(intro);
   phases.forEach(countSection);
   extras.forEach(countSection);
@@ -785,7 +785,7 @@ function render(data) {
 
   phases.forEach((phase, idx) => {
     const meta = PMETA[idx % PMETA.length];
-    const allTasks = [...phase.tasks, ...phase.modules.flatMap(m=>m.tasks)];
+    const allTasks = [...(phase.tasks||[]), ...(phase.modules||[]).flatMap(m=>m.tasks||[])];
     allTasks.forEach(t => { if (progress[t.id]!==undefined) t.checked=progress[t.id]; });
     const done = allTasks.filter(t=>t.checked).length;
     const tot  = allTasks.length;
@@ -967,7 +967,7 @@ function renderPhaseBody(phase, progress, resources) {
       </div>
     </div>`;
   }
-  phase.modules.forEach(mod => {
+  (phase.modules||[]).forEach(mod => {
     const resList = (resources[mod.id]||[]);
     const resCnt  = resList.length;
     html += `<div class="module-group" data-module-id="${mod.id}">
