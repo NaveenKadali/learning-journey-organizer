@@ -289,16 +289,45 @@
     .rfbtn-add:hover { background:rgba(59,130,246,.22); }
 
     /* ── CAPSTONES ────────────────────────────── */
-    .capstones-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:12px; margin-bottom:40px; }
-    .capstone-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:18px; position:relative; overflow:hidden; transition:border-color .2s, transform .18s; }
-    .capstone-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--c-nav),var(--c-progress)); }
-    .capstone-card:hover { border-color:rgba(139,92,246,.4); transform:translateY(-2px); }
-    .capstone-tag { font-family:var(--font-mono); font-size:.62rem; color:var(--c-progress); letter-spacing:.08em; text-transform:uppercase; margin-bottom:6px; }
-    .capstone-name { font-weight:600; font-size:.88rem; color:var(--text); line-height:1.4; }
-    .capstone-check { display:inline-flex; align-items:center; gap:6px; margin-top:11px; font-size:.76rem; color:var(--text-muted); cursor:pointer; }
+    .capstones-list { display:flex; flex-direction:column; gap:6px; margin-bottom:34px; }
+    .capstone-card {
+      background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--c-progress);
+      border-radius:var(--radius); overflow:hidden; transition:border-color .2s;
+    }
+    .capstone-card.done { border-left-color:var(--c-done); }
+    .capstone-header {
+      display:flex; align-items:center; gap:11px; padding:13px 16px;
+      cursor:pointer; user-select:none; transition:background .15s;
+    }
+    .capstone-header:hover { background:var(--surface2); }
+    .capstone-icon { width:30px; height:30px; border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:.9rem; flex-shrink:0; background:rgba(139,92,246,.12); border:1px solid rgba(139,92,246,.28); }
+    .capstone-meta { flex:1; min-width:0; }
+    .capstone-tag { font-family:var(--font-mono); font-size:.62rem; color:var(--c-progress); letter-spacing:.08em; text-transform:uppercase; margin-bottom:2px; }
+    .capstone-name { font-weight:600; font-size:.9rem; color:var(--text); line-height:1.35; word-break:break-word; }
+    .capstone-sub  { font-size:.72rem; color:var(--text-muted); margin-top:1px; }
+    .capstone-right { display:flex; align-items:center; gap:9px; flex-shrink:0; }
+    .capstone-pill { font-family:var(--font-mono); font-size:.68rem; padding:2px 8px; border-radius:99px; background:var(--surface2); border:1px solid var(--border); color:var(--text-muted); white-space:nowrap; }
+    .capstone-pill.s-done { background:rgba(34,197,94,.1); border-color:rgba(34,197,94,.25); color:var(--c-done); }
+    .capstone-chevron { color:var(--text-dim); transition:transform .22s; flex-shrink:0; }
+    .capstone-card.open .capstone-chevron { transform:rotate(180deg); }
+    .capstone-body { max-height:0; overflow:hidden; transition:max-height .32s cubic-bezier(.4,0,.2,1); }
+    .capstone-card.open .capstone-body { max-height:9999px; }
+    .capstone-body-inner { padding:0 16px 16px; border-top:1px solid var(--border); }
+    .capstone-check { display:inline-flex; align-items:center; gap:6px; margin-top:12px; font-size:.76rem; color:var(--text-muted); cursor:pointer; }
     .cap-cb { appearance:none; -webkit-appearance:none; width:14px; height:14px; border:1.5px solid var(--border); border-radius:3px; background:transparent; cursor:pointer; position:relative; transition:all .15s; flex-shrink:0; }
     .cap-cb:checked { background:var(--c-done); border-color:var(--c-done); }
     .cap-cb:checked::after { content:''; position:absolute; left:2px; top:0; width:4px; height:8px; border:2px solid #fff; border-left:none; border-top:none; transform:rotate(45deg); }
+
+    /* ── SEARCH CLEAR ─────────────────────────── */
+    .search-clear {
+      position:absolute; right:8px; top:50%; transform:translateY(-50%);
+      background:none; border:none; cursor:pointer; color:var(--text-muted);
+      font-size:.82rem; line-height:1; padding:2px 4px; border-radius:4px;
+      display:none; transition:color .15s;
+    }
+    .search-clear:hover { color:var(--text); }
+    .search-clear.visible { display:block; }
+    .search-input { padding-right:26px; }
 
     /* ── MODAL ────────────────────────────────── */
     .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:500; display:none; align-items:center; justify-content:center; padding:20px; }
@@ -415,7 +444,8 @@
   </div>
   <div class="search-wrap">
     <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    <input class="search-input" id="search" type="text" placeholder="Search tasks…" oninput="applyCurrentFilter()">
+    <input class="search-input" id="search" type="text" placeholder="Search tasks…" oninput="onSearchInput()">
+    <button class="search-clear" id="search-clear" title="Clear search" onclick="clearSearch()">✕</button>
   </div>
   <div class="more-wrap">
     <button class="more-btn" id="more-btn" onclick="toggleMoreMenu()">⋮ More</button>
@@ -772,33 +802,54 @@ function render(data) {
   // ── Capstones ──
   if (capstones.length) {
     main.appendChild(mkEl('div','section-label','// Capstone Projects'));
-    const grid = mkEl('div','capstones-grid');
+    const clist = mkEl('div','capstones-list');
     capstones.forEach((cap, i) => {
       const saved = progress[cap.id]||false;
       const name  = cap.title.replace(/^Capstone\s*\d*\s*[-—:]\s*/i,'').trim()||cap.title;
-      const cc = mkEl('div','capstone-card');
+      const allTasks = cap.tasks||[];
+      allTasks.forEach(t => { if (progress[t.id]!==undefined) t.checked=progress[t.id]; });
+      const done = allTasks.filter(t=>t.checked).length;
+      const tot  = allTasks.length;
+      const isDone = saved;
+      const pillCls = isDone ? 's-done' : '';
       let tasksHtml = '';
-      if (cap.tasks && cap.tasks.length) {
-        tasksHtml = '<ul class="task-list" style="margin-top:10px">' + cap.tasks.map(t => {
-          const checked = progress[t.id]!==undefined ? progress[t.id] : t.checked;
+      if (allTasks.length) {
+        tasksHtml = '<ul class="task-list" style="margin-top:8px">' + allTasks.map(t => {
+          const checked = t.checked;
           return `<li class="task-item" onclick="toggleTask(event,this)">
             <input type="checkbox" class="task-cb" data-id="${t.id}" ${checked?'checked':''}>
             <label class="task-text">${esc(t.text)}</label>
           </li>`;
         }).join('') + '</ul>';
       }
-      cc.innerHTML = `<div class="capstone-tag">Capstone ${i+1}</div>
-        <div class="capstone-name">${esc(name)}</div>
-        ${tasksHtml}
-        <label class="capstone-check">
-          <input type="checkbox" class="cap-cb" data-id="${cap.id}" ${saved?'checked':''}>
-          Mark complete
-        </label>`;
-      grid.appendChild(cc);
+      const cc = mkEl('div','capstone-card open');
+      cc.innerHTML = `
+        <div class="capstone-header" onclick="toggleCapstone(this.parentElement)">
+          <div class="capstone-icon">🏆</div>
+          <div class="capstone-meta">
+            <div class="capstone-tag">Capstone ${i+1}</div>
+            <div class="capstone-name">${esc(name)}</div>
+            <div class="capstone-sub">${tot} tasks${done>0?' · '+done+' done':''}</div>
+          </div>
+          <div class="capstone-right">
+            <div class="capstone-pill ${pillCls}">${isDone?'✓ Done':done+'/'+tot}</div>
+            <svg class="capstone-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+        <div class="capstone-body">
+          <div class="capstone-body-inner">
+            ${tasksHtml}
+            <label class="capstone-check">
+              <input type="checkbox" class="cap-cb" data-id="${cap.id}" ${saved?'checked':''}>
+              Mark complete
+            </label>
+          </div>
+        </div>`;
+      clist.appendChild(cc);
     });
-    main.appendChild(grid);
-    grid.querySelectorAll('.cap-cb').forEach(cb => cb.addEventListener('change',()=>{ localSave(); updateDashboard(); }));
-    grid.querySelectorAll('.task-cb').forEach(cb => {
+    main.appendChild(clist);
+    clist.querySelectorAll('.cap-cb').forEach(cb => cb.addEventListener('change',()=>{ localSave(); updateDashboard(); }));
+    clist.querySelectorAll('.task-cb').forEach(cb => {
       cb.addEventListener('change', () => { localSave(); updateDashboard(); });
     });
   }
@@ -825,7 +876,7 @@ function renderPhaseBody(phase, progress, resources) {
       <div class="module-header" onclick="toggleModule(this.parentElement)">
         <div class="module-title">${esc(mod.title)}</div>
         <button class="module-res-toggle" onclick="event.stopPropagation();toggleResPanel('${mod.id}',this)">
-          📚 <span class="res-count">${resCnt}</span>
+          📚 RESOURCES <span class="res-count">${resCnt}</span>
         </button>
         <svg class="module-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
@@ -869,9 +920,14 @@ const RT_LABELS = { video:'Video', article:'Article', doc:'Docs', github:'GitHub
 function toggleResPanel(moduleId, btn) {
   const panel = document.getElementById(`res-panel-${moduleId}`);
   if (!panel) return;
-  const open = panel.style.display === 'block';
-  panel.style.display = open ? 'none' : 'block';
-  if (!open) renderResourcePanel(moduleId, panel);
+  const isOpen = panel.style.display === 'block';
+  panel.style.display = isOpen ? 'none' : 'block';
+  if (!isOpen) {
+    renderResourcePanel(moduleId, panel);
+    // Auto-open the parent module if it isn't already open
+    const group = panel.closest('.module-group');
+    if (group && !group.classList.contains('open')) group.classList.add('open');
+  }
 }
 
 function renderResourcePanel(moduleId, panelEl) {
@@ -1029,6 +1085,19 @@ function setFilter(f, btn) {
   btn.classList.add('active');
   applyCurrentFilter();
 }
+function onSearchInput() {
+  const q = document.getElementById('search')?.value||'';
+  const btn = document.getElementById('search-clear');
+  if (btn) btn.classList.toggle('visible', q.length > 0);
+  applyCurrentFilter();
+}
+function clearSearch() {
+  const inp = document.getElementById('search');
+  if (inp) { inp.value = ''; inp.focus(); }
+  const btn = document.getElementById('search-clear');
+  if (btn) btn.classList.remove('visible');
+  applyCurrentFilter();
+}
 function applyCurrentFilter() {
   const q = (document.getElementById('search')?.value||'').trim().toLowerCase();
   let any = false;
@@ -1053,13 +1122,14 @@ function applyCurrentFilter() {
 //  ACCORDION
 // ═══════════════════════════════════════════
 function togglePhase(card) { card.classList.toggle('open'); }
+function toggleCapstone(card) { card.classList.toggle('open'); }
 function toggleModule(group) { group.classList.toggle('open'); }
 function expandAll()  {
-  document.querySelectorAll('.phase-card').forEach(c=>c.classList.add('open'));
+  document.querySelectorAll('.phase-card,.capstone-card').forEach(c=>c.classList.add('open'));
   document.querySelectorAll('.module-group').forEach(m=>m.classList.add('open'));
 }
 function collapseAll(){
-  document.querySelectorAll('.phase-card').forEach(c=>c.classList.remove('open'));
+  document.querySelectorAll('.phase-card,.capstone-card').forEach(c=>c.classList.remove('open'));
   document.querySelectorAll('.module-group').forEach(m=>m.classList.remove('open'));
 }
 
