@@ -197,8 +197,14 @@
 
     /* ── MODULE ───────────────────────────────── */
     .module-group { margin-top:14px; }
-    .module-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; padding-bottom:4px; border-bottom:1px solid var(--border); }
-    .module-title { font-family:var(--font-mono); font-size:.7rem; color:var(--c-nav); letter-spacing:.06em; text-transform:uppercase; }
+    .module-header { display:flex; align-items:center; justify-content:space-between; padding:6px 8px; border-radius:6px; cursor:pointer; user-select:none; transition:background .15s; border:1px solid transparent; }
+    .module-header:hover { background:var(--surface2); border-color:var(--border); }
+    .module-title { font-family:var(--font-mono); font-size:.7rem; color:var(--c-nav); letter-spacing:.06em; text-transform:uppercase; flex:1; }
+    .module-chevron { color:var(--text-dim); transition:transform .2s; flex-shrink:0; margin-left:6px; }
+    .module-group.open .module-chevron { transform:rotate(180deg); }
+    .module-body { max-height:0; overflow:hidden; transition:max-height .28s cubic-bezier(.4,0,.2,1); }
+    .module-group.open .module-body { max-height:9999px; }
+    .module-body-inner { padding-top:4px; }
     .module-res-toggle {
       display:flex; align-items:center; gap:5px; font-size:.72rem; color:var(--text-muted);
       background:none; border:1px solid var(--border); border-radius:6px; padding:2px 8px;
@@ -644,7 +650,7 @@ function parseRoadmap(md) {
   const phases = [], capstones = [];
   let curPhase = null, curMod = null;
   for (const line of lines) {
-    if (/^##\s+capstone/i.test(line)) {
+    if (/^##\s+.*capstone/i.test(line)) {
       const title = line.replace(/^##\s+/,'').trim();
       capstones.push({ title, id: slug(title) });
       curPhase = null; curMod = null; continue;
@@ -780,16 +786,21 @@ function renderPhaseBody(phase, progress, resources) {
   phase.modules.forEach(mod => {
     const resList = (resources[mod.id]||[]);
     const resCnt  = resList.length;
-    html += `<div class="module-group" data-module-id="${mod.id}">
-      <div class="module-header">
+    html += `<div class="module-group open" data-module-id="${mod.id}">
+      <div class="module-header" onclick="toggleModule(this.parentElement)">
         <div class="module-title">${esc(mod.title)}</div>
-        <button class="module-res-toggle" onclick="toggleResPanel('${mod.id}',this)">
-          📚 Resources <span class="res-count">${resCnt}</span>
+        <button class="module-res-toggle" onclick="event.stopPropagation();toggleResPanel('${mod.id}',this)">
+          📚 <span class="res-count">${resCnt}</span>
         </button>
+        <svg class="module-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
-      ${renderTaskList(mod.tasks, progress)}
-      <div class="res-panel" id="res-panel-${mod.id}" style="display:none" data-module-id="${mod.id}">
-        ${renderResourcePanelInner(mod.id, resources)}
+      <div class="module-body">
+        <div class="module-body-inner">
+          ${renderTaskList(mod.tasks, progress)}
+          <div class="res-panel" id="res-panel-${mod.id}" style="display:none" data-module-id="${mod.id}">
+            ${renderResourcePanelInner(mod.id, resources)}
+          </div>
+        </div>
       </div>
     </div>`;
   });
@@ -1007,6 +1018,7 @@ function applyCurrentFilter() {
 //  ACCORDION
 // ═══════════════════════════════════════════
 function togglePhase(card) { card.classList.toggle('open'); }
+function toggleModule(group) { group.classList.toggle('open'); }
 function expandAll()  { document.querySelectorAll('.phase-card').forEach(c=>c.classList.add('open')); }
 function collapseAll(){ document.querySelectorAll('.phase-card').forEach(c=>c.classList.remove('open')); }
 
