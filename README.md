@@ -21,8 +21,17 @@
 
 ---
 
-### Intro
-- [ ] AI Engineer Roadmap 2026
+## Intro and Other
+- [ ] Direct item
+### Sub-Topic Name
+- [ ] Item inside sub-topic
+
+## Other — Additional Learnings
+### Topic 1 — Docker Deep Dive
+#### Sub-Topic: Networking
+- [ ] Item
+### Topic 2 — Flat (no sub-topics)
+- [ ] Item
 
 ---
 
