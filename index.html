@@ -802,7 +802,7 @@ function render(data) {
     const ilist = mkEl('div','phase-list'); ilist.id='intro-list';
     const introBody = renderPhaseBody(intro, progress, resources);
     const icard = buildAccordionCard(
-      intro.title.replace(/^(intro\w*|getting\s+started|overview)\s*[-—:]\s*/i,'').trim() || intro.title,
+      (intro.title||'').replace(/^(intro\w*|getting\s+started|overview)\s*[-—:]\s*/i,'').trim() || intro.title,
       'Intro', '📖',
       'rgba(6,182,212,.12)', 'rgba(6,182,212,.28)',
       '', introBody, progress
@@ -824,7 +824,7 @@ function render(data) {
     const pct  = tot ? Math.round(done/tot*100) : 0;
     const state = tot===0?'notstarted':done===tot?'done':done>0?'active':'notstarted';
     const num  = (phase.title.match(/Phase\s+(\d+)/i)||[,''])[1].padStart(2,'0');
-    const name = phase.title.replace(/^Phase\s+\d+\s*[-—:]\s*/i,'').trim() || phase.title;
+    const name = (phase.title||'').replace(/^Phase\s+\d+\s*[-—:]\s*/i,'').trim() || phase.title;
     const pillCls = state==='done'?'s-done':state==='active'?'s-active':'';
 
     const card = mkEl('div','phase-card');
@@ -884,7 +884,7 @@ function render(data) {
     ];
     extras.forEach((topic, idx) => {
       const meta = EMETA[idx % EMETA.length];
-      const name = topic.title.replace(/^(topic\s*\d*\s*[-—:]\s*)/i,'').trim() || topic.title;
+      const name = (topic.title||'').replace(/^(topic\s*\d*\s*[-—:]\s*)/i,'').trim() || topic.title;
       const body = renderPhaseBody(topic, progress, resources);
       const card = buildAccordionCard(name, 'Topic', meta.icon, meta.bg, meta.br, '', body, progress);
       elist.appendChild(card);
@@ -898,7 +898,7 @@ function render(data) {
     const clist = mkEl('div','capstones-list');
     capstones.forEach((cap, i) => {
       const saved = progress[cap.id]||false;
-      const name  = cap.title.replace(/^Capstone\s*\d*\s*[-—:]\s*/i,'').trim()||cap.title;
+      const name  = (cap.title||'').replace(/^Capstone\s*\d*\s*[-—:]\s*/i,'').trim()||cap.title;
       const allTasks = cap.tasks||[];
       allTasks.forEach(t => { if (progress[t.id]!==undefined) t.checked=progress[t.id]; });
       const done = allTasks.filter(t=>t.checked).length;
