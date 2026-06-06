@@ -36,14 +36,6 @@
 - [ ] ipv4
 
 ---
-<!-- section: // Introduction -->
-** Introduction and Things to Begin with goes here**
-## Intro and Other
-- [ ] Direct item
-### Sub-Topic Name
-- [ ] Item inside sub-topic
-
----
 <!-- section: // Learning Phrases -->
 ## Phase 01 — Python + Async Engineering
 **Weeks 1–3 · 8 modules · Difficulty: 2/5**
