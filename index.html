@@ -205,13 +205,22 @@
     .module-body { max-height:0; overflow:hidden; transition:max-height .28s cubic-bezier(.4,0,.2,1); }
     .module-group.open .module-body { max-height:9999px; }
     .module-body-inner { padding-top:4px; }
-    .module-res-toggle {
-      display:flex; align-items:center; gap:5px; font-size:.72rem; color:var(--text-muted);
-      background:none; border:1px solid var(--border); border-radius:6px; padding:2px 8px;
-      cursor:pointer; font-family:var(--font-body); transition:all .15s;
+    /* ── RES TOGGLER ─────────────────────────── */
+    .res-toggler {
+      display:inline-flex; align-items:center; gap:5px;
+      margin-top:8px; padding:5px 10px; border-radius:6px;
+      border:1px solid var(--border); background:var(--surface2);
+      cursor:pointer; font-size:.72rem; color:var(--text-muted);
+      font-family:var(--font-body); transition:all .15s; user-select:none;
     }
-    .module-res-toggle:hover { border-color:var(--c-nav); color:var(--c-nav); }
-    .module-res-toggle .res-count { background:var(--surface2); border-radius:99px; padding:0 5px; font-family:var(--font-mono); font-size:.65rem; }
+    .res-toggler:hover { border-color:var(--c-nav); color:var(--c-nav); }
+    .res-toggler.open  { border-color:var(--c-nav); color:var(--c-nav); background:rgba(59,130,246,.08); }
+    .res-toggler-chevron { transition:transform .2s; }
+    .res-toggler.open .res-toggler-chevron { transform:rotate(180deg); }
+    .res-count { background:var(--border); border-radius:99px; padding:0 6px; font-family:var(--font-mono); font-size:.62rem; }
+    /* Sub-module (####) */
+    .submod-group { margin-top:10px; padding-left:10px; border-left:2px solid var(--border); }
+    .submod-title { font-size:.76rem; font-weight:600; color:var(--text-muted); margin-bottom:4px; text-transform:uppercase; letter-spacing:.05em; font-family:var(--font-mono); }
 
     /* ── TASK ITEMS ───────────────────────────── */
     .task-list { list-style:none; display:flex; flex-direction:column; gap:1px; }
@@ -288,35 +297,7 @@
     .rfbtn-add { background:rgba(59,130,246,.12); border-color:rgba(59,130,246,.4); color:var(--c-nav); }
     .rfbtn-add:hover { background:rgba(59,130,246,.22); }
 
-    /* ── CAPSTONES ────────────────────────────── */
-    .capstones-list { display:flex; flex-direction:column; gap:6px; margin-bottom:34px; }
-    .capstone-card {
-      background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--c-progress);
-      border-radius:var(--radius); overflow:hidden; transition:border-color .2s;
-    }
-    .capstone-card.done { border-left-color:var(--c-done); }
-    .capstone-header {
-      display:flex; align-items:center; gap:11px; padding:13px 16px;
-      cursor:pointer; user-select:none; transition:background .15s;
-    }
-    .capstone-header:hover { background:var(--surface2); }
-    .capstone-icon { width:30px; height:30px; border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:.9rem; flex-shrink:0; background:rgba(139,92,246,.12); border:1px solid rgba(139,92,246,.28); }
-    .capstone-meta { flex:1; min-width:0; }
-    .capstone-tag { font-family:var(--font-mono); font-size:.62rem; color:var(--c-progress); letter-spacing:.08em; text-transform:uppercase; margin-bottom:2px; }
-    .capstone-name { font-weight:600; font-size:.9rem; color:var(--text); line-height:1.35; word-break:break-word; }
-    .capstone-sub  { font-size:.72rem; color:var(--text-muted); margin-top:1px; }
-    .capstone-right { display:flex; align-items:center; gap:9px; flex-shrink:0; }
-    .capstone-pill { font-family:var(--font-mono); font-size:.68rem; padding:2px 8px; border-radius:99px; background:var(--surface2); border:1px solid var(--border); color:var(--text-muted); white-space:nowrap; }
-    .capstone-pill.s-done { background:rgba(34,197,94,.1); border-color:rgba(34,197,94,.25); color:var(--c-done); }
-    .capstone-chevron { color:var(--text-dim); transition:transform .22s; flex-shrink:0; }
-    .capstone-card.open .capstone-chevron { transform:rotate(180deg); }
-    .capstone-body { max-height:0; overflow:hidden; transition:max-height .32s cubic-bezier(.4,0,.2,1); }
-    .capstone-card.open .capstone-body { max-height:9999px; }
-    .capstone-body-inner { padding:0 16px 16px; border-top:1px solid var(--border); }
-    .capstone-check { display:inline-flex; align-items:center; gap:6px; margin-top:12px; font-size:.76rem; color:var(--text-muted); cursor:pointer; }
-    .cap-cb { appearance:none; -webkit-appearance:none; width:14px; height:14px; border:1.5px solid var(--border); border-radius:3px; background:transparent; cursor:pointer; position:relative; transition:all .15s; flex-shrink:0; }
-    .cap-cb:checked { background:var(--c-done); border-color:var(--c-done); }
-    .cap-cb:checked::after { content:''; position:absolute; left:2px; top:0; width:4px; height:8px; border:2px solid #fff; border-left:none; border-top:none; transform:rotate(45deg); }
+
 
     /* ── SEARCH CLEAR ─────────────────────────── */
     .search-clear {
@@ -655,11 +636,11 @@ async function syncFromGist() {
 // ═══════════════════════════════════════════
 function collectProgress() {
   const out = {};
-  document.querySelectorAll('.task-cb, .cap-cb').forEach(cb => { out[cb.dataset.id] = cb.checked; });
+  document.querySelectorAll('.task-cb').forEach(cb => { out[cb.dataset.id] = cb.checked; });
   return out;
 }
 function applyProgressToUI(progress) {
-  document.querySelectorAll('.task-cb, .cap-cb').forEach(cb => {
+  document.querySelectorAll('.task-cb').forEach(cb => {
     if (progress[cb.dataset.id] !== undefined) cb.checked = progress[cb.dataset.id];
   });
   document.querySelectorAll('.phase-card').forEach(updatePhaseState);
@@ -676,80 +657,86 @@ function localSave() {
 //  PARSE MARKDOWN
 // ═══════════════════════════════════════════
 function slug(s) {
-  return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,80);
+  return (s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,80)||'item';
 }
 
+// ═══════════════════════════════════════════
+//  PARSE MARKDOWN
+//  Structure:
+//    <!-- section: // Label --> → new section
+//    ##  title                  → accordion card  (item)
+//    ### title                  → module
+//    #### title                 → sub-module inside module
+//    - [ ] / - [x]              → task
+// ═══════════════════════════════════════════
 function parseRoadmap(md) {
   const lines = md.split('\n');
+  const sections = [];               // [ { label, items:[ { title, id, modules, tasks } ] } ]
+  let curSection = null;
+  let curItem    = null;
+  let curMod     = null;
+  let curSubMod  = null;
 
-  // Sections: { label, type, items:[ {title, id, modules:[], tasks:[]} ] }
-  const sections = [];
-  let curSection = null, curItem = null, curMod = null, curSubMod = null;
-
-  function detectType(title) {
-    if (/intro|introduction|getting\s+started|overview/i.test(title)) return 'intro';
-    if (/phase\s+\d+/i.test(title))                                    return 'phases';
-    if (/other|additional/i.test(title))                                 return 'extras';
-    if (/capstone/i.test(title))                                         return 'capstones';
-    return 'generic';
-  }
-
-  function pushTask(line, target) {
+  function addTask(line, target) {
     const m = line.match(/^[-*]\s+\[([ xX✓])\]\s+(.*)/);
     if (!m) return;
-    target.push({ text:m[2].trim(), checked:/^[xX✓]$/.test(m[1].trim()), id:slug(m[2].trim()) });
+    const checked = /^[xX✓]$/.test(m[1].trim());
+    target.push({ text: m[2].trim(), checked, id: slug(m[2].trim()) });
   }
 
-  for (const line of lines) {
-    // Section label comment
-    const secMatch = line.match(/<!--\s*section:\s*(.+?)\s*-->/i);
-    if (secMatch) {
-      curSection = { label:secMatch[1].trim(), type:null, items:[] };
+  for (const raw of lines) {
+    const line = raw;
+
+    // <!-- section: // Some Label -->
+    const secM = line.match(/<!--\s*section:\s*(.+?)\s*-->/i);
+    if (secM) {
+      curSection = { label: secM[1].trim(), items: [] };
       sections.push(curSection);
-      curItem=null; curMod=null; curSubMod=null; continue;
+      curItem = curMod = curSubMod = null;
+      continue;
     }
 
-    // ## block → new item inside current section
+    // ## Item title
     if (/^##\s+/.test(line)) {
-      const title = line.replace(/^##\s+/,'').trim();
-      if (curSection && curSection.type === null) curSection.type = detectType(title);
-      if (!curSection) { curSection={label:'',type:detectType(title),items:[]}; sections.push(curSection); }
-      curItem = { title, id:slug(title), modules:[], tasks:[] }; // modules always initialized
+      const title = line.replace(/^##\s+/, '').trim();
+      if (!curSection) { curSection = { label: '', items: [] }; sections.push(curSection); }
+      curItem   = { title, id: slug(title), modules: [], tasks: [] };
+      curMod    = null;
+      curSubMod = null;
       curSection.items.push(curItem);
-      curMod=null; curSubMod=null; continue;
+      continue;
     }
+
     if (!curItem) continue;
 
-    // ### → module
+    // ### Module
     if (/^###\s+/.test(line)) {
-      const title = line.replace(/^###\s+/,'').trim();
-      curMod = { title, id:slug(title), modules:[], tasks:[] };
+      const title = line.replace(/^###\s+/, '').trim();
+      curMod    = { title, id: slug(title), modules: [], tasks: [] };
+      curSubMod = null;
       curItem.modules.push(curMod);
-      curSubMod=null; continue;
+      continue;
     }
 
-    // #### → sub-module
+    // #### Sub-module
     if (/^####\s+/.test(line)) {
-      const title = line.replace(/^####\s+/,'').trim();
-      curSubMod = { title, id:slug(title), tasks:[] };
-      (curMod||curItem).modules.push(curSubMod); continue;
+      const title = line.replace(/^####\s+/, '').trim();
+      curSubMod = { title, id: slug(title), tasks: [] };
+      (curMod || curItem).modules.push(curSubMod);
+      continue;
     }
 
-    pushTask(line, (curSubMod||curMod||curItem).tasks);
+    // Task
+    addTask(line, (curSubMod || curMod || curItem).tasks);
   }
 
-  // Backwards-compat shape for render()
-  const get = type => sections.filter(s=>s.type===type);
-  return { sections,
-    intro:     get('intro')[0]    || null,
-    phases:    get('phases').flatMap(s=>s.items),
-    extras:    get('extras').flatMap(s=>s.items),
-    capstones: get('capstones').flatMap(s=>s.items),
-  };
+  return { sections };
 }
 
-// ── Phase icon metadata ──
-const PMETA = [
+// ═══════════════════════════════════════════
+//  ICON PALETTE  (cycles through items)
+// ═══════════════════════════════════════════
+const ICON_PALETTE = [
   {icon:'🐍', bg:'rgba(59,130,246,.12)',  br:'rgba(59,130,246,.28)'},
   {icon:'⚡', bg:'rgba(245,158,11,.12)',  br:'rgba(245,158,11,.28)'},
   {icon:'🧠', bg:'rgba(139,92,246,.12)',  br:'rgba(139,92,246,.28)'},
@@ -761,26 +748,106 @@ const PMETA = [
   {icon:'🛡️', bg:'rgba(20,184,166,.12)',  br:'rgba(20,184,166,.28)'},
   {icon:'🎯', bg:'rgba(236,72,153,.12)',  br:'rgba(236,72,153,.28)'},
 ];
+let _iconIdx = 0;
+function nextMeta() { return ICON_PALETTE[_iconIdx++ % ICON_PALETTE.length]; }
 
-function buildAccordionCard(title, labelTag, icon, bg, br, numStr, bodyHtml, progress) {
-  const tmpDiv = document.createElement('div');
-  tmpDiv.innerHTML = bodyHtml;
-  const allCbs = [...tmpDiv.querySelectorAll('.task-cb')];
-  allCbs.forEach(cb => { const s = progress[cb.dataset.id]; if (s !== undefined) cb.checked = s; });
-  const done = allCbs.filter(c=>c.checked).length;
-  const tot  = allCbs.length;
-  const pct  = tot ? Math.round(done/tot*100) : 0;
-  const state = tot===0?'notstarted':done===tot?'done':done>0?'active':'notstarted';
-  const pillCls = state==='done'?'s-done':state==='active'?'s-active':'';
-  const card = mkEl('div','phase-card');
+// ═══════════════════════════════════════════
+//  RENDER RESOURCE TOGGLER
+//  Renders inline after tasks — IS the toggler (no separate button)
+// ═══════════════════════════════════════════
+function resToggler(id, resources) {
+  const cnt = (resources[id] || []).length;
+  return `<div class="res-toggler" id="res-toggler-${id}" onclick="toggleResPanel('${id}',this)">
+    <span class="res-toggler-icon">📚</span>
+    <span class="res-toggler-label">RESOURCES</span>
+    <span class="res-count">${cnt}</span>
+    <svg class="res-toggler-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="res-panel" id="res-panel-${id}" style="display:none" data-module-id="${id}">
+    ${renderResourcePanelInner(id, resources)}
+  </div>`;
+}
+
+// ═══════════════════════════════════════════
+//  RENDER MODULE BODY (### level)
+//  Tasks → res-toggler after last task
+// ═══════════════════════════════════════════
+function renderModBody(mod, progress, resources) {
+  let html = renderTaskList(mod.tasks || [], progress);
+  html += resToggler(mod.id, resources);
+  // sub-modules (####)
+  (mod.modules || []).forEach(sub => {
+    html += `<div class="submod-group">
+      <div class="submod-title">${esc(sub.title)}</div>
+      ${renderTaskList(sub.tasks || [], progress)}
+      ${resToggler(sub.id, resources)}
+    </div>`;
+  });
+  return html;
+}
+
+// ═══════════════════════════════════════════
+//  RENDER ITEM BODY  (## level)
+//  Direct tasks (if any) → res-toggler
+//  Then ### modules each with their own res-toggler
+// ═══════════════════════════════════════════
+function renderItemBody(item, progress, resources) {
+  let html = '';
+
+  // Direct tasks under ##
+  if ((item.tasks || []).length) {
+    html += renderTaskList(item.tasks, progress);
+    html += resToggler(item.id, resources);
+  }
+
+  // ### Modules
+  (item.modules || []).forEach(mod => {
+    html += `<div class="module-group" data-module-id="${mod.id}">
+      <div class="module-header" onclick="toggleModule(this.parentElement)">
+        <div class="module-title">${esc(mod.title)}</div>
+        <svg class="module-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="module-body">
+        <div class="module-body-inner">
+          ${renderModBody(mod, progress, resources)}
+        </div>
+      </div>
+    </div>`;
+  });
+
+  // If nothing at all, show res toggler anyway
+  if (!html) html += resToggler(item.id, resources);
+
+  return html;
+}
+
+// ═══════════════════════════════════════════
+//  BUILD ACCORDION CARD (## item)
+// ═══════════════════════════════════════════
+function buildCard(item, progress, resources, meta, numStr) {
+  const body = renderItemBody(item, progress, resources);
+
+  // Count tasks for header stats
+  const allTasks = [
+    ...(item.tasks || []),
+    ...(item.modules || []).flatMap(m => [...(m.tasks||[]), ...(m.modules||[]).flatMap(s=>s.tasks||[])])
+  ];
+  allTasks.forEach(t => { if (progress[t.id] !== undefined) t.checked = progress[t.id]; });
+  const done  = allTasks.filter(t => t.checked).length;
+  const tot   = allTasks.length;
+  const pct   = tot ? Math.round(done / tot * 100) : 0;
+  const state = tot === 0 ? 'notstarted' : done === tot ? 'done' : done > 0 ? 'active' : 'notstarted';
+  const pillCls = state === 'done' ? 's-done' : state === 'active' ? 's-active' : '';
+
+  const card = mkEl('div', 'phase-card');
   card.dataset.state = state;
   card.innerHTML = `
     <div class="phase-header" onclick="togglePhase(this.parentElement)">
-      ${numStr ? `<span class="phase-num">${numStr}</span>` : ''}
-      <div class="phase-icon" style="background:${bg};border:1px solid ${br}">${icon}</div>
+      ${numStr ? `<span class="phase-num">${esc(numStr)}</span>` : ''}
+      <div class="phase-icon" style="background:${meta.bg};border:1px solid ${meta.br}">${meta.icon}</div>
       <div class="phase-meta">
-        <div class="phase-name">${esc(title)}</div>
-        <div class="phase-sub">${tot} items${done>0?' · '+done+' done':''}</div>
+        <div class="phase-name">${esc(item.title)}</div>
+        <div class="phase-sub">${tot} tasks${done > 0 ? ' · ' + done + ' done' : ''}</div>
       </div>
       <div class="phase-right">
         <div class="phase-mini-bar"><div class="phase-mini-fill" style="width:${pct}%"></div></div>
@@ -789,253 +856,65 @@ function buildAccordionCard(title, labelTag, icon, bg, br, numStr, bodyHtml, pro
       </div>
     </div>
     <div class="phase-body">
-      <div class="phase-body-inner">${bodyHtml}</div>
+      <div class="phase-body-inner">${body}</div>
     </div>`;
   return card;
 }
 
+// ═══════════════════════════════════════════
+//  RENDER
+// ═══════════════════════════════════════════
 function render(data) {
   const progress  = loadProgress();
   const resources = loadResources();
-  const { intro, phases, extras, capstones } = data;
+  _iconIdx = 0;
 
-  let total = 0, mods = 0;
-  const countSection = s => { (s.tasks||[]).forEach(()=>total++); (s.modules||[]).forEach(m=>{mods++;(m.tasks||[]).forEach(()=>total++);}); };
-  if (intro) countSection(intro);
-  (phases||[]).forEach(countSection);
-  (extras||[]).forEach(countSection);
+  // Meta counts
+  let totalTasks = 0, totalMods = 0, totalItems = 0;
+  data.sections.forEach(sec => {
+    (sec.items || []).forEach(item => {
+      totalItems++;
+      (item.tasks || []).forEach(() => totalTasks++);
+      (item.modules || []).forEach(m => {
+        totalMods++;
+        (m.tasks || []).forEach(() => totalTasks++);
+        (m.modules || []).forEach(s => (s.tasks || []).forEach(() => totalTasks++));
+      });
+    });
+  });
   document.getElementById('roadmap-meta').textContent =
-    `${phases.length} phases · ${extras.length > 0 ? extras.length+' extras · ' : ''}${mods} modules · ${capstones.length} capstones · ${total} items`;
+    `${data.sections.length} sections · ${totalItems} topics · ${totalMods} modules · ${totalTasks} tasks`;
 
   const main = document.getElementById('main-content');
   main.innerHTML = '';
 
-  // ── Intro ──
-  if (intro) {
-    main.appendChild(mkEl('div','section-label', data.sections.find(s=>s.type==='intro')?.label || '// Introduction'));
-    const ilist = mkEl('div','phase-list'); ilist.id='intro-list';
-    const introBody = renderPhaseBody(intro, progress, resources);
-    const icard = buildAccordionCard(
-      (intro.title||'').replace(/^(intro\w*|getting\s+started|overview)\s*[-—:]\s*/i,'').trim() || intro.title,
-      'Intro', '📖',
-      'rgba(6,182,212,.12)', 'rgba(6,182,212,.28)',
-      '', introBody, progress
-    );
-    ilist.appendChild(icard);
-    main.appendChild(ilist);
-  }
+  // Render each section in README order
+  data.sections.forEach(section => {
+    if (section.label) main.appendChild(mkEl('div', 'section-label', section.label));
 
-  // ── Phases ──
-  main.appendChild(mkEl('div','section-label', data.sections.find(s=>s.type==='phases')?.label || '// Learning Phases'));
-  const plist = mkEl('div','phase-list'); plist.id='phase-list';
-
-  (phases||[]).forEach((phase, idx) => {
-    const meta = PMETA[idx % PMETA.length];
-    const allTasks = [...(phase.tasks||[]), ...(phase.modules||[]).flatMap(m=>m.tasks||[])];
-    allTasks.forEach(t => { if (progress[t.id]!==undefined) t.checked=progress[t.id]; });
-    const done = allTasks.filter(t=>t.checked).length;
-    const tot  = allTasks.length;
-    const pct  = tot ? Math.round(done/tot*100) : 0;
-    const state = tot===0?'notstarted':done===tot?'done':done>0?'active':'notstarted';
-    const num  = (phase.title.match(/Phase\s+(\d+)/i)||[,''])[1].padStart(2,'0');
-    const name = (phase.title||'').replace(/^Phase\s+\d+\s*[-—:]\s*/i,'').trim() || phase.title;
-    const pillCls = state==='done'?'s-done':state==='active'?'s-active':'';
-
-    const card = mkEl('div','phase-card');
-    card.dataset.phaseIdx = idx; card.dataset.state = state;
-    card.innerHTML = `
-      <div class="phase-header" onclick="togglePhase(this.parentElement)">
-        <span class="phase-num">${num}</span>
-        <div class="phase-icon" style="background:${meta.bg};border:1px solid ${meta.br}">${meta.icon}</div>
-        <div class="phase-meta">
-          <div class="phase-name">${esc(name)}</div>
-          <div class="phase-sub">${tot} tasks${done>0?' · '+done+' done':''}</div>
-        </div>
-        <div class="phase-right">
-          <div class="phase-mini-bar"><div class="phase-mini-fill" style="width:${pct}%"></div></div>
-          <div class="phase-pill ${pillCls}">${done}/${tot}</div>
-          <svg class="phase-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-        </div>
-      </div>
-      <div class="phase-body">
-        <div class="phase-body-inner">${renderPhaseBody(phase, progress, resources)}</div>
-      </div>`;
-    plist.appendChild(card);
+    const list = mkEl('div', 'phase-list');
+    (section.items || []).forEach((item, idx) => {
+      const meta = nextMeta();
+      const card = buildCard(item, progress, resources, meta, '');
+      list.appendChild(card);
+    });
+    main.appendChild(list);
   });
 
-  main.appendChild(plist);
-  const noRes = mkEl('div','no-results','No phases match.'); noRes.id='no-results';
+  const noRes = mkEl('div', 'no-results', 'No items match.'); noRes.id = 'no-results';
   main.appendChild(noRes);
 
-  // ── Generic sections (any unknown type auto-renders) ──
-  ((data.sections)||[]).filter(s=>s.type==='generic' && (s.items||[]).length).forEach(section => {
-    main.appendChild(mkEl('div','section-label', section.label || '// Section'));
-    const glist = mkEl('div','phase-list');
-    const GMETA = [
-      {icon:'📄',bg:'rgba(148,163,184,.12)',br:'rgba(148,163,184,.28)'},
-      {icon:'🔖',bg:'rgba(251,191,36,.12)', br:'rgba(251,191,36,.28)'},
-      {icon:'💡',bg:'rgba(34,211,238,.12)', br:'rgba(34,211,238,.28)'},
-    ];
-    (section.items||[]).forEach((item, idx) => {
-      const meta = GMETA[idx % GMETA.length];
-      const body = renderPhaseBody(item, progress, resources);
-      const card = buildAccordionCard(item.title, 'Item', meta.icon, meta.bg, meta.br, '', body, progress);
-      glist.appendChild(card);
-    });
-    main.appendChild(glist);
-  });
-
-  // ── Extras (Other / Additional Learnings) ──
-  if ((extras||[]).length) {
-    main.appendChild(mkEl('div','section-label', data.sections.find(s=>s.type==='extras')?.label || '// Other & Additional Learnings'));
-    const elist = mkEl('div','phase-list'); elist.id='extras-list';
-    const EMETA = [
-      {icon:'📘',bg:'rgba(6,182,212,.12)',  br:'rgba(6,182,212,.28)'},
-      {icon:'🔧',bg:'rgba(245,158,11,.12)', br:'rgba(245,158,11,.28)'},
-      {icon:'🧩',bg:'rgba(99,102,241,.12)', br:'rgba(99,102,241,.28)'},
-      {icon:'📡',bg:'rgba(239,68,68,.12)',  br:'rgba(239,68,68,.28)'},
-      {icon:'⚡',bg:'rgba(34,197,94,.12)',  br:'rgba(34,197,94,.28)'},
-    ];
-    (extras||[]).forEach((topic, idx) => {
-      const meta = EMETA[idx % EMETA.length];
-      const name = (topic.title||'').replace(/^(topic\s*\d*\s*[-—:]\s*)/i,'').trim() || topic.title;
-      const body = renderPhaseBody(topic, progress, resources);
-      const card = buildAccordionCard(name, 'Topic', meta.icon, meta.bg, meta.br, '', body, progress);
-      elist.appendChild(card);
-    });
-    main.appendChild(elist);
-  }
-
-  // ── Capstones ──
-  if ((capstones||[]).length) {
-    main.appendChild(mkEl('div','section-label', data.sections.find(s=>s.type==='capstones')?.label || '// Capstone Projects'));
-    const clist = mkEl('div','capstones-list');
-    (capstones||[]).forEach((cap, i) => {
-      const saved = progress[cap.id]||false;
-      const name  = (cap.title||'').replace(/^Capstone\s*\d*\s*[-—:]\s*/i,'').trim()||cap.title;
-      const allTasks = cap.tasks||[];
-      allTasks.forEach(t => { if (progress[t.id]!==undefined) t.checked=progress[t.id]; });
-      const done = allTasks.filter(t=>t.checked).length;
-      const tot  = allTasks.length;
-      const isDone = saved;
-      const pillCls = isDone ? 's-done' : '';
-      let tasksHtml = '';
-      if (allTasks.length) {
-        tasksHtml = '<ul class="task-list" style="margin-top:8px">' + allTasks.map(t => {
-          const checked = t.checked;
-          return `<li class="task-item" onclick="toggleTask(event,this)">
-            <input type="checkbox" class="task-cb" data-id="${t.id}" ${checked?'checked':''}>
-            <label class="task-text">${esc(t.text)}</label>
-          </li>`;
-        }).join('') + '</ul>';
-      }
-      const cc = mkEl('div','capstone-card');
-      cc.innerHTML = `
-        <div class="capstone-header" onclick="toggleCapstone(this.parentElement)">
-          <div class="capstone-icon">🏆</div>
-          <div class="capstone-meta">
-            <div class="capstone-tag">Capstone ${i+1}</div>
-            <div class="capstone-name">${esc(name)}</div>
-            <div class="capstone-sub">${tot} tasks${done>0?' · '+done+' done':''}</div>
-          </div>
-          <div class="capstone-right">
-            <div class="capstone-pill ${pillCls}">${isDone?'✓ Done':done+'/'+tot}</div>
-            <svg class="capstone-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-        </div>
-        <div class="capstone-body">
-          <div class="capstone-body-inner">
-            ${tasksHtml}
-            <div class="module-group" data-module-id="${cap.id}-res" style="margin-top:10px">
-              <div class="module-header" onclick="toggleModule(this.parentElement)">
-                <div class="module-title"></div>
-                <button class="module-res-toggle" onclick="event.stopPropagation();toggleResPanel('${cap.id}-res',this)">
-                  📚 RESOURCES <span class="res-count">${(resources[cap.id+'-res']||[]).length}</span>
-                </button>
-                <svg class="module-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-              </div>
-              <div class="module-body">
-                <div class="module-body-inner">
-                  <div class="res-panel" id="res-panel-${cap.id}-res" style="display:none" data-module-id="${cap.id}-res">
-                    ${renderResourcePanelInner(cap.id+'-res', resources)}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <label class="capstone-check">
-              <input type="checkbox" class="cap-cb" data-id="${cap.id}" ${saved?'checked':''}>
-              Mark complete
-            </label>
-          </div>
-        </div>`;
-      clist.appendChild(cc);
-    });
-    main.appendChild(clist);
-    clist.querySelectorAll('.cap-cb').forEach(cb => cb.addEventListener('change',()=>{ localSave(); updateDashboard(); }));
-    clist.querySelectorAll('.task-cb').forEach(cb => {
-      cb.addEventListener('change', () => { localSave(); updateDashboard(); });
-    });
-  }
-
-  // Task listeners — covers intro, phases, extras
+  // Wire up task checkboxes
   document.querySelectorAll('.task-cb').forEach(cb => {
-    cb.addEventListener('change', () => { localSave(); updatePhaseState(cb.closest('.phase-card')); updateDashboard(); });
+    cb.addEventListener('change', () => {
+      localSave();
+      updatePhaseState(cb.closest('.phase-card'));
+      updateDashboard();
+    });
   });
 
   updateDashboard();
   applyCurrentFilter();
-}
-
-
-// ─────────────────────────────────────────
-function renderPhaseBody(phase, progress, resources) {
-  let html = '';
-  if ((phase.tasks||[]).length) {
-    // Direct tasks — wrap with a resources panel using the phase id
-    const pid = phase.id || slug(phase.title||'phase');
-    const resList = (resources[pid]||[]);
-    const resCnt  = resList.length;
-    html += `<div class="module-group" data-module-id="${pid}">
-      <div class="module-header" onclick="toggleModule(this.parentElement)">
-        <div class="module-title"></div>
-        <button class="module-res-toggle" onclick="event.stopPropagation();toggleResPanel('${pid}',this)">
-          📚 RESOURCES <span class="res-count">${resCnt}</span>
-        </button>
-        <svg class="module-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="module-body">
-        <div class="module-body-inner">
-          ${renderTaskList(phase.tasks, progress)}
-          <div class="res-panel" id="res-panel-${pid}" style="display:none" data-module-id="${pid}">
-            ${renderResourcePanelInner(pid, resources)}
-          </div>
-        </div>
-      </div>
-    </div>`;
-  }
-  (phase.modules||[]).forEach(mod => {
-    const resList = (resources[mod.id]||[]);
-    const resCnt  = resList.length;
-    html += `<div class="module-group" data-module-id="${mod.id}">
-      <div class="module-header" onclick="toggleModule(this.parentElement)">
-        <div class="module-title">${esc(mod.title)}</div>
-        <button class="module-res-toggle" onclick="event.stopPropagation();toggleResPanel('${mod.id}',this)">
-          📚 RESOURCES <span class="res-count">${resCnt}</span>
-        </button>
-        <svg class="module-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="module-body">
-        <div class="module-body-inner">
-          ${renderTaskList(mod.tasks, progress)}
-          <div class="res-panel" id="res-panel-${mod.id}" style="display:none" data-module-id="${mod.id}">
-            ${renderResourcePanelInner(mod.id, resources)}
-          </div>
-        </div>
-      </div>
-    </div>`;
-  });
-  if (!html) html = '<p style="color:var(--text-dim);font-size:.83rem;padding:9px 0">No checklist items in this phase.</p>';
-  return html;
 }
 
 function renderTaskList(tasks, progress) {
@@ -1061,16 +940,18 @@ function toggleTask(e, li) {
 const RES_TYPES = ['video','article','doc','github','pdf','note','other'];
 const RT_LABELS = { video:'Video', article:'Article', doc:'Docs', github:'GitHub', pdf:'PDF', note:'Note', other:'Other' };
 
-function toggleResPanel(moduleId, btn) {
+function toggleResPanel(moduleId, toggler) {
   const panel = document.getElementById(`res-panel-${moduleId}`);
   if (!panel) return;
   const isOpen = panel.style.display === 'block';
   panel.style.display = isOpen ? 'none' : 'block';
+  const tEl = document.getElementById(`res-toggler-${moduleId}`);
+  if (tEl) tEl.classList.toggle('open', !isOpen);
   if (!isOpen) {
     renderResourcePanel(moduleId, panel);
-    // Auto-open the parent module if it isn't already open
-    const group = panel.closest('.module-group');
-    if (group && !group.classList.contains('open')) group.classList.add('open');
+    // Auto-open parent module-group if collapsed
+    const mg = panel.closest('.module-group');
+    if (mg && !mg.classList.contains('open')) mg.classList.add('open');
   }
 }
 
@@ -1269,11 +1150,11 @@ function togglePhase(card) { card.classList.toggle('open'); }
 function toggleCapstone(card) { card.classList.toggle('open'); }
 function toggleModule(group) { group.classList.toggle('open'); }
 function expandAll()  {
-  document.querySelectorAll('.phase-card,.capstone-card').forEach(c=>c.classList.add('open'));
+  document.querySelectorAll('.phase-card').forEach(c=>c.classList.add('open'));
   document.querySelectorAll('.module-group').forEach(m=>m.classList.add('open'));
 }
 function collapseAll(){
-  document.querySelectorAll('.phase-card,.capstone-card').forEach(c=>c.classList.remove('open'));
+  document.querySelectorAll('.phase-card').forEach(c=>c.classList.remove('open'));
   document.querySelectorAll('.module-group').forEach(m=>m.classList.remove('open'));
 }
 
@@ -1291,7 +1172,7 @@ function resetProgress() {
   const prev = loadProgress();
   const fresh = { __theme: prev.__theme||'dark' };
   saveLocalProgress(fresh);
-  document.querySelectorAll('.task-cb,.cap-cb').forEach(cb=>cb.checked=false);
+  document.querySelectorAll('.task-cb').forEach(cb=>cb.checked=false);
   document.querySelectorAll('.phase-card').forEach(updatePhaseState);
   updateDashboard();
   showToast('Progress reset', 'info');
@@ -1311,7 +1192,7 @@ async function boot() {
     const res = await fetch('https://raw.githubusercontent.com/NaveenKadali/learning-journey-organizer/main/README.md');
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = parseRoadmap(await res.text());
-    if (!data.phases.length && !data.intro && !data.extras.length && !data.capstones.length) throw new Error('No content found — check README structure.');
+    if (!data.sections.length) throw new Error('No sections found — check README structure.');
     render(data);
   } catch(e) {
     document.getElementById('main-content').innerHTML = `
