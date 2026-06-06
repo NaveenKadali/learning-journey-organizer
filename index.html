@@ -822,7 +822,7 @@ function render(data) {
   main.appendChild(noRes);
 
   // ── Generic sections (any unknown type auto-renders) ──
-  data.sections.filter(s=>s.type==='generic' && s.items.length).forEach(section => {
+  ((data.sections)||[]).filter(s=>s.type==='generic' && (s.items||[]).length).forEach(section => {
     main.appendChild(mkEl('div','section-label', section.label || '// Section'));
     const glist = mkEl('div','phase-list');
     const GMETA = [
@@ -840,7 +840,7 @@ function render(data) {
   });
 
   // ── Extras (Other / Additional Learnings) ──
-  if (extras.length) {
+  if ((extras||[]).length) {
     main.appendChild(mkEl('div','section-label', data.sections.find(s=>s.type==='extras')?.label || '// Other & Additional Learnings'));
     const elist = mkEl('div','phase-list'); elist.id='extras-list';
     const EMETA = [
@@ -861,7 +861,7 @@ function render(data) {
   }
 
   // ── Capstones ──
-  if (capstones.length) {
+  if ((capstones||[]).length) {
     main.appendChild(mkEl('div','section-label', data.sections.find(s=>s.type==='capstones')?.label || '// Capstone Projects'));
     const clist = mkEl('div','capstones-list');
     capstones.forEach((cap, i) => {
@@ -944,7 +944,7 @@ function render(data) {
 // ─────────────────────────────────────────
 function renderPhaseBody(phase, progress, resources) {
   let html = '';
-  if (phase.tasks.length) {
+  if ((phase.tasks||[]).length) {
     // Direct tasks — wrap with a resources panel using the phase id
     const pid = phase.id || slug(phase.title||'phase');
     const resList = (resources[pid]||[]);
