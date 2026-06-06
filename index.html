@@ -748,6 +748,20 @@ function parseRoadmap(md) {
   };
 }
 
+// ── Phase icon metadata ──
+const PMETA = [
+  {icon:'🐍', bg:'rgba(59,130,246,.12)',  br:'rgba(59,130,246,.28)'},
+  {icon:'⚡', bg:'rgba(245,158,11,.12)',  br:'rgba(245,158,11,.28)'},
+  {icon:'🧠', bg:'rgba(139,92,246,.12)',  br:'rgba(139,92,246,.28)'},
+  {icon:'🔗', bg:'rgba(34,197,94,.12)',   br:'rgba(34,197,94,.28)'},
+  {icon:'🚀', bg:'rgba(239,68,68,.12)',   br:'rgba(239,68,68,.28)'},
+  {icon:'🏗️', bg:'rgba(6,182,212,.12)',   br:'rgba(6,182,212,.28)'},
+  {icon:'📊', bg:'rgba(249,115,22,.12)',  br:'rgba(249,115,22,.28)'},
+  {icon:'🔍', bg:'rgba(99,102,241,.12)',  br:'rgba(99,102,241,.28)'},
+  {icon:'🛡️', bg:'rgba(20,184,166,.12)',  br:'rgba(20,184,166,.28)'},
+  {icon:'🎯', bg:'rgba(236,72,153,.12)',  br:'rgba(236,72,153,.28)'},
+];
+
 function buildAccordionCard(title, labelTag, icon, bg, br, numStr, bodyHtml, progress) {
   const tmpDiv = document.createElement('div');
   tmpDiv.innerHTML = bodyHtml;
@@ -788,8 +802,8 @@ function render(data) {
   let total = 0, mods = 0;
   const countSection = s => { (s.tasks||[]).forEach(()=>total++); (s.modules||[]).forEach(m=>{mods++;(m.tasks||[]).forEach(()=>total++);}); };
   if (intro) countSection(intro);
-  phases.forEach(countSection);
-  extras.forEach(countSection);
+  (phases||[]).forEach(countSection);
+  (extras||[]).forEach(countSection);
   document.getElementById('roadmap-meta').textContent =
     `${phases.length} phases · ${extras.length > 0 ? extras.length+' extras · ' : ''}${mods} modules · ${capstones.length} capstones · ${total} items`;
 
@@ -815,7 +829,7 @@ function render(data) {
   main.appendChild(mkEl('div','section-label', data.sections.find(s=>s.type==='phases')?.label || '// Learning Phases'));
   const plist = mkEl('div','phase-list'); plist.id='phase-list';
 
-  phases.forEach((phase, idx) => {
+  (phases||[]).forEach((phase, idx) => {
     const meta = PMETA[idx % PMETA.length];
     const allTasks = [...(phase.tasks||[]), ...(phase.modules||[]).flatMap(m=>m.tasks||[])];
     allTasks.forEach(t => { if (progress[t.id]!==undefined) t.checked=progress[t.id]; });
@@ -862,7 +876,7 @@ function render(data) {
       {icon:'🔖',bg:'rgba(251,191,36,.12)', br:'rgba(251,191,36,.28)'},
       {icon:'💡',bg:'rgba(34,211,238,.12)', br:'rgba(34,211,238,.28)'},
     ];
-    section.items.forEach((item, idx) => {
+    (section.items||[]).forEach((item, idx) => {
       const meta = GMETA[idx % GMETA.length];
       const body = renderPhaseBody(item, progress, resources);
       const card = buildAccordionCard(item.title, 'Item', meta.icon, meta.bg, meta.br, '', body, progress);
@@ -882,7 +896,7 @@ function render(data) {
       {icon:'📡',bg:'rgba(239,68,68,.12)',  br:'rgba(239,68,68,.28)'},
       {icon:'⚡',bg:'rgba(34,197,94,.12)',  br:'rgba(34,197,94,.28)'},
     ];
-    extras.forEach((topic, idx) => {
+    (extras||[]).forEach((topic, idx) => {
       const meta = EMETA[idx % EMETA.length];
       const name = (topic.title||'').replace(/^(topic\s*\d*\s*[-—:]\s*)/i,'').trim() || topic.title;
       const body = renderPhaseBody(topic, progress, resources);
@@ -896,7 +910,7 @@ function render(data) {
   if ((capstones||[]).length) {
     main.appendChild(mkEl('div','section-label', data.sections.find(s=>s.type==='capstones')?.label || '// Capstone Projects'));
     const clist = mkEl('div','capstones-list');
-    capstones.forEach((cap, i) => {
+    (capstones||[]).forEach((cap, i) => {
       const saved = progress[cap.id]||false;
       const name  = (cap.title||'').replace(/^Capstone\s*\d*\s*[-—:]\s*/i,'').trim()||cap.title;
       const allTasks = cap.tasks||[];
@@ -1297,7 +1311,7 @@ async function boot() {
     const res = await fetch('https://raw.githubusercontent.com/NaveenKadali/learning-journey-organizer/main/README.md');
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = parseRoadmap(await res.text());
-    if (!data.phases.length) throw new Error('No phases found — check README structure.');
+    if (!data.phases.length && !data.intro && !data.extras.length && !data.capstones.length) throw new Error('No content found — check README structure.');
     render(data);
   } catch(e) {
     document.getElementById('main-content').innerHTML = `
