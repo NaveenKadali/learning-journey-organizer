@@ -748,6 +748,38 @@ function parseRoadmap(md) {
   };
 }
 
+function buildAccordionCard(title, labelTag, icon, bg, br, numStr, bodyHtml, progress) {
+  const tmpDiv = document.createElement('div');
+  tmpDiv.innerHTML = bodyHtml;
+  const allCbs = [...tmpDiv.querySelectorAll('.task-cb')];
+  allCbs.forEach(cb => { const s = progress[cb.dataset.id]; if (s !== undefined) cb.checked = s; });
+  const done = allCbs.filter(c=>c.checked).length;
+  const tot  = allCbs.length;
+  const pct  = tot ? Math.round(done/tot*100) : 0;
+  const state = tot===0?'notstarted':done===tot?'done':done>0?'active':'notstarted';
+  const pillCls = state==='done'?'s-done':state==='active'?'s-active':'';
+  const card = mkEl('div','phase-card');
+  card.dataset.state = state;
+  card.innerHTML = `
+    <div class="phase-header" onclick="togglePhase(this.parentElement)">
+      ${numStr ? `<span class="phase-num">${numStr}</span>` : ''}
+      <div class="phase-icon" style="background:${bg};border:1px solid ${br}">${icon}</div>
+      <div class="phase-meta">
+        <div class="phase-name">${esc(title)}</div>
+        <div class="phase-sub">${tot} items${done>0?' · '+done+' done':''}</div>
+      </div>
+      <div class="phase-right">
+        <div class="phase-mini-bar"><div class="phase-mini-fill" style="width:${pct}%"></div></div>
+        <div class="phase-pill ${pillCls}">${done}/${tot}</div>
+        <svg class="phase-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-body-inner">${bodyHtml}</div>
+    </div>`;
+  return card;
+}
+
 function render(data) {
   const progress  = loadProgress();
   const resources = loadResources();
