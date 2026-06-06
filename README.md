@@ -20,7 +20,6 @@
 | 09 | Cloud + Deployment | 25–26 | 6 | ⬜ Not started |
 
 ---
-
 <!-- section: // Introduction -->
 ** Introduction and Things to Begin with goes here**
 ## Intro and Other
