@@ -20,21 +20,29 @@
 | 09 | Cloud + Deployment | 25–26 | 6 | ⬜ Not started |
 
 ---
-** Introduction and Things to Begin with goes here**
 
 <!-- section: // Introduction -->
+** Introduction and Things to Begin with goes here**
 ## Intro and Other
 - [ ] Direct item
 ### Sub-Topic Name
 - [ ] Item inside sub-topic
 
 ---
-<!-- section: // Additional Learnings -->
-** Additional Learnings and Other things goes here**
-## Docker Deep Dive
+<!-- section: // Reasearch and Content Organisation -->
+** Research and Content Organisation stuff goes here **
+## Project Requirements
 - [ ] Containers
-### Networking
+### MVP
 - [ ] ipv4
+
+---
+<!-- section: // Introduction -->
+** Introduction and Things to Begin with goes here**
+## Intro and Other
+- [ ] Direct item
+### Sub-Topic Name
+- [ ] Item inside sub-topic
 
 ---
 <!-- section: // Learning Phrases -->
