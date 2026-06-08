@@ -22,18 +22,13 @@
 ---
 <!-- section: // Introduction -->
 ** Introduction and Things to Begin with goes here**
-## Intro and Other
-- [ ] Direct item
-### Sub-Topic Name
-- [ ] Item inside sub-topic
-
----
-<!-- section: // Reasearch and Content Organisation -->
-** Research and Content Organisation stuff goes here **
-## Project Requirements
-- [ ] Containers
-### MVP
-- [ ] ipv4
+## Intro and To Begin with
+- [ ] Understanding Roadmap
+- [ ] Understanding the Course Plan
+- [ ] AI Agent for Jobs
+- [ ] How LLMs are Built
+- [ ] Why your AI Agents are Costly in Production
+- [ ] Claude Code Setup
 
 ---
 <!-- section: // Learning Phrases -->
