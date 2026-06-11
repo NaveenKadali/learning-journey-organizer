@@ -29,7 +29,7 @@
 - [ ] How LLMs are Built
 - [ ] Why your AI Agents are Costly in Production
 - [ ] Claude Code Setup
-## Intro to Python
+### Intro to Python
 - [ ] Why Python?
 - [ ] Intro to Google Colab and Hands-on
 
