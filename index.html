@@ -22,7 +22,6 @@
       --font-body: 'DM Sans', sans-serif;
       --font-mono: 'DM Mono', monospace;
     }
-
     [data-theme="dark"] {
       --bg:        #0d0f14;
       --surface:   #141720;
@@ -56,7 +55,7 @@
     .site-header {
       background: var(--header-bg);
       border-bottom:1px solid var(--border);
-      padding:32px 24px 26px;
+      padding:24px 24px 20px;
       position:relative; overflow:hidden;
     }
     .site-header::before {
@@ -66,17 +65,24 @@
       pointer-events:none;
     }
     .header-inner { max-width:940px; margin:0 auto; position:relative; z-index:1; }
-    .header-top { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:22px; }
+
+    /* Top row: badge left, actions right */
+    .header-top {
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; flex-wrap:wrap; margin-bottom:16px;
+    }
+    .header-badge-row { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
     .header-badge {
       display:inline-block; font-family:var(--font-mono); font-size:.67rem;
       color:var(--c-done); background:rgba(34,197,94,.1); border:1px solid rgba(34,197,94,.25);
-      border-radius:20px; padding:3px 12px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:9px;
+      border-radius:20px; padding:3px 12px; letter-spacing:.08em; text-transform:uppercase;
     }
-    .header-title { font-family:var(--font-head); font-size:clamp(1.4rem,3.5vw,2.2rem); font-weight:800; color:#fff; line-height:1.15; margin-bottom:5px; }
+    .header-title { font-family:var(--font-head); font-size:clamp(1.3rem,3.5vw,2rem); font-weight:800; color:#fff; line-height:1.15; margin-bottom:3px; }
     .header-title span { color:var(--c-nav); }
-    .header-subtitle { font-size:.86rem; color:rgba(255,255,255,.55); }
+    .header-subtitle { font-size:.82rem; color:rgba(255,255,255,.5); }
 
-    .header-actions { display:flex; gap:7px; flex-wrap:wrap; align-items:flex-start; padding-top:2px; }
+    /* Actions row: theme + save + sync + settings */
+    .header-actions { display:flex; gap:6px; flex-wrap:wrap; align-items:center; }
     .hbtn {
       display:flex; align-items:center; gap:6px;
       font-family:var(--font-body); font-size:.8rem; font-weight:500;
@@ -88,42 +94,70 @@
     .hbtn-save.busy { opacity:.55; pointer-events:none; }
     .hbtn-sync   { background:rgba(139,92,246,.12); border-color:rgba(139,92,246,.35); color:var(--c-progress); }
     .hbtn-sync:hover { background:rgba(139,92,246,.22); border-color:var(--c-progress); }
-    .hbtn-reset  { background:rgba(239,68,68,.08);  border-color:rgba(239,68,68,.3);  color:var(--c-reset); }
-    .hbtn-reset:hover { background:rgba(239,68,68,.16); border-color:var(--c-reset); }
     .hbtn-icon   { background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.15); color:rgba(255,255,255,.7); padding:7px 10px; font-size:.9rem; }
     .hbtn-icon:hover { background:rgba(255,255,255,.15); color:#fff; }
-    /* Theme toggle */
+    /* Theme toggle – same style as action buttons */
     .theme-toggle {
+      display:flex; align-items:center; gap:6px;
       background:rgba(255,255,255,.08); border:1.5px solid rgba(255,255,255,.15);
-      border-radius:8px; padding:6px 10px; cursor:pointer; font-size:.88rem;
-      transition:all .18s; color:rgba(255,255,255,.8); display:flex; align-items:center; gap:5px;
+      border-radius:8px; padding:7px 12px; cursor:pointer; font-size:.8rem; font-weight:500;
+      transition:all .18s; color:rgba(255,255,255,.8); font-family:var(--font-body); white-space:nowrap;
     }
     .theme-toggle:hover { background:rgba(255,255,255,.16); color:#fff; }
 
-    /* ── OVERALL PROGRESS ─────────────────────── */
-    .overall-progress { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:var(--radius); padding:14px 18px; }
-    .progress-label { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:9px; }
-    .progress-label-text { font-family:var(--font-mono); font-size:.7rem; color:rgba(255,255,255,.5); letter-spacing:.07em; text-transform:uppercase; }
-    .progress-pct { font-family:var(--font-mono); font-size:1.25rem; font-weight:500; color:var(--c-progress); }
-    .progress-track { width:100%; height:8px; background:rgba(255,255,255,.1); border-radius:99px; overflow:hidden; }
+    /* ── SYNC STATUS STRIP ────────────────────── */
+    .sync-strip {
+      position:sticky; top:0; z-index:200;
+      background:var(--surface); border-bottom:1px solid var(--border);
+      padding:7px 24px;
+    }
+    .sync-strip-inner {
+      max-width:940px; margin:0 auto;
+      display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+    }
+    .sync-dot {
+      width:8px; height:8px; border-radius:50%; flex-shrink:0;
+      background:var(--text-dim); transition:background .3s;
+    }
+    .sync-dot.green  { background:#22c55e; }
+    .sync-dot.yellow { background:#f59e0b; }
+    .sync-dot.red    { background:#ef4444; }
+    .sync-dot.spin-ring {
+      background:transparent;
+      border:2px solid var(--border);
+      border-top-color:var(--c-nav);
+      animation:spin .7s linear infinite;
+    }
+    .sync-status-text {
+      font-family:var(--font-mono); font-size:.7rem; color:var(--text-muted);
+      flex:1; letter-spacing:.02em;
+    }
+    .sync-status-text strong { color:var(--text); font-weight:500; }
+    .sync-status-text a { color:var(--c-nav); text-decoration:none; cursor:pointer; }
+    .sync-status-text a:hover { text-decoration:underline; }
+    /* dirty tab indicator */
+    .sync-dirty-badge {
+      font-family:var(--font-mono); font-size:.62rem; padding:1px 7px;
+      border-radius:99px; background:rgba(245,158,11,.12); border:1px solid rgba(245,158,11,.3);
+      color:#f59e0b; display:none; white-space:nowrap;
+    }
+    .sync-dirty-badge.visible { display:inline-block; }
+
+    /* ── OVERALL PROGRESS (inside sticky strip) ── */
+    .strip-progress {
+      display:flex; align-items:center; gap:10px;
+      background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);
+      border-radius:8px; padding:8px 14px;
+      margin-top:0;
+    }
+    .strip-pct { font-family:var(--font-mono); font-size:.82rem; font-weight:500; color:var(--c-progress); flex-shrink:0; min-width:36px; text-align:right; }
+    .progress-track { flex:1; height:6px; background:rgba(255,255,255,.1); border-radius:99px; overflow:hidden; }
     .progress-fill {
       height:100%; border-radius:99px;
       background:linear-gradient(90deg, var(--c-nav) 0%, var(--c-progress) 60%, var(--c-active) 100%);
       transition:width .6s cubic-bezier(.4,0,.2,1); width:0%;
     }
-
-    /* ── TOAST ────────────────────────────────── */
-    .toast {
-      position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(80px);
-      background:var(--surface2); border:1px solid var(--border); border-radius:10px;
-      padding:10px 20px; font-size:.84rem; color:var(--text); z-index:9999;
-      transition:transform .28s cubic-bezier(.4,0,.2,1), opacity .28s;
-      opacity:0; pointer-events:none; white-space:nowrap; box-shadow:var(--shadow);
-    }
-    .toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
-    .toast.success { border-color:rgba(34,197,94,.4);  color:var(--c-done); }
-    .toast.error   { border-color:rgba(239,68,68,.4);  color:var(--c-reset); }
-    .toast.info    { border-color:rgba(139,92,246,.4); color:var(--c-progress); }
+    .strip-label { font-family:var(--font-mono); font-size:.62rem; color:rgba(255,255,255,.4); letter-spacing:.07em; text-transform:uppercase; flex-shrink:0; }
 
     /* ── DASHBOARD ────────────────────────────── */
     .dashboard { max-width:940px; margin:18px auto 0; padding:0 24px; display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
@@ -133,11 +167,19 @@
     .dash-val.green  { color:var(--c-done); }
     .dash-val.purple { color:var(--c-progress); }
     .dash-val.orange { color:var(--c-active); }
+    .dash-val.blue   { color:var(--c-nav); }
     .dash-label { font-size:.68rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:.07em; margin-top:3px; }
-    .synced-val { font-family:var(--font-mono); font-size:.72rem; color:var(--text-muted); display:block; line-height:1.5; }
 
-    /* ── TOOLBAR ──────────────────────────────── */
-    .toolbar { max-width:940px; margin:14px auto 0; padding:0 24px; display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+    /* ── TOOLBAR (part of sticky strip) ─────────── */
+    .sticky-bar {
+      position:sticky; top:37px; z-index:190;
+      background:var(--bg); border-bottom:1px solid var(--border);
+      padding:8px 24px;
+    }
+    .toolbar-inner {
+      max-width:940px; margin:0 auto;
+      display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+    }
     .filter-group { display:flex; gap:3px; background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:3px; }
     .filter-btn {
       font-family:var(--font-body); font-size:.76rem; padding:5px 10px; border-radius:6px;
@@ -156,13 +198,35 @@
     }
     .search-input:focus { border-color:var(--c-nav); }
     .search-input::placeholder { color:var(--text-dim); }
+    .search-clear {
+      position:absolute; right:8px; top:50%; transform:translateY(-50%);
+      background:none; border:none; cursor:pointer; color:var(--text-muted);
+      font-size:.82rem; line-height:1; padding:2px 4px; border-radius:4px;
+      display:none; transition:color .15s;
+    }
+    .search-clear:hover { color:var(--text); }
+    .search-clear.visible { display:block; }
+    .search-input { padding-right:26px; }
     .more-wrap { position:relative; }
     .more-btn { background:var(--surface); border:1px solid var(--border); border-radius:8px; color:var(--text-muted); font-family:var(--font-body); font-size:.82rem; padding:7px 12px; cursor:pointer; transition:all .2s; }
     .more-btn:hover { border-color:var(--text-muted); color:var(--text); }
-    .more-menu { position:absolute; top:calc(100%+6px); right:0; background:var(--surface2); border:1px solid var(--border); border-radius:8px; min-width:150px; z-index:100; overflow:hidden; display:none; box-shadow:var(--shadow); }
+    .more-menu { position:absolute; top:calc(100% + 6px); right:0; background:var(--surface2); border:1px solid var(--border); border-radius:8px; min-width:150px; z-index:100; overflow:hidden; display:none; box-shadow:var(--shadow); }
     .more-menu.open { display:block; }
     .more-item { display:block; width:100%; text-align:left; padding:8px 14px; font-family:var(--font-body); font-size:.82rem; color:var(--text-muted); background:none; border:none; cursor:pointer; transition:background .12s; }
     .more-item:hover { background:var(--border); color:var(--text); }
+
+    /* ── TOAST ────────────────────────────────── */
+    .toast {
+      position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(80px);
+      background:var(--surface2); border:1px solid var(--border); border-radius:10px;
+      padding:10px 20px; font-size:.84rem; color:var(--text); z-index:9999;
+      transition:transform .28s cubic-bezier(.4,0,.2,1), opacity .28s;
+      opacity:0; pointer-events:none; white-space:nowrap; box-shadow:var(--shadow);
+    }
+    .toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
+    .toast.success { border-color:rgba(34,197,94,.4);  color:var(--c-done); }
+    .toast.error   { border-color:rgba(239,68,68,.4);  color:var(--c-reset); }
+    .toast.info    { border-color:rgba(139,92,246,.4); color:var(--c-progress); }
 
     /* ── MAIN ─────────────────────────────────── */
     .main { max-width:940px; margin:20px auto 80px; padding:0 24px; }
@@ -197,27 +261,49 @@
 
     /* ── MODULE ───────────────────────────────── */
     .module-group { margin-top:14px; }
+    /* Module header gets a resource pill when resources exist */
     .module-header { display:flex; align-items:center; justify-content:space-between; padding:6px 8px; border-radius:6px; cursor:pointer; user-select:none; transition:background .15s; border:1px solid transparent; }
     .module-header:hover { background:var(--surface2); border-color:var(--border); }
     .module-title { font-family:var(--font-mono); font-size:.7rem; color:var(--c-nav); letter-spacing:.06em; text-transform:uppercase; flex:1; }
-    .module-chevron { color:var(--text-dim); transition:transform .2s; flex-shrink:0; margin-left:6px; }
+    .module-header-right { display:flex; align-items:center; gap:6px; }
+    /* Resource count pill on module header */
+    .mod-res-pill {
+      font-family:var(--font-mono); font-size:.58rem; padding:1px 6px; border-radius:99px;
+      background:rgba(59,130,246,.1); border:1px solid rgba(59,130,246,.25); color:var(--c-nav);
+      display:none; white-space:nowrap;
+    }
+    .mod-res-pill.visible { display:inline-block; }
+    .module-chevron { color:var(--text-dim); transition:transform .2s; flex-shrink:0; }
     .module-group.open .module-chevron { transform:rotate(180deg); }
     .module-body { max-height:0; overflow:hidden; transition:max-height .28s cubic-bezier(.4,0,.2,1); }
     .module-group.open .module-body { max-height:9999px; }
     .module-body-inner { padding-top:4px; }
-    /* ── RES TOGGLER ─────────────────────────── */
-    .res-toggler {
-      display:inline-flex; align-items:center; gap:5px;
-      margin-top:8px; padding:5px 10px; border-radius:6px;
-      border:1px solid var(--border); background:var(--surface2);
-      cursor:pointer; font-size:.72rem; color:var(--text-muted);
-      font-family:var(--font-body); transition:all .15s; user-select:none;
+
+    /* ── RESOURCES SECTION HEADER (the toggler) ── */
+    .res-section-header {
+      display:flex; align-items:center; gap:7px;
+      margin-top:10px; padding:6px 8px; border-radius:6px;
+      border:1px solid var(--border); background:transparent;
+      cursor:pointer; user-select:none; transition:all .15s;
     }
-    .res-toggler:hover { border-color:var(--c-nav); color:var(--c-nav); }
-    .res-toggler.open  { border-color:var(--c-nav); color:var(--c-nav); background:rgba(59,130,246,.08); }
-    .res-toggler-chevron { transition:transform .2s; }
-    .res-toggler.open .res-toggler-chevron { transform:rotate(180deg); }
-    .res-count { background:var(--border); border-radius:99px; padding:0 6px; font-family:var(--font-mono); font-size:.62rem; }
+    .res-section-header:hover { background:var(--surface2); border-color:rgba(59,130,246,.3); }
+    .res-section-header.open { background:rgba(59,130,246,.06); border-color:rgba(59,130,246,.35); }
+    .res-section-icon { font-size:.78rem; flex-shrink:0; }
+    .res-section-label {
+      font-family:var(--font-mono); font-size:.64rem; letter-spacing:.08em;
+      text-transform:uppercase; color:var(--text-muted); flex:1;
+    }
+    .res-section-header.open .res-section-label { color:var(--c-nav); }
+    .res-count {
+      font-family:var(--font-mono); font-size:.6rem; padding:1px 6px;
+      border-radius:99px; background:var(--border); color:var(--text-muted);
+    }
+    .res-section-header.open .res-count {
+      background:rgba(59,130,246,.15); color:var(--c-nav);
+    }
+    .res-section-chevron { color:var(--text-dim); transition:transform .2s; flex-shrink:0; }
+    .res-section-header.open .res-section-chevron { transform:rotate(180deg); }
+
     /* Sub-module (####) */
     .submod-group { margin-top:10px; padding-left:10px; border-left:2px solid var(--border); }
     .submod-title { font-size:.76rem; font-weight:600; color:var(--text-muted); margin-bottom:4px; text-transform:uppercase; letter-spacing:.05em; font-family:var(--font-mono); }
@@ -241,14 +327,13 @@
     .task-item input:checked ~ .task-text { color:var(--text-dim); text-decoration:line-through; text-decoration-color:var(--text-dim); }
 
     /* ── RESOURCES PANEL ──────────────────────── */
-    .res-panel { margin-top:10px; }
+    .res-panel { margin-top:0; }
     .res-panel-inner {
-      background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:12px 14px;
+      background:var(--surface2); border:1px solid var(--border);
+      border-top:none; border-radius:0 0 8px 8px; padding:12px 14px;
     }
-    .res-panel-title { font-family:var(--font-mono); font-size:.68rem; color:var(--text-muted); letter-spacing:.08em; text-transform:uppercase; margin-bottom:10px; }
     .res-list { display:flex; flex-direction:column; gap:6px; margin-bottom:10px; }
     .res-item { display:flex; align-items:center; gap:9px; padding:7px 10px; background:var(--surface); border:1px solid var(--border); border-radius:7px; transition:border-color .15s; }
-    .res-item:hover { border-color:var(--border); }
     .res-type-badge {
       font-family:var(--font-mono); font-size:.6rem; padding:2px 6px; border-radius:4px;
       white-space:nowrap; flex-shrink:0; font-weight:500; text-transform:uppercase; letter-spacing:.05em;
@@ -296,19 +381,6 @@
     .rfbtn-cancel:hover { border-color:var(--text-muted); color:var(--text); }
     .rfbtn-add { background:rgba(59,130,246,.12); border-color:rgba(59,130,246,.4); color:var(--c-nav); }
     .rfbtn-add:hover { background:rgba(59,130,246,.22); }
-
-
-
-    /* ── SEARCH CLEAR ─────────────────────────── */
-    .search-clear {
-      position:absolute; right:8px; top:50%; transform:translateY(-50%);
-      background:none; border:none; cursor:pointer; color:var(--text-muted);
-      font-size:.82rem; line-height:1; padding:2px 4px; border-radius:4px;
-      display:none; transition:color .15s;
-    }
-    .search-clear:hover { color:var(--text); }
-    .search-clear.visible { display:block; }
-    .search-input { padding-right:26px; }
 
     /* ── MODAL ────────────────────────────────── */
     .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:500; display:none; align-items:center; justify-content:center; padding:20px; }
@@ -371,11 +443,10 @@
 <!-- HEADER -->
 <header class="site-header">
   <div class="header-inner">
+    <!-- Top row: badge + title left · buttons right -->
     <div class="header-top">
-      <div class="header-text">
+      <div class="header-badge-row">
         <div class="header-badge">🤖 2026 Roadmap</div>
-        <h1 class="header-title">My <span>Agent Engineer</span> Journey</h1>
-        <p class="header-subtitle" id="roadmap-meta">Loading…</p>
       </div>
       <div class="header-actions">
         <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()" title="Toggle theme">
@@ -390,51 +461,60 @@
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.51"/></svg>
           Sync
         </button>
-        <button class="hbtn hbtn-reset" onclick="resetProgress()">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg>
-          Reset
-        </button>
-        <button class="hbtn hbtn-icon" onclick="openModal('settings-modal')" title="Settings">⚙️</button>
+        <button class="hbtn hbtn-icon" onclick="openModal('settings-modal')" title="Gist Settings">⚙️</button>
       </div>
     </div>
-    <div class="overall-progress">
-      <div class="progress-label">
-        <span class="progress-label-text">Overall Progress</span>
-        <span class="progress-pct" id="overall-pct">0%</span>
-      </div>
-      <div class="progress-track"><div class="progress-fill" id="overall-fill"></div></div>
-    </div>
+    <!-- Title + subtitle -->
+    <h1 class="header-title">My <span>Agent Engineer</span> Journey</h1>
+    <p class="header-subtitle" id="roadmap-meta">Loading…</p>
   </div>
 </header>
+
+<!-- STICKY SYNC STRIP + PROGRESS -->
+<div class="sync-strip" id="sync-strip">
+  <div class="sync-strip-inner">
+    <span class="sync-dot" id="sync-dot"></span>
+    <span class="sync-status-text" id="sync-status-text">Checking…</span>
+    <span class="sync-dirty-badge" id="sync-dirty-badge">● Unsaved changes</span>
+    <!-- inline progress bar -->
+    <div class="strip-progress" style="flex:1; max-width:260px;">
+      <span class="strip-label">Progress</span>
+      <div class="progress-track"><div class="progress-fill" id="overall-fill"></div></div>
+      <span class="strip-pct" id="overall-pct">0%</span>
+    </div>
+  </div>
+</div>
+
+<!-- STICKY TOOLBAR -->
+<div class="sticky-bar">
+  <div class="toolbar-inner">
+    <div class="filter-group">
+      <button class="filter-btn active" data-filter="all"        onclick="setFilter('all',this)">All</button>
+      <button class="filter-btn f-active"     data-filter="active"     onclick="setFilter('active',this)">⬤ In Progress</button>
+      <button class="filter-btn f-notstarted" data-filter="notstarted" onclick="setFilter('notstarted',this)">○ Not Started</button>
+      <button class="filter-btn f-done"       data-filter="done"       onclick="setFilter('done',this)">✓ Done</button>
+    </div>
+    <div class="search-wrap">
+      <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input class="search-input" id="search" type="text" placeholder="Search tasks…" oninput="onSearchInput()">
+      <button class="search-clear" id="search-clear" title="Clear search" onclick="clearSearch()">✕</button>
+    </div>
+    <div class="more-wrap">
+      <button class="more-btn" id="more-btn" onclick="toggleMoreMenu()">⋮ More</button>
+      <div class="more-menu" id="more-menu">
+        <button class="more-item" onclick="expandAll();closeMoreMenu()">Expand All</button>
+        <button class="more-item" onclick="collapseAll();closeMoreMenu()">Collapse All</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- DASHBOARD -->
 <div class="dashboard">
   <div class="dash-card"><span class="dash-val green" id="dash-done">0</span><div class="dash-label">Completed</div></div>
   <div class="dash-card"><span class="dash-val orange" id="dash-remain">0</span><div class="dash-label">Remaining</div></div>
-  <div class="dash-card"><span class="dash-val purple" id="dash-pct">0%</span><div class="dash-label">Progress</div></div>
-  <div class="dash-card"><span class="synced-val" id="dash-sync">—</span><div class="dash-label">Last Synced</div></div>
-</div>
-
-<!-- TOOLBAR -->
-<div class="toolbar">
-  <div class="filter-group">
-    <button class="filter-btn active" data-filter="all"        onclick="setFilter('all',this)">All</button>
-    <button class="filter-btn f-active"     data-filter="active"     onclick="setFilter('active',this)">⬤ In Progress</button>
-    <button class="filter-btn f-notstarted" data-filter="notstarted" onclick="setFilter('notstarted',this)">○ Not Started</button>
-    <button class="filter-btn f-done"       data-filter="done"       onclick="setFilter('done',this)">✓ Done</button>
-  </div>
-  <div class="search-wrap">
-    <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    <input class="search-input" id="search" type="text" placeholder="Search tasks…" oninput="onSearchInput()">
-    <button class="search-clear" id="search-clear" title="Clear search" onclick="clearSearch()">✕</button>
-  </div>
-  <div class="more-wrap">
-    <button class="more-btn" id="more-btn" onclick="toggleMoreMenu()">⋮ More</button>
-    <div class="more-menu" id="more-menu">
-      <button class="more-item" onclick="expandAll();closeMoreMenu()">Expand All</button>
-      <button class="more-item" onclick="collapseAll();closeMoreMenu()">Collapse All</button>
-    </div>
-  </div>
+  <div class="dash-card"><span class="dash-val blue" id="dash-resources">0</span><div class="dash-label">Resources Linked</div></div>
+  <div class="dash-card"><span class="dash-val purple" id="dash-pending">0</span><div class="dash-label">Pending Resources</div></div>
 </div>
 
 <!-- MAIN -->
@@ -452,6 +532,21 @@ const KEY_CFG      = 'roadmap_gist_cfg';
 const KEY_PROGRESS = 'roadmap_progress_v4';
 const KEY_RESOURCES= 'roadmap_resources_v1';
 const KEY_THEME    = 'roadmap_theme';
+
+// ═══════════════════════════════════════════
+//  DIRTY FLAG  (unsaved local changes)
+// ═══════════════════════════════════════════
+let _dirty = false;
+function setDirty(val) {
+  _dirty = val;
+  const badge = document.getElementById('sync-dirty-badge');
+  if (badge) badge.classList.toggle('visible', val);
+  // Prepend bullet to tab title
+  document.title = val
+    ? '● My Agent Engineer Journey · 2026 Roadmap'
+    : 'My Agent Engineer Journey · 2026 Roadmap';
+  updateSyncStrip();
+}
 
 // ═══════════════════════════════════════════
 //  THEME
@@ -474,7 +569,6 @@ function toggleTheme() {
   applyTheme(next);
   localStorage.setItem(KEY_THEME, next);
 }
-// Apply saved theme immediately (before render)
 (function() {
   const saved = localStorage.getItem(KEY_THEME) || 'dark';
   applyTheme(saved);
@@ -489,14 +583,45 @@ function setCfg(o) { localStorage.setItem(KEY_CFG, JSON.stringify(o)); }
 // ═══════════════════════════════════════════
 //  LOCAL PROGRESS
 // ═══════════════════════════════════════════
-function loadProgress() { try { return JSON.parse(localStorage.getItem(KEY_PROGRESS)||'{}'); } catch { return {}; } }
-function saveLocalProgress(data) { localStorage.setItem(KEY_PROGRESS, JSON.stringify(data)); }
+function loadProgress()         { try { return JSON.parse(localStorage.getItem(KEY_PROGRESS)||'{}'); } catch { return {}; } }
+function saveLocalProgress(data){ localStorage.setItem(KEY_PROGRESS, JSON.stringify(data)); }
 
 // ═══════════════════════════════════════════
 //  RESOURCES  { moduleId: [ {id,title,url,type} ] }
 // ═══════════════════════════════════════════
-function loadResources() { try { return JSON.parse(localStorage.getItem(KEY_RESOURCES)||'{}'); } catch { return {}; } }
+function loadResources()          { try { return JSON.parse(localStorage.getItem(KEY_RESOURCES)||'{}'); } catch { return {}; } }
 function saveLocalResources(data) { localStorage.setItem(KEY_RESOURCES, JSON.stringify(data)); }
+
+// ═══════════════════════════════════════════
+//  SYNC STRIP
+// ═══════════════════════════════════════════
+function updateSyncStrip() {
+  const cfg  = getCfg();
+  const prog = loadProgress();
+  const dot  = document.getElementById('sync-dot');
+  const txt  = document.getElementById('sync-status-text');
+  if (!dot || !txt) return;
+
+  if (!cfg.pat) {
+    dot.className = 'sync-dot red';
+    txt.innerHTML = `⚠️ Not connected · <a onclick="openModal('settings-modal')">Add your GitHub PAT</a> to enable sync`;
+    return;
+  }
+  if (!cfg.gistId) {
+    dot.className = 'sync-dot yellow';
+    txt.innerHTML = `🔴 No Gist yet — hit <strong>Save</strong> to create one`;
+    return;
+  }
+  if (_dirty) {
+    dot.className = 'sync-dot yellow';
+    const syncTime = prog.__syncTime;
+    txt.innerHTML = `🟡 Unsaved changes${syncTime ? ' · Last synced ' + fmtDate(syncTime) : ''}`;
+    return;
+  }
+  const syncTime = prog.__syncTime;
+  dot.className = 'sync-dot green';
+  txt.innerHTML = `🟢 Synced${syncTime ? ' · ' + fmtDate(syncTime) : ''}`;
+}
 
 // ═══════════════════════════════════════════
 //  TOAST
@@ -526,6 +651,7 @@ function saveGistSettings() {
   setCfg({ pat, gistId });
   closeModal('settings-modal');
   showToast('Settings saved', 'success');
+  updateSyncStrip();
 }
 
 // ═══════════════════════════════════════════
@@ -536,12 +662,7 @@ function buildGistPayload() {
   progress.__syncTime = new Date().toISOString();
   progress.__theme    = document.documentElement.getAttribute('data-theme') || 'dark';
   const resources = loadResources();
-  return {
-    progress,
-    resources,
-    __version: 'v4',
-    __saved:   new Date().toISOString()
-  };
+  return { progress, resources, __version: 'v4', __saved: new Date().toISOString() };
 }
 
 function applyGistPayload(payload) {
@@ -556,9 +677,8 @@ function applyGistPayload(payload) {
   }
   if (payload.resources) {
     saveLocalResources(payload.resources);
-    // Re-render resource panels
-    document.querySelectorAll('[data-module-id]').forEach(panel => {
-      const mid = panel.dataset.moduleId;
+    document.querySelectorAll('[data-res-module-id]').forEach(panel => {
+      const mid = panel.dataset.resModuleId;
       renderResourcePanel(mid, panel);
     });
   }
@@ -572,6 +692,13 @@ async function saveToGist() {
   if (!cfg.pat) { openModal('settings-modal'); showToast('Enter your GitHub PAT first', 'info'); return; }
   const btn = document.getElementById('btn-save');
   btn.classList.add('busy'); btn.textContent = 'Saving…';
+
+  // Set sync dot to spinning
+  const dot = document.getElementById('sync-dot');
+  const txt = document.getElementById('sync-status-text');
+  if (dot) dot.className = 'sync-dot spin-ring';
+  if (txt) txt.innerHTML = 'Saving…';
+
   try {
     const content = JSON.stringify(buildGistPayload(), null, 2);
     let res;
@@ -591,9 +718,9 @@ async function saveToGist() {
     if (!res.ok) throw new Error(`GitHub API ${res.status}`);
     const data = await res.json();
     if (!cfg.gistId) { cfg.gistId = data.id; setCfg(cfg); }
-    // persist locally too
     const payload = buildGistPayload();
     saveLocalProgress(payload.progress);
+    setDirty(false);
     updateDashboard();
     showToast('✓ Saved to GitHub Gist', 'success');
   } catch(e) {
@@ -601,6 +728,7 @@ async function saveToGist() {
   } finally {
     btn.classList.remove('busy');
     btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Save`;
+    updateSyncStrip();
   }
 }
 
@@ -612,6 +740,12 @@ async function syncFromGist() {
   if (!cfg.pat || !cfg.gistId) { openModal('settings-modal'); showToast('Configure PAT & Gist ID first', 'info'); return; }
   const btn = document.getElementById('btn-sync');
   btn.textContent = 'Syncing…';
+
+  const dot = document.getElementById('sync-dot');
+  const txt = document.getElementById('sync-status-text');
+  if (dot) dot.className = 'sync-dot spin-ring';
+  if (txt) txt.innerHTML = 'Syncing…';
+
   try {
     const res = await fetch(`https://api.github.com/gists/${cfg.gistId}`, {
       headers:{ Authorization:`token ${cfg.pat}` }
@@ -622,12 +756,14 @@ async function syncFromGist() {
     if (!raw) throw new Error('roadmap-data.json not found in Gist');
     const payload = JSON.parse(raw);
     applyGistPayload(payload);
+    setDirty(false);
     updateDashboard();
     showToast('✓ Synced from GitHub Gist', 'success');
   } catch(e) {
     showToast(`Sync failed: ${e.message}`, 'error');
   } finally {
     btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.51"/></svg> Sync`;
+    updateSyncStrip();
   }
 }
 
@@ -651,31 +787,25 @@ function localSave() {
   d.__syncTime = prev.__syncTime || null;
   d.__theme = document.documentElement.getAttribute('data-theme') || 'dark';
   saveLocalProgress(d);
-}
-
-// ═══════════════════════════════════════════
-//  PARSE MARKDOWN
-// ═══════════════════════════════════════════
-function slug(s) {
-  return (s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,80)||'item';
+  setDirty(true);
 }
 
 // ═══════════════════════════════════════════
 //  PARSE MARKDOWN
 //  Structure:
 //    <!-- section: // Label --> → new section
-//    ##  title                  → accordion card  (item)
+//    ##  title                  → accordion card
 //    ### title                  → module
 //    #### title                 → sub-module inside module
 //    - [ ] / - [x]              → task
 // ═══════════════════════════════════════════
+function slug(s) {
+  return (s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,80)||'item';
+}
 function parseRoadmap(md) {
   const lines = md.split('\n');
-  const sections = [];               // [ { label, items:[ { title, id, modules, tasks } ] } ]
-  let curSection = null;
-  let curItem    = null;
-  let curMod     = null;
-  let curSubMod  = null;
+  const sections = [];
+  let curSection = null, curItem = null, curMod = null, curSubMod = null;
 
   function addTask(line, target) {
     const m = line.match(/^[-*]\s+\[([ xX✓])\]\s+(.*)/);
@@ -686,8 +816,6 @@ function parseRoadmap(md) {
 
   for (const raw of lines) {
     const line = raw;
-
-    // <!-- section: // Some Label -->
     const secM = line.match(/<!--\s*section:\s*(.+?)\s*-->/i);
     if (secM) {
       curSection = { label: secM[1].trim(), items: [] };
@@ -695,46 +823,35 @@ function parseRoadmap(md) {
       curItem = curMod = curSubMod = null;
       continue;
     }
-
-    // ## Item title
     if (/^##\s+/.test(line)) {
       const title = line.replace(/^##\s+/, '').trim();
       if (!curSection) { curSection = { label: '', items: [] }; sections.push(curSection); }
-      curItem   = { title, id: slug(title), modules: [], tasks: [] };
-      curMod    = null;
-      curSubMod = null;
+      curItem = { title, id: slug(title), modules: [], tasks: [] };
+      curMod = null; curSubMod = null;
       curSection.items.push(curItem);
       continue;
     }
-
     if (!curItem) continue;
-
-    // ### Module
     if (/^###\s+/.test(line)) {
       const title = line.replace(/^###\s+/, '').trim();
-      curMod    = { title, id: slug(title), modules: [], tasks: [] };
+      curMod = { title, id: slug(title), modules: [], tasks: [] };
       curSubMod = null;
       curItem.modules.push(curMod);
       continue;
     }
-
-    // #### Sub-module
     if (/^####\s+/.test(line)) {
       const title = line.replace(/^####\s+/, '').trim();
       curSubMod = { title, id: slug(title), tasks: [] };
       (curMod || curItem).modules.push(curSubMod);
       continue;
     }
-
-    // Task
     addTask(line, (curSubMod || curMod || curItem).tasks);
   }
-
   return { sections };
 }
 
 // ═══════════════════════════════════════════
-//  ICON PALETTE  (cycles through items)
+//  ICON PALETTE
 // ═══════════════════════════════════════════
 const ICON_PALETTE = [
   {icon:'🐍', bg:'rgba(59,130,246,.12)',  br:'rgba(59,130,246,.28)'},
@@ -752,35 +869,31 @@ let _iconIdx = 0;
 function nextMeta() { return ICON_PALETTE[_iconIdx++ % ICON_PALETTE.length]; }
 
 // ═══════════════════════════════════════════
-//  RENDER RESOURCE TOGGLER
-//  Renders inline after tasks — IS the toggler (no separate button)
+//  RESOURCES SECTION HEADER — IS the toggler
 // ═══════════════════════════════════════════
-function resToggler(id, resources) {
+function resSection(id, resources) {
   const cnt = (resources[id] || []).length;
-  return `<div class="res-toggler" id="res-toggler-${id}" onclick="toggleResPanel('${id}',this)">
-    <span class="res-toggler-icon">📚</span>
-    <span class="res-toggler-label">RESOURCES</span>
-    <span class="res-count">${cnt}</span>
-    <svg class="res-toggler-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+  return `<div class="res-section-header${cnt > 0 ? '' : ''}" id="res-toggler-${id}" onclick="toggleResPanel('${id}',this)">
+    <span class="res-section-icon">📚</span>
+    <span class="res-section-label">Resources</span>
+    <span class="res-count" id="res-count-${id}">${cnt}</span>
+    <svg class="res-section-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
-  <div class="res-panel" id="res-panel-${id}" style="display:none" data-module-id="${id}">
-    ${renderResourcePanelInner(id, resources)}
+  <div class="res-panel" id="res-panel-${id}" style="display:none" data-res-module-id="${id}">
   </div>`;
 }
 
 // ═══════════════════════════════════════════
 //  RENDER MODULE BODY (### level)
-//  Tasks → res-toggler after last task
 // ═══════════════════════════════════════════
 function renderModBody(mod, progress, resources) {
   let html = renderTaskList(mod.tasks || [], progress);
-  html += resToggler(mod.id, resources);
-  // sub-modules (####)
+  html += resSection(mod.id, resources);
   (mod.modules || []).forEach(sub => {
     html += `<div class="submod-group">
       <div class="submod-title">${esc(sub.title)}</div>
       ${renderTaskList(sub.tasks || [], progress)}
-      ${resToggler(sub.id, resources)}
+      ${resSection(sub.id, resources)}
     </div>`;
   });
   return html;
@@ -788,24 +901,22 @@ function renderModBody(mod, progress, resources) {
 
 // ═══════════════════════════════════════════
 //  RENDER ITEM BODY  (## level)
-//  Direct tasks (if any) → res-toggler
-//  Then ### modules each with their own res-toggler
 // ═══════════════════════════════════════════
 function renderItemBody(item, progress, resources) {
   let html = '';
-
-  // Direct tasks under ##
   if ((item.tasks || []).length) {
     html += renderTaskList(item.tasks, progress);
-    html += resToggler(item.id, resources);
+    html += resSection(item.id, resources);
   }
-
-  // ### Modules
   (item.modules || []).forEach(mod => {
-    html += `<div class="module-group" data-module-id="${mod.id}">
+    const resCnt = (resources[mod.id] || []).length;
+    html += `<div class="module-group" id="mg-${mod.id}">
       <div class="module-header" onclick="toggleModule(this.parentElement)">
         <div class="module-title">${esc(mod.title)}</div>
-        <svg class="module-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        <div class="module-header-right">
+          <span class="mod-res-pill${resCnt > 0 ? ' visible' : ''}" id="mod-res-pill-${mod.id}">📚 ${resCnt}</span>
+          <svg class="module-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
       </div>
       <div class="module-body">
         <div class="module-body-inner">
@@ -814,10 +925,7 @@ function renderItemBody(item, progress, resources) {
       </div>
     </div>`;
   });
-
-  // If nothing at all, show res toggler anyway
-  if (!html) html += resToggler(item.id, resources);
-
+  if (!html) html += resSection(item.id, resources);
   return html;
 }
 
@@ -826,8 +934,6 @@ function renderItemBody(item, progress, resources) {
 // ═══════════════════════════════════════════
 function buildCard(item, progress, resources, meta, numStr) {
   const body = renderItemBody(item, progress, resources);
-
-  // Count tasks for header stats
   const allTasks = [
     ...(item.tasks || []),
     ...(item.modules || []).flatMap(m => [...(m.tasks||[]), ...(m.modules||[]).flatMap(s=>s.tasks||[])])
@@ -869,7 +975,6 @@ function render(data) {
   const resources = loadResources();
   _iconIdx = 0;
 
-  // Meta counts
   let totalTasks = 0, totalMods = 0, totalItems = 0;
   data.sections.forEach(sec => {
     (sec.items || []).forEach(item => {
@@ -888,12 +993,10 @@ function render(data) {
   const main = document.getElementById('main-content');
   main.innerHTML = '';
 
-  // Render each section in README order
   data.sections.forEach(section => {
     if (section.label) main.appendChild(mkEl('div', 'section-label', section.label));
-
     const list = mkEl('div', 'phase-list');
-    (section.items || []).forEach((item, idx) => {
+    (section.items || []).forEach((item) => {
       const meta = nextMeta();
       const card = buildCard(item, progress, resources, meta, '');
       list.appendChild(card);
@@ -904,7 +1007,6 @@ function render(data) {
   const noRes = mkEl('div', 'no-results', 'No items match.'); noRes.id = 'no-results';
   main.appendChild(noRes);
 
-  // Wire up task checkboxes
   document.querySelectorAll('.task-cb').forEach(cb => {
     cb.addEventListener('change', () => {
       localSave();
@@ -915,6 +1017,7 @@ function render(data) {
 
   updateDashboard();
   applyCurrentFilter();
+  updateSyncStrip();
 }
 
 function renderTaskList(tasks, progress) {
@@ -937,19 +1040,17 @@ function toggleTask(e, li) {
 // ═══════════════════════════════════════════
 //  RESOURCES
 // ═══════════════════════════════════════════
-const RES_TYPES = ['video','article','doc','github','pdf','note','other'];
-const RT_LABELS = { video:'Video', article:'Article', doc:'Docs', github:'GitHub', pdf:'PDF', note:'Note', other:'Other' };
+const RES_TYPES  = ['video','article','doc','github','pdf','note','other'];
+const RT_LABELS  = { video:'Video', article:'Article', doc:'Docs', github:'GitHub', pdf:'PDF', note:'Note', other:'Other' };
 
-function toggleResPanel(moduleId, toggler) {
+function toggleResPanel(moduleId, headerEl) {
   const panel = document.getElementById(`res-panel-${moduleId}`);
   if (!panel) return;
   const isOpen = panel.style.display === 'block';
   panel.style.display = isOpen ? 'none' : 'block';
-  const tEl = document.getElementById(`res-toggler-${moduleId}`);
-  if (tEl) tEl.classList.toggle('open', !isOpen);
+  headerEl.classList.toggle('open', !isOpen);
   if (!isOpen) {
     renderResourcePanel(moduleId, panel);
-    // Auto-open parent module-group if collapsed
     const mg = panel.closest('.module-group');
     if (mg && !mg.classList.contains('open')) mg.classList.add('open');
   }
@@ -957,17 +1058,25 @@ function toggleResPanel(moduleId, toggler) {
 
 function renderResourcePanel(moduleId, panelEl) {
   panelEl.innerHTML = `<div class="res-panel-inner">${renderResourcePanelInner(moduleId, loadResources())}</div>`;
-  // update badge
-  const badge = document.querySelector(`[data-module-id="${moduleId}"] .res-count`);
-  if (badge) badge.textContent = (loadResources()[moduleId]||[]).length;
+  // update count badge on section header
+  const countEl = document.getElementById(`res-count-${moduleId}`);
+  const cnt = (loadResources()[moduleId]||[]).length;
+  if (countEl) countEl.textContent = cnt;
+  // update module header pill
+  const pill = document.getElementById(`mod-res-pill-${moduleId}`);
+  if (pill) {
+    pill.textContent = `📚 ${cnt}`;
+    pill.classList.toggle('visible', cnt > 0);
+  }
+  updateDashboard();
 }
 
 function renderResourcePanelInner(moduleId, resources) {
   const list = resources[moduleId] || [];
-  let html = `<div class="res-panel-title">📚 Resources</div>`;
+  let html = '';
   if (list.length) {
     html += `<div class="res-list">` + list.map(r => {
-      const cls = `rt-${r.type||'other'}`;
+      const cls   = `rt-${r.type||'other'}`;
       const label = RT_LABELS[r.type]||'Other';
       const isNote = r.type === 'note' || !r.url;
       const linkOrNote = isNote
@@ -978,7 +1087,7 @@ function renderResourcePanelInner(moduleId, resources) {
         ${linkOrNote}
         <div class="res-actions">
           <button class="res-action-btn edit" title="Edit" onclick="editResource('${moduleId}','${r.id}')">✏️</button>
-          <button class="res-action-btn del"  title="Delete" onclick="deleteResource('${moduleId}','${r.id}')">🗑</button>
+          <button class="res-action-btn del"  title="Delete" onclick="deleteResource('${moduleId}','${r.id}')">🗑️</button>
         </div>
       </div>`;
     }).join('') + `</div>`;
@@ -992,6 +1101,8 @@ function showAddResForm(moduleId, existing) {
   const container = document.getElementById(`res-form-${moduleId}`);
   if (!container) return;
   const isEdit = !!existing;
+  // Default type: video (for new), otherwise existing type
+  const defaultType = existing?.type || 'video';
   container.innerHTML = `
     <div class="res-form" id="rf-${moduleId}">
       <div class="res-form-row">
@@ -1002,7 +1113,7 @@ function showAddResForm(moduleId, existing) {
         <div>
           <label class="rf-label">Type</label>
           <select class="rf-select" id="rf-type-${moduleId}">
-            ${RES_TYPES.map(t=>`<option value="${t}"${(existing?.type||'article')===t?' selected':''}>${RT_LABELS[t]}</option>`).join('')}
+            ${RES_TYPES.map(t=>`<option value="${t}"${defaultType===t?' selected':''}>${RT_LABELS[t]}</option>`).join('')}
           </select>
         </div>
       </div>
@@ -1083,18 +1194,42 @@ function updatePhaseState(card) {
 //  DASHBOARD
 // ═══════════════════════════════════════════
 function updateDashboard() {
-  const all  = document.querySelectorAll('.task-cb');
-  const done = [...all].filter(c=>c.checked).length;
-  const tot  = all.length;
-  const pct  = tot ? Math.round(done/tot*100) : 0;
+  const all   = document.querySelectorAll('.task-cb');
+  const done  = [...all].filter(c=>c.checked).length;
+  const tot   = all.length;
+  const pct   = tot ? Math.round(done/tot*100) : 0;
+
+  // Header progress bar
   document.getElementById('overall-pct').textContent  = pct+'%';
   document.getElementById('overall-fill').style.width = pct+'%';
-  document.getElementById('dash-done').textContent    = done;
-  document.getElementById('dash-remain').textContent  = tot-done;
-  document.getElementById('dash-pct').textContent     = pct+'%';
-  const sync = loadProgress().__syncTime;
-  document.getElementById('dash-sync').textContent    = sync ? fmtDate(sync) : '—';
+
+  // Completed / Remaining
+  document.getElementById('dash-done').textContent   = done;
+  document.getElementById('dash-remain').textContent = tot-done;
+
+  // Resources Linked — total count across all modules
+  const resources = loadResources();
+  let totalResources = 0;
+  let modulesWithResources = new Set();
+  Object.entries(resources).forEach(([modId, list]) => {
+    if (list && list.length > 0) {
+      totalResources += list.length;
+      modulesWithResources.add(modId);
+    }
+  });
+  document.getElementById('dash-resources').textContent = totalResources;
+
+  // Pending Resources — modules that have tasks but no resources yet
+  const allModuleIds = new Set();
+  document.querySelectorAll('[data-res-module-id]').forEach(el => {
+    allModuleIds.add(el.dataset.resModuleId);
+  });
+  const pendingCount = [...allModuleIds].filter(id => !modulesWithResources.has(id)).length;
+  document.getElementById('dash-pending').textContent = pendingCount;
+
+  updateSyncStrip();
 }
+
 function fmtDate(iso) {
   try { return new Date(iso).toLocaleString(undefined,{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}); }
   catch { return iso; }
@@ -1146,9 +1281,8 @@ function applyCurrentFilter() {
 // ═══════════════════════════════════════════
 //  ACCORDION
 // ═══════════════════════════════════════════
-function togglePhase(card) { card.classList.toggle('open'); }
-function toggleCapstone(card) { card.classList.toggle('open'); }
-function toggleModule(group) { group.classList.toggle('open'); }
+function togglePhase(card)    { card.classList.toggle('open'); }
+function toggleModule(group)  { group.classList.toggle('open'); }
 function expandAll()  {
   document.querySelectorAll('.phase-card').forEach(c=>c.classList.add('open'));
   document.querySelectorAll('.module-group').forEach(m=>m.classList.add('open'));
@@ -1157,7 +1291,6 @@ function collapseAll(){
   document.querySelectorAll('.phase-card').forEach(c=>c.classList.remove('open'));
   document.querySelectorAll('.module-group').forEach(m=>m.classList.remove('open'));
 }
-
 function toggleMoreMenu() { document.getElementById('more-menu').classList.toggle('open'); }
 function closeMoreMenu()  { document.getElementById('more-menu').classList.remove('open'); }
 document.addEventListener('click', e => {
@@ -1165,18 +1298,15 @@ document.addEventListener('click', e => {
 });
 
 // ═══════════════════════════════════════════
-//  RESET
+//  KEYBOARD SHORTCUTS
+//  Ctrl+S / Cmd+S → Save to Gist
 // ═══════════════════════════════════════════
-function resetProgress() {
-  if (!confirm('Reset all progress? Resources will be kept. This cannot be undone.')) return;
-  const prev = loadProgress();
-  const fresh = { __theme: prev.__theme||'dark' };
-  saveLocalProgress(fresh);
-  document.querySelectorAll('.task-cb').forEach(cb=>cb.checked=false);
-  document.querySelectorAll('.phase-card').forEach(updatePhaseState);
-  updateDashboard();
-  showToast('Progress reset', 'info');
-}
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+    e.preventDefault();
+    saveToGist();
+  }
+});
 
 // ═══════════════════════════════════════════
 //  UTILS
@@ -1188,11 +1318,18 @@ function mkEl(tag,cls,text) { const e=document.createElement(tag); if(cls)e.clas
 //  BOOT
 // ═══════════════════════════════════════════
 async function boot() {
+  // Pre-populate settings modal from saved config
+  const cfg = getCfg();
+  if (cfg.pat)    document.getElementById('pat-input').value  = cfg.pat;
+  if (cfg.gistId) document.getElementById('gist-input').value = cfg.gistId;
+
+  updateSyncStrip();
+
   try {
-    const res = await fetch('https://raw.githubusercontent.com/NaveenKadali/learning-journey-organizer/main/README.md');
+    const res = await fetch('https://raw.githubusercontent.com/NaveenKadali/learning-journey-organizer/main/domain/ai/agentic-ai/ROADMAP.md');
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = parseRoadmap(await res.text());
-    if (!data.sections.length) throw new Error('No sections found — check README structure.');
+    if (!data.sections.length) throw new Error('No sections found — check ROADMAP.md structure.');
     render(data);
   } catch(e) {
     document.getElementById('main-content').innerHTML = `
