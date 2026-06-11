@@ -23,12 +23,16 @@
 <!-- section: // Introduction -->
 ** Introduction and Things to Begin with goes here**
 ## Intro and To Begin with
-- [ ] Understanding Roadmap
+- [ ] Understanding the Roadmap
 - [ ] Understanding the Course Plan
 - [ ] AI Agent for Jobs
 - [ ] How LLMs are Built
 - [ ] Why your AI Agents are Costly in Production
 - [ ] Claude Code Setup
+## Intro to Python
+- [ ] Why Python?
+- [ ] Intro to Google Colab and Hands-on
+
 
 ---
 <!-- section: // Learning Phrases -->
