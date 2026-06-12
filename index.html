@@ -51,11 +51,11 @@
     html { transition: background .2s, color .2s; }
     body { font-family:var(--font-body); background:var(--bg); color:var(--text); min-height:100vh; line-height:1.6; }
 
-    /* ── HEADER ───────────────────────────────── */
+    /* ── HEADER (title + badge + dashboard only) ─ */
     .site-header {
       background: var(--header-bg);
       border-bottom:1px solid var(--border);
-      padding:24px 24px 20px;
+      padding:20px 24px 18px;
       position:relative; overflow:hidden;
     }
     .site-header::before {
@@ -65,116 +65,112 @@
       pointer-events:none;
     }
     .header-inner { max-width:940px; margin:0 auto; position:relative; z-index:1; }
-
-    /* Top row: badge left, actions right */
-    .header-top {
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px; flex-wrap:wrap; margin-bottom:16px;
-    }
-    .header-badge-row { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+    .header-top { display:flex; align-items:center; margin-bottom:10px; }
     .header-badge {
       display:inline-block; font-family:var(--font-mono); font-size:.67rem;
       color:var(--c-done); background:rgba(34,197,94,.1); border:1px solid rgba(34,197,94,.25);
       border-radius:20px; padding:3px 12px; letter-spacing:.08em; text-transform:uppercase;
     }
-    .header-title { font-family:var(--font-head); font-size:clamp(1.3rem,3.5vw,2rem); font-weight:800; color:#fff; line-height:1.15; margin-bottom:3px; }
+    .header-title { font-family:var(--font-head); font-size:clamp(1.2rem,3.5vw,1.9rem); font-weight:800; color:#fff; line-height:1.15; margin-bottom:2px; }
     .header-title span { color:var(--c-nav); }
-    .header-subtitle { font-size:.82rem; color:rgba(255,255,255,.5); }
+    .header-subtitle { font-size:.8rem; color:rgba(255,255,255,.5); margin-bottom:14px; }
 
-    /* Actions row: theme + save + sync + settings */
-    .header-actions { display:flex; gap:6px; flex-wrap:wrap; align-items:center; }
-    .hbtn {
-      display:flex; align-items:center; gap:6px;
-      font-family:var(--font-body); font-size:.8rem; font-weight:500;
-      padding:7px 14px; border-radius:8px; border:1.5px solid; cursor:pointer;
-      transition:all .18s; white-space:nowrap;
+    /* Dashboard cards — last element in header */
+    .dashboard {
+      display:grid; grid-template-columns:repeat(4,1fr); gap:8px;
     }
-    .hbtn-save   { background:rgba(59,130,246,.14); border-color:rgba(59,130,246,.45); color:var(--c-nav); }
-    .hbtn-save:hover { background:rgba(59,130,246,.24); border-color:var(--c-nav); }
-    .hbtn-save.busy { opacity:.55; pointer-events:none; }
-    .hbtn-sync   { background:rgba(139,92,246,.12); border-color:rgba(139,92,246,.35); color:var(--c-progress); }
-    .hbtn-sync:hover { background:rgba(139,92,246,.22); border-color:var(--c-progress); }
-    .hbtn-icon   { background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.15); color:rgba(255,255,255,.7); padding:7px 10px; font-size:.9rem; }
-    .hbtn-icon:hover { background:rgba(255,255,255,.15); color:#fff; }
-    /* Theme toggle – same style as action buttons */
-    .theme-toggle {
-      display:flex; align-items:center; gap:6px;
-      background:rgba(255,255,255,.08); border:1.5px solid rgba(255,255,255,.15);
-      border-radius:8px; padding:7px 12px; cursor:pointer; font-size:.8rem; font-weight:500;
-      transition:all .18s; color:rgba(255,255,255,.8); font-family:var(--font-body); white-space:nowrap;
-    }
-    .theme-toggle:hover { background:rgba(255,255,255,.16); color:#fff; }
-
-    /* ── SYNC STATUS STRIP ────────────────────── */
-    .sync-strip {
-      position:sticky; top:0; z-index:200;
-      background:var(--surface); border-bottom:1px solid var(--border);
-      padding:7px 24px;
-    }
-    .sync-strip-inner {
-      max-width:940px; margin:0 auto;
-      display:flex; align-items:center; gap:10px; flex-wrap:wrap;
-    }
-    .sync-dot {
-      width:8px; height:8px; border-radius:50%; flex-shrink:0;
-      background:var(--text-dim); transition:background .3s;
-    }
-    .sync-dot.green  { background:#22c55e; }
-    .sync-dot.yellow { background:#f59e0b; }
-    .sync-dot.red    { background:#ef4444; }
-    .sync-dot.spin-ring {
-      background:transparent;
-      border:2px solid var(--border);
-      border-top-color:var(--c-nav);
-      animation:spin .7s linear infinite;
-    }
-    .sync-status-text {
-      font-family:var(--font-mono); font-size:.7rem; color:var(--text-muted);
-      flex:1; letter-spacing:.02em;
-    }
-    .sync-status-text strong { color:var(--text); font-weight:500; }
-    .sync-status-text a { color:var(--c-nav); text-decoration:none; cursor:pointer; }
-    .sync-status-text a:hover { text-decoration:underline; }
-    /* dirty tab indicator */
-    .sync-dirty-badge {
-      font-family:var(--font-mono); font-size:.62rem; padding:1px 7px;
-      border-radius:99px; background:rgba(245,158,11,.12); border:1px solid rgba(245,158,11,.3);
-      color:#f59e0b; display:none; white-space:nowrap;
-    }
-    .sync-dirty-badge.visible { display:inline-block; }
-
-    /* ── OVERALL PROGRESS (inside sticky strip) ── */
-    .strip-progress {
-      display:flex; align-items:center; gap:10px;
-      background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);
-      border-radius:8px; padding:8px 14px;
-      margin-top:0;
-    }
-    .strip-pct { font-family:var(--font-mono); font-size:.82rem; font-weight:500; color:var(--c-progress); flex-shrink:0; min-width:36px; text-align:right; }
-    .progress-track { flex:1; height:6px; background:rgba(255,255,255,.1); border-radius:99px; overflow:hidden; }
-    .progress-fill {
-      height:100%; border-radius:99px;
-      background:linear-gradient(90deg, var(--c-nav) 0%, var(--c-progress) 60%, var(--c-active) 100%);
-      transition:width .6s cubic-bezier(.4,0,.2,1); width:0%;
-    }
-    .strip-label { font-family:var(--font-mono); font-size:.62rem; color:rgba(255,255,255,.4); letter-spacing:.07em; text-transform:uppercase; flex-shrink:0; }
-
-    /* ── DASHBOARD ────────────────────────────── */
-    .dashboard { max-width:940px; margin:18px auto 0; padding:0 24px; display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
     @media(max-width:600px) { .dashboard { grid-template-columns:repeat(2,1fr); } }
-    .dash-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:13px 14px; text-align:center; }
-    .dash-val { font-family:var(--font-mono); font-size:1.4rem; font-weight:500; display:block; }
+    .dash-card {
+      background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius); padding:11px 12px; text-align:center;
+    }
+    .dash-val { font-family:var(--font-mono); font-size:1.3rem; font-weight:500; display:block; }
     .dash-val.green  { color:var(--c-done); }
     .dash-val.purple { color:var(--c-progress); }
     .dash-val.orange { color:var(--c-active); }
     .dash-val.blue   { color:var(--c-nav); }
-    .dash-label { font-size:.68rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:.07em; margin-top:3px; }
+    .dash-label { font-size:.62rem; color:rgba(255,255,255,.4); text-transform:uppercase; letter-spacing:.07em; margin-top:3px; }
 
-    /* ── TOOLBAR (part of sticky strip) ─────────── */
+    /* Action bar uses surface/border tokens so it works in both themes */
+    .action-bar {
+      position:sticky; top:0; z-index:200;
+      background:var(--surface); border-bottom:1px solid var(--border);
+      padding:8px 24px 7px;
+    }
+    .action-bar-inner {
+      max-width:940px; margin:0 auto;
+      display:flex; flex-direction:column; gap:6px;
+    }
+    /* Row 1: 4 buttons side by side */
+    .action-btn-row {
+      display:flex; align-items:flex-start; gap:6px; flex-wrap:nowrap;
+    }
+    /* Row 2: progress bar full width */
+    .action-progress {
+      width:100%; display:flex; align-items:center; gap:7px;
+      background:var(--surface2); border:1px solid var(--border);
+      border-radius:7px; padding:6px 12px; box-sizing:border-box;
+    }
+    .action-progress .prog-label {
+      font-family:var(--font-mono); font-size:.56rem; color:var(--text-dim);
+      text-transform:uppercase; letter-spacing:.07em; flex-shrink:0;
+    }
+    .progress-track {
+      flex:1; height:13px; background:var(--border);
+      border-radius:99px; overflow:visible; position:relative;
+    }
+    .progress-fill {
+      height:100%; border-radius:99px; position:relative;
+      background:linear-gradient(90deg, var(--c-nav) 0%, var(--c-progress) 60%, var(--c-active) 100%);
+      transition:width .6s cubic-bezier(.4,0,.2,1); width:0%;
+      box-shadow:0 0 5px 1px rgba(139,92,246,.28), 0 0 10px 2px rgba(59,130,246,.15);
+    }
+    .action-progress .prog-pct {
+      font-family:var(--font-mono); font-size:.78rem; font-weight:500;
+      color:var(--c-progress); flex-shrink:0; min-width:32px; text-align:right;
+    }
+
+    /* Each button+sublabel column */
+    .btn-col {
+      display:flex; flex-direction:column; align-items:center; gap:2px;
+      flex:0 0 auto;
+    }
+    .btn-sublabel {
+      font-family:var(--font-mono); font-size:.53rem; color:var(--text-muted);
+      letter-spacing:.02em; line-height:1.2; white-space:nowrap; text-align:center;
+      max-width:100px; overflow:hidden; text-overflow:ellipsis;
+    }
+    .btn-sublabel.red    { color:#ef4444; }
+    .btn-sublabel.yellow { color:#d97706; }
+    .btn-sublabel.green  { color:#16a34a; }
+
+    /* All 4 action buttons — identical sizing, theme-aware */
+    .hbtn {
+      display:flex; align-items:center; justify-content:center; gap:5px;
+      font-family:var(--font-body); font-size:.78rem; font-weight:500;
+      padding:6px 13px; border-radius:8px; border:1.5px solid; cursor:pointer;
+      transition:all .18s; white-space:nowrap; height:32px; box-sizing:border-box;
+    }
+    /* Theme + Settings: neutral, works in both light & dark */
+    .hbtn-theme    { background:var(--surface2); border-color:var(--border); color:var(--text-muted); }
+    .hbtn-theme:hover { background:var(--border); color:var(--text); }
+    /* Save: blue, readable in both themes */
+    .hbtn-save     { background:rgba(59,130,246,.12); border-color:rgba(59,130,246,.45); color:var(--c-nav); }
+    .hbtn-save:hover { background:rgba(59,130,246,.22); border-color:var(--c-nav); }
+    .hbtn-save.busy { opacity:.55; pointer-events:none; }
+    /* Sync: purple, readable in both themes */
+    .hbtn-sync     { background:rgba(139,92,246,.1); border-color:rgba(139,92,246,.38); color:var(--c-progress); }
+    .hbtn-sync:hover { background:rgba(139,92,246,.2); border-color:var(--c-progress); }
+    /* Settings: neutral */
+    .hbtn-settings { background:var(--surface2); border-color:var(--border); color:var(--text-muted); }
+    .hbtn-settings:hover { background:var(--border); color:var(--text); }
+
+    /* ── TOOLBAR sticky below action bar ─────── */
+    /* top is set dynamically by JS to match exact action-bar height */
     .sticky-bar {
-      position:sticky; top:37px; z-index:190;
+      position:sticky; top:96px; z-index:190;
       background:var(--bg); border-bottom:1px solid var(--border);
-      padding:8px 24px;
+      padding:7px 24px;
     }
     .toolbar-inner {
       max-width:940px; margin:0 auto;
@@ -194,7 +190,7 @@
     .search-input {
       width:100%; background:var(--surface); border:1px solid var(--border); border-radius:8px;
       color:var(--text); font-family:var(--font-body); font-size:.84rem;
-      padding:7px 12px 7px 30px; outline:none; transition:border-color .2s;
+      padding:7px 26px 7px 30px; outline:none; transition:border-color .2s;
     }
     .search-input:focus { border-color:var(--c-nav); }
     .search-input::placeholder { color:var(--text-dim); }
@@ -206,11 +202,10 @@
     }
     .search-clear:hover { color:var(--text); }
     .search-clear.visible { display:block; }
-    .search-input { padding-right:26px; }
     .more-wrap { position:relative; }
     .more-btn { background:var(--surface); border:1px solid var(--border); border-radius:8px; color:var(--text-muted); font-family:var(--font-body); font-size:.82rem; padding:7px 12px; cursor:pointer; transition:all .2s; }
     .more-btn:hover { border-color:var(--text-muted); color:var(--text); }
-    .more-menu { position:absolute; top:calc(100% + 6px); right:0; background:var(--surface2); border:1px solid var(--border); border-radius:8px; min-width:150px; z-index:100; overflow:hidden; display:none; box-shadow:var(--shadow); }
+    .more-menu { position:absolute; top:calc(100% + 6px); left:0; background:var(--surface2); border:1px solid var(--border); border-radius:8px; min-width:150px; z-index:100; overflow:hidden; display:none; box-shadow:var(--shadow); }
     .more-menu.open { display:block; }
     .more-item { display:block; width:100%; text-align:left; padding:8px 14px; font-family:var(--font-body); font-size:.82rem; color:var(--text-muted); background:none; border:none; cursor:pointer; transition:background .12s; }
     .more-item:hover { background:var(--border); color:var(--text); }
@@ -440,52 +435,72 @@
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<!-- HEADER -->
+<!-- HEADER: badge, title, subtitle, dashboard cards -->
 <header class="site-header">
   <div class="header-inner">
-    <!-- Top row: badge + title left · buttons right -->
     <div class="header-top">
-      <div class="header-badge-row">
-        <div class="header-badge">🤖 2026 Roadmap</div>
-      </div>
-      <div class="header-actions">
-        <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()" title="Toggle theme">
-          <span id="theme-icon">☀️</span>
-          <span id="theme-label">Light</span>
-        </button>
-        <button class="hbtn hbtn-save" id="btn-save" onclick="saveToGist()">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-          Save
-        </button>
-        <button class="hbtn hbtn-sync" id="btn-sync" onclick="syncFromGist()">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.51"/></svg>
-          Sync
-        </button>
-        <button class="hbtn hbtn-icon" onclick="openModal('settings-modal')" title="Gist Settings">⚙️</button>
-      </div>
+      <div class="header-badge">🤖 2026 Roadmap</div>
     </div>
-    <!-- Title + subtitle -->
     <h1 class="header-title">My <span>Agent Engineer</span> Journey</h1>
     <p class="header-subtitle" id="roadmap-meta">Loading…</p>
+    <!-- Dashboard cards — last element in header -->
+    <div class="dashboard">
+      <div class="dash-card"><span class="dash-val green"  id="dash-done">0</span><div class="dash-label">Completed</div></div>
+      <div class="dash-card"><span class="dash-val orange" id="dash-remain">0</span><div class="dash-label">Remaining</div></div>
+      <div class="dash-card"><span class="dash-val blue"   id="dash-resources">0</span><div class="dash-label">Resources Linked</div></div>
+      <div class="dash-card"><span class="dash-val purple" id="dash-pending">0</span><div class="dash-label">Pending Resources</div></div>
+    </div>
   </div>
 </header>
 
-<!-- STICKY SYNC STRIP + PROGRESS -->
-<div class="sync-strip" id="sync-strip">
-  <div class="sync-strip-inner">
-    <span class="sync-dot" id="sync-dot"></span>
-    <span class="sync-status-text" id="sync-status-text">Checking…</span>
-    <span class="sync-dirty-badge" id="sync-dirty-badge">● Unsaved changes</span>
-    <!-- inline progress bar -->
-    <div class="strip-progress" style="flex:1; max-width:260px;">
-      <span class="strip-label">Progress</span>
+<!-- STICKY ACTION BAR: progress bar on top, 4 buttons with sub-labels below -->
+<div class="action-bar" id="action-bar">
+  <div class="action-bar-inner">
+    <!-- Row 1: progress bar full width -->
+    <div class="action-progress">
+      <span class="prog-label">Progress</span>
       <div class="progress-track"><div class="progress-fill" id="overall-fill"></div></div>
-      <span class="strip-pct" id="overall-pct">0%</span>
+      <span class="prog-pct" id="overall-pct">0%</span>
+    </div>
+    <!-- Row 2: 4 buttons -->
+    <div class="action-btn-row">
+      <!-- Theme -->
+      <div class="btn-col">
+        <button class="hbtn hbtn-theme" id="theme-btn" onclick="toggleTheme()" title="Toggle theme">
+          <span id="theme-icon">☀️</span>
+          <span id="theme-label">Light</span>
+        </button>
+        <span class="btn-sublabel" id="theme-sublabel">dark mode</span>
+      </div>
+      <!-- Save -->
+      <div class="btn-col">
+        <button class="hbtn hbtn-save" id="btn-save" onclick="saveToGist()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+          Save
+        </button>
+        <span class="btn-sublabel" id="save-time-label">never saved</span>
+      </div>
+      <!-- Sync -->
+      <div class="btn-col">
+        <button class="hbtn hbtn-sync" id="btn-sync" onclick="syncFromGist()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.51"/></svg>
+          Sync
+        </button>
+        <span class="btn-sublabel" id="sync-time-label">never synced</span>
+      </div>
+      <!-- Settings -->
+      <div class="btn-col">
+        <button class="hbtn hbtn-settings" onclick="openModal('settings-modal')" title="Gist Settings">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          Settings
+        </button>
+        <span class="btn-sublabel" id="gist-conn-label">checking…</span>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- STICKY TOOLBAR -->
+<!-- STICKY TOOLBAR: filters, more, then search -->
 <div class="sticky-bar">
   <div class="toolbar-inner">
     <div class="filter-group">
@@ -494,11 +509,6 @@
       <button class="filter-btn f-notstarted" data-filter="notstarted" onclick="setFilter('notstarted',this)">○ Not Started</button>
       <button class="filter-btn f-done"       data-filter="done"       onclick="setFilter('done',this)">✓ Done</button>
     </div>
-    <div class="search-wrap">
-      <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input class="search-input" id="search" type="text" placeholder="Search tasks…" oninput="onSearchInput()">
-      <button class="search-clear" id="search-clear" title="Clear search" onclick="clearSearch()">✕</button>
-    </div>
     <div class="more-wrap">
       <button class="more-btn" id="more-btn" onclick="toggleMoreMenu()">⋮ More</button>
       <div class="more-menu" id="more-menu">
@@ -506,15 +516,12 @@
         <button class="more-item" onclick="collapseAll();closeMoreMenu()">Collapse All</button>
       </div>
     </div>
+    <div class="search-wrap">
+      <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input class="search-input" id="search" type="text" placeholder="Search tasks…" oninput="onSearchInput()">
+      <button class="search-clear" id="search-clear" title="Clear search" onclick="clearSearch()">✕</button>
+    </div>
   </div>
-</div>
-
-<!-- DASHBOARD -->
-<div class="dashboard">
-  <div class="dash-card"><span class="dash-val green" id="dash-done">0</span><div class="dash-label">Completed</div></div>
-  <div class="dash-card"><span class="dash-val orange" id="dash-remain">0</span><div class="dash-label">Remaining</div></div>
-  <div class="dash-card"><span class="dash-val blue" id="dash-resources">0</span><div class="dash-label">Resources Linked</div></div>
-  <div class="dash-card"><span class="dash-val purple" id="dash-pending">0</span><div class="dash-label">Pending Resources</div></div>
 </div>
 
 <!-- MAIN -->
@@ -539,13 +546,10 @@ const KEY_THEME    = 'roadmap_theme';
 let _dirty = false;
 function setDirty(val) {
   _dirty = val;
-  const badge = document.getElementById('sync-dirty-badge');
-  if (badge) badge.classList.toggle('visible', val);
-  // Prepend bullet to tab title
   document.title = val
     ? '● My Agent Engineer Journey · 2026 Roadmap'
     : 'My Agent Engineer Journey · 2026 Roadmap';
-  updateSyncStrip();
+  updateActionBar();
 }
 
 // ═══════════════════════════════════════════
@@ -555,12 +559,15 @@ function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
   const icon  = document.getElementById('theme-icon');
   const label = document.getElementById('theme-label');
+  const sub   = document.getElementById('theme-sublabel');
   if (theme === 'dark') {
     if (icon)  icon.textContent  = '☀️';
     if (label) label.textContent = 'Light';
+    if (sub)   sub.textContent   = 'Dark mode';
   } else {
     if (icon)  icon.textContent  = '🌙';
     if (label) label.textContent = 'Dark';
+    if (sub)   sub.textContent   = 'Light mode';
   }
 }
 function toggleTheme() {
@@ -593,35 +600,80 @@ function loadResources()          { try { return JSON.parse(localStorage.getItem
 function saveLocalResources(data) { localStorage.setItem(KEY_RESOURCES, JSON.stringify(data)); }
 
 // ═══════════════════════════════════════════
-//  SYNC STRIP
+//  RELATIVE TIME  ("2 min ago", "3 hrs ago", etc.)
 // ═══════════════════════════════════════════
-function updateSyncStrip() {
-  const cfg  = getCfg();
-  const prog = loadProgress();
-  const dot  = document.getElementById('sync-dot');
-  const txt  = document.getElementById('sync-status-text');
-  if (!dot || !txt) return;
-
-  if (!cfg.pat) {
-    dot.className = 'sync-dot red';
-    txt.innerHTML = `⚠️ Not connected · <a onclick="openModal('settings-modal')">Add your GitHub PAT</a> to enable sync`;
-    return;
-  }
-  if (!cfg.gistId) {
-    dot.className = 'sync-dot yellow';
-    txt.innerHTML = `🔴 No Gist yet — hit <strong>Save</strong> to create one`;
-    return;
-  }
-  if (_dirty) {
-    dot.className = 'sync-dot yellow';
-    const syncTime = prog.__syncTime;
-    txt.innerHTML = `🟡 Unsaved changes${syncTime ? ' · Last synced ' + fmtDate(syncTime) : ''}`;
-    return;
-  }
-  const syncTime = prog.__syncTime;
-  dot.className = 'sync-dot green';
-  txt.innerHTML = `🟢 Synced${syncTime ? ' · ' + fmtDate(syncTime) : ''}`;
+function relativeTime(iso) {
+  if (!iso) return null;
+  const secs = Math.floor((Date.now() - new Date(iso).getTime()) / 1000);
+  if (secs < 5)   return 'just now';
+  if (secs < 60)  return `${secs}s ago`;
+  const mins = Math.floor(secs / 60);
+  if (mins < 60)  return `${mins} min ago`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24)   return `${hrs} hr${hrs>1?'s':''} ago`;
+  const days = Math.floor(hrs / 24);
+  return `${days} day${days>1?'s':''} ago`;
 }
+
+// Tick every 30 s so relative times stay fresh
+setInterval(updateHeaderButtons, 30000);
+
+// ═══════════════════════════════════════════
+//  UPDATE ACTION BAR SUB-LABELS
+//  Replaces the old sync-strip entirely.
+//  Called whenever state changes.
+// ═══════════════════════════════════════════
+function updateActionBar() {
+  const cfg         = getCfg();
+  const prog        = loadProgress();
+  const gistSync    = prog.__gistSyncTime;
+  const localSaveTs = prog.__localSaveTime;
+
+  // --- Save sub-label: coloured dot + "Unsaved" when dirty, else relative save time ---
+  const saveLbl = document.getElementById('save-time-label');
+  if (saveLbl) {
+    if (_dirty) {
+      saveLbl.innerHTML  = '<span style="color:#d97706">●</span> Unsaved';
+      saveLbl.className  = 'btn-sublabel yellow';
+    } else {
+      saveLbl.textContent = relativeTime(localSaveTs) || 'never saved';
+      saveLbl.className   = localSaveTs ? 'btn-sublabel green' : 'btn-sublabel';
+    }
+  }
+
+  // --- Sync sub-label: no PAT / no gist / last gist sync time ---
+  const syncLbl = document.getElementById('sync-time-label');
+  if (syncLbl) {
+    if (!cfg.pat) {
+      syncLbl.textContent = 'no PAT set';
+      syncLbl.className   = 'btn-sublabel red';
+    } else if (!cfg.gistId) {
+      syncLbl.textContent = 'no gist yet';
+      syncLbl.className   = 'btn-sublabel yellow';
+    } else {
+      syncLbl.textContent = gistSync ? relativeTime(gistSync) : 'never synced';
+      syncLbl.className   = gistSync ? 'btn-sublabel green' : 'btn-sublabel';
+    }
+  }
+
+  // --- Settings sub-label: connection status ---
+  const connLbl = document.getElementById('gist-conn-label');
+  if (connLbl) {
+    if (!cfg.pat) {
+      connLbl.textContent = '⚠ not connected';
+      connLbl.className   = 'btn-sublabel red';
+    } else if (!cfg.gistId) {
+      connLbl.textContent = '● no gist yet';
+      connLbl.className   = 'btn-sublabel yellow';
+    } else {
+      connLbl.textContent = '● connected';
+      connLbl.className   = 'btn-sublabel green';
+    }
+  }
+}
+
+// Keep updateHeaderButtons as alias so existing call-sites still work
+function updateHeaderButtons() { updateActionBar(); }
 
 // ═══════════════════════════════════════════
 //  TOAST
@@ -651,7 +703,7 @@ function saveGistSettings() {
   setCfg({ pat, gistId });
   closeModal('settings-modal');
   showToast('Settings saved', 'success');
-  updateSyncStrip();
+  updateActionBar();
 }
 
 // ═══════════════════════════════════════════
@@ -659,8 +711,8 @@ function saveGistSettings() {
 // ═══════════════════════════════════════════
 function buildGistPayload() {
   const progress  = collectProgress();
-  progress.__syncTime = new Date().toISOString();
-  progress.__theme    = document.documentElement.getAttribute('data-theme') || 'dark';
+  progress.__gistSyncTime = new Date().toISOString();   // only set when actually pushing to Gist
+  progress.__theme        = document.documentElement.getAttribute('data-theme') || 'dark';
   const resources = loadResources();
   return { progress, resources, __version: 'v4', __saved: new Date().toISOString() };
 }
@@ -692,13 +744,6 @@ async function saveToGist() {
   if (!cfg.pat) { openModal('settings-modal'); showToast('Enter your GitHub PAT first', 'info'); return; }
   const btn = document.getElementById('btn-save');
   btn.classList.add('busy'); btn.textContent = 'Saving…';
-
-  // Set sync dot to spinning
-  const dot = document.getElementById('sync-dot');
-  const txt = document.getElementById('sync-status-text');
-  if (dot) dot.className = 'sync-dot spin-ring';
-  if (txt) txt.innerHTML = 'Saving…';
-
   try {
     const content = JSON.stringify(buildGistPayload(), null, 2);
     let res;
@@ -719,6 +764,8 @@ async function saveToGist() {
     const data = await res.json();
     if (!cfg.gistId) { cfg.gistId = data.id; setCfg(cfg); }
     const payload = buildGistPayload();
+    // Stamp local save time so the Save sub-label shows "just now" immediately
+    payload.progress.__localSaveTime = payload.progress.__gistSyncTime;
     saveLocalProgress(payload.progress);
     setDirty(false);
     updateDashboard();
@@ -727,8 +774,8 @@ async function saveToGist() {
     showToast(`Save failed: ${e.message}`, 'error');
   } finally {
     btn.classList.remove('busy');
-    btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Save`;
-    updateSyncStrip();
+    btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Save`;
+    updateActionBar();
   }
 }
 
@@ -740,12 +787,6 @@ async function syncFromGist() {
   if (!cfg.pat || !cfg.gistId) { openModal('settings-modal'); showToast('Configure PAT & Gist ID first', 'info'); return; }
   const btn = document.getElementById('btn-sync');
   btn.textContent = 'Syncing…';
-
-  const dot = document.getElementById('sync-dot');
-  const txt = document.getElementById('sync-status-text');
-  if (dot) dot.className = 'sync-dot spin-ring';
-  if (txt) txt.innerHTML = 'Syncing…';
-
   try {
     const res = await fetch(`https://api.github.com/gists/${cfg.gistId}`, {
       headers:{ Authorization:`token ${cfg.pat}` }
@@ -755,6 +796,7 @@ async function syncFromGist() {
     const raw = data.files?.['roadmap-data.json']?.content;
     if (!raw) throw new Error('roadmap-data.json not found in Gist');
     const payload = JSON.parse(raw);
+    if (payload.progress) payload.progress.__gistSyncTime = new Date().toISOString();
     applyGistPayload(payload);
     setDirty(false);
     updateDashboard();
@@ -762,8 +804,8 @@ async function syncFromGist() {
   } catch(e) {
     showToast(`Sync failed: ${e.message}`, 'error');
   } finally {
-    btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.51"/></svg> Sync`;
-    updateSyncStrip();
+    btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.51"/></svg> Sync`;
+    updateActionBar();
   }
 }
 
@@ -782,10 +824,11 @@ function applyProgressToUI(progress) {
   document.querySelectorAll('.phase-card').forEach(updatePhaseState);
 }
 function localSave() {
-  const d = collectProgress();
+  const d    = collectProgress();
   const prev = loadProgress();
-  d.__syncTime = prev.__syncTime || null;
-  d.__theme = document.documentElement.getAttribute('data-theme') || 'dark';
+  d.__gistSyncTime  = prev.__gistSyncTime  || null;
+  d.__localSaveTime = new Date().toISOString();   // stamped on every checkbox change
+  d.__theme         = document.documentElement.getAttribute('data-theme') || 'dark';
   saveLocalProgress(d);
   setDirty(true);
 }
@@ -1017,7 +1060,19 @@ function render(data) {
 
   updateDashboard();
   applyCurrentFilter();
-  updateSyncStrip();
+  updateActionBar();
+  syncAllModulePills();  // ensure pills are visible for pre-existing resources on reload
+}
+
+// After the DOM is built, walk all module pills and correct their state from live resources
+function syncAllModulePills() {
+  const resources = loadResources();
+  document.querySelectorAll('[id^="mod-res-pill-"]').forEach(pill => {
+    const modId = pill.id.replace('mod-res-pill-', '');
+    const cnt   = (resources[modId] || []).length;
+    pill.textContent = `📚 ${cnt}`;
+    pill.classList.toggle('visible', cnt > 0);
+  });
 }
 
 function renderTaskList(tasks, progress) {
@@ -1058,11 +1113,13 @@ function toggleResPanel(moduleId, headerEl) {
 
 function renderResourcePanel(moduleId, panelEl) {
   panelEl.innerHTML = `<div class="res-panel-inner">${renderResourcePanelInner(moduleId, loadResources())}</div>`;
-  // update count badge on section header
+  const cnt = (loadResources()[moduleId] || []).length;
+
+  // Update the count badge on the res-section-header
   const countEl = document.getElementById(`res-count-${moduleId}`);
-  const cnt = (loadResources()[moduleId]||[]).length;
   if (countEl) countEl.textContent = cnt;
-  // update module header pill
+
+  // Update this module's header pill directly
   const pill = document.getElementById(`mod-res-pill-${moduleId}`);
   if (pill) {
     pill.textContent = `📚 ${cnt}`;
@@ -1199,18 +1256,14 @@ function updateDashboard() {
   const tot   = all.length;
   const pct   = tot ? Math.round(done/tot*100) : 0;
 
-  // Header progress bar
   document.getElementById('overall-pct').textContent  = pct+'%';
   document.getElementById('overall-fill').style.width = pct+'%';
+  document.getElementById('dash-done').textContent    = done;
+  document.getElementById('dash-remain').textContent  = tot-done;
 
-  // Completed / Remaining
-  document.getElementById('dash-done').textContent   = done;
-  document.getElementById('dash-remain').textContent = tot-done;
-
-  // Resources Linked — total count across all modules
   const resources = loadResources();
   let totalResources = 0;
-  let modulesWithResources = new Set();
+  const modulesWithResources = new Set();
   Object.entries(resources).forEach(([modId, list]) => {
     if (list && list.length > 0) {
       totalResources += list.length;
@@ -1219,7 +1272,6 @@ function updateDashboard() {
   });
   document.getElementById('dash-resources').textContent = totalResources;
 
-  // Pending Resources — modules that have tasks but no resources yet
   const allModuleIds = new Set();
   document.querySelectorAll('[data-res-module-id]').forEach(el => {
     allModuleIds.add(el.dataset.resModuleId);
@@ -1227,7 +1279,7 @@ function updateDashboard() {
   const pendingCount = [...allModuleIds].filter(id => !modulesWithResources.has(id)).length;
   document.getElementById('dash-pending').textContent = pendingCount;
 
-  updateSyncStrip();
+  updateActionBar();
 }
 
 function fmtDate(iso) {
@@ -1318,12 +1370,27 @@ function mkEl(tag,cls,text) { const e=document.createElement(tag); if(cls)e.clas
 //  BOOT
 // ═══════════════════════════════════════════
 async function boot() {
-  // Pre-populate settings modal from saved config
-  const cfg = getCfg();
+  const cfg  = getCfg();
+  const prog = loadProgress();
   if (cfg.pat)    document.getElementById('pat-input').value  = cfg.pat;
   if (cfg.gistId) document.getElementById('gist-input').value = cfg.gistId;
 
-  updateSyncStrip();
+  // Restore dirty state across reloads:
+  // Dirty if we have a local save that is newer than the last Gist sync
+  // (or if we have local saves but never synced to Gist at all)
+  const localTs = prog.__localSaveTime;
+  const gistTs  = prog.__gistSyncTime;
+  if (localTs) {
+    const isDirty = !gistTs || new Date(localTs) > new Date(gistTs);
+    _dirty = isDirty;
+    document.title = isDirty
+      ? '● My Agent Engineer Journey · 2026 Roadmap'
+      : 'My Agent Engineer Journey · 2026 Roadmap';
+  }
+
+  updateActionBar();
+  syncStickyOffsets();
+  setTimeout(syncStickyOffsets, 100);
 
   try {
     const res = await fetch('https://raw.githubusercontent.com/NaveenKadali/learning-journey-organizer/main/domain/ai/agentic-ai/ROADMAP.md');
@@ -1331,12 +1398,31 @@ async function boot() {
     const data = parseRoadmap(await res.text());
     if (!data.sections.length) throw new Error('No sections found — check ROADMAP.md structure.');
     render(data);
+    syncStickyOffsets();
+    // Re-run after fonts/images settle
+    setTimeout(syncStickyOffsets, 300);
   } catch(e) {
     document.getElementById('main-content').innerHTML = `
       <div class="error-state"><strong>⚠ Could not load roadmap</strong><br>${esc(e.message)}<br><br>
       <small style="color:var(--text-muted)">Check your network or GitHub repository URL, then refresh.</small></div>`;
   }
 }
+// ═══════════════════════════════════════════
+//  SYNC STICKY OFFSETS
+//  Measures actual action-bar height and sets
+//  sticky-bar top dynamically — eliminates
+//  overlap regardless of font scaling or screen size.
+// ═══════════════════════════════════════════
+function syncStickyOffsets() {
+  const ab = document.getElementById('action-bar');
+  const sb = document.querySelector('.sticky-bar');
+  if (!ab || !sb) return;
+  const h = ab.getBoundingClientRect().height;
+  sb.style.top = Math.ceil(h) + 'px';
+}
+// Run on load and whenever the window resizes
+window.addEventListener('resize', syncStickyOffsets);
+
 document.addEventListener('DOMContentLoaded', boot);
 </script>
 </body>
