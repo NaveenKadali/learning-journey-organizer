@@ -91,6 +91,46 @@
     .dash-val.blue   { color:var(--c-nav); }
     .dash-label { font-size:.62rem; color:rgba(255,255,255,.4); text-transform:uppercase; letter-spacing:.07em; margin-top:3px; }
 
+    /* ── ROADMAP SELECTOR STRIP ───────────────── */
+    /* Sits between header and action-bar, scrolls away with header */
+    .roadmap-selector {
+      background:rgba(0,0,0,.18); border-top:1px solid rgba(255,255,255,.07);
+      margin:14px -24px -18px; padding:0 24px;
+      overflow-x:auto; scrollbar-width:none;
+    }
+    .roadmap-selector::-webkit-scrollbar { display:none; }
+    .roadmap-tab-row {
+      display:flex; align-items:stretch; gap:0; min-width:max-content;
+    }
+    .roadmap-tab {
+      display:flex; align-items:center; gap:6px;
+      font-family:var(--font-mono); font-size:.68rem; font-weight:500;
+      letter-spacing:.04em; text-transform:uppercase;
+      color:rgba(255,255,255,.45); padding:9px 14px;
+      cursor:pointer; border:none; background:none;
+      border-bottom:2px solid transparent;
+      transition:color .15s, border-color .15s;
+      white-space:nowrap; position:relative;
+    }
+    .roadmap-tab:hover { color:rgba(255,255,255,.75); }
+    .roadmap-tab.active {
+      color:#fff; border-bottom-color:var(--c-nav);
+    }
+    .roadmap-tab .tab-badge {
+      font-size:.56rem; padding:1px 5px; border-radius:4px;
+      background:rgba(255,255,255,.1); color:rgba(255,255,255,.5);
+    }
+    .roadmap-tab.active .tab-badge { background:rgba(59,130,246,.2); color:var(--c-nav); }
+    .roadmap-tab-loading {
+      font-family:var(--font-mono); font-size:.68rem;
+      color:rgba(255,255,255,.3); padding:9px 14px; display:flex; align-items:center; gap:6px;
+    }
+    .tab-spinner {
+      width:10px; height:10px; border:1.5px solid rgba(255,255,255,.15);
+      border-top-color:var(--c-nav); border-radius:50%;
+      animation:spin .7s linear infinite; flex-shrink:0;
+    }
+
     /* Action bar uses surface/border tokens so it works in both themes */
     .action-bar {
       position:sticky; top:0; z-index:200;
@@ -435,14 +475,22 @@
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<!-- HEADER: badge, title, subtitle, dashboard cards -->
+<!-- HEADER: badge, title, subtitle, selector strip, dashboard cards -->
 <header class="site-header">
   <div class="header-inner">
     <div class="header-top">
-      <div class="header-badge">🤖 2026 Roadmap</div>
+      <div class="header-badge" id="header-badge">🤖 Roadmap</div>
     </div>
-    <h1 class="header-title">My <span>Agent Engineer</span> Journey</h1>
+    <h1 class="header-title" id="header-title">My <span id="header-title-accent">Learning</span> Journey</h1>
     <p class="header-subtitle" id="roadmap-meta">Loading…</p>
+    <!-- Roadmap selector strip — scrolls away with header -->
+    <div class="roadmap-selector">
+      <div class="roadmap-tab-row" id="roadmap-tab-row">
+        <div class="roadmap-tab-loading">
+          <span class="tab-spinner"></span> Loading roadmaps…
+        </div>
+      </div>
+    </div>
     <!-- Dashboard cards — last element in header -->
     <div class="dashboard">
       <div class="dash-card"><span class="dash-val green"  id="dash-done">0</span><div class="dash-label">Completed</div></div>
@@ -533,12 +581,27 @@
 'use strict';
 
 // ═══════════════════════════════════════════
+//  REPO BASE URL
+//  Points to the branch all content is served from.
+//  Change this one line when merging to main.
+// ═══════════════════════════════════════════
+const REPO_BASE = 'https://raw.githubusercontent.com/NaveenKadali/learning-journey-organizer/feature/multi-roadmap/';
+
+// ═══════════════════════════════════════════
 //  STORAGE KEYS
 // ═══════════════════════════════════════════
-const KEY_CFG      = 'roadmap_gist_cfg';
-const KEY_PROGRESS = 'roadmap_progress_v4';
-const KEY_RESOURCES= 'roadmap_resources_v1';
-const KEY_THEME    = 'roadmap_theme';
+const KEY_CFG         = 'roadmap_gist_cfg';
+const KEY_THEME       = 'roadmap_theme';
+const KEY_LAST_ACTIVE = 'roadmap_last_active';
+// Per-roadmap keys — namespaced by roadmap ID
+function keyProgress(id)  { return `roadmap_progress_${id}`; }
+function keyResources(id) { return `roadmap_resources_${id}`; }
+
+// ═══════════════════════════════════════════
+//  ACTIVE ROADMAP STATE
+// ═══════════════════════════════════════════
+let _catalog        = [];   // array of { id, title, badge, subtitle, path }
+let _activeRoadmap  = null; // currently loaded catalog entry
 
 // ═══════════════════════════════════════════
 //  DIRTY FLAG  (unsaved local changes)
@@ -546,9 +609,8 @@ const KEY_THEME    = 'roadmap_theme';
 let _dirty = false;
 function setDirty(val) {
   _dirty = val;
-  document.title = val
-    ? '● My Agent Engineer Journey · 2026 Roadmap'
-    : 'My Agent Engineer Journey · 2026 Roadmap';
+  const title = _activeRoadmap?.title || 'Roadmap';
+  document.title = val ? `● ${title}` : title;
   updateActionBar();
 }
 
@@ -588,16 +650,28 @@ function getCfg() { try { return JSON.parse(localStorage.getItem(KEY_CFG)||'{}')
 function setCfg(o) { localStorage.setItem(KEY_CFG, JSON.stringify(o)); }
 
 // ═══════════════════════════════════════════
-//  LOCAL PROGRESS
+//  LOCAL PROGRESS  (per roadmap)
 // ═══════════════════════════════════════════
-function loadProgress()         { try { return JSON.parse(localStorage.getItem(KEY_PROGRESS)||'{}'); } catch { return {}; } }
-function saveLocalProgress(data){ localStorage.setItem(KEY_PROGRESS, JSON.stringify(data)); }
+function loadProgress(id) {
+  const k = keyProgress(id || _activeRoadmap?.id || 'default');
+  try { return JSON.parse(localStorage.getItem(k)||'{}'); } catch { return {}; }
+}
+function saveLocalProgress(data, id) {
+  const k = keyProgress(id || _activeRoadmap?.id || 'default');
+  localStorage.setItem(k, JSON.stringify(data));
+}
 
 // ═══════════════════════════════════════════
-//  RESOURCES  { moduleId: [ {id,title,url,type} ] }
+//  RESOURCES  (per roadmap)  { moduleId: [{id,title,url,type}] }
 // ═══════════════════════════════════════════
-function loadResources()          { try { return JSON.parse(localStorage.getItem(KEY_RESOURCES)||'{}'); } catch { return {}; } }
-function saveLocalResources(data) { localStorage.setItem(KEY_RESOURCES, JSON.stringify(data)); }
+function loadResources(id) {
+  const k = keyResources(id || _activeRoadmap?.id || 'default');
+  try { return JSON.parse(localStorage.getItem(k)||'{}'); } catch { return {}; }
+}
+function saveLocalResources(data, id) {
+  const k = keyResources(id || _activeRoadmap?.id || 'default');
+  localStorage.setItem(k, JSON.stringify(data));
+}
 
 // ═══════════════════════════════════════════
 //  RELATIVE TIME  ("2 min ago", "3 hrs ago", etc.)
@@ -707,19 +781,65 @@ function saveGistSettings() {
 }
 
 // ═══════════════════════════════════════════
-//  BUILD GIST PAYLOAD
+//  BUILD GIST PAYLOAD  (v5 — all roadmaps)
 // ═══════════════════════════════════════════
 function buildGistPayload() {
-  const progress  = collectProgress();
-  progress.__gistSyncTime = new Date().toISOString();   // only set when actually pushing to Gist
-  progress.__theme        = document.documentElement.getAttribute('data-theme') || 'dark';
-  const resources = loadResources();
-  return { progress, resources, __version: 'v4', __saved: new Date().toISOString() };
+  const now = new Date().toISOString();
+  const roadmaps = {};
+  // Snapshot every known roadmap from the catalog
+  _catalog.forEach(entry => {
+    const progress  = collectProgress(entry.id === _activeRoadmap?.id ? null : entry.id);
+    if (entry.id === _activeRoadmap?.id) {
+      // Live collection for the active roadmap
+      const live = collectProgress();
+      live.__gistSyncTime = now;
+      live.__theme        = document.documentElement.getAttribute('data-theme') || 'dark';
+      roadmaps[entry.id]  = { progress: live, resources: loadResources() };
+    } else {
+      // Load persisted data for inactive roadmaps
+      roadmaps[entry.id] = {
+        progress:  loadProgress(entry.id),
+        resources: loadResources(entry.id)
+      };
+    }
+  });
+  return { __version: 'v5', __saved: now, roadmaps };
 }
 
 function applyGistPayload(payload) {
   if (!payload) return;
+  const now = new Date().toISOString();
+
+  // v5 format: { roadmaps: { [id]: { progress, resources } } }
+  if (payload.__version === 'v5' && payload.roadmaps) {
+    Object.entries(payload.roadmaps).forEach(([id, data]) => {
+      if (data.progress) {
+        data.progress.__gistSyncTime = now;
+        saveLocalProgress(data.progress, id);
+        // Apply to UI only if this is the active roadmap
+        if (id === _activeRoadmap?.id) {
+          applyProgressToUI(data.progress);
+          if (data.progress.__theme) {
+            applyTheme(data.progress.__theme);
+            localStorage.setItem(KEY_THEME, data.progress.__theme);
+          }
+        }
+      }
+      if (data.resources) {
+        saveLocalResources(data.resources, id);
+        if (id === _activeRoadmap?.id) {
+          document.querySelectorAll('[data-res-module-id]').forEach(panel => {
+            renderResourcePanel(panel.dataset.resModuleId, panel);
+          });
+        }
+      }
+    });
+    return;
+  }
+
+  // v4 fallback migration: treat as active roadmap data
   if (payload.progress) {
+    payload.progress.__gistSyncTime = now;
     saveLocalProgress(payload.progress);
     applyProgressToUI(payload.progress);
     if (payload.progress.__theme) {
@@ -730,8 +850,7 @@ function applyGistPayload(payload) {
   if (payload.resources) {
     saveLocalResources(payload.resources);
     document.querySelectorAll('[data-res-module-id]').forEach(panel => {
-      const mid = panel.dataset.resModuleId;
-      renderResourcePanel(mid, panel);
+      renderResourcePanel(panel.dataset.resModuleId, panel);
     });
   }
 }
@@ -757,16 +876,18 @@ async function saveToGist() {
       res = await fetch('https://api.github.com/gists', {
         method:'POST',
         headers:{ Authorization:`token ${cfg.pat}`, 'Content-Type':'application/json' },
-        body: JSON.stringify({ description:'Agent Engineer Roadmap', public:false, files:{ 'roadmap-data.json':{ content } } })
+        body: JSON.stringify({ description:'Learning Journey Roadmap', public:false, files:{ 'roadmap-data.json':{ content } } })
       });
     }
     if (!res.ok) throw new Error(`GitHub API ${res.status}`);
     const data = await res.json();
     if (!cfg.gistId) { cfg.gistId = data.id; setCfg(cfg); }
-    const payload = buildGistPayload();
-    // Stamp local save time so the Save sub-label shows "just now" immediately
-    payload.progress.__localSaveTime = payload.progress.__gistSyncTime;
-    saveLocalProgress(payload.progress);
+    // Stamp both sync times on the active roadmap's local storage
+    const now = new Date().toISOString();
+    const prog = loadProgress();
+    prog.__gistSyncTime  = now;
+    prog.__localSaveTime = now;
+    saveLocalProgress(prog);
     setDirty(false);
     updateDashboard();
     showToast('✓ Saved to GitHub Gist', 'success');
@@ -796,8 +917,7 @@ async function syncFromGist() {
     const raw = data.files?.['roadmap-data.json']?.content;
     if (!raw) throw new Error('roadmap-data.json not found in Gist');
     const payload = JSON.parse(raw);
-    if (payload.progress) payload.progress.__gistSyncTime = new Date().toISOString();
-    applyGistPayload(payload);
+    applyGistPayload(payload);  // handles v5 and v4 migration
     setDirty(false);
     updateDashboard();
     showToast('✓ Synced from GitHub Gist', 'success');
@@ -825,11 +945,11 @@ function applyProgressToUI(progress) {
 }
 function localSave() {
   const d    = collectProgress();
-  const prev = loadProgress();
+  const prev = loadProgress();  // uses active roadmap id automatically
   d.__gistSyncTime  = prev.__gistSyncTime  || null;
-  d.__localSaveTime = new Date().toISOString();   // stamped on every checkbox change
+  d.__localSaveTime = new Date().toISOString();
   d.__theme         = document.documentElement.getAttribute('data-theme') || 'dark';
-  saveLocalProgress(d);
+  saveLocalProgress(d);  // uses active roadmap id automatically
   setDirty(true);
 }
 
@@ -1367,45 +1487,139 @@ function esc(s='') { const d=document.createElement('div'); d.textContent=s; ret
 function mkEl(tag,cls,text) { const e=document.createElement(tag); if(cls)e.className=cls; if(text)e.textContent=text; return e; }
 
 // ═══════════════════════════════════════════
+//  CATALOG PARSER
+//  Reads config/catalog.md
+//  Supported formats per line:
+//    path/to/ROADMAP.md | Title | Badge | Subtitle
+//    path/to/ROADMAP.md | Title | Badge
+//    path/to/ROADMAP.md | Title
+//    path/to/ROADMAP.md          ← title inferred from path
+//  Lines starting with # or empty are ignored.
+// ═══════════════════════════════════════════
+function parseCatalog(md) {
+  return md.split('\n')
+    .map(l => l.trim())
+    .filter(l => l && !l.startsWith('#'))
+    .map(l => {
+      const parts = l.split('|').map(p => p.trim());
+      const path     = parts[0];
+      const title    = parts[1] || path.split('/').slice(-2,-1)[0]?.replace(/-/g,' ') || path;
+      const badge    = parts[2] || '📄';
+      const subtitle = parts[3] || '';
+      // ID: last two meaningful path segments, slugified
+      const segs = path.replace(/\/ROADMAP\.md$/i,'').split('/').filter(Boolean);
+      const id   = segs.slice(-2).join('-').toLowerCase().replace(/[^a-z0-9]+/g,'-');
+      return { id, path, title, badge, subtitle };
+    })
+    .filter(e => e.path);
+}
+
+// ═══════════════════════════════════════════
+//  RENDER SELECTOR TABS
+// ═══════════════════════════════════════════
+function renderSelectorTabs() {
+  const row = document.getElementById('roadmap-tab-row');
+  if (!row) return;
+  row.innerHTML = _catalog.map(entry => `
+    <button class="roadmap-tab${_activeRoadmap?.id === entry.id ? ' active' : ''}"
+            onclick="switchRoadmap('${entry.id}')"
+            title="${esc(entry.subtitle || entry.title)}">
+      <span>${entry.badge}</span>
+      <span>${esc(entry.title)}</span>
+    </button>
+  `).join('');
+}
+
+// ═══════════════════════════════════════════
+//  SWITCH ROADMAP  (user taps a tab)
+// ═══════════════════════════════════════════
+async function switchRoadmap(id) {
+  if (_activeRoadmap?.id === id) return;
+  const entry = _catalog.find(e => e.id === id);
+  if (!entry) return;
+  await loadRoadmap(entry);
+}
+
+// ═══════════════════════════════════════════
+//  LOAD ROADMAP  (fetch + parse + render)
+// ═══════════════════════════════════════════
+async function loadRoadmap(entry) {
+  _activeRoadmap = entry;
+  localStorage.setItem(KEY_LAST_ACTIVE, entry.id);
+
+  // Update header
+  const badge    = document.getElementById('header-badge');
+  const title    = document.getElementById('header-title');
+  const accent   = document.getElementById('header-title-accent');
+  const meta     = document.getElementById('roadmap-meta');
+  if (badge)  badge.textContent  = `${entry.badge} ${entry.subtitle || entry.title}`;
+  if (accent) accent.textContent = entry.title;
+  if (meta)   meta.textContent   = 'Loading…';
+
+  // Restore dirty state for this roadmap
+  const prog    = loadProgress();
+  const localTs = prog.__localSaveTime;
+  const gistTs  = prog.__gistSyncTime;
+  _dirty = localTs ? (!gistTs || new Date(localTs) > new Date(gistTs)) : false;
+  document.title = _dirty ? `● ${entry.title}` : entry.title;
+
+  // Update tabs
+  renderSelectorTabs();
+  updateActionBar();
+
+  // Show loading state in main
+  const main = document.getElementById('main-content');
+  if (main) main.innerHTML = '<div class="loading-state"><div class="loading-spinner"></div><p>Loading roadmap…</p></div>';
+
+  try {
+    const res  = await fetch(REPO_BASE + entry.path);
+    if (!res.ok) throw new Error(`HTTP ${res.status} — ${entry.path}`);
+    const data = parseRoadmap(await res.text());
+    if (!data.sections.length) throw new Error('No sections found. Check the ROADMAP.md structure.');
+    render(data);
+    syncStickyOffsets();
+    setTimeout(syncStickyOffsets, 300);
+  } catch(e) {
+    if (main) main.innerHTML = `<div class="error-state"><strong>⚠ Could not load roadmap</strong><br>${esc(e.message)}<br><br><small style="color:var(--text-muted)">Check the path in config/catalog.md and try again.</small></div>`;
+    updateActionBar();
+  }
+}
+
+// ═══════════════════════════════════════════
 //  BOOT
 // ═══════════════════════════════════════════
 async function boot() {
-  const cfg  = getCfg();
-  const prog = loadProgress();
+  const cfg = getCfg();
   if (cfg.pat)    document.getElementById('pat-input').value  = cfg.pat;
   if (cfg.gistId) document.getElementById('gist-input').value = cfg.gistId;
-
-  // Restore dirty state across reloads:
-  // Dirty if we have a local save that is newer than the last Gist sync
-  // (or if we have local saves but never synced to Gist at all)
-  const localTs = prog.__localSaveTime;
-  const gistTs  = prog.__gistSyncTime;
-  if (localTs) {
-    const isDirty = !gistTs || new Date(localTs) > new Date(gistTs);
-    _dirty = isDirty;
-    document.title = isDirty
-      ? '● My Agent Engineer Journey · 2026 Roadmap'
-      : 'My Agent Engineer Journey · 2026 Roadmap';
-  }
 
   updateActionBar();
   syncStickyOffsets();
   setTimeout(syncStickyOffsets, 100);
 
+  // 1. Fetch and parse the catalog
   try {
-    const res = await fetch('https://raw.githubusercontent.com/NaveenKadali/learning-journey-organizer/main/domain/ai/agentic-ai/ROADMAP.md');
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = parseRoadmap(await res.text());
-    if (!data.sections.length) throw new Error('No sections found — check ROADMAP.md structure.');
-    render(data);
-    syncStickyOffsets();
-    // Re-run after fonts/images settle
-    setTimeout(syncStickyOffsets, 300);
+    const catRes     = await fetch(REPO_BASE + 'config/catalog.md');
+    if (!catRes.ok) throw new Error(`Catalog HTTP ${catRes.status}`);
+    _catalog = parseCatalog(await catRes.text());
+    if (!_catalog.length) throw new Error('config/catalog.md is empty — add at least one roadmap path.');
   } catch(e) {
-    document.getElementById('main-content').innerHTML = `
-      <div class="error-state"><strong>⚠ Could not load roadmap</strong><br>${esc(e.message)}<br><br>
-      <small style="color:var(--text-muted)">Check your network or GitHub repository URL, then refresh.</small></div>`;
+    document.getElementById('roadmap-tab-row').innerHTML =
+      `<div class="roadmap-tab-loading" style="color:#f87171">⚠ ${esc(e.message)}</div>`;
+    document.getElementById('main-content').innerHTML =
+      `<div class="error-state"><strong>⚠ Could not load catalog</strong><br>${esc(e.message)}<br><br>
+       <small style="color:var(--text-muted)">Create <code>config/catalog.md</code> in your repository.</small></div>`;
+    return;
   }
+
+  // 2. Determine which roadmap to open
+  //    Priority: localStorage last-active → first in catalog
+  const lastId     = localStorage.getItem(KEY_LAST_ACTIVE);
+  const startEntry = _catalog.find(e => e.id === lastId) || _catalog[0];
+
+  // 3. Render tabs and load the roadmap
+  renderSelectorTabs();
+  await loadRoadmap(startEntry);
 }
 // ═══════════════════════════════════════════
 //  SYNC STICKY OFFSETS
