@@ -1,3 +1,4 @@
+<!-- section: // Foundation -->
 > # Stage 1: Foundation SDET (Junior SDET)
 
 > ## Phase 1: Programming Fundamentals
@@ -103,6 +104,8 @@
 
 ---
 
+
+<!-- section: // Automation Engineer -->
 > # Stage 2: Automation Engineer (SDET-I)
 
 > ## Phase 1: Test Automation Foundations
@@ -189,7 +192,7 @@
 - [ ] Artifact Management
 
 ---
-
+<!-- section: // Advanced SDET (SDET-II) -->
 > # Stage 3: Advanced SDET (SDET-II)
 
 > ## Phase 1: Framework Engineering
@@ -260,7 +263,7 @@
 - [ ] Parallel Execution
 
 ---
-
+<!-- section: // Senior SDET -->
 > # Stage 4: Senior SDET
 
 > ## Phase 1: System Design for Testability
@@ -328,7 +331,7 @@
 - [ ] Container Testing
 
 ---
-
+<!-- section: // PLead SDET / Staff SDET -->
 > # Stage 5: Lead SDET / Staff SDET
 
 > ## Phase 1: Quality Strategy
@@ -396,6 +399,7 @@
 - [ ] Autonomous Testing
 
 ---
+<!-- section: // Principal / Quality Architect -->
 
 > # Stage 6: Principal / Quality Architect
 
