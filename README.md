@@ -2,23 +2,6 @@
 
 > **26 weeks · 9 phases · 62 modules · 3 capstones**  
 > Tracking my progress through the [Agent Engineer 2026 Roadmap](https://ch-balaji.github.io/ai-engineer-roadmap/)
-
----
-
-## 📊 Progress Overview
-
-| Phase | Topic | Weeks | Modules | Status |
-|-------|-------|-------|---------|--------|
-| 01 | Python + Async Engineering | 1–3 | 8 | ⬜ Not started |
-| 02 | LLM Mental Model | 4 | 5 | ⬜ Not started |
-| 03 | Prompt Engineering | 5–7 | 7 | ⬜ Not started |
-| 04 | RAG + Evaluation | 8–12 | 9 | ⬜ Not started |
-| 05 | Tools, MCP & Single Agents | 13–16 | 8 | ⬜ Not started |
-| 06 | Memory + Context Engineering | 17–19 | 7 | ⬜ Not started |
-| 07 | Multi-Agent Orchestration | 20–22 | 8 | ⬜ Not started |
-| 08 | Guardrails + LLMOps | 23–24 | 4 | ⬜ Not started |
-| 09 | Cloud + Deployment | 25–26 | 6 | ⬜ Not started |
-
 ---
 # Section 1: Introduction
 <!-- section: // Introduction -->
