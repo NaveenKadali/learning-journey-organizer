@@ -51,85 +51,290 @@
     html { transition: background .2s, color .2s; }
     body { font-family:var(--font-body); background:var(--bg); color:var(--text); min-height:100vh; line-height:1.6; }
 
-    /* ── HEADER (title + badge + dashboard only) ─ */
+    /* ═══════════════════════════════════════════
+       HEADER — two states: home-view / roadmap-view
+    ═══════════════════════════════════════════ */
     .site-header {
       background: var(--header-bg);
-      border-bottom:1px solid var(--border);
-      padding:20px 24px 18px;
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    /* Ambient orb layer — purely decorative depth */
+    .site-header::after {
+      content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
+      background:
+        radial-gradient(ellipse 55% 120% at 95% -10%, rgba(59,130,246,.22) 0%, transparent 55%),
+        radial-gradient(ellipse 35% 80%  at 5%  110%, rgba(139,92,246,.16) 0%, transparent 50%),
+        radial-gradient(ellipse 25% 50%  at 50% 50%,  rgba(59,130,246,.04) 0%, transparent 70%);
+    }
+    .header-inner { max-width:960px; margin:0 auto; position:relative; z-index:1; }
+
+    /* ══════════════════════════════════════════
+       HOME VIEW
+    ══════════════════════════════════════════ */
+    .site-header.home-view { padding: 40px 24px 32px; }
+
+    /* Top row: wordmark left, global ring-stat right */
+    .hv-top {
+      display:flex; align-items:flex-start; justify-content:space-between;
+      gap:20px; flex-wrap:wrap; margin-bottom:28px;
+    }
+    .hv-brand { display:flex; flex-direction:column; gap:8px; max-width:520px; }
+    .hv-eyebrow { display:flex; align-items:center; gap:8px; }
+    .hv-badge {
+      font-family:var(--font-mono); font-size:.62rem; letter-spacing:.12em;
+      text-transform:uppercase; color:var(--c-done);
+      background:rgba(34,197,94,.08); border:1px solid rgba(34,197,94,.25);
+      border-radius:99px; padding:3px 12px;
+    }
+    .hv-dot { width:4px; height:4px; border-radius:50%; background:rgba(255,255,255,.2); }
+    .hv-version {
+      font-family:var(--font-mono); font-size:.6rem; color:rgba(255,255,255,.28);
+      letter-spacing:.06em;
+    }
+    .hv-title {
+      font-family:var(--font-head); font-size:clamp(1.7rem,5vw,2.6rem);
+      font-weight:800; color:#fff; line-height:1.05; margin:0;
+      letter-spacing:-.02em;
+    }
+    .hv-title em { font-style:normal; color:transparent;
+      background:linear-gradient(135deg, #60a5fa 0%, #a78bfa 60%, #f472b6 100%);
+      -webkit-background-clip:text; background-clip:text;
+    }
+    .hv-tagline {
+      font-size:.84rem; color:rgba(255,255,255,.42); line-height:1.6;
+      max-width:400px;
+    }
+
+    /* Global ring stat — top right */
+    .hv-ring-wrap {
+      display:flex; flex-direction:column; align-items:center; gap:4px;
+      flex-shrink:0; padding-top:4px;
+    }
+    .hv-ring {
+      width:68px; height:68px; position:relative; flex-shrink:0;
+    }
+    .hv-ring svg { width:100%; height:100%; transform:rotate(-90deg); }
+    .hv-ring-bg   { fill:none; stroke:rgba(255,255,255,.08); stroke-width:5; }
+    .hv-ring-fill { fill:none; stroke-width:5; stroke-linecap:round;
+      stroke:url(#ringGrad); transition:stroke-dashoffset .8s cubic-bezier(.4,0,.2,1); }
+    .hv-ring-label {
+      position:absolute; inset:0; display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+    }
+    .hv-ring-pct {
+      font-family:var(--font-mono); font-size:.8rem; font-weight:500; color:#fff;
+      line-height:1;
+    }
+    .hv-ring-sub {
+      font-family:var(--font-mono); font-size:.48rem; color:rgba(255,255,255,.35);
+      text-transform:uppercase; letter-spacing:.08em;
+    }
+    .hv-ring-caption {
+      font-family:var(--font-mono); font-size:.55rem; color:rgba(255,255,255,.3);
+      text-transform:uppercase; letter-spacing:.08em; text-align:center;
+    }
+
+    /* Global stats strip */
+    .hv-stats-strip {
+      display:flex; gap:0; border:1px solid rgba(255,255,255,.08);
+      border-radius:12px; overflow:hidden; background:rgba(255,255,255,.03);
+      backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+    }
+    .hv-stat {
+      flex:1; display:flex; flex-direction:column; align-items:center;
+      padding:12px 10px; gap:3px; position:relative; cursor:default;
+      transition:background .15s;
+    }
+    .hv-stat:not(:last-child)::after {
+      content:''; position:absolute; right:0; top:20%; bottom:20%;
+      width:1px; background:rgba(255,255,255,.08);
+    }
+    .hv-stat:hover { background:rgba(255,255,255,.04); }
+    .hv-stat-val {
+      font-family:var(--font-mono); font-size:1.25rem; font-weight:500; color:#fff;
+      line-height:1;
+    }
+    .hv-stat-val.c-blue   { color:var(--c-nav); }
+    .hv-stat-val.c-green  { color:var(--c-done); }
+    .hv-stat-val.c-purple { color:var(--c-progress); }
+    .hv-stat-val.c-orange { color:var(--c-active); }
+    .hv-stat-lbl {
+      font-family:var(--font-mono); font-size:.53rem; color:rgba(255,255,255,.32);
+      text-transform:uppercase; letter-spacing:.08em; text-align:center;
+    }
+
+    /* ══════════════════════════════════════════
+       ROADMAP VIEW (compact sticky bar)
+    ══════════════════════════════════════════ */
+    .site-header.roadmap-view { padding: 8px 24px; }
+
+    .rv-bar {
+      display:flex; align-items:center; gap:10px; min-height:36px;
+    }
+    .rv-back {
+      display:inline-flex; align-items:center; gap:4px;
+      font-family:var(--font-mono); font-size:.66rem; color:rgba(255,255,255,.45);
+      background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1);
+      border-radius:6px; padding:4px 10px; cursor:pointer;
+      transition:all .15s; white-space:nowrap; flex-shrink:0;
+    }
+    .rv-back:hover { background:rgba(255,255,255,.12); color:#fff; border-color:rgba(255,255,255,.2); }
+    .rv-crumb { color:rgba(255,255,255,.15); font-size:.75rem; flex-shrink:0; }
+    .rv-badge { font-size:.9rem; flex-shrink:0; }
+    .rv-title {
+      font-family:var(--font-head); font-size:clamp(.85rem,2.2vw,1.05rem);
+      font-weight:800; color:#fff; overflow:hidden; text-overflow:ellipsis;
+      white-space:nowrap; flex:1; min-width:0;
+    }
+    .rv-subtitle {
+      font-family:var(--font-mono); font-size:.58rem; color:rgba(255,255,255,.32);
+      letter-spacing:.07em; text-transform:uppercase; white-space:nowrap; flex-shrink:0;
+    }
+    .rv-stats { display:flex; gap:5px; flex-shrink:0; flex-wrap:wrap; }
+    .rv-pill {
+      font-family:var(--font-mono); font-size:.6rem; padding:2px 8px;
+      border-radius:99px; border:1px solid; white-space:nowrap;
+    }
+    .rv-pill.done     { color:var(--c-done);     background:rgba(34,197,94,.1);   border-color:rgba(34,197,94,.22); }
+    .rv-pill.remain   { color:var(--c-active);   background:rgba(249,115,22,.1);  border-color:rgba(249,115,22,.22); }
+    .rv-pill.progress { color:var(--c-progress); background:rgba(139,92,246,.1);  border-color:rgba(139,92,246,.22); }
+
+    /* ══════════════════════════════════════════
+       HOME — BENTO ROADMAP CARDS
+    ══════════════════════════════════════════ */
+    .home-view-wrap { max-width:960px; margin:0 auto; padding:0 24px 80px; }
+
+    .home-section-label {
+      font-family:var(--font-mono); font-size:.6rem; letter-spacing:.14em;
+      text-transform:uppercase; color:var(--text-dim);
+      margin:28px 0 14px; display:flex; align-items:center; gap:10px;
+    }
+    .home-section-label::after {
+      content:''; flex:1; height:1px; background:var(--border);
+    }
+
+    .roadmap-cards-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(290px,1fr));
+      gap:14px;
+    }
+
+    /* Card */
+    .roadmap-card {
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:0;
+      cursor:pointer;
       position:relative; overflow:hidden;
+      transition:transform .2s cubic-bezier(.34,1.56,.64,1),
+                  box-shadow .2s ease,
+                  border-color .2s ease;
+      display:flex; flex-direction:column;
     }
-    .site-header::before {
-      content:''; position:absolute; top:-60px; right:-60px;
-      width:300px; height:300px;
-      background:radial-gradient(circle,rgba(59,130,246,.14) 0%,transparent 70%);
-      pointer-events:none;
+    /* Gradient top accent line */
+    .roadmap-card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:1px;
+      background:linear-gradient(90deg,
+        transparent 0%, var(--rc-accent,var(--c-nav)) 40%,
+        var(--c-progress) 70%, transparent 100%);
+      opacity:0; transition:opacity .2s;
     }
-    .header-inner { max-width:940px; margin:0 auto; position:relative; z-index:1; }
-    .header-top { display:flex; align-items:center; margin-bottom:10px; }
-    .header-badge {
-      display:inline-block; font-family:var(--font-mono); font-size:.67rem;
-      color:var(--c-done); background:rgba(34,197,94,.1); border:1px solid rgba(34,197,94,.25);
-      border-radius:20px; padding:3px 12px; letter-spacing:.08em; text-transform:uppercase;
+    /* Ambient glow behind icon */
+    .roadmap-card::after {
+      content:''; position:absolute; top:-30px; left:-20px;
+      width:120px; height:120px; border-radius:50%;
+      background:radial-gradient(circle, var(--rc-glow, rgba(59,130,246,.12)) 0%, transparent 70%);
+      pointer-events:none; transition:opacity .2s; opacity:0;
     }
-    .header-title { font-family:var(--font-head); font-size:clamp(1.2rem,3.5vw,1.9rem); font-weight:800; color:#fff; line-height:1.15; margin-bottom:2px; }
-    .header-title span { color:var(--c-nav); }
-    .header-subtitle { font-size:.8rem; color:rgba(255,255,255,.5); margin-bottom:14px; }
+    .roadmap-card:hover {
+      transform:translateY(-3px);
+      box-shadow:0 8px 32px rgba(0,0,0,.28), 0 2px 8px rgba(0,0,0,.15);
+      border-color:rgba(59,130,246,.3);
+    }
+    .roadmap-card:hover::before { opacity:1; }
+    .roadmap-card:hover::after  { opacity:1; }
+    .roadmap-card:active { transform:translateY(-1px); }
 
-    /* Dashboard cards — last element in header */
-    .dashboard {
-      display:grid; grid-template-columns:repeat(4,1fr); gap:8px;
-    }
-    @media(max-width:600px) { .dashboard { grid-template-columns:repeat(2,1fr); } }
-    .dash-card {
-      background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08);
-      border-radius:var(--radius); padding:11px 12px; text-align:center;
-    }
-    .dash-val { font-family:var(--font-mono); font-size:1.3rem; font-weight:500; display:block; }
-    .dash-val.green  { color:var(--c-done); }
-    .dash-val.purple { color:var(--c-progress); }
-    .dash-val.orange { color:var(--c-active); }
-    .dash-val.blue   { color:var(--c-nav); }
-    .dash-label { font-size:.62rem; color:rgba(255,255,255,.4); text-transform:uppercase; letter-spacing:.07em; margin-top:3px; }
+    /* Card body */
+    .rc-body { padding:18px 18px 16px; flex:1; display:flex; flex-direction:column; gap:14px; }
 
-    /* ── ROADMAP SELECTOR STRIP ───────────────── */
-    /* Sits between header and action-bar, scrolls away with header */
-    .roadmap-selector {
-      background:rgba(0,0,0,.18); border-top:1px solid rgba(255,255,255,.07);
-      margin:14px -24px -18px; padding:0 24px;
-      overflow-x:auto; scrollbar-width:none;
+    /* Top row: icon + text + arrow */
+    .rc-header { display:flex; align-items:flex-start; gap:12px; }
+    .rc-icon {
+      width:42px; height:42px; border-radius:11px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.2rem; flex-shrink:0;
+      background:var(--surface2); border:1px solid var(--border);
+      position:relative; z-index:1;
+      transition:transform .2s cubic-bezier(.34,1.56,.64,1);
     }
-    .roadmap-selector::-webkit-scrollbar { display:none; }
-    .roadmap-tab-row {
-      display:flex; align-items:stretch; gap:0; min-width:max-content;
+    .roadmap-card:hover .rc-icon { transform:scale(1.08); }
+    .rc-meta { flex:1; min-width:0; display:flex; flex-direction:column; gap:3px; }
+    .rc-title {
+      font-family:var(--font-head); font-size:1rem; font-weight:800;
+      color:var(--text); line-height:1.2;
+      overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
     }
-    .roadmap-tab {
-      display:flex; align-items:center; gap:6px;
+    .rc-subtitle {
+      font-family:var(--font-mono); font-size:.58rem; color:var(--text-muted);
+      text-transform:uppercase; letter-spacing:.07em;
+    }
+    .rc-arrow {
+      flex-shrink:0; width:22px; height:22px; border-radius:6px;
+      display:flex; align-items:center; justify-content:center;
+      background:var(--surface2); border:1px solid var(--border);
+      color:var(--text-dim); font-size:.7rem;
+      transition:all .18s; margin-top:2px;
+    }
+    .roadmap-card:hover .rc-arrow {
+      background:var(--c-nav); border-color:var(--c-nav);
+      color:#fff; transform:translateX(2px);
+    }
+
+    /* Progress bar */
+    .rc-progress-row { display:flex; align-items:center; gap:9px; }
+    .rc-track {
+      flex:1; height:6px; background:var(--border); border-radius:99px;
+      overflow:visible; position:relative;
+    }
+    .rc-fill {
+      height:100%; border-radius:99px;
+      background:linear-gradient(90deg, var(--c-nav) 0%, var(--c-progress) 100%);
+      box-shadow:0 0 6px 1px rgba(139,92,246,.3);
+      transition:width .7s cubic-bezier(.4,0,.2,1);
+    }
+    .rc-pct {
       font-family:var(--font-mono); font-size:.68rem; font-weight:500;
-      letter-spacing:.04em; text-transform:uppercase;
-      color:rgba(255,255,255,.45); padding:9px 14px;
-      cursor:pointer; border:none; background:none;
-      border-bottom:2px solid transparent;
-      transition:color .15s, border-color .15s;
-      white-space:nowrap; position:relative;
+      color:var(--c-progress); min-width:30px; text-align:right; flex-shrink:0;
     }
-    .roadmap-tab:hover { color:rgba(255,255,255,.75); }
-    .roadmap-tab.active {
-      color:#fff; border-bottom-color:var(--c-nav);
+
+    /* Footer: stat chips */
+    .rc-footer {
+      display:flex; align-items:center; gap:6px; flex-wrap:wrap;
+      padding:10px 18px 14px;
+      border-top:1px solid var(--border);
     }
-    .roadmap-tab .tab-badge {
-      font-size:.56rem; padding:1px 5px; border-radius:4px;
-      background:rgba(255,255,255,.1); color:rgba(255,255,255,.5);
+    .rc-stat {
+      font-family:var(--font-mono); font-size:.58rem; padding:2px 8px;
+      border-radius:99px; border:1px solid var(--border);
+      color:var(--text-muted); background:var(--surface2);
+      transition:all .15s;
     }
-    .roadmap-tab.active .tab-badge { background:rgba(59,130,246,.2); color:var(--c-nav); }
-    .roadmap-tab-loading {
-      font-family:var(--font-mono); font-size:.68rem;
-      color:rgba(255,255,255,.3); padding:9px 14px; display:flex; align-items:center; gap:6px;
+    .rc-stat.green  { color:var(--c-done);     background:rgba(34,197,94,.07);   border-color:rgba(34,197,94,.2); }
+    .rc-stat.orange { color:var(--c-active);   background:rgba(249,115,22,.07);  border-color:rgba(249,115,22,.2); }
+    .rc-stat.blue   { color:var(--c-nav);      background:rgba(59,130,246,.07);  border-color:rgba(59,130,246,.2); }
+    .rc-stat.purple { color:var(--c-progress); background:rgba(139,92,246,.07);  border-color:rgba(139,92,246,.2); }
+    .rc-stat-spacer { flex:1; }
+    /* "not started" nudge text */
+    .rc-nudge {
+      font-family:var(--font-mono); font-size:.58rem; color:var(--text-dim);
+      font-style:italic; margin-left:auto;
     }
-    .tab-spinner {
-      width:10px; height:10px; border:1.5px solid rgba(255,255,255,.15);
-      border-top-color:var(--c-nav); border-radius:50%;
-      animation:spin .7s linear infinite; flex-shrink:0;
-    }
+
+    /* Hide progress bar row in action-bar when in home view */
+    .action-bar.home-mode .action-progress { display:none; }
 
     /* Action bar uses surface/border tokens so it works in both themes */
     .action-bar {
@@ -475,33 +680,81 @@
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<!-- HEADER: badge, title, subtitle, selector strip, dashboard cards -->
-<header class="site-header">
+<!-- HEADER — toggled between .home-view and .roadmap-view by JS -->
+<header class="site-header home-view" id="site-header">
   <div class="header-inner">
-    <div class="header-top">
-      <div class="header-badge" id="header-badge">🤖 Roadmap</div>
-    </div>
-    <h1 class="header-title" id="header-title">My <span id="header-title-accent">Learning</span> Journey</h1>
-    <p class="header-subtitle" id="roadmap-meta">Loading…</p>
-    <!-- Roadmap selector strip — scrolls away with header -->
-    <div class="roadmap-selector">
-      <div class="roadmap-tab-row" id="roadmap-tab-row">
-        <div class="roadmap-tab-loading">
-          <span class="tab-spinner"></span> Loading roadmaps…
+
+    <!-- SVG gradient defs (zero size, just registers IDs) -->
+    <svg width="0" height="0" style="position:absolute;pointer-events:none">
+      <defs>
+        <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%"   stop-color="#3b82f6"/>
+          <stop offset="60%"  stop-color="#8b5cf6"/>
+          <stop offset="100%" stop-color="#f472b6"/>
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <!-- ── HOME VIEW ──────────────────────── -->
+    <div id="hv-content">
+      <div class="hv-top">
+        <div class="hv-brand">
+          <div class="hv-eyebrow">
+            <span class="hv-badge">Learning Journey</span>
+            <span class="hv-dot"></span>
+            <span class="hv-version">multi-roadmap · 2026</span>
+          </div>
+          <h1 class="hv-title">My <em>Learning</em><br>Platform</h1>
+          <p class="hv-tagline">Track every domain. Own your progress.<br>Zero backends, fully yours.</p>
+        </div>
+        <!-- Circular overall progress ring -->
+        <div class="hv-ring-wrap">
+          <div class="hv-ring" id="hv-ring">
+            <svg viewBox="0 0 68 68">
+              <circle class="hv-ring-bg"   cx="34" cy="34" r="29"/>
+              <circle class="hv-ring-fill" cx="34" cy="34" r="29"
+                      id="hv-ring-fill"
+                      stroke-dasharray="182"
+                      stroke-dashoffset="182"/>
+            </svg>
+            <div class="hv-ring-label">
+              <span class="hv-ring-pct" id="hv-ring-pct">0%</span>
+              <span class="hv-ring-sub">overall</span>
+            </div>
+          </div>
+          <span class="hv-ring-caption" id="hv-ring-caption">0 roadmaps</span>
         </div>
       </div>
+      <!-- Glassmorphic stats strip -->
+      <div class="hv-stats-strip" id="hv-global-stats">
+        <!-- filled by renderHomeStats() -->
+      </div>
     </div>
-    <!-- Dashboard cards — last element in header -->
-    <div class="dashboard">
-      <div class="dash-card"><span class="dash-val green"  id="dash-done">0</span><div class="dash-label">Completed</div></div>
-      <div class="dash-card"><span class="dash-val orange" id="dash-remain">0</span><div class="dash-label">Remaining</div></div>
-      <div class="dash-card"><span class="dash-val blue"   id="dash-resources">0</span><div class="dash-label">Resources Linked</div></div>
-      <div class="dash-card"><span class="dash-val purple" id="dash-pending">0</span><div class="dash-label">Pending Resources</div></div>
+
+    <!-- ── ROADMAP VIEW ────────────────────── -->
+    <div id="rv-content" style="display:none">
+      <div class="rv-bar">
+        <button class="rv-back" onclick="goHome()">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+          All Roadmaps
+        </button>
+        <span class="rv-crumb">›</span>
+        <span class="rv-badge" id="rv-badge">📄</span>
+        <span class="rv-title" id="rv-title">Roadmap</span>
+        <span class="rv-subtitle" id="rv-subtitle"></span>
+        <div class="rv-stats" id="rv-stats"></div>
+      </div>
     </div>
+
   </div>
 </header>
 
-<!-- STICKY ACTION BAR: progress bar on top, 4 buttons with sub-labels below -->
+<!-- Hidden data holders — updated by updateDashboard(), read by rv-stats and home cards -->
+<span id="dash-done"      style="display:none">0</span>
+<span id="dash-remain"    style="display:none">0</span>
+<span id="dash-resources" style="display:none">0</span>
+<span id="dash-pending"   style="display:none">0</span>
+<span id="roadmap-meta"   style="display:none"></span>
 <div class="action-bar" id="action-bar">
   <div class="action-bar-inner">
     <!-- Row 1: progress bar full width -->
@@ -1400,6 +1653,7 @@ function updateDashboard() {
   document.getElementById('dash-pending').textContent = pendingCount;
 
   updateActionBar();
+  if (_activeRoadmap) updateRvStats();
 }
 
 function fmtDate(iso) {
@@ -1515,23 +1769,152 @@ function parseCatalog(md) {
 }
 
 // ═══════════════════════════════════════════
-//  RENDER SELECTOR TABS
+//  GO HOME  — back to catalog card view
 // ═══════════════════════════════════════════
-function renderSelectorTabs() {
-  const row = document.getElementById('roadmap-tab-row');
-  if (!row) return;
-  row.innerHTML = _catalog.map(entry => `
-    <button class="roadmap-tab${_activeRoadmap?.id === entry.id ? ' active' : ''}"
-            onclick="switchRoadmap('${entry.id}')"
-            title="${esc(entry.subtitle || entry.title)}">
-      <span>${entry.badge}</span>
-      <span>${esc(entry.title)}</span>
-    </button>
-  `).join('');
+function goHome() {
+  _activeRoadmap = null;
+  _dirty = false;
+  document.title = 'My Learning Platform';
+
+  // Switch header to home-view
+  const hdr = document.getElementById('site-header');
+  hdr.className = 'site-header home-view';
+  document.getElementById('hv-content').style.display = '';
+  document.getElementById('rv-content').style.display = 'none';
+
+  // Hide progress bar in action-bar
+  document.getElementById('action-bar').classList.add('home-mode');
+
+  // Hide toolbar (filter/search not relevant on home)
+  document.querySelector('.sticky-bar').style.display = 'none';
+
+  renderHomeStats();
+  updateActionBar();
+  renderHomeView();
+  syncStickyOffsets();
 }
 
 // ═══════════════════════════════════════════
-//  SWITCH ROADMAP  (user taps a tab)
+//  RENDER HOME STATS  (aggregate across all roadmaps)
+// ═══════════════════════════════════════════
+function renderHomeStats() {
+  let totalTasks = 0, totalDone = 0, totalRes = 0;
+  _catalog.forEach(entry => {
+    const prog = loadProgress(entry.id);
+    const res  = loadResources(entry.id);
+    Object.entries(prog).forEach(([k,v]) => {
+      if (k.startsWith('__')) return;
+      totalTasks++; if (v) totalDone++;
+    });
+    Object.values(res).forEach(list => { totalRes += (list||[]).length; });
+  });
+  const pct = totalTasks ? Math.round(totalDone / totalTasks * 100) : 0;
+
+  // Animate the ring
+  const circumference = 182;
+  const offset = circumference - (pct / 100) * circumference;
+  const ringFill = document.getElementById('hv-ring-fill');
+  const ringPct  = document.getElementById('hv-ring-pct');
+  const ringCap  = document.getElementById('hv-ring-caption');
+  if (ringFill) ringFill.style.strokeDashoffset = offset;
+  if (ringPct)  ringPct.textContent  = pct + '%';
+  if (ringCap)  ringCap.textContent  = `${_catalog.length} roadmap${_catalog.length !== 1 ? 's' : ''}`;
+
+  // Stats strip
+  const el = document.getElementById('hv-global-stats');
+  if (!el) return;
+  el.innerHTML = `
+    <div class="hv-stat"><span class="hv-stat-val c-blue">${_catalog.length}</span><span class="hv-stat-lbl">Roadmaps</span></div>
+    <div class="hv-stat"><span class="hv-stat-val">${totalTasks}</span><span class="hv-stat-lbl">Total Tasks</span></div>
+    <div class="hv-stat"><span class="hv-stat-val c-green">${totalDone}</span><span class="hv-stat-lbl">Completed</span></div>
+    <div class="hv-stat"><span class="hv-stat-val c-orange">${totalTasks - totalDone}</span><span class="hv-stat-lbl">Remaining</span></div>
+    <div class="hv-stat"><span class="hv-stat-val c-purple">${totalRes}</span><span class="hv-stat-lbl">Resources</span></div>
+  `;
+}
+
+// ═══════════════════════════════════════════
+//  RENDER HOME VIEW  — roadmap cards in main
+// ═══════════════════════════════════════════
+function renderHomeView() {
+  const main = document.getElementById('main-content');
+  if (!main) return;
+
+  const cardsHTML = _catalog.map(entry => {
+    const prog  = loadProgress(entry.id);
+    const res   = loadResources(entry.id);
+
+    let tasks = 0, done = 0;
+    Object.entries(prog).forEach(([k,v]) => {
+      if (k.startsWith('__')) return;
+      tasks++; if (v) done++;
+    });
+    const pct      = tasks ? Math.round(done / tasks * 100) : 0;
+    const resCount = Object.values(res).reduce((s,l) => s + (l||[]).length, 0);
+    const isDirty  = (() => {
+      const lt = prog.__localSaveTime, gt = prog.__gistSyncTime;
+      return lt ? (!gt || new Date(lt) > new Date(gt)) : false;
+    })();
+
+    const footerStats = [
+      done > 0        ? `<span class="rc-stat green">${done} done</span>` : '',
+      tasks-done > 0  ? `<span class="rc-stat orange">${tasks-done} left</span>` : '',
+      resCount > 0    ? `<span class="rc-stat blue">${resCount} resources</span>` : '',
+      isDirty         ? `<span class="rc-stat purple">● unsaved</span>` : '',
+    ].filter(Boolean).join('');
+
+    const notStarted = tasks === 0;
+
+    return `
+      <div class="roadmap-card" onclick="loadRoadmap(${JSON.stringify(entry).replace(/"/g,'&quot;')})">
+        <div class="rc-body">
+          <div class="rc-header">
+            <div class="rc-icon">${entry.badge}</div>
+            <div class="rc-meta">
+              <div class="rc-title">${esc(entry.title)}</div>
+              ${entry.subtitle ? `<div class="rc-subtitle">${esc(entry.subtitle)}</div>` : ''}
+            </div>
+            <div class="rc-arrow">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+          </div>
+          <div class="rc-progress-row">
+            <div class="rc-track"><div class="rc-fill" style="width:${pct}%"></div></div>
+            <span class="rc-pct">${pct}%</span>
+          </div>
+        </div>
+        <div class="rc-footer">
+          ${footerStats || ''}
+          ${notStarted ? `<span class="rc-nudge">Start exploring →</span>` : `<span class="rc-stat-spacer"></span>`}
+          ${tasks > 0 ? `<span class="rc-stat">${tasks} tasks</span>` : ''}
+        </div>
+      </div>`;
+  }).join('');
+
+  main.innerHTML = `
+    <div class="home-view-wrap">
+      <div class="home-section-label">Your Roadmaps &mdash; ${_catalog.length} available</div>
+      <div class="roadmap-cards-grid">${cardsHTML}</div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════
+//  UPDATE RV STATS  — inline pills in roadmap view header
+// ═══════════════════════════════════════════
+function updateRvStats() {
+  const el = document.getElementById('rv-stats');
+  if (!el) return;
+  const done   = parseInt(document.getElementById('dash-done')?.textContent   || 0);
+  const remain = parseInt(document.getElementById('dash-remain')?.textContent || 0);
+  const total  = done + remain;
+  const pct    = total ? Math.round(done / total * 100) : 0;
+  el.innerHTML = `
+    <span class="rv-pill done">${done} done</span>
+    <span class="rv-pill remain">${remain} left</span>
+    <span class="rv-pill progress">${pct}%</span>`;
+}
+
+// ═══════════════════════════════════════════
+//  SWITCH ROADMAP  (called from home card click or programmatically)
 // ═══════════════════════════════════════════
 async function switchRoadmap(id) {
   if (_activeRoadmap?.id === id) return;
@@ -1544,17 +1927,25 @@ async function switchRoadmap(id) {
 //  LOAD ROADMAP  (fetch + parse + render)
 // ═══════════════════════════════════════════
 async function loadRoadmap(entry) {
+  // entry may arrive as a plain object (from onclick JSON) or catalog reference
+  if (typeof entry === 'string') entry = _catalog.find(e => e.id === entry);
+  if (!entry) return;
+
   _activeRoadmap = entry;
   localStorage.setItem(KEY_LAST_ACTIVE, entry.id);
 
-  // Update header
-  const badge    = document.getElementById('header-badge');
-  const title    = document.getElementById('header-title');
-  const accent   = document.getElementById('header-title-accent');
-  const meta     = document.getElementById('roadmap-meta');
-  if (badge)  badge.textContent  = `${entry.badge} ${entry.subtitle || entry.title}`;
-  if (accent) accent.textContent = entry.title;
-  if (meta)   meta.textContent   = 'Loading…';
+  // Switch header to roadmap-view
+  const hdr = document.getElementById('site-header');
+  hdr.className = 'site-header roadmap-view';
+  document.getElementById('hv-content').style.display = 'none';
+  document.getElementById('rv-content').style.display = '';
+  document.getElementById('rv-badge').textContent   = entry.badge;
+  document.getElementById('rv-title').textContent   = entry.title;
+  document.getElementById('rv-subtitle').textContent = entry.subtitle || '';
+
+  // Show action-bar progress row and toolbar
+  document.getElementById('action-bar').classList.remove('home-mode');
+  document.querySelector('.sticky-bar').style.display = '';
 
   // Restore dirty state for this roadmap
   const prog    = loadProgress();
@@ -1563,11 +1954,9 @@ async function loadRoadmap(entry) {
   _dirty = localTs ? (!gistTs || new Date(localTs) > new Date(gistTs)) : false;
   document.title = _dirty ? `● ${entry.title}` : entry.title;
 
-  // Update tabs
-  renderSelectorTabs();
   updateActionBar();
 
-  // Show loading state in main
+  // Show loading state
   const main = document.getElementById('main-content');
   if (main) main.innerHTML = '<div class="loading-state"><div class="loading-spinner"></div><p>Loading roadmap…</p></div>';
 
@@ -1577,6 +1966,7 @@ async function loadRoadmap(entry) {
     const data = parseRoadmap(await res.text());
     if (!data.sections.length) throw new Error('No sections found. Check the ROADMAP.md structure.');
     render(data);
+    updateRvStats();
     syncStickyOffsets();
     setTimeout(syncStickyOffsets, 300);
   } catch(e) {
@@ -1584,6 +1974,9 @@ async function loadRoadmap(entry) {
     updateActionBar();
   }
 }
+
+// Legacy — no-op now (tabs replaced by home card view)
+function renderSelectorTabs() {}
 
 // ═══════════════════════════════════════════
 //  BOOT
@@ -1604,22 +1997,23 @@ async function boot() {
     _catalog = parseCatalog(await catRes.text());
     if (!_catalog.length) throw new Error('config/catalog.md is empty — add at least one roadmap path.');
   } catch(e) {
-    document.getElementById('roadmap-tab-row').innerHTML =
-      `<div class="roadmap-tab-loading" style="color:#f87171">⚠ ${esc(e.message)}</div>`;
-    document.getElementById('main-content').innerHTML =
-      `<div class="error-state"><strong>⚠ Could not load catalog</strong><br>${esc(e.message)}<br><br>
-       <small style="color:var(--text-muted)">Create <code>config/catalog.md</code> in your repository.</small></div>`;
+    document.getElementById('main-content').innerHTML = `
+      <div class="home-view-wrap">
+        <div class="error-state"><strong>⚠ Could not load catalog</strong><br>${esc(e.message)}<br><br>
+        <small style="color:var(--text-muted)">Create <code>config/catalog.md</code> in your repository.</small></div>
+      </div>`;
     return;
   }
 
-  // 2. Determine which roadmap to open
-  //    Priority: localStorage last-active → first in catalog
-  const lastId     = localStorage.getItem(KEY_LAST_ACTIVE);
-  const startEntry = _catalog.find(e => e.id === lastId) || _catalog[0];
+  // 3. Show home view (renders catalog cards)
+  goHome();
 
-  // 3. Render tabs and load the roadmap
-  renderSelectorTabs();
-  await loadRoadmap(startEntry);
+  // 4. Auto-open last active roadmap if remembered
+  const lastId     = localStorage.getItem(KEY_LAST_ACTIVE);
+  const startEntry = _catalog.find(e => e.id === lastId);
+  if (startEntry) {
+    await loadRoadmap(startEntry);
+  }
 }
 // ═══════════════════════════════════════════
 //  SYNC STICKY OFFSETS
