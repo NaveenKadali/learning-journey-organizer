@@ -1,135 +1,448 @@
-# Backend Engineer Journey · 2026 Roadmap
+> # Stage 1: Foundation Developer (Junior Python Developer)
 
-> **5 weeks · 2 phases · 10 modules · 1 capstones**  
+> ## Phase 1: Programming Fundamentals
+
+> ### Module: Python Basics
+
+- [ ] Python Installation & Environment Setup
+- [ ] Variables & Data Types
+- [ ] Type Conversion
+- [ ] Operators
+- [ ] Input & Output
+- [ ] String Manipulation
+- [ ] Comments & Documentation
+
+> #### Sub Module: Control Flow
+
+- [ ] Conditional Statements
+- [ ] Loops
+- [ ] Comprehensions
+- [ ] Pattern Problems
+
+> #### Sub Module: Functions
+
+- [ ] Function Definitions
+- [ ] Parameters & Arguments
+- [ ] Return Values
+- [ ] Lambda Functions
+- [ ] Decorators Basics
+
+> ### Module: Data Structures
+
+- [ ] Lists
+- [ ] Tuples
+- [ ] Sets
+- [ ] Dictionaries
+- [ ] Collections Module
+- [ ] Iterators
+- [ ] Generators
+
+> ### Module: Object-Oriented Programming
+
+- [ ] Classes & Objects
+- [ ] Constructors
+- [ ] Encapsulation
+- [ ] Inheritance
+- [ ] Polymorphism
+- [ ] Abstraction
+- [ ] Magic Methods
+
+> ## Phase 2: Python Ecosystem
+
+> ### Module: Python Internals
+
+- [ ] Memory Management
+- [ ] References & Mutability
+- [ ] Garbage Collection
+- [ ] Namespaces
+- [ ] Context Managers
+
+> ### Module: Error Handling
+
+- [ ] Exceptions
+- [ ] Custom Exceptions
+- [ ] Logging Basics
+- [ ] Debugging
+
+> ## Phase 3: Database Fundamentals
+
+> ### Module: SQL
+
+- [ ] SELECT Queries
+- [ ] Filtering
+- [ ] Sorting
+- [ ] Aggregations
+- [ ] Joins
+- [ ] Subqueries
+- [ ] Transactions
+
+> ### Module: Database Design
+
+- [ ] Relational Modeling
+- [ ] Normalization
+- [ ] Indexes
+- [ ] Constraints
+- [ ] Query Optimization
+
+> ## Phase 4: Software Engineering Basics
+
+> ### Module: Engineering Fundamentals
+
+- [ ] SDLC
+- [ ] Agile
+- [ ] Clean Code
+- [ ] Code Reviews
+- [ ] Documentation
+
+> ### Module: Git
+
+- [ ] Git Basics
+- [ ] Branching
+- [ ] Merging
+- [ ] Pull Requests
+- [ ] Conflict Resolution
 
 ---
-# Section 1: Introduction
-<!-- section: // Introduction -->
-** Introduction and Things to Begin with goes here**
-## Intro and To Begin with
-- [ ] Understanding the Roadmap
-- [ ] Understanding the Course Plan
-- [ ] AI Agent for Jobs
-- [ ] How LLMs are Built
-- [ ] Why your AI Agents are Costly in Production
-- [ ] Claude Code Setup
-### Intro to Python
-- [ ] Why Python?
-- [ ] Intro to Google Colab and Hands-on
 
+> # Stage 2: Backend Developer (Python Backend Engineer)
+
+> ## Phase 1: Web Development Fundamentals
+
+> ### Module: HTTP & Web
+
+- [ ] HTTP & HTTPS
+- [ ] Request Lifecycle
+- [ ] Cookies
+- [ ] Sessions
+- [ ] Caching
+- [ ] Browser-Server Communication
+
+> ### Module: API Fundamentals
+
+- [ ] REST Principles
+- [ ] HTTP Methods
+- [ ] Status Codes
+- [ ] JSON
+- [ ] API Design Basics
+- [ ] API Versioning
+
+> ## Phase 2: Backend Framework
+
+> ### Module: FastAPI
+
+- [ ] Routing
+- [ ] Path Parameters
+- [ ] Query Parameters
+- [ ] Dependency Injection
+- [ ] Validation
+- [ ] Response Models
+- [ ] Middleware
+
+> #### Sub Module: Pydantic
+
+- [ ] Schemas
+- [ ] Validation Rules
+- [ ] Nested Models
+- [ ] Settings Management
+
+> ### Module: Django Fundamentals
+
+- [ ] Project Structure
+- [ ] Apps
+- [ ] Models
+- [ ] Views
+- [ ] URLs
+- [ ] Templates
+- [ ] Django ORM
+
+> ## Phase 3: Database Integration
+
+> ### Module: ORM
+
+- [ ] SQLAlchemy
+- [ ] Django ORM
+- [ ] Relationships
+- [ ] Migrations
+- [ ] Query Optimization
+
+> ### Module: PostgreSQL
+
+- [ ] Installation
+- [ ] Data Types
+- [ ] Indexing
+- [ ] Transactions
+- [ ] Stored Procedures
+
+> ## Phase 4: Testing
+
+> ### Module: Unit Testing
+
+- [ ] pytest
+- [ ] unittest
+- [ ] Mocking
+- [ ] Fixtures
+- [ ] Coverage
+
+> ### Module: API Testing
+
+- [ ] Integration Testing
+- [ ] TestClient
+- [ ] Postman
+- [ ] Contract Testing
 
 ---
-<!-- section: // Learning Phrases -->
-## Phase 01 — Python + Async Engineering
-**Weeks 1–3 · 8 modules · Difficulty: 2/5**
 
-> Every agent framework runs on Python. Skip this and everything later breaks in mysterious ways.
+> # Stage 3: Professional Backend Engineer (SDE-II)
 
-### Module 1.1 — Core Python
-- [ ] Variables, types, control flow
-- [ ] Functions, `*args`/`**kwargs`
-- [ ] List & dict comprehensions
-- [ ] decorators
-- [ ] Generator expressions
-- [ ] Type hints (needed for Pydantic later)
+> ## Phase 1: Advanced Python
 
-### Module 1.2 — Object-Oriented Python
-- [ ] Classes, inheritance, dunder methods
-- [ ] Abstract base classes
-- [ ] Dataclasses & Pydantic models
+> ### Module: Advanced Language Features
 
-### Module 1.3 — Data Structures
-- [ ] Lists, dicts, sets, tuples
-- [ ] Stacks, queues, heaps
-- [ ] When to use what
+- [ ] Decorators
+- [ ] Context Managers
+- [ ] Metaclasses
+- [ ] Descriptors
+- [ ] Dataclasses
+- [ ] Type Hinting
 
-### Module 1.4 — Error & File Handling
-- [ ] try/except/finally patterns
-- [ ] Custom exceptions
-- [ ] Reading/writing files and JSON
+> ### Module: Concurrency
 
-### Module 1.5 — Working with HTTP APIs
-- [ ] `requests` and `httpx`
-- [ ] Auth patterns (Bearer, API keys)
-- [ ] Parsing JSON responses
+- [ ] Threading
+- [ ] Multiprocessing
+- [ ] AsyncIO
+- [ ] Event Loop
+- [ ] Async Programming
 
-### Module 1.6 — Database Connectivity
-- [ ] SQLAlchemy basics
-- [ ] Raw SQL with `psycopg2`
-- [ ] Connection pooling
+> ## Phase 2: System Design Fundamentals
 
-### Module 1.7 — FastAPI
-- [ ] Route definitions, path & query params
-- [ ] Pydantic request/response models
-- [ ] Background tasks, middleware
+> ### Module: Scalability Basics
 
-### Module 1.8 — Async Programming
-- [ ] `asyncio` fundamentals
-- [ ] `async`/`await`, event loops
-- [ ] Running async tasks concurrently (`gather`, `TaskGroup`)
-- [ ] Async HTTP with `httpx`
+- [ ] Vertical Scaling
+- [ ] Horizontal Scaling
+- [ ] Stateless Services
+- [ ] Load Balancing
 
-**🏁 End state:** Build a FastAPI endpoint that calls three different LLMs in parallel, times out the slow one, and logs the result without blocking the response.
+> ### Module: Design Patterns
+
+- [ ] Singleton
+- [ ] Factory
+- [ ] Strategy
+- [ ] Adapter
+- [ ] Observer
+
+> ## Phase 3: Caching & Performance
+
+> ### Module: Redis
+
+- [ ] Redis Basics
+- [ ] Caching Strategies
+- [ ] Rate Limiting
+- [ ] Session Storage
+
+> ### Module: Performance Optimization
+
+- [ ] Profiling
+- [ ] Query Optimization
+- [ ] Memory Optimization
+- [ ] Response Time Analysis
+
+> ## Phase 4: Authentication & Security
+
+> ### Module: Authentication
+
+- [ ] JWT
+- [ ] OAuth2
+- [ ] Session Authentication
+- [ ] API Keys
+
+> ### Module: Security
+
+- [ ] OWASP Top 10
+- [ ] SQL Injection
+- [ ] XSS
+- [ ] CSRF
+- [ ] Secure Coding
+
 ---
 
-## Phase 03 — Prompt Engineering & API Access
-**Weeks 5–7 · 7 modules · Difficulty: 2/5**
+> # Stage 4: Senior Backend Engineer
 
-> The pivot from "ChatGPT user" to "engineer who controls LLMs."
+> ## Phase 1: Distributed Systems
 
-### Module 3.1 — UI vs API: The Hinge Moment
-- [ ] Same prompt, same model, different output — why?
-- [ ] System prompts you don't see
-- [ ] Skills/tools the chat UI calls silently
-- [ ] Why production work happens via API
+> ### Module: Microservices
 
-### Module 3.2 — Calling LLMs via API
-- [ ] OpenAI, Anthropic, Gemini SDKs
-- [ ] `messages` array structure
-- [ ] Streaming responses
-- [ ] Error handling and retries
+- [ ] Service Boundaries
+- [ ] Service Discovery
+- [ ] API Gateway
+- [ ] Distributed Communication
 
-### Module 3.3 — Prompt Anatomy
-- [ ] System / user / assistant roles
-- [ ] Context injection patterns
-- [ ] Token budgeting
+> ### Module: Messaging
 
-### Module 3.4 — Core Techniques
-- [ ] Zero-shot, few-shot, chain-of-thought
-- [ ] Role prompting
-- [ ] Output format constraints (JSON mode)
+- [ ] RabbitMQ
+- [ ] Kafka
+- [ ] Event-Driven Architecture
+- [ ] Event Sourcing Basics
 
-### Module 3.5 — Applied Prompt Patterns
-- [ ] Persona patterns
-- [ ] Decomposition & step-back prompting
-- [ ] Self-consistency
+> ## Phase 2: Cloud Engineering
 
-### Module 3.6 — Advanced Reasoning Techniques
-- [ ] Tree of Thought
-- [ ] ReAct (reason + act) prompting
-- [ ] Self-critique loops
+> ### Module: AWS
 
-### Module 3.7 — Prompt Management & Cost in Production
-- [ ] Prompt versioning
-- [ ] Prompt caching (Anthropic / OpenAI)
-- [ ] Cost calculators, token monitoring
+- [ ] EC2
+- [ ] S3
+- [ ] IAM
+- [ ] RDS
+- [ ] Lambda
 
-**🏁 End state:** Take a flaky prompt that works "sometimes" and systematically make it reliable — and cut its cost in half with caching.
+> ### Module: Containers
+
+- [ ] Docker
+- [ ] Docker Compose
+- [ ] Container Networking
+- [ ] Image Optimization
+
+> ### Module: Kubernetes
+
+- [ ] Pods
+- [ ] Deployments
+- [ ] Services
+- [ ] ConfigMaps
+- [ ] Ingress
+
+> ## Phase 3: DevOps for Backend Engineers
+
+> ### Module: CI/CD
+
+- [ ] GitHub Actions
+- [ ] Jenkins
+- [ ] GitLab CI
+- [ ] Deployment Pipelines
+
+> ### Module: Infrastructure as Code
+
+- [ ] Terraform
+- [ ] Infrastructure Provisioning
+- [ ] Environment Management
+
+> ## Phase 4: Observability
+
+> ### Module: Monitoring
+
+- [ ] Metrics
+- [ ] Logs
+- [ ] Traces
+- [ ] Alerting
+
+> ### Module: Tools
+
+- [ ] Prometheus
+- [ ] Grafana
+- [ ] ELK Stack
+- [ ] OpenTelemetry
+
 ---
-<!-- section: // Capston Projects -->
 
+> # Stage 5: Staff Backend Engineer / Platform Engineer
 
-## Capstone 2 — Multi-Agent Natural Language → SQL on E-commerce Data
-**Built during Phase 7 · Weeks 21–22**  
-*Domain: E-commerce analytics for non-technical users*  
-`LangChain` `LangGraph` `LangSmith` `AgentCore` `RDS PostgreSQL` `FastAPI` `Streamlit` `Bedrock`
+> ## Phase 1: Advanced Architecture
 
-- [ ] Multi-agent: Planner → SQL Writer → Validator → Executor → Explainer
-- [ ] Schema-aware context injection per query (only relevant tables sent to writer)
-- [ ] LangGraph orchestration with conditional routing and retry loops
-- [ ] Read-only DB enforcement, query timeout, max-row caps
-- [ ] Streamlit frontend, FastAPI backend, RDS PostgreSQL with realistic data
-- [ ] Benchmarked on a golden NLQ test set, target 85%+ accuracy
+> ### Module: Large Scale Systems
 
-**Proves:** You can orchestrate multiple specialised agents safely against real production data.
+- [ ] CAP Theorem
+- [ ] Consistency Models
+- [ ] Sharding
+- [ ] Replication
+- [ ] Multi-Region Systems
+
+> ### Module: Reliability
+
+- [ ] Fault Tolerance
+- [ ] Circuit Breakers
+- [ ] Retry Strategies
+- [ ] Backpressure
+
+> ## Phase 2: Platform Engineering
+
+> ### Module: Internal Platforms
+
+- [ ] Developer Platforms
+- [ ] Shared Libraries
+- [ ] Internal Tooling
+- [ ] Golden Paths
+
+> ### Module: Infrastructure Platforms
+
+- [ ] Kubernetes Platform Design
+- [ ] Service Mesh
+- [ ] Platform APIs
+- [ ] Self-Service Infrastructure
+
+> ## Phase 3: Data Intensive Systems
+
+> ### Module: Data Engineering Basics
+
+- [ ] ETL Concepts
+- [ ] Data Pipelines
+- [ ] Streaming Systems
+
+> ### Module: Databases at Scale
+
+- [ ] Partitioning
+- [ ] Distributed Databases
+- [ ] NoSQL Systems
+- [ ] Time-Series Databases
+
+> ## Phase 4: Leadership
+
+> ### Module: Technical Leadership
+
+- [ ] Architecture Reviews
+- [ ] Mentoring
+- [ ] Hiring
+- [ ] Technical Strategy
+
 ---
+
+> # Stage 6: Principal Engineer / Backend Architect
+
+> ## Phase 1: Enterprise Architecture
+
+> ### Module: Architecture Governance
+
+- [ ] Architecture Standards
+- [ ] Technology Evaluation
+- [ ] Platform Strategy
+- [ ] Risk Management
+
+> ## Phase 2: Organization Scale Engineering
+
+> ### Module: Engineering Excellence
+
+- [ ] Engineering Metrics
+- [ ] Platform Adoption
+- [ ] Reliability Strategy
+- [ ] Cost Optimization
+
+> ## Phase 3: Emerging Technologies
+
+> ### Module: AI & Modern Systems
+
+- [ ] LLM Application Backends
+- [ ] RAG Systems
+- [ ] Vector Databases
+- [ ] AI Infrastructure
+
+> ### Module: Research & Innovation
+
+- [ ] Distributed Computing
+- [ ] High Performance Python
+- [ ] Platform Evolution
+- [ ] Future Architecture Trends
+
+> ## Phase 4: Executive Influence
+
+> ### Module: Strategic Engineering
+
+- [ ] Engineering Roadmaps
+- [ ] Business Alignment
+- [ ] Technical Vision
+- [ ] Organization Transformation
