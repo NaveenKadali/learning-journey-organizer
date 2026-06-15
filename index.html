@@ -1394,7 +1394,7 @@ function localSave() {
 // ═══════════════════════════════════════════
 //  PARSE MARKDOWN
 //  Structure:
-//    <!-- section: // Label --> → new section
+//    <!-- section: // Label --> or > # → new section
 //    ## or > ## title                  → accordion card
 //    ### or > ### title                  → module
 //    #### or > #### title                 → sub-module inside module
@@ -1417,7 +1417,7 @@ function parseRoadmap(md) {
 
   for (const raw of lines) {
     const line = raw;
-    const secM = line.match(/<!--\s*section:\s*(.+?)\s*-->/i);
+    const secM = line.match(/<!--\s*section:\s*(.+?)\s*-->/i || />\s+#\s*(.+?));
     if (secM) {
       curSection = { label: secM[1].trim(), items: [] };
       sections.push(curSection);
