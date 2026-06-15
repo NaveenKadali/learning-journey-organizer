@@ -1424,7 +1424,9 @@ function parseRoadmap(md) {
     const line = raw.trimEnd(); // Cleans trailing carriage returns (\r)
 
     // 1. SECTION IDENTIFICATION (Fixed Regex Boundary)
-    const secM = line.match(/(?:<!--\s*section:\s*(.+?)\s*-->|>\s+#\s*(.+)$)/i);
+        
+    const secM = line.match(/^(?:<!--\s*section:\s*(.+?)\s*-->|>\s+#\s+(.+)$)/i);
+    
     if (secM) {
       const sectionText = (secM[1] || secM[2]).trim();
       curSection = { label: sectionText, items: [] };
