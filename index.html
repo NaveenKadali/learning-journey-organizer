@@ -1417,9 +1417,15 @@ function parseRoadmap(md) {
 
   for (const raw of lines) {
     const line = raw;
-    const secM = line.match(/<!--\s*section:\s*(.+?)\s*-->/i || />\s+#\s*(.+?));
+    const secM = line.match(/(?:<!--\s*section:\s*(.+?)\s*-->|>\s+#\s*(.+?))/i);
+
     if (secM) {
-      curSection = { label: secM[1].trim(), items: [] };
+  const sectionText = (secM[1] || secM[2]).trim();
+  
+  curSection = { label: sectionText, items: [] };
+}
+
+
       sections.push(curSection);
       curItem = curMod = curSubMod = null;
       continue;
