@@ -1400,15 +1400,20 @@ function localSave() {
 //    #### or > #### title                 → sub-module inside module
 //    - [ ] / - [x]              → task
 // ═══════════════════════════════════════════
-function slug(s) {
-  return (s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,80)||'item';
+
+  function slug(s) {
+  return (s || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 80) || 'item';
 }
+
 function parseRoadmap(md) {
+  if (!md) return { sections: [] };
+  
   const lines = md.split('\n');
   const sections = [];
   let curSection = null, curItem = null, curMod = null, curSubMod = null;
 
   function addTask(line, target) {
+    if (!target) return;
     const m = line.match(/^[-*]\s+\[([ xX✓])\]\s+(.*)/);
     if (!m) return;
     const checked = /^[xX✓]$/.test(m[1].trim());
@@ -1416,29 +1421,35 @@ function parseRoadmap(md) {
   }
 
   for (const raw of lines) {
-    const line = raw;
+    const line = raw.trimEnd(); // Cleans trailing carriage returns (\r)
+
+    // 1. SECTION IDENTIFICATION (Fixed Regex Boundary)
     const secM = line.match(/(?:<!--\s*section:\s*(.+?)\s*-->|>\s+#\s*(.+)$)/i);
-
-
     if (secM) {
-  const sectionText = (secM[1] || secM[2]).trim();
-  
-  curSection = { label: sectionText, items: [] };
-}
-
+      const sectionText = (secM[1] || secM[2]).trim();
+      curSection = { label: sectionText, items: [] };
       sections.push(curSection);
       curItem = curMod = curSubMod = null;
       continue;
     }
-    if (/^##\s+/.test(line) || /^>\s##\s+/.test(line) ) {
+
+    // 2. ACCORDION CARD (##)
+    if (/^##\s+/.test(line) || /^>\s+##\s+/.test(line)) {
       const title = line.replace(/^(?:>\s+)?##\s+/, '').trim();
-      if (!curSection) { curSection = { label: '', items: [] }; sections.push(curSection); }
+      if (!curSection) { 
+        curSection = { label: '', items: [] }; 
+        sections.push(curSection); 
+      }
       curItem = { title, id: slug(title), modules: [], tasks: [] };
-      curMod = null; curSubMod = null;
+      curMod = null; 
+      curSubMod = null;
       curSection.items.push(curItem);
       continue;
     }
+
     if (!curItem) continue;
+
+    // 3. MODULE (###)
     if (/^###\s+/.test(line) || /^>\s+###\s+/.test(line)) {
       const title = line.replace(/^(?:>\s+)?###\s+/, '').trim();
       curMod = { title, id: slug(title), modules: [], tasks: [] };
@@ -1446,14 +1457,19 @@ function parseRoadmap(md) {
       curItem.modules.push(curMod);
       continue;
     }
+
+    // 4. SUB-MODULE (####)
     if (/^####\s+/.test(line) || /^>\s+####\s+/.test(line)) {
       const title = line.replace(/^(?:>\s+)?####\s+/, '').trim();
       curSubMod = { title, id: slug(title), tasks: [] };
       (curMod || curItem).modules.push(curSubMod);
       continue;
     }
+
+    // 5. TASKS
     addTask(line, (curSubMod || curMod || curItem).tasks);
   }
+  
   return { sections };
 }
 
