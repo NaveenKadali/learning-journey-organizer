@@ -1395,9 +1395,9 @@ function localSave() {
 //  PARSE MARKDOWN
 //  Structure:
 //    <!-- section: // Label --> → new section
-//    ##  title                  → accordion card
-//    ### title                  → module
-//    #### title                 → sub-module inside module
+//    ## or > ## title                  → accordion card
+//    ### or > ### title                  → module
+//    #### or > #### title                 → sub-module inside module
 //    - [ ] / - [x]              → task
 // ═══════════════════════════════════════════
 function slug(s) {
@@ -1424,8 +1424,8 @@ function parseRoadmap(md) {
       curItem = curMod = curSubMod = null;
       continue;
     }
-    if (/^##\s+/.test(line)) {
-      const title = line.replace(/^##\s+/, '').trim();
+    if (/^##\s+/.test(line) || /^>\s##\s+/.test(line) ) {
+      const title = line.replace(/^(?:>\s+)?##\s+/, '').trim();
       if (!curSection) { curSection = { label: '', items: [] }; sections.push(curSection); }
       curItem = { title, id: slug(title), modules: [], tasks: [] };
       curMod = null; curSubMod = null;
@@ -1433,15 +1433,15 @@ function parseRoadmap(md) {
       continue;
     }
     if (!curItem) continue;
-    if (/^###\s+/.test(line)) {
-      const title = line.replace(/^###\s+/, '').trim();
+    if (/^###\s+/.test(line) || /^>\s+###\s+/.test(line)) {
+      const title = line.replace(/^(?:>\s+)?###\s+/, '').trim();
       curMod = { title, id: slug(title), modules: [], tasks: [] };
       curSubMod = null;
       curItem.modules.push(curMod);
       continue;
     }
-    if (/^####\s+/.test(line)) {
-      const title = line.replace(/^####\s+/, '').trim();
+    if (/^####\s+/.test(line) || /^>\s+####\s+/.test(line)) {
+      const title = line.replace(/^(?:>\s+)?####\s+/, '').trim();
       curSubMod = { title, id: slug(title), tasks: [] };
       (curMod || curItem).modules.push(curSubMod);
       continue;
