@@ -1218,15 +1218,15 @@ function showToast(msg, type='info') {
 // ═══════════════════════════════════════════
 //  MODALS
 // ═══════════════════════════════════════════
-function openModal(id)  { document.getElementById(id).classList.add('open'); }
-function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+function openModal(id)  { document.getElementById(id)?.classList.add('open'); }
+function closeModal(id) { document.getElementById(id)?.classList.remove('open'); }
 document.addEventListener('click', e => {
   if (e.target.classList.contains('modal-overlay')) e.target.classList.remove('open');
 });
 
 function saveGistSettings() {
-  const pat    = document.getElementById('pat-input').value.trim();
-  const gistId = document.getElementById('gist-input').value.trim();
+  const pat    = document.getElementById('pat-input')?.value.trim() || '';
+  const gistId = document.getElementById('gist-input')?.value.trim() || '';
   if (!pat) { showToast('PAT is required', 'error'); return; }
   setCfg({ pat, gistId });
   closeModal('settings-modal');
@@ -1636,7 +1636,8 @@ function render(data) {
       });
     });
   });
-  document.getElementById('roadmap-meta').textContent =
+  const roadmapMeta = document.getElementById('roadmap-meta');
+  if (roadmapMeta) roadmapMeta.textContent =
     `${data.sections.length} sections · ${totalItems} topics · ${totalMods} modules · ${totalTasks} tasks`;
   _rvStructure = { sections: data.sections.length, phases: totalItems, modules: totalMods, totalTasks };
 
@@ -1866,10 +1867,14 @@ function updateDashboard() {
   const tot   = all.length;
   const pct   = tot ? Math.round(done/tot*100) : 0;
 
-  document.getElementById('overall-pct').textContent  = pct+'%';
-  document.getElementById('overall-fill').style.width = pct+'%';
-  document.getElementById('dash-done').textContent    = done;
-  document.getElementById('dash-remain').textContent  = tot-done;
+  const overallPct  = document.getElementById('overall-pct');
+  const overallFill = document.getElementById('overall-fill');
+  const dashDone    = document.getElementById('dash-done');
+  const dashRemain  = document.getElementById('dash-remain');
+  if (overallPct)  overallPct.textContent  = pct+'%';
+  if (overallFill) overallFill.style.width = pct+'%';
+  if (dashDone)    dashDone.textContent    = done;
+  if (dashRemain)  dashRemain.textContent  = tot-done;
 
   const resources = loadResources();
   let totalResources = 0;
@@ -1880,14 +1885,16 @@ function updateDashboard() {
       modulesWithResources.add(modId);
     }
   });
-  document.getElementById('dash-resources').textContent = totalResources;
+  const dashResources = document.getElementById('dash-resources');
+  if (dashResources) dashResources.textContent = totalResources;
 
   const allModuleIds = new Set();
   document.querySelectorAll('[data-res-module-id]').forEach(el => {
     allModuleIds.add(el.dataset.resModuleId);
   });
   const pendingCount = [...allModuleIds].filter(id => !modulesWithResources.has(id)).length;
-  document.getElementById('dash-pending').textContent = pendingCount;
+  const dashPending = document.getElementById('dash-pending');
+  if (dashPending) dashPending.textContent = pendingCount;
 
   updateActionBar();
   if (_activeRoadmap) updateRvStats();
@@ -1954,8 +1961,8 @@ function collapseAll(){
   document.querySelectorAll('.phase-card').forEach(c=>c.classList.remove('open'));
   document.querySelectorAll('.module-group').forEach(m=>m.classList.remove('open'));
 }
-function toggleMoreMenu() { document.getElementById('more-menu').classList.toggle('open'); }
-function closeMoreMenu()  { document.getElementById('more-menu').classList.remove('open'); }
+function toggleMoreMenu() { document.getElementById('more-menu')?.classList.toggle('open'); }
+function closeMoreMenu()  { document.getElementById('more-menu')?.classList.remove('open'); }
 document.addEventListener('click', e => {
   if (!e.target.closest('#more-btn')&&!e.target.closest('#more-menu')) closeMoreMenu();
 });
@@ -2015,14 +2022,16 @@ function goHome() {
 
   // Switch header to home-view
   const hdr = document.getElementById('site-header');
-  hdr.className = 'site-header home-view';
+  if (hdr) hdr.className = 'site-header home-view';
   window.scrollTo(0, 0);
   if (window.__resetHeaderScrollState) window.__resetHeaderScrollState();
-  document.getElementById('hv-content').style.display = '';
-  document.getElementById('rv-content').style.display = 'none';
+  const hvContent = document.getElementById('hv-content');
+  const rvContent = document.getElementById('rv-content');
+  if (hvContent) hvContent.style.display = '';
+  if (rvContent) rvContent.style.display = 'none';
 
   // Hide progress bar in action-bar
-  document.getElementById('action-bar').classList.add('home-mode');
+  document.getElementById('action-bar')?.classList.add('home-mode');
 
   // Hide toolbar (filter/search not relevant on home)
   document.querySelector('.sticky-bar').style.display = 'none';
@@ -2207,18 +2216,24 @@ async function loadRoadmap(entry) {
 
   // Switch header to roadmap-view
   const hdr = document.getElementById('site-header');
-  hdr.className = 'site-header roadmap-view';
+  if (hdr) hdr.className = 'site-header roadmap-view';
   window.scrollTo(0, 0);
   if (window.__resetHeaderScrollState) window.__resetHeaderScrollState();
-  document.getElementById('hv-content').style.display = 'none';
-  document.getElementById('rv-content').style.display = '';
-  document.getElementById('rv-badge').textContent   = entry.badge;
-  document.getElementById('rv-title').textContent   = entry.title;
-  document.getElementById('rv-subtitle').textContent = entry.subtitle || '';
+  const hvContent = document.getElementById('hv-content');
+  const rvContent = document.getElementById('rv-content');
+  if (hvContent) hvContent.style.display = 'none';
+  if (rvContent) rvContent.style.display = '';
+  const rvBadge = document.getElementById('rv-badge');
+  const rvTitle = document.getElementById('rv-title');
+  const rvSubtitle = document.getElementById('rv-subtitle');
+  if (rvBadge)    rvBadge.textContent    = entry.badge;
+  if (rvTitle)    rvTitle.textContent    = entry.title;
+  if (rvSubtitle) rvSubtitle.textContent = entry.subtitle || '';
 
   // Show action-bar progress row and toolbar
-  document.getElementById('action-bar').classList.remove('home-mode');
-  document.querySelector('.sticky-bar').style.display = '';
+  document.getElementById('action-bar')?.classList.remove('home-mode');
+  const stickyBar = document.querySelector('.sticky-bar');
+  if (stickyBar) stickyBar.style.display = '';
   syncStickyOffsets();
 
   // Restore dirty state for this roadmap
@@ -2244,21 +2259,4 @@ async function loadRoadmap(entry) {
     syncStickyOffsets();
     setTimeout(syncStickyOffsets, 300);
   } catch(e) {
-    if (main) main.innerHTML = `<div class="error-state"><strong>⚠ Could not load roadmap</strong><br>${esc(e.message)}<br><br><small style="color:var(--text-muted)">Check the path in config/catalog.md and try again.</small></div>`;
-    updateActionBar();
-    syncStickyOffsets();
-  }
-}
-
-// Legacy — no-op now (tabs replaced by home card view)
-function renderSelectorTabs() {}
-
-// ═══════════════════════════════════════════
-//  PREFETCH CATALOG STATS
-//  Computes structural counts (sections / phases / total
-//  tasks) for EVERY roadmap in the catalog up front, so home
-//  cards can show real numbers before a roadmap is ever opened.
-//  Results are cached in localStorage (keyed by a content hash
-//  of the markdown) so repeat visits don't re-fetch/re-parse
-//  unless the underlying ROADMAP.md actually changed.
-// ══════════════════════════════════════════
+    if (main) main.innerHTML = `<div class="error-state"><strong>⚠ Could not load roadmap</st
