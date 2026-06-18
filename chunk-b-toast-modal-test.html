@@ -1,0 +1,2269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B_toast_dash</title>
+  <style>
+    /* ═══════════════════════════════════════════
+       THEME TOKENS
+    ═══════════════════════════════════════════ */
+    :root {
+      --c-nav:      #3b82f6;
+      --c-progress: #8b5cf6;
+      --c-done:     #22c55e;
+      --c-active:   #f97316;
+      --c-reset:    #ef4444;
+      --radius: 10px;
+      --font-head: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+    [data-theme="dark"] {
+      --bg:        #0d0f14;
+      --surface:   #141720;
+      --surface2:  #1c2030;
+      --border:    #252a3a;
+      --text:      #e4e8f0;
+      --text-muted:#6b7594;
+      --text-dim:  #3d4560;
+      --header-bg: linear-gradient(135deg,#0d1228 0%,#161030 100%);
+      --input-bg:  #0d0f14;
+      --shadow:    0 2px 12px rgba(0,0,0,.4);
+    }
+    [data-theme="light"] {
+      --bg:        #f4f6fb;
+      --surface:   #ffffff;
+      --surface2:  #eef1f8;
+      --border:    #d4d9e8;
+      --text:      #1a1f35;
+      --text-muted:#5a6380;
+      --text-dim:  #a0a8c0;
+      --header-bg: linear-gradient(135deg,#1a2550 0%,#2a1860 100%);
+      --input-bg:  #f4f6fb;
+      --shadow:    0 2px 12px rgba(0,0,0,.08);
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { transition: background .2s, color .2s; }
+    body { font-family:var(--font-body); background:var(--bg); color:var(--text); min-height:100vh; line-height:1.6; }
+
+    /* ═══════════════════════════════════════════
+       HEADER — two states: home-view / roadmap-view
+    ═══════════════════════════════════════════ */
+    .site-header {
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    /* Ambient orb layer — purely decorative depth */
+    .site-header::after {
+      content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
+      background:
+        radial-gradient(ellipse 55% 120% at 95% -10%, rgba(59,130,246,.22) 0%, transparent 55%),
+        radial-gradient(ellipse 35% 80%  at 5%  110%, rgba(139,92,246,.16) 0%, transparent 50%),
+        radial-gradient(ellipse 25% 50%  at 50% 50%,  rgba(59,130,246,.04) 0%, transparent 70%);
+    }
+    .header-inner { max-width:1240px; margin:0 auto; position:relative; z-index:1; }
+
+    /* ══════════════════════════════════════════
+       HOME VIEW
+    ══════════════════════════════════════════ */
+    .site-header.home-view { padding: 40px 24px 32px; }
+
+    /* Top row: wordmark left, global ring-stat right */
+    .hv-top {
+      display:flex; align-items:flex-start; justify-content:space-between;
+      gap:20px; flex-wrap:wrap; margin-bottom:28px;
+    }
+    .hv-brand { display:flex; flex-direction:column; gap:8px; max-width:520px; }
+    .hv-eyebrow { display:flex; align-items:center; gap:8px; }
+    .hv-badge {
+      font-family:var(--font-mono); font-size:.62rem; letter-spacing:.12em;
+      text-transform:uppercase; color:var(--c-done);
+      background:rgba(34,197,94,.08); border:1px solid rgba(34,197,94,.25);
+      border-radius:99px; padding:3px 12px;
+    }
+    .hv-dot { width:4px; height:4px; border-radius:50%; background:rgba(255,255,255,.2); }
+    .hv-version {
+      font-family:var(--font-mono); font-size:.6rem; color:rgba(255,255,255,.28);
+      letter-spacing:.06em;
+    }
+    .hv-title {
+      font-family:var(--font-head); font-size:clamp(1.7rem,5vw,2.6rem);
+      font-weight:800; color:#fff; line-height:1.05; margin:0;
+      letter-spacing:-.02em;
+    }
+    .hv-title em { font-style:normal; color:transparent;
+      background:linear-gradient(135deg, #60a5fa 0%, #a78bfa 60%, #f472b6 100%);
+      -webkit-background-clip:text; background-clip:text;
+    }
+    .hv-tagline {
+      font-size:.84rem; color:rgba(255,255,255,.42); line-height:1.6;
+      max-width:400px;
+    }
+
+    /* Global ring stat — top right */
+    .hv-ring-wrap {
+      display:flex; flex-direction:column; align-items:center; gap:4px;
+      flex-shrink:0; padding-top:4px;
+    }
+    .hv-ring {
+      width:68px; height:68px; position:relative; flex-shrink:0;
+    }
+    .hv-ring svg { width:100%; height:100%; transform:rotate(-90deg); }
+    .hv-ring-bg   { fill:none; stroke:rgba(255,255,255,.08); stroke-width:5; }
+    .hv-ring-fill { fill:none; stroke-width:5; stroke-linecap:round;
+      stroke:url(#ringGrad); transition:stroke-dashoffset .8s cubic-bezier(.4,0,.2,1); }
+    .hv-ring-label {
+      position:absolute; inset:0; display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+    }
+    .hv-ring-pct {
+      font-family:var(--font-mono); font-size:.8rem; font-weight:500; color:#fff;
+      line-height:1;
+    }
+    .hv-ring-sub {
+      font-family:var(--font-mono); font-size:.48rem; color:rgba(255,255,255,.35);
+      text-transform:uppercase; letter-spacing:.08em;
+    }
+    .hv-ring-caption {
+      font-family:var(--font-mono); font-size:.55rem; color:rgba(255,255,255,.3);
+      text-transform:uppercase; letter-spacing:.08em; text-align:center;
+    }
+
+    /* Global stats strip */
+    .hv-stats-strip {
+      display:flex; gap:0; border:1px solid rgba(255,255,255,.08);
+      border-radius:12px; overflow:hidden; background:rgba(255,255,255,.03);
+      backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+    }
+    .hv-stat {
+      flex:1; display:flex; flex-direction:column; align-items:center;
+      padding:12px 10px; gap:3px; position:relative; cursor:default;
+      transition:background .15s;
+    }
+    .hv-stat:not(:last-child)::after {
+      content:''; position:absolute; right:0; top:20%; bottom:20%;
+      width:1px; background:rgba(255,255,255,.08);
+    }
+    .hv-stat:hover { background:rgba(255,255,255,.04); }
+    .hv-stat-val {
+      font-family:var(--font-mono); font-size:1.25rem; font-weight:500; color:#fff;
+      line-height:1;
+    }
+    .hv-stat-val.c-blue   { color:var(--c-nav); }
+    .hv-stat-val.c-green  { color:var(--c-done); }
+    .hv-stat-val.c-purple { color:var(--c-progress); }
+    .hv-stat-val.c-orange { color:var(--c-active); }
+    .hv-stat-lbl {
+      font-family:var(--font-mono); font-size:.53rem; color:rgba(255,255,255,.32);
+      text-transform:uppercase; letter-spacing:.08em; text-align:center;
+    }
+
+    /* ══════════════════════════════════════════
+       ROADMAP VIEW — header shares the home-view
+       gradient/ambient-orb theme. It auto-hides on
+       scroll-down and reappears on scroll-up, so it
+       doesn't permanently eat screen space while the
+       action-bar/toolbar stay pinned underneath it.
+    ══════════════════════════════════════════ */
+    .site-header.roadmap-view {
+      padding: 18px 24px 20px;
+      position: sticky; top: 0; z-index: 210;
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+    .site-header.roadmap-view.header-hidden {
+      transform: translateY(-100%);
+      box-shadow: none;
+    }
+
+    .rv-bar {
+      display:flex; align-items:center; gap:12px; min-height:40px;
+      max-width: 960px; margin: 0 auto; flex-wrap:wrap;
+    }
+    .rv-back {
+      display:inline-flex; align-items:center; gap:6px;
+      font-family:var(--font-mono); font-size:.74rem; color:rgba(255,255,255,.55);
+      background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14);
+      border-radius:7px; padding:6px 13px; cursor:pointer;
+      transition:all .15s; white-space:nowrap; flex-shrink:0;
+      letter-spacing:.04em;
+    }
+    .rv-back:hover { background:rgba(255,255,255,.14); color:#fff; border-color:rgba(255,255,255,.28); }
+    .rv-crumb { color:rgba(255,255,255,.18); font-size:.85rem; flex-shrink:0; }
+    .rv-badge { font-size:1.15rem; flex-shrink:0; }
+    .rv-title {
+      font-family:var(--font-head); font-size:clamp(1rem,2.6vw,1.3rem);
+      font-weight:800; color:#fff; overflow:hidden; text-overflow:ellipsis;
+      white-space:nowrap; flex:1; min-width:100px; letter-spacing:-.01em;
+    }
+    .rv-subtitle {
+      font-family:var(--font-mono); font-size:.64rem; color:rgba(255,255,255,.4);
+      letter-spacing:.08em; text-transform:uppercase; white-space:nowrap; flex-shrink:0;
+    }
+    /* Mobile: stack title row so it's never squeezed off-screen */
+    @media (max-width:520px) {
+      .site-header.roadmap-view { padding:14px 16px 16px; }
+      .rv-bar { row-gap:8px; }
+      .rv-crumb, .rv-subtitle { display:none; }
+      .rv-title { font-size:1.02rem; flex-basis:100%; order:1; }
+      .rv-back { order:0; }
+      .rv-badge { order:0; }
+    }
+
+    /* Roadmap-view glassmorphic stats strip — reuses .hv-stats-strip /
+       .hv-stat styling from the home view, just sits below .rv-bar.
+       Always a single row — on narrow screens we shrink padding/font
+       rather than wrapping to multiple rows. */
+    .rv-stats-strip {
+      margin-top:14px; max-width:960px; margin-left:auto; margin-right:auto;
+      flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch;
+    }
+    .rv-stats-strip .hv-stat { min-width:0; }
+    @media (max-width:640px) {
+      .rv-stats-strip .hv-stat { padding:9px 4px; }
+      .rv-stats-strip .hv-stat-val { font-size:1.02rem; }
+      .rv-stats-strip .hv-stat-lbl { font-size:.46rem; }
+    }
+    @media (max-width:520px) {
+      .rv-stats-strip { margin-top:12px; }
+      .rv-stats-strip .hv-stat { padding:8px 2px; }
+      .rv-stats-strip .hv-stat-val { font-size:.92rem; }
+      .rv-stats-strip .hv-stat-lbl { font-size:.42rem; letter-spacing:.04em; }
+    }
+
+    /* ══════════════════════════════════════════
+       HOME — BENTO ROADMAP CARDS
+    ══════════════════════════════════════════ */
+    .home-view-wrap { max-width:1240px; margin:0 auto; padding:0 28px 80px; }
+
+    .home-section-label {
+      font-family:var(--font-mono); font-size:.6rem; letter-spacing:.14em;
+      text-transform:uppercase; color:var(--text-dim);
+      margin:28px 0 14px; display:flex; align-items:center; gap:10px;
+    }
+    .home-section-label::after {
+      content:''; flex:1; height:1px; background:var(--border);
+    }
+
+    .roadmap-cards-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(310px,480px));
+      justify-content:center;
+      gap:16px;
+    }
+
+    /* Card */
+    .roadmap-card {
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:0;
+      cursor:pointer;
+      position:relative; overflow:hidden;
+      transition:transform .2s cubic-bezier(.34,1.56,.64,1),
+                  box-shadow .2s ease,
+                  border-color .2s ease;
+      display:flex; flex-direction:column;
+    }
+    /* Gradient top accent line */
+    .roadmap-card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:1px;
+      background:linear-gradient(90deg,
+        transparent 0%, var(--rc-accent,var(--c-nav)) 40%,
+        var(--c-progress) 70%, transparent 100%);
+      opacity:0; transition:opacity .2s;
+    }
+    /* Ambient glow behind icon */
+    .roadmap-card::after {
+      content:''; position:absolute; top:-30px; left:-20px;
+      width:120px; height:120px; border-radius:50%;
+      background:radial-gradient(circle, var(--rc-glow, rgba(59,130,246,.12)) 0%, transparent 70%);
+      pointer-events:none; transition:opacity .2s; opacity:0;
+    }
+    .roadmap-card:hover {
+      transform:translateY(-3px);
+      box-shadow:0 8px 32px rgba(0,0,0,.28), 0 2px 8px rgba(0,0,0,.15);
+      border-color:rgba(59,130,246,.3);
+    }
+    .roadmap-card:hover::before { opacity:1; }
+    .roadmap-card:hover::after  { opacity:1; }
+    .roadmap-card:active { transform:translateY(-1px); }
+
+    /* Card body */
+    .rc-body { padding:18px 18px 16px; flex:1; display:flex; flex-direction:column; gap:0; }
+
+    /* Top row: icon + text + ring — the ring replaces both the old
+       chevron arrow AND the separate linear progress bar below, which
+       shortens the card and balances visual weight left vs right. */
+    .rc-header { display:flex; align-items:center; gap:12px; }
+    .rc-icon {
+      width:42px; height:42px; border-radius:11px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.2rem; flex-shrink:0;
+      background:var(--surface2); border:1px solid var(--border);
+      position:relative; z-index:1;
+      transition:transform .2s cubic-bezier(.34,1.56,.64,1);
+    }
+    .roadmap-card:hover .rc-icon { transform:scale(1.08); }
+    .rc-meta { flex:1; min-width:0; display:flex; flex-direction:column; gap:3px; }
+    .rc-title {
+      font-family:var(--font-head); font-size:1rem; font-weight:800;
+      color:var(--text); line-height:1.2;
+      overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+    }
+    .rc-subtitle {
+      font-family:var(--font-mono); font-size:.58rem; color:var(--text-muted);
+      text-transform:uppercase; letter-spacing:.07em;
+    }
+
+    /* Circular progress ring — same visual language as the home hero ring,
+       sized down to fit inline in the card header on the right. */
+    .rc-ring {
+      position:relative; width:44px; height:44px; flex-shrink:0;
+    }
+    .rc-ring svg { width:100%; height:100%; transform:rotate(-90deg); }
+    .rc-ring-bg  { fill:none; stroke:var(--border); stroke-width:3; }
+    .rc-ring-fill {
+      fill:none; stroke:var(--c-progress); stroke-width:3; stroke-linecap:round;
+      transition:stroke-dashoffset .7s cubic-bezier(.4,0,.2,1);
+    }
+    .rc-ring-label {
+      position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+      font-family:var(--font-mono); font-size:.58rem; font-weight:600; color:var(--text);
+      letter-spacing:-.02em;
+    }
+    .roadmap-card:hover .rc-ring-fill { stroke:var(--c-nav); }
+    .rc-ring.is-done .rc-ring-fill { stroke:var(--c-done); }
+
+    /* Footer: stat chips */
+    .rc-footer {
+      display:flex; align-items:center; gap:6px; flex-wrap:wrap;
+      padding:10px 18px 14px;
+      border-top:1px solid var(--border);
+    }
+    .rc-stat {
+      font-family:var(--font-mono); font-size:.58rem; padding:2px 8px;
+      border-radius:99px; border:1px solid var(--border);
+      color:var(--text-muted); background:var(--surface2);
+      transition:all .15s;
+    }
+    .rc-stat.green  { color:var(--c-done);     background:rgba(34,197,94,.07);   border-color:rgba(34,197,94,.2); }
+    .rc-stat.orange { color:var(--c-active);   background:rgba(249,115,22,.07);  border-color:rgba(249,115,22,.2); }
+    .rc-stat.blue   { color:var(--c-nav);      background:rgba(59,130,246,.07);  border-color:rgba(59,130,246,.2); }
+    .rc-stat.purple { color:var(--c-progress); background:rgba(139,92,246,.07);  border-color:rgba(139,92,246,.2); }
+    .rc-stat-spacer { flex:1; }
+    /* "not started" nudge text */
+    .rc-nudge {
+      font-family:var(--font-mono); font-size:.58rem; color:var(--text-dim);
+      font-style:italic; margin-left:auto;
+    }
+
+    /* Hide progress bar row in action-bar when in home view */
+    .action-bar.home-mode .action-progress { display:none; }
+
+    /* ── ACTION BAR — minimalist pill row ─── */
+    .action-bar {
+      position:sticky; top:0; z-index:200;
+      background:var(--surface);
+      border-bottom:1px solid var(--border);
+      padding:10px 24px;
+    }
+    .action-bar-inner {
+      max-width:940px; margin:0 auto;
+      display:flex; flex-direction:column; gap:7px;
+    }
+    /* Row 1: buttons as a pill cluster */
+    .action-btn-row {
+      display:flex; align-items:center; gap:6px; flex-wrap:nowrap;
+    }
+    /* Row 2: progress bar — slim, inline */
+    .action-progress {
+      width:100%; display:flex; align-items:center; gap:10px;
+      padding:2px 0; box-sizing:border-box;
+    }
+    .action-progress .prog-label {
+      font-family:var(--font-mono); font-size:.6rem; color:var(--text-dim);
+      text-transform:uppercase; letter-spacing:.1em; flex-shrink:0;
+    }
+    .progress-track {
+      flex:1; height:5px; background:var(--border);
+      border-radius:99px; overflow:hidden; position:relative;
+    }
+    .progress-fill {
+      height:100%; border-radius:99px; position:relative;
+      background:linear-gradient(90deg, var(--c-nav) 0%, var(--c-progress) 60%, #f472b6 100%);
+      transition:width .6s cubic-bezier(.4,0,.2,1); width:0%;
+    }
+    .action-progress .prog-pct {
+      font-family:var(--font-mono); font-size:.82rem; font-weight:500;
+      color:var(--c-progress); flex-shrink:0; min-width:32px; text-align:right;
+    }
+
+    /* Each button+sublabel column */
+    .btn-col {
+      display:flex; flex-direction:column; align-items:center; gap:2px;
+      flex:0 0 auto;
+    }
+    .btn-sublabel {
+      font-family:var(--font-mono); font-size:.58rem; color:var(--text-muted);
+      letter-spacing:.02em; line-height:1.2; white-space:nowrap; text-align:center;
+      max-width:90px; overflow:hidden; text-overflow:ellipsis;
+    }
+    .btn-sublabel.red    { color:#ef4444; }
+    .btn-sublabel.yellow { color:#d97706; }
+    .btn-sublabel.green  { color:#16a34a; }
+
+    /* All 4 action buttons — flat minimal style */
+    .hbtn {
+      display:flex; align-items:center; justify-content:center; gap:5px;
+      font-family:var(--font-mono); font-size:.78rem; font-weight:500;
+      padding:7px 14px; border-radius:7px; border:1px solid; cursor:pointer;
+      transition:all .15s; white-space:nowrap; height:34px; box-sizing:border-box;
+      letter-spacing:.03em;
+    }
+    .hbtn-theme    { background:transparent; border-color:var(--border); color:var(--text-muted); }
+    .hbtn-theme:hover { background:var(--surface2); color:var(--text); }
+    .hbtn-save     { background:rgba(59,130,246,.08); border-color:rgba(59,130,246,.3); color:var(--c-nav); }
+    .hbtn-save:hover { background:rgba(59,130,246,.16); }
+    .hbtn-save.busy { opacity:.5; pointer-events:none; }
+    .hbtn-sync     { background:rgba(139,92,246,.08); border-color:rgba(139,92,246,.28); color:var(--c-progress); }
+    .hbtn-sync:hover { background:rgba(139,92,246,.16); }
+    .hbtn-settings { background:transparent; border-color:var(--border); color:var(--text-muted); }
+    .hbtn-settings:hover { background:var(--surface2); color:var(--text); }
+
+    /* ── TOOLBAR — search + filters as one line ── */
+    .sticky-bar {
+      position:sticky; top:96px; z-index:190;
+      background:var(--bg); border-bottom:1px solid var(--border);
+      padding:9px 24px;
+    }
+    .toolbar-inner {
+      max-width:940px; margin:0 auto;
+      display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+      justify-content:space-between;
+    }
+    /* Left cluster: filters + more, grouped so they don't get separated
+       by the justify-content gap on wide screens */
+    .toolbar-left { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+    /* Filter pills — no background panel, just pill buttons */
+    .filter-group {
+      display:flex; gap:4px;
+    }
+    .filter-btn {
+      font-family:var(--font-mono); font-size:.74rem; padding:6px 12px; border-radius:6px;
+      border:1px solid transparent; background:transparent; color:var(--text-dim);
+      cursor:pointer; transition:all .13s; white-space:nowrap; letter-spacing:.03em;
+    }
+    .filter-btn:hover { color:var(--text-muted); border-color:var(--border); }
+    .filter-btn.active {
+      background:var(--surface); border-color:var(--border); color:var(--text);
+    }
+    .filter-btn.active.f-active     { color:var(--c-active); border-color:rgba(249,115,22,.3); background:rgba(249,115,22,.06); }
+    .filter-btn.active.f-notstarted { color:var(--text-muted); }
+    .filter-btn.active.f-done       { color:var(--c-done); border-color:rgba(34,197,94,.3); background:rgba(34,197,94,.06); }
+
+    /* Search no longer greedily fills all remaining space (that's what
+       pulled visual weight to the right) — it now has a sane max-width
+       and sits as its own balanced cluster on the right. */
+    .search-wrap { flex:0 1 260px; min-width:140px; max-width:260px; position:relative; }
+    .search-icon { position:absolute; left:11px; top:50%; transform:translateY(-50%); color:var(--text-dim); pointer-events:none; }
+    .search-input {
+      width:100%; background:var(--surface); border:1px solid var(--border); border-radius:7px;
+      color:var(--text); font-family:var(--font-mono); font-size:.8rem;
+      padding:8px 28px 8px 32px; outline:none; transition:border-color .18s;
+      letter-spacing:.02em;
+    }
+    .search-input:focus { border-color:rgba(59,130,246,.4); }
+    .search-input::placeholder { color:var(--text-dim); }
+    .search-clear {
+      position:absolute; right:8px; top:50%; transform:translateY(-50%);
+      background:none; border:none; cursor:pointer; color:var(--text-dim);
+      font-size:.88rem; line-height:1; padding:3px 4px; border-radius:3px;
+      display:none; transition:color .13s;
+    }
+    .search-clear:hover { color:var(--text); }
+    .search-clear.visible { display:block; }
+
+    /* Mobile: let the search box take the full row below the filter
+       cluster, rather than squeezing into leftover space. */
+    @media (max-width:640px) {
+      .toolbar-inner { justify-content:flex-start; }
+      .toolbar-left { width:100%; }
+      .search-wrap { flex:1 1 100%; max-width:none; order:2; }
+    }
+
+    .more-wrap { position:relative; }
+    .more-btn {
+      background:transparent; border:1px solid var(--border); border-radius:7px;
+      color:var(--text-dim); font-family:var(--font-mono); font-size:.74rem;
+      padding:7px 13px; cursor:pointer; transition:all .15s; letter-spacing:.03em;
+    }
+    .more-btn:hover { border-color:var(--text-muted); color:var(--text); }
+    .more-menu {
+      position:absolute; top:calc(100% + 6px); left:0; background:var(--surface);
+      border:1px solid var(--border); border-radius:9px; min-width:168px;
+      z-index:100; overflow:hidden; display:none; box-shadow:var(--shadow);
+    }
+    .more-menu.open { display:block; }
+    .more-item {
+      display:block; width:100%; text-align:left; padding:10px 15px;
+      font-family:var(--font-mono); font-size:.78rem; color:var(--text-muted);
+      background:none; border:none; cursor:pointer; transition:background .12s;
+      letter-spacing:.03em;
+    }
+    .more-item:hover { background:var(--surface2); color:var(--text); }
+
+    /* ── TOAST ────────────────────────────────── */
+    .toast {
+      position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(80px);
+      background:var(--surface2); border:1px solid var(--border); border-radius:10px;
+      padding:10px 20px; font-size:.84rem; color:var(--text); z-index:9999;
+      transition:transform .28s cubic-bezier(.4,0,.2,1), opacity .28s;
+      opacity:0; pointer-events:none; white-space:nowrap; box-shadow:var(--shadow);
+    }
+    .toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
+    .toast.success { border-color:rgba(34,197,94,.4);  color:var(--c-done); }
+    .toast.error   { border-color:rgba(239,68,68,.4);  color:var(--c-reset); }
+    .toast.info    { border-color:rgba(139,92,246,.4); color:var(--c-progress); }
+
+    /* ── MAIN ─────────────────────────────────── */
+    .main { max-width:940px; margin:24px auto 80px; padding:0 24px; }
+    .section-label {
+      font-family:var(--font-mono); font-size:.66rem; letter-spacing:.14em;
+      text-transform:uppercase; color:var(--text-dim);
+      margin-bottom:14px; padding-left:0;
+      display:flex; align-items:center; gap:10px;
+    }
+    .section-label::after { content:''; flex:1; height:1px; background:var(--border); }
+
+    /* ── PHASE ACCORDION — spatial card design ─ */
+    .phase-list { display:flex; flex-direction:column; gap:4px; margin-bottom:32px; }
+
+    .phase-card {
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:8px;
+      overflow:hidden;
+      transition:border-color .18s, box-shadow .18s;
+      position:relative;
+    }
+    /* State strip — a thin left rail */
+    .phase-card::before {
+      content:''; position:absolute; left:0; top:0; bottom:0; width:2px;
+      background:var(--border); transition:background .2s;
+    }
+    .phase-card[data-state="done"]::before   { background:var(--c-done); }
+    .phase-card[data-state="active"]::before { background:var(--c-active); }
+
+    .phase-card.open {
+      border-color:rgba(59,130,246,.25);
+      box-shadow:0 2px 16px rgba(0,0,0,.2);
+    }
+    .phase-card[data-state="done"].open   { border-color:rgba(34,197,94,.25); }
+    .phase-card[data-state="active"].open { border-color:rgba(249,115,22,.25); }
+
+    .phase-header {
+      display:grid;
+      grid-template-columns: 36px 1fr auto;
+      align-items:center; gap:12px;
+      padding:11px 20px;
+      cursor:pointer; user-select:none;
+      transition:background .13s;
+    }
+    .phase-header:hover { background:var(--surface2); }
+
+    /* Left: icon tile */
+    .phase-icon {
+      width:36px; height:36px; border-radius:8px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1rem; flex-shrink:0;
+      transition:transform .18s cubic-bezier(.34,1.56,.64,1);
+    }
+    .phase-card:hover .phase-icon { transform:scale(1.06); }
+
+    /* Middle: meta */
+    .phase-meta { min-width:0; display:flex; flex-direction:column; gap:2px; justify-content:center; }
+    .phase-name {
+      font-family:var(--font-body); font-weight:600; font-size:.92rem;
+      color:var(--text); line-height:1.3; word-break:break-word;
+    }
+    .phase-num { display:none; } /* hidden — removed visual clutter */
+
+    /* Right: status cluster */
+    .phase-right {
+      display:flex; align-items:center; gap:10px; flex-shrink:0;
+    }
+    /* Circular progress ring — shows "<done>/<total>" inline, replacing
+       the old linear mini-bar + % pill. Shorter card, balanced left/right. */
+    .phase-ring { position:relative; width:38px; height:38px; flex-shrink:0; }
+    .phase-ring svg { width:100%; height:100%; transform:rotate(-90deg); }
+    .phase-ring-bg  { fill:none; stroke:var(--border); stroke-width:3; }
+    .phase-ring-fill {
+      fill:none; stroke:var(--c-progress); stroke-width:3; stroke-linecap:round;
+      transition:stroke-dashoffset .4s ease;
+    }
+    .phase-ring.is-done .phase-ring-fill { stroke:var(--c-done); }
+    .phase-card[data-state="active"] .phase-ring-fill { stroke:var(--c-active); }
+    .phase-ring-label {
+      position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+      font-family:var(--font-mono); font-size:.52rem; font-weight:600; color:var(--text);
+      letter-spacing:-.02em;
+    }
+
+    .phase-chevron {
+      color:var(--text-dim); transition:transform .2s cubic-bezier(.4,0,.2,1); flex-shrink:0;
+    }
+    .phase-card.open .phase-chevron { transform:rotate(180deg); }
+
+    .phase-body { max-height:0; overflow:hidden; transition:max-height .32s cubic-bezier(.4,0,.2,1); }
+    .phase-card.open .phase-body { max-height:99999px; }
+    .phase-body-inner {
+      padding:0 20px 16px 20px;
+      border-top:1px solid var(--border);
+    }
+
+    /* ── MODULE ───────────────────────────────── */
+    .module-group { margin-top:16px; }
+    .module-group:first-child { margin-top:10px; }
+
+    /* Module headers read as small tinted "section cards" rather than a
+       bare underline — keeps them readable without needing larger type. */
+    .module-header {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:7px 11px; border-radius:7px; cursor:pointer; user-select:none;
+      transition:background .15s, border-color .15s;
+      border:1px solid var(--border);
+      background:var(--surface2);
+      margin-bottom:7px;
+    }
+    .module-header:hover { border-color:rgba(59,130,246,.3); }
+    .module-group.open .module-header {
+      border-color:rgba(59,130,246,.28);
+      background:rgba(59,130,246,.06);
+    }
+    .module-title {
+      font-family:var(--font-body); font-weight:700; font-size:.74rem;
+      color:var(--text); letter-spacing:.01em; flex:1;
+    }
+    .module-group.open .module-title { color:var(--c-nav); }
+    .module-header-right { display:flex; align-items:center; gap:6px; }
+    .mod-res-pill {
+      font-family:var(--font-mono); font-size:.58rem; padding:2px 6px; border-radius:4px;
+      background:rgba(59,130,246,.1); border:1px solid rgba(59,130,246,.22); color:var(--c-nav);
+      display:none; white-space:nowrap; letter-spacing:.04em;
+    }
+    .mod-res-pill.visible { display:inline-block; }
+    .module-chevron { color:var(--text-dim); transition:transform .18s; flex-shrink:0; opacity:.7; }
+    .module-group.open .module-chevron { transform:rotate(180deg); opacity:1; color:var(--c-nav); }
+    .module-body { max-height:0; overflow:hidden; transition:max-height .28s cubic-bezier(.4,0,.2,1); }
+    .module-group.open .module-body { max-height:9999px; }
+    .module-body-inner { padding-top:2px; }
+
+    /* ── RESOURCES SECTION ── */
+    .res-section-header {
+      display:flex; align-items:center; gap:6px;
+      margin-top:8px; padding:5px 8px; border-radius:5px;
+      border:1px solid var(--border); background:transparent;
+      cursor:pointer; user-select:none; transition:all .13s;
+    }
+    .res-section-header:hover { background:var(--surface2); }
+    .res-section-header.open  { background:rgba(59,130,246,.05); border-color:rgba(59,130,246,.28); }
+    .res-section-icon { font-size:.72rem; flex-shrink:0; }
+    .res-section-label {
+      font-family:var(--font-mono); font-size:.6rem; letter-spacing:.08em;
+      text-transform:uppercase; color:var(--text-dim); flex:1;
+    }
+    .res-section-header.open .res-section-label { color:var(--c-nav); }
+    .res-count {
+      font-family:var(--font-mono); font-size:.58rem; padding:1px 5px;
+      border-radius:3px; background:var(--border); color:var(--text-muted);
+    }
+    .res-section-header.open .res-count { background:rgba(59,130,246,.12); color:var(--c-nav); }
+    .res-section-chevron { color:var(--text-dim); transition:transform .18s; flex-shrink:0; opacity:.5; }
+    .res-section-header.open .res-section-chevron { transform:rotate(180deg); opacity:1; }
+
+    /* Sub-module (####) */
+    .submod-group { margin-top:10px; padding-left:12px; border-left:1px solid var(--border); }
+    .submod-title {
+      font-size:.6rem; font-weight:500; color:var(--text-dim); margin-bottom:4px;
+      text-transform:uppercase; letter-spacing:.08em; font-family:var(--font-mono);
+    }
+
+    /* ── TASK ITEMS ───────────────────────────── */
+    .task-list { list-style:none; display:flex; flex-direction:column; gap:0; }
+    .task-item {
+      display:flex; align-items:flex-start; gap:10px;
+      padding:6px 8px; border-radius:5px;
+      transition:background .1s; cursor:pointer;
+      border-bottom:1px solid transparent;
+    }
+    .task-item:hover { background:var(--surface2); }
+    .task-item.hidden { display:none; }
+
+    /* Custom checkbox — square, minimal */
+    .task-cb {
+      appearance:none; -webkit-appearance:none;
+      width:14px; height:14px;
+      border:1px solid var(--border); border-radius:3px;
+      background:transparent; cursor:pointer; flex-shrink:0;
+      margin-top:4px; position:relative; transition:all .13s;
+    }
+    .task-cb:hover { border-color:var(--c-done); }
+    .task-cb:checked { background:var(--c-done); border-color:var(--c-done); }
+    .task-cb:checked::after {
+      content:''; position:absolute; left:3px; top:0px; width:4px; height:7px;
+      border:1.5px solid #fff; border-left:none; border-top:none; transform:rotate(45deg);
+    }
+    .task-text {
+      font-family:var(--font-body); font-size:.83rem; color:var(--text);
+      line-height:1.55; flex:1; transition:color .13s;
+    }
+    .task-item input:checked ~ .task-text {
+      color:var(--text-dim); text-decoration:line-through;
+      text-decoration-color:var(--text-dim);
+    }
+
+    /* ── RESOURCES PANEL ──────────────────────── */
+    .res-panel { margin-top:0; }
+    .res-panel-inner {
+      background:var(--bg); border:1px solid var(--border);
+      border-top:none; border-radius:0 0 7px 7px; padding:12px 14px;
+    }
+    .res-list { display:flex; flex-direction:column; gap:5px; margin-bottom:10px; }
+    .res-item {
+      display:flex; align-items:center; gap:9px;
+      padding:7px 11px; background:var(--surface);
+      border:1px solid var(--border); border-radius:6px; transition:border-color .13s;
+    }
+    .res-item:hover { border-color:var(--c-nav); }
+    .res-type-badge {
+      font-family:var(--font-mono); font-size:.62rem; padding:3px 6px; border-radius:4px;
+      white-space:nowrap; flex-shrink:0; font-weight:500;
+      text-transform:uppercase; letter-spacing:.06em;
+    }
+    .rt-video   { background:rgba(239,68,68,.1);   color:#f87171; border:1px solid rgba(239,68,68,.18); }
+    .rt-article { background:rgba(59,130,246,.1);  color:#60a5fa; border:1px solid rgba(59,130,246,.18); }
+    .rt-doc     { background:rgba(245,158,11,.1);  color:#fbbf24; border:1px solid rgba(245,158,11,.18); }
+    .rt-github  { background:rgba(139,92,246,.1);  color:#a78bfa; border:1px solid rgba(139,92,246,.18); }
+    .rt-pdf     { background:rgba(249,115,22,.1);  color:#fb923c; border:1px solid rgba(249,115,22,.18); }
+    .rt-note    { background:rgba(34,197,94,.08);  color:#4ade80; border:1px solid rgba(34,197,94,.18); }
+    .rt-other   { background:var(--border); color:var(--text-muted); border:1px solid var(--border); }
+    .res-link { font-size:.86rem; color:var(--c-nav); text-decoration:none; flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .res-link:hover { text-decoration:underline; }
+    .res-note-text { font-size:.86rem; color:var(--text-muted); flex:1; font-style:italic; }
+    .res-actions { display:flex; gap:4px; flex-shrink:0; }
+    .res-action-btn {
+      background:none; border:none; cursor:pointer; padding:4px 6px; border-radius:4px;
+      font-size:.82rem; color:var(--text-dim); transition:all .13s;
+    }
+    .res-action-btn:hover.edit { color:var(--c-nav); background:rgba(59,130,246,.1); }
+    .res-action-btn:hover.del  { color:var(--c-reset); background:rgba(239,68,68,.1); }
+    .add-res-btn {
+      display:flex; align-items:center; gap:6px; font-size:.82rem; color:var(--text-dim);
+      background:none; border:1.5px dashed var(--border); border-radius:6px;
+      padding:7px 12px; cursor:pointer; font-family:var(--font-mono);
+      width:100%; transition:all .13s; letter-spacing:.03em;
+    }
+    .add-res-btn:hover { border-color:rgba(59,130,246,.35); color:var(--c-nav); background:rgba(59,130,246,.04); }
+
+    /* ── RESOURCE FORM ────────────────────────── */
+    .res-form { background:var(--surface); border:1px solid var(--border); border-radius:9px; padding:14px 16px; margin-top:10px; }
+    .res-form-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px; }
+    @media(max-width:520px) { .res-form-row { grid-template-columns:1fr; } }
+    .res-form-full { margin-bottom:8px; }
+    .rf-label { font-family:var(--font-mono); font-size:.66rem; color:var(--text-muted); letter-spacing:.06em; text-transform:uppercase; display:block; margin-bottom:4px; }
+    .rf-input, .rf-select {
+      width:100%; background:var(--input-bg); border:1px solid var(--border); border-radius:6px;
+      color:var(--text); font-family:var(--font-body); font-size:.82rem;
+      padding:6px 10px; outline:none; transition:border-color .18s;
+    }
+    .rf-input:focus, .rf-select:focus { border-color:var(--c-nav); }
+    .rf-select option { background:var(--surface2); }
+    .res-form-actions { display:flex; gap:6px; justify-content:flex-end; }
+    .rfbtn { font-family:var(--font-body); font-size:.78rem; font-weight:500; padding:5px 13px; border-radius:6px; border:1.5px solid; cursor:pointer; transition:all .15s; }
+    .rfbtn-cancel { background:transparent; border-color:var(--border); color:var(--text-muted); }
+    .rfbtn-cancel:hover { border-color:var(--text-muted); color:var(--text); }
+    .rfbtn-add { background:rgba(59,130,246,.12); border-color:rgba(59,130,246,.4); color:var(--c-nav); }
+    .rfbtn-add:hover { background:rgba(59,130,246,.22); }
+
+    /* ── MODAL ────────────────────────────────── */
+    .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:500; display:none; align-items:center; justify-content:center; padding:20px; }
+    .modal-overlay.open { display:flex; }
+    .modal { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:26px; width:100%; max-width:440px; box-shadow:var(--shadow); }
+    .modal-title { font-family:var(--font-head); font-size:1.05rem; font-weight:800; margin-bottom:5px; color:var(--text); }
+    .modal-sub { font-size:.8rem; color:var(--text-muted); margin-bottom:20px; line-height:1.55; }
+    .modal-sub a { color:var(--c-nav); text-decoration:none; }
+    .modal-sub a:hover { text-decoration:underline; }
+    .m-label { font-family:var(--font-mono); font-size:.68rem; color:var(--text-muted); letter-spacing:.06em; text-transform:uppercase; display:block; margin-bottom:5px; }
+    .m-input {
+      width:100%; background:var(--input-bg); border:1px solid var(--border); border-radius:8px;
+      color:var(--text); font-family:var(--font-mono); font-size:.8rem;
+      padding:8px 11px; outline:none; transition:border-color .2s; margin-bottom:13px;
+    }
+    .m-input:focus { border-color:var(--c-nav); }
+    .m-input::placeholder { color:var(--text-dim); }
+    .modal-actions { display:flex; gap:7px; justify-content:flex-end; margin-top:4px; }
+    .mbtn { font-family:var(--font-body); font-size:.8rem; font-weight:500; padding:7px 16px; border-radius:7px; border:1.5px solid; cursor:pointer; transition:all .16s; }
+    .mbtn-cancel { background:transparent; border-color:var(--border); color:var(--text-muted); }
+    .mbtn-cancel:hover { border-color:var(--text-muted); color:var(--text); }
+    .mbtn-ok { background:rgba(59,130,246,.12); border-color:rgba(59,130,246,.4); color:var(--c-nav); }
+    .mbtn-ok:hover { background:rgba(59,130,246,.22); }
+
+    /* ── NO RESULTS / LOADING / ERROR ─────────── */
+    .loading-state { text-align:center; padding:70px 20px; color:var(--text-muted); }
+    .loading-spinner { width:28px; height:28px; border:2px solid var(--border); border-top-color:var(--c-nav); border-radius:50%; animation:spin .7s linear infinite; margin:0 auto 12px; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    .error-state { background:rgba(239,68,68,.07); border:1px solid rgba(239,68,68,.2); border-radius:var(--radius); padding:22px; text-align:center; color:var(--c-reset); font-size:.86rem; }
+    .no-results { text-align:center; padding:32px; color:var(--text-muted); font-size:.86rem; display:none; }
+
+    ::-webkit-scrollbar{width:5px;} ::-webkit-scrollbar-track{background:var(--bg);} ::-webkit-scrollbar-thumb{background:var(--border);border-radius:99px;}
+  </style>
+</head>
+<body>
+  <div id="ext-status" style="position:fixed;top:0;left:0;right:0;background:red;color:white;z-index:999999;font-size:18px;font-weight:bold;padding:10px;text-align:center;">
+    ❌ NOT run yet (B_toast_dash)
+  </div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- HEADER — toggled between .home-view and .roadmap-view by JS -->
+
+
+<!-- Hidden data holders — updated by updateDashboard(), read by updateRvStats and home cards -->
+<span id="dash-done"      style="display:none">0</span>
+<span id="dash-remain"    style="display:none">0</span>
+<span id="dash-resources" style="display:none">0</span>
+<span id="dash-pending"   style="display:none">0</span>
+<span id="roadmap-meta"   style="display:none"></span>
+
+
+  <script>
+  try { document.getElementById('ext-status').textContent = '✅ BEFORE marker ran (B_toast_dash)'; } catch(e) {}
+  </script>
+  <script>
+'use strict';
+
+// ═══════════════════════════════════════════
+//  REPO BASE URL
+//  Points to the branch all content is served from.
+//  Change this one line when merging to main.
+// ═══════════════════════════════════════════
+const REPO_BASE = 'https://raw.githubusercontent.com/NaveenKadali/learning-journey-organizer/feature/multi-roadmap/';
+
+// Wrap fetch with a hard timeout so a hung/pending request (no response,
+// no error — e.g. blocked by an extension, DNS hiccup, captive portal)
+// can't leave the UI stuck on a loading spinner forever.
+function fetchWithTimeout(url, ms = 12000) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), ms);
+  return fetch(url, { signal: ctrl.signal })
+    .finally(() => clearTimeout(timer))
+    .catch(err => {
+      if (err.name === 'AbortError') throw new Error(`Request timed out after ${ms/1000}s — check your network or the file path`);
+      throw err;
+    });
+}
+
+// ═══════════════════════════════════════════
+//  STORAGE KEYS
+// ═══════════════════════════════════════════
+const KEY_CFG         = 'roadmap_gist_cfg';
+const KEY_THEME       = 'roadmap_theme';
+const KEY_LAST_ACTIVE = 'roadmap_last_active';
+// Per-roadmap keys — namespaced by roadmap ID
+function keyProgress(id)  { return `roadmap_progress_${id}`; }
+function keyResources(id) { return `roadmap_resources_${id}`; }
+function keyTotalCache(id) { return `roadmap_totals_${id}`; }
+
+// ═══════════════════════════════════════════
+//  ACTIVE ROADMAP STATE
+// ═══════════════════════════════════════════
+let _catalog        = [];   // array of { id, title, badge, subtitle, path }
+let _activeRoadmap  = null; // currently loaded catalog entry
+let _rvStructure    = { sections:0, phases:0, modules:0, totalTasks:0 }; // structural counts for the active roadmap, set once on render()
+let _catalogStats   = {};   // { [id]: { sections, phases, totalTasks } } — structural counts for EVERY catalog roadmap, known up front (even before opening it)
+
+// ═══════════════════════════════════════════
+//  DIRTY FLAG  (unsaved local changes)
+// ═══════════════════════════════════════════
+let _dirty = false;
+function setDirty(val) {
+  _dirty = val;
+  const title = _activeRoadmap?.title || 'Roadmap';
+  document.title = val ? `● ${title}` : title;
+  updateActionBar();
+}
+
+// ═══════════════════════════════════════════
+//  THEME
+// ═══════════════════════════════════════════
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  const icon  = document.getElementById('theme-icon');
+  const label = document.getElementById('theme-label');
+  const sub   = document.getElementById('theme-sublabel');
+  if (theme === 'dark') {
+    if (icon)  icon.textContent  = '☀️';
+    if (label) label.textContent = 'Light';
+    if (sub)   sub.textContent   = 'Dark mode';
+  } else {
+    if (icon)  icon.textContent  = '🌙';
+    if (label) label.textContent = 'Dark';
+    if (sub)   sub.textContent   = 'Light mode';
+  }
+}
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = current === 'dark' ? 'light' : 'dark';
+  applyTheme(next);
+  try { localStorage.setItem(KEY_THEME, next); } catch (e) { console.warn('Could not persist theme:', e); }
+}
+(function() {
+  try {
+    const saved = localStorage.getItem(KEY_THEME) || 'dark';
+    applyTheme(saved);
+  } catch (e) {
+    // localStorage can throw (SecurityError) in some hosted/sandboxed
+    // contexts even though it works fine from a local file:// load.
+    // Never let that kill the rest of the script — fall back to dark.
+    console.warn('localStorage unavailable, using default theme:', e);
+    applyTheme('dark');
+  }
+})();
+
+// ═══════════════════════════════════════════
+//  GIST CONFIG
+// ═══════════════════════════════════════════
+function getCfg() { try { return JSON.parse(localStorage.getItem(KEY_CFG)||'{}'); } catch { return {}; } }
+function setCfg(o) { try { localStorage.setItem(KEY_CFG, JSON.stringify(o)); } catch (e) { showToast('Could not save settings — storage is blocked in this browser', 'error'); } }
+
+// ═══════════════════════════════════════════
+//  LOCAL PROGRESS  (per roadmap)
+// ═══════════════════════════════════════════
+function loadProgress(id) {
+  const k = keyProgress(id || _activeRoadmap?.id || 'default');
+  try { return JSON.parse(localStorage.getItem(k)||'{}'); } catch { return {}; }
+}
+function saveLocalProgress(data, id) {
+  const k = keyProgress(id || _activeRoadmap?.id || 'default');
+  try { localStorage.setItem(k, JSON.stringify(data)); }
+  catch (e) { showToast('Could not save progress — storage is blocked in this browser', 'error'); }
+}
+
+// ═══════════════════════════════════════════
+//  RESOURCES  (per roadmap)  { moduleId: [{id,title,url,type}] }
+// ═══════════════════════════════════════════
+function loadResources(id) {
+  const k = keyResources(id || _activeRoadmap?.id || 'default');
+  try { return JSON.parse(localStorage.getItem(k)||'{}'); } catch { return {}; }
+}
+function saveLocalResources(data, id) {
+  const k = keyResources(id || _activeRoadmap?.id || 'default');
+  try { localStorage.setItem(k, JSON.stringify(data)); }
+  catch (e) { showToast('Could not save resources — storage is blocked in this browser', 'error'); }
+}
+
+// ═══════════════════════════════════════════
+//  RELATIVE TIME  ("2 min ago", "3 hrs ago", etc.)
+// ═══════════════════════════════════════════
+function relativeTime(iso) {
+  if (!iso) return null;
+  const secs = Math.floor((Date.now() - new Date(iso).getTime()) / 1000);
+  if (secs < 5)   return 'just now';
+  if (secs < 60)  return `${secs}s ago`;
+  const mins = Math.floor(secs / 60);
+  if (mins < 60)  return `${mins} min ago`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24)   return `${hrs} hr${hrs>1?'s':''} ago`;
+  const days = Math.floor(hrs / 24);
+  return `${days} day${days>1?'s':''} ago`;
+}
+
+// Tick every 30 s so relative times stay fresh
+setInterval(updateHeaderButtons, 30000);
+
+// ═══════════════════════════════════════════
+//  UPDATE ACTION BAR SUB-LABELS
+//  Replaces the old sync-strip entirely.
+//  Called whenever state changes.
+// ═══════════════════════════════════════════
+function updateActionBar() {
+  const cfg         = getCfg();
+  const prog        = loadProgress();
+  const gistSync    = prog.__gistSyncTime;
+  const localSaveTs = prog.__localSaveTime;
+
+  // --- Save sub-label: coloured dot + "Unsaved" when dirty, else relative save time ---
+  const saveLbl = document.getElementById('save-time-label');
+  if (saveLbl) {
+    if (_dirty) {
+      saveLbl.innerHTML  = '<span style="color:#d97706">●</span> Unsaved';
+      saveLbl.className  = 'btn-sublabel yellow';
+    } else {
+      saveLbl.textContent = relativeTime(localSaveTs) || 'never saved';
+      saveLbl.className   = localSaveTs ? 'btn-sublabel green' : 'btn-sublabel';
+    }
+  }
+
+  // --- Sync sub-label: no PAT / no gist / last gist sync time ---
+  const syncLbl = document.getElementById('sync-time-label');
+  if (syncLbl) {
+    if (!cfg.pat) {
+      syncLbl.textContent = 'no PAT set';
+      syncLbl.className   = 'btn-sublabel red';
+    } else if (!cfg.gistId) {
+      syncLbl.textContent = 'no gist yet';
+      syncLbl.className   = 'btn-sublabel yellow';
+    } else {
+      syncLbl.textContent = gistSync ? relativeTime(gistSync) : 'never synced';
+      syncLbl.className   = gistSync ? 'btn-sublabel green' : 'btn-sublabel';
+    }
+  }
+
+  // --- Settings sub-label: connection status ---
+  const connLbl = document.getElementById('gist-conn-label');
+  if (connLbl) {
+    if (!cfg.pat) {
+      connLbl.textContent = '⚠ not connected';
+      connLbl.className   = 'btn-sublabel red';
+    } else if (!cfg.gistId) {
+      connLbl.textContent = '● no gist yet';
+      connLbl.className   = 'btn-sublabel yellow';
+    } else {
+      connLbl.textContent = '● connected';
+      connLbl.className   = 'btn-sublabel green';
+    }
+  }
+}
+
+// Keep updateHeaderButtons as alias so existing call-sites still work
+function updateHeaderButtons() { updateActionBar(); }
+
+// ═══════════════════════════════════════════
+//  TOAST
+// ═══════════════════════════════════════════
+let _toastTimer;
+function showToast(msg, type='info') {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = `toast ${type} show`;
+  clearTimeout(_toastTimer);
+  _toastTimer = setTimeout(() => el.classList.remove('show'), 3400);
+}
+
+// ═══════════════════════════════════════════
+//  MODALS
+// ═══════════════════════════════════════════
+function openModal(id)  { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+document.addEventListener('click', e => {
+  if (e.target.classList.contains('modal-overlay')) e.target.classList.remove('open');
+});
+
+function saveGistSettings() {
+  const pat    = document.getElementById('pat-input').value.trim();
+  const gistId = document.getElementById('gist-input').value.trim();
+  if (!pat) { showToast('PAT is required', 'error'); return; }
+  setCfg({ pat, gistId });
+  closeModal('settings-modal');
+  showToast('Settings saved', 'success');
+  updateActionBar();
+}
+
+// ═══════════════════════════════════════════
+//  BUILD GIST PAYLOAD  (v5 — all roadmaps)
+// ═══════════════════════════════════════════
+function buildGistPayload() {
+  const now = new Date().toISOString();
+  const roadmaps = {};
+  // Snapshot every known roadmap from the catalog
+  _catalog.forEach(entry => {
+    const progress  = collectProgress(entry.id === _activeRoadmap?.id ? null : entry.id);
+    if (entry.id === _activeRoadmap?.id) {
+      // Live collection for the active roadmap
+      const live = collectProgress();
+      live.__gistSyncTime = now;
+      live.__theme        = document.documentElement.getAttribute('data-theme') || 'dark';
+      roadmaps[entry.id]  = { progress: live, resources: loadResources() };
+    } else {
+      // Load persisted data for inactive roadmaps
+      roadmaps[entry.id] = {
+        progress:  loadProgress(entry.id),
+        resources: loadResources(entry.id)
+      };
+    }
+  });
+  return { __version: 'v5', __saved: now, roadmaps };
+}
+
+function applyGistPayload(payload) {
+  if (!payload) return;
+  const now = new Date().toISOString();
+
+  // v5 format: { roadmaps: { [id]: { progress, resources } } }
+  if (payload.__version === 'v5' && payload.roadmaps) {
+    Object.entries(payload.roadmaps).forEach(([id, data]) => {
+      if (data.progress) {
+        data.progress.__gistSyncTime = now;
+        saveLocalProgress(data.progress, id);
+        // Apply to UI only if this is the active roadmap
+        if (id === _activeRoadmap?.id) {
+          applyProgressToUI(data.progress);
+          if (data.progress.__theme) {
+            applyTheme(data.progress.__theme);
+            localStorage.setItem(KEY_THEME, data.progress.__theme);
+          }
+        }
+      }
+      if (data.resources) {
+        saveLocalResources(data.resources, id);
+        if (id === _activeRoadmap?.id) {
+          document.querySelectorAll('[data-res-module-id]').forEach(panel => {
+            renderResourcePanel(panel.dataset.resModuleId, panel);
+          });
+        }
+      }
+    });
+    return;
+  }
+
+  // v4 fallback migration: treat as active roadmap data
+  if (payload.progress) {
+    payload.progress.__gistSyncTime = now;
+    saveLocalProgress(payload.progress);
+    applyProgressToUI(payload.progress);
+    if (payload.progress.__theme) {
+      applyTheme(payload.progress.__theme);
+      localStorage.setItem(KEY_THEME, payload.progress.__theme);
+    }
+  }
+  if (payload.resources) {
+    saveLocalResources(payload.resources);
+    document.querySelectorAll('[data-res-module-id]').forEach(panel => {
+      renderResourcePanel(panel.dataset.resModuleId, panel);
+    });
+  }
+}
+
+// ═══════════════════════════════════════════
+//  GIST SAVE
+// ═══════════════════════════════════════════
+async function saveToGist() {
+  const cfg = getCfg();
+  if (!cfg.pat) { openModal('settings-modal'); showToast('Enter your GitHub PAT first', 'info'); return; }
+  const btn = document.getElementById('btn-save');
+  btn.classList.add('busy'); btn.textContent = 'Saving…';
+  try {
+    const content = JSON.stringify(buildGistPayload(), null, 2);
+    let res;
+    if (cfg.gistId) {
+      res = await fetch(`https://api.github.com/gists/${cfg.gistId}`, {
+        method:'PATCH',
+        headers:{ Authorization:`token ${cfg.pat}`, 'Content-Type':'application/json' },
+        body: JSON.stringify({ files:{ 'roadmap-data.json':{ content } } })
+      });
+    } else {
+      res = await fetch('https://api.github.com/gists', {
+        method:'POST',
+        headers:{ Authorization:`token ${cfg.pat}`, 'Content-Type':'application/json' },
+        body: JSON.stringify({ description:'Learning Journey Roadmap', public:false, files:{ 'roadmap-data.json':{ content } } })
+      });
+    }
+    if (!res.ok) throw new Error(`GitHub API ${res.status}`);
+    const data = await res.json();
+    if (!cfg.gistId) { cfg.gistId = data.id; setCfg(cfg); }
+    // Stamp both sync times on the active roadmap's local storage
+    const now = new Date().toISOString();
+    const prog = loadProgress();
+    prog.__gistSyncTime  = now;
+    prog.__localSaveTime = now;
+    saveLocalProgress(prog);
+    setDirty(false);
+    updateDashboard();
+    showToast('✓ Saved to GitHub Gist', 'success');
+  } catch(e) {
+    showToast(`Save failed: ${e.message}`, 'error');
+  } finally {
+    btn.classList.remove('busy');
+    btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Save`;
+    updateActionBar();
+  }
+}
+
+// ═══════════════════════════════════════════
+//  GIST SYNC
+// ═══════════════════════════════════════════
+async function syncFromGist() {
+  const cfg = getCfg();
+  if (!cfg.pat || !cfg.gistId) { openModal('settings-modal'); showToast('Configure PAT & Gist ID first', 'info'); return; }
+  const btn = document.getElementById('btn-sync');
+  btn.textContent = 'Syncing…';
+  try {
+    const res = await fetch(`https://api.github.com/gists/${cfg.gistId}`, {
+      headers:{ Authorization:`token ${cfg.pat}` }
+    });
+    if (!res.ok) throw new Error(`GitHub API ${res.status}`);
+    const data = await res.json();
+    const raw = data.files?.['roadmap-data.json']?.content;
+    if (!raw) throw new Error('roadmap-data.json not found in Gist');
+    const payload = JSON.parse(raw);
+    applyGistPayload(payload);  // handles v5 and v4 migration
+    setDirty(false);
+    updateDashboard();
+    showToast('✓ Synced from GitHub Gist', 'success');
+  } catch(e) {
+    showToast(`Sync failed: ${e.message}`, 'error');
+  } finally {
+    btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.51"/></svg> Sync`;
+    updateActionBar();
+  }
+}
+
+// ═══════════════════════════════════════════
+//  PROGRESS COLLECT / APPLY
+// ═══════════════════════════════════════════
+function collectProgress() {
+  const out = {};
+  document.querySelectorAll('.task-cb').forEach(cb => { out[cb.dataset.id] = cb.checked; });
+  return out;
+}
+function applyProgressToUI(progress) {
+  document.querySelectorAll('.task-cb').forEach(cb => {
+    if (progress[cb.dataset.id] !== undefined) cb.checked = progress[cb.dataset.id];
+  });
+  document.querySelectorAll('.phase-card').forEach(updatePhaseState);
+}
+function localSave() {
+  const d    = collectProgress();
+  const prev = loadProgress();  // uses active roadmap id automatically
+  d.__gistSyncTime  = prev.__gistSyncTime  || null;
+  d.__localSaveTime = new Date().toISOString();
+  d.__theme         = document.documentElement.getAttribute('data-theme') || 'dark';
+  saveLocalProgress(d);  // uses active roadmap id automatically
+  setDirty(true);
+}
+
+// ═══════════════════════════════════════════
+//  PARSE MARKDOWN
+//  Structure:
+//    <!-- section: // Label -->  → new section
+//    > # Label                   → new section  (alt syntax, single-hash blockquote)
+//    ##  title  or  > ##  title  → accordion card
+//    ### title  or  > ### title  → module
+//    #### title or  > #### title → sub-module inside module
+//    ##### title or > ##### title→ sub-module alias (same as ####)
+//    - [ ] / - [x]               → task
+// ═══════════════════════════════════════════
+function slug(s) {
+  return (s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,80)||'item';
+}
+// Normalise a raw line: strip leading blockquote marker(s) so
+// "> ## Title" becomes "## Title" before pattern matching.
+function normaliseBlockquote(line) {
+  return line.replace(/^(>\s*)+/, '');
+}
+function parseRoadmap(md) {
+  const lines = md.split('\n');
+  const sections = [];
+  let curSection = null, curItem = null, curMod = null, curSubMod = null;
+
+  function addTask(line, target) {
+    const m = line.match(/^[-*]\s+\[([ xX✓])\]\s+(.*)/);
+    if (!m) return;
+    const checked = /^[xX✓]$/.test(m[1].trim());
+    target.push({ text: m[2].trim(), checked, id: slug(m[2].trim()) });
+  }
+
+  for (const raw of lines) {
+    // Was this line originally inside a blockquote (started with ">")?
+    const wasQuoted = /^>\s*/.test(raw);
+    // Normalise blockquote prefix so "> ## Foo" is treated same as "## Foo"
+    const line = normaliseBlockquote(raw);
+
+    const secM = raw.match(/<!--\s*section:\s*(.+?)\s*-->/i);
+    if (secM) {
+      curSection = { label: secM[1].trim(), items: [] };
+      sections.push(curSection);
+      curItem = curMod = curSubMod = null;
+      continue;
+    }
+    // Alt section syntax: "> # Label" — single hash, must be blockquoted.
+    if (wasQuoted && /^#\s+/.test(line) && !/^##/.test(line)) {
+      const label = line.replace(/^#\s+/, '').trim();
+      curSection = { label, items: [] };
+      sections.push(curSection);
+      curItem = curMod = curSubMod = null;
+      continue;
+    }
+    if (/^##\s+/.test(line) && !/^###/.test(line)) {
+      const title = line.replace(/^##\s+/, '').trim();
+      if (!curSection) { curSection = { label: '', items: [] }; sections.push(curSection); }
+      curItem = { title, id: slug(title), modules: [], tasks: [] };
+      curMod = null; curSubMod = null;
+      curSection.items.push(curItem);
+      continue;
+    }
+    if (!curItem) continue;
+    if (/^###\s+/.test(line) && !/^####/.test(line)) {
+      const title = line.replace(/^###\s+/, '').trim();
+      curMod = { title, id: slug(title), modules: [], tasks: [] };
+      curSubMod = null;
+      curItem.modules.push(curMod);
+      continue;
+    }
+    if (/^####\s+/.test(line) && !/^#####/.test(line)) {
+      const title = line.replace(/^####\s+/, '').trim();
+      curSubMod = { title, id: slug(title), tasks: [] };
+      (curMod || curItem).modules.push(curSubMod);
+      continue;
+    }
+    if (/^#####\s+/.test(line)) {
+      const title = line.replace(/^#####\s+/, '').trim();
+      curSubMod = { title, id: slug(title), tasks: [] };
+      (curMod || curItem).modules.push(curSubMod);
+      continue;
+    }
+    addTask(line, (curSubMod || curMod || curItem).tasks);
+  }
+  return { sections };
+}
+
+// ═══════════════════════════════════════════
+//  ICON PALETTE
+// ═══════════════════════════════════════════
+const ICON_PALETTE = [
+  {icon:'🐍', bg:'rgba(59,130,246,.12)',  br:'rgba(59,130,246,.28)'},
+  {icon:'⚡', bg:'rgba(245,158,11,.12)',  br:'rgba(245,158,11,.28)'},
+  {icon:'🧠', bg:'rgba(139,92,246,.12)',  br:'rgba(139,92,246,.28)'},
+  {icon:'🔗', bg:'rgba(34,197,94,.12)',   br:'rgba(34,197,94,.28)'},
+  {icon:'🚀', bg:'rgba(239,68,68,.12)',   br:'rgba(239,68,68,.28)'},
+  {icon:'🏗️', bg:'rgba(6,182,212,.12)',   br:'rgba(6,182,212,.28)'},
+  {icon:'📊', bg:'rgba(249,115,22,.12)',  br:'rgba(249,115,22,.28)'},
+  {icon:'🔍', bg:'rgba(99,102,241,.12)',  br:'rgba(99,102,241,.28)'},
+  {icon:'🛡️', bg:'rgba(20,184,166,.12)',  br:'rgba(20,184,166,.28)'},
+  {icon:'🎯', bg:'rgba(236,72,153,.12)',  br:'rgba(236,72,153,.28)'},
+];
+let _iconIdx = 0;
+function nextMeta() { return ICON_PALETTE[_iconIdx++ % ICON_PALETTE.length]; }
+
+// ═══════════════════════════════════════════
+//  RESOURCES SECTION HEADER — IS the toggler
+// ═══════════════════════════════════════════
+function resSection(id, resources) {
+  const cnt = (resources[id] || []).length;
+  return `<div class="res-section-header${cnt > 0 ? '' : ''}" id="res-toggler-${id}" onclick="toggleResPanel('${id}',this)">
+    <span class="res-section-icon">📚</span>
+    <span class="res-section-label">Resources</span>
+    <span class="res-count" id="res-count-${id}">${cnt}</span>
+    <svg class="res-section-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="res-panel" id="res-panel-${id}" style="display:none" data-res-module-id="${id}">
+  </div>`;
+}
+
+// ═══════════════════════════════════════════
+//  RENDER MODULE BODY (### level)
+// ═══════════════════════════════════════════
+function renderModBody(mod, progress, resources) {
+  let html = renderTaskList(mod.tasks || [], progress);
+  html += resSection(mod.id, resources);
+  (mod.modules || []).forEach(sub => {
+    html += `<div class="submod-group">
+      <div class="submod-title">${esc(sub.title)}</div>
+      ${renderTaskList(sub.tasks || [], progress)}
+      ${resSection(sub.id, resources)}
+    </div>`;
+  });
+  return html;
+}
+
+// ═══════════════════════════════════════════
+//  RENDER ITEM BODY  (## level)
+// ═══════════════════════════════════════════
+function renderItemBody(item, progress, resources) {
+  let html = '';
+  if ((item.tasks || []).length) {
+    html += renderTaskList(item.tasks, progress);
+    html += resSection(item.id, resources);
+  }
+  (item.modules || []).forEach(mod => {
+    const resCnt = (resources[mod.id] || []).length;
+    html += `<div class="module-group" id="mg-${mod.id}">
+      <div class="module-header" onclick="toggleModule(this.parentElement)">
+        <div class="module-title">${esc(mod.title)}</div>
+        <div class="module-header-right">
+          <span class="mod-res-pill${resCnt > 0 ? ' visible' : ''}" id="mod-res-pill-${mod.id}">📚 ${resCnt}</span>
+          <svg class="module-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+      <div class="module-body">
+        <div class="module-body-inner">
+          ${renderModBody(mod, progress, resources)}
+        </div>
+      </div>
+    </div>`;
+  });
+  if (!html) html += resSection(item.id, resources);
+  return html;
+}
+
+// ═══════════════════════════════════════════
+//  BUILD ACCORDION CARD (## item)
+// ═══════════════════════════════════════════
+function buildCard(item, progress, resources, meta, numStr) {
+  const body = renderItemBody(item, progress, resources);
+  const allTasks = [
+    ...(item.tasks || []),
+    ...(item.modules || []).flatMap(m => [...(m.tasks||[]), ...(m.modules||[]).flatMap(s=>s.tasks||[])])
+  ];
+  allTasks.forEach(t => { if (progress[t.id] !== undefined) t.checked = progress[t.id]; });
+  const done  = allTasks.filter(t => t.checked).length;
+  const tot   = allTasks.length;
+  const pct   = tot ? Math.round(done / tot * 100) : 0;
+  const state = tot === 0 ? 'notstarted' : done === tot ? 'done' : done > 0 ? 'active' : 'notstarted';
+
+  const card = mkEl('div', 'phase-card');
+  card.dataset.state = state;
+  // Ring geometry — r=15.5, circumference ≈ 97.4 (matches the home-view card ring)
+  const ringC = 97.4;
+  const ringOffset = tot === 0 ? ringC : ringC - (pct/100) * ringC;
+  card.innerHTML = `
+    <div class="phase-header" onclick="togglePhase(this.parentElement)">
+      <div class="phase-icon" style="background:${meta.bg};border:1px solid ${meta.br}">${meta.icon}</div>
+      <div class="phase-meta">
+        <div class="phase-name">${esc(item.title)}</div>
+      </div>
+      <div class="phase-right">
+        <div class="phase-ring${state==='done'?' is-done':''}" title="${done} of ${tot} tasks complete">
+          <svg viewBox="0 0 36 36">
+            <circle class="phase-ring-bg"   cx="18" cy="18" r="15.5"/>
+            <circle class="phase-ring-fill" cx="18" cy="18" r="15.5"
+                    stroke-dasharray="${ringC}"
+                    stroke-dashoffset="${ringOffset}"/>
+          </svg>
+          <div class="phase-ring-label">${done}/${tot}</div>
+        </div>
+        <svg class="phase-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-body-inner">${body}</div>
+    </div>`;
+  return card;
+}
+
+// ═══════════════════════════════════════════
+//  RENDER
+// ═══════════════════════════════════════════
+function render(data) {
+  const progress  = loadProgress();
+  const resources = loadResources();
+  _iconIdx = 0;
+
+  let totalTasks = 0, totalMods = 0, totalItems = 0;
+  data.sections.forEach(sec => {
+    (sec.items || []).forEach(item => {
+      totalItems++;
+      (item.tasks || []).forEach(() => totalTasks++);
+      (item.modules || []).forEach(m => {
+        totalMods++;
+        (m.tasks || []).forEach(() => totalTasks++);
+        (m.modules || []).forEach(s => (s.tasks || []).forEach(() => totalTasks++));
+      });
+    });
+  });
+  document.getElementById('roadmap-meta').textContent =
+    `${data.sections.length} sections · ${totalItems} topics · ${totalMods} modules · ${totalTasks} tasks`;
+  _rvStructure = { sections: data.sections.length, phases: totalItems, modules: totalMods, totalTasks };
+
+  const main = document.getElementById('main-content');
+  main.innerHTML = '';
+
+  data.sections.forEach(section => {
+    if (section.label) main.appendChild(mkEl('div', 'section-label', section.label));
+    const list = mkEl('div', 'phase-list');
+    (section.items || []).forEach((item) => {
+      const meta = nextMeta();
+      const card = buildCard(item, progress, resources, meta, '');
+      list.appendChild(card);
+    });
+    main.appendChild(list);
+  });
+
+  const noRes = mkEl('div', 'no-results', 'No items match.'); noRes.id = 'no-results';
+  main.appendChild(noRes);
+
+  document.querySelectorAll('.task-cb').forEach(cb => {
+    cb.addEventListener('change', () => {
+      localSave();
+      updatePhaseState(cb.closest('.phase-card'));
+      updateDashboard();
+    });
+  });
+
+  updateDashboard();
+  applyCurrentFilter();
+  updateActionBar();
+  syncAllModulePills();  // ensure pills are visible for pre-existing resources on reload
+}
+
+// After the DOM is built, walk all module pills and correct their state from live resources
+function syncAllModulePills() {
+  const resources = loadResources();
+  document.querySelectorAll('[id^="mod-res-pill-"]').forEach(pill => {
+    const modId = pill.id.replace('mod-res-pill-', '');
+    const cnt   = (resources[modId] || []).length;
+    pill.textContent = `📚 ${cnt}`;
+    pill.classList.toggle('visible', cnt > 0);
+  });
+}
+
+function renderTaskList(tasks, progress) {
+  if (!tasks.length) return '';
+  return '<ul class="task-list">' + tasks.map(t => {
+    const checked = progress[t.id]!==undefined ? progress[t.id] : t.checked;
+    return `<li class="task-item" onclick="toggleTask(event,this)">
+      <input type="checkbox" class="task-cb" data-id="${t.id}" ${checked?'checked':''}>
+      <label class="task-text">${esc(t.text)}</label>
+    </li>`;
+  }).join('') + '</ul>';
+}
+
+function toggleTask(e, li) {
+  if (e.target.tagName==='INPUT'||e.target.tagName==='LABEL') return;
+  const cb = li.querySelector('.task-cb'); cb.checked=!cb.checked;
+  cb.dispatchEvent(new Event('change'));
+}
+
+// ═══════════════════════════════════════════
+//  RESOURCES
+// ═══════════════════════════════════════════
+const RES_TYPES  = ['video','article','doc','github','pdf','note','other'];
+const RT_LABELS  = { video:'Video', article:'Article', doc:'Docs', github:'GitHub', pdf:'PDF', note:'Note', other:'Other' };
+
+function toggleResPanel(moduleId, headerEl) {
+  const panel = document.getElementById(`res-panel-${moduleId}`);
+  if (!panel) return;
+  const isOpen = panel.style.display === 'block';
+  panel.style.display = isOpen ? 'none' : 'block';
+  headerEl.classList.toggle('open', !isOpen);
+  if (!isOpen) {
+    renderResourcePanel(moduleId, panel);
+    const mg = panel.closest('.module-group');
+    if (mg && !mg.classList.contains('open')) mg.classList.add('open');
+  }
+}
+
+function renderResourcePanel(moduleId, panelEl) {
+  panelEl.innerHTML = `<div class="res-panel-inner">${renderResourcePanelInner(moduleId, loadResources())}</div>`;
+  const cnt = (loadResources()[moduleId] || []).length;
+
+  // Update the count badge on the res-section-header
+  const countEl = document.getElementById(`res-count-${moduleId}`);
+  if (countEl) countEl.textContent = cnt;
+
+  // Update this module's header pill directly
+  const pill = document.getElementById(`mod-res-pill-${moduleId}`);
+  if (pill) {
+    pill.textContent = `📚 ${cnt}`;
+    pill.classList.toggle('visible', cnt > 0);
+  }
+  updateDashboard();
+}
+
+function renderResourcePanelInner(moduleId, resources) {
+  const list = resources[moduleId] || [];
+  let html = '';
+  if (list.length) {
+    html += `<div class="res-list">` + list.map(r => {
+      const cls   = `rt-${r.type||'other'}`;
+      const label = RT_LABELS[r.type]||'Other';
+      const isNote = r.type === 'note' || !r.url;
+      const linkOrNote = isNote
+        ? `<span class="res-note-text">${esc(r.title)}</span>`
+        : `<a class="res-link" href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.title||r.url)}</a>`;
+      return `<div class="res-item">
+        <span class="res-type-badge ${cls}">${label}</span>
+        ${linkOrNote}
+        <div class="res-actions">
+          <button class="res-action-btn edit" title="Edit" onclick="editResource('${moduleId}','${r.id}')">✏️</button>
+          <button class="res-action-btn del"  title="Delete" onclick="deleteResource('${moduleId}','${r.id}')">🗑️</button>
+        </div>
+      </div>`;
+    }).join('') + `</div>`;
+  }
+  html += `<button class="add-res-btn" onclick="showAddResForm('${moduleId}')">+ Add Resource</button>`;
+  html += `<div id="res-form-${moduleId}"></div>`;
+  return html;
+}
+
+function showAddResForm(moduleId, existing) {
+  const container = document.getElementById(`res-form-${moduleId}`);
+  if (!container) return;
+  const isEdit = !!existing;
+  // Default type: video (for new), otherwise existing type
+  const defaultType = existing?.type || 'video';
+  container.innerHTML = `
+    <div class="res-form" id="rf-${moduleId}">
+      <div class="res-form-row">
+        <div>
+          <label class="rf-label">Title</label>
+          <input class="rf-input" id="rf-title-${moduleId}" placeholder="e.g. Python Tutorial" value="${esc(existing?.title||'')}">
+        </div>
+        <div>
+          <label class="rf-label">Type</label>
+          <select class="rf-select" id="rf-type-${moduleId}">
+            ${RES_TYPES.map(t=>`<option value="${t}"${defaultType===t?' selected':''}>${RT_LABELS[t]}</option>`).join('')}
+          </select>
+        </div>
+      </div>
+      <div class="res-form-full">
+        <label class="rf-label">URL <span style="color:var(--text-dim)">(optional for notes)</span></label>
+        <input class="rf-input" id="rf-url-${moduleId}" placeholder="https://…" value="${esc(existing?.url||'')}">
+      </div>
+      <div class="res-form-actions">
+        <button class="rfbtn rfbtn-cancel" onclick="cancelResForm('${moduleId}')">Cancel</button>
+        <button class="rfbtn rfbtn-add" onclick="commitResource('${moduleId}','${existing?.id||''}')">
+          ${isEdit ? 'Update' : 'Add Resource'}
+        </button>
+      </div>
+    </div>`;
+}
+
+function cancelResForm(moduleId) {
+  const c = document.getElementById(`res-form-${moduleId}`);
+  if (c) c.innerHTML = '';
+}
+
+function commitResource(moduleId, editId) {
+  const title = document.getElementById(`rf-title-${moduleId}`)?.value.trim();
+  const url   = document.getElementById(`rf-url-${moduleId}`)?.value.trim();
+  const type  = document.getElementById(`rf-type-${moduleId}`)?.value;
+  if (!title && !url) { showToast('Enter a title or URL', 'error'); return; }
+  const resources = loadResources();
+  if (!resources[moduleId]) resources[moduleId] = [];
+  if (editId) {
+    const idx = resources[moduleId].findIndex(r=>r.id===editId);
+    if (idx>-1) resources[moduleId][idx] = { id:editId, title:title||url, url, type };
+  } else {
+    resources[moduleId].push({ id:'R'+Date.now(), title:title||url, url, type });
+  }
+  saveLocalResources(resources);
+  const panel = document.getElementById(`res-panel-${moduleId}`);
+  if (panel) renderResourcePanel(moduleId, panel);
+  showToast(editId ? 'Resource updated' : 'Resource added', 'success');
+}
+
+function editResource(moduleId, resId) {
+  const resources = loadResources();
+  const existing  = (resources[moduleId]||[]).find(r=>r.id===resId);
+  if (!existing) return;
+  showAddResForm(moduleId, existing);
+}
+
+function deleteResource(moduleId, resId) {
+  if (!confirm('Delete this resource?')) return;
+  const resources = loadResources();
+  resources[moduleId] = (resources[moduleId]||[]).filter(r=>r.id!==resId);
+  saveLocalResources(resources);
+  const panel = document.getElementById(`res-panel-${moduleId}`);
+  if (panel) renderResourcePanel(moduleId, panel);
+  showToast('Resource deleted', 'info');
+}
+
+// ═══════════════════════════════════════════
+//  PHASE STATE UPDATE
+// ═══════════════════════════════════════════
+function updatePhaseState(card) {
+  if (!card) return;
+  const cbs  = card.querySelectorAll('.task-cb');
+  const done = [...cbs].filter(c=>c.checked).length;
+  const tot  = cbs.length;
+  const pct  = tot ? Math.round(done/tot*100) : 0;
+  const state= tot===0?'notstarted':done===tot?'done':done>0?'active':'notstarted';
+  card.dataset.state = state;
+
+  const ring      = card.querySelector('.phase-ring');
+  const ringFill  = card.querySelector('.phase-ring-fill');
+  const ringLabel = card.querySelector('.phase-ring-label');
+  const ringC     = 97.4;
+  if (ring)      ring.classList.toggle('is-done', state === 'done');
+  if (ringFill)  ringFill.style.strokeDashoffset = tot === 0 ? ringC : ringC - (pct/100) * ringC;
+  if (ringLabel) ringLabel.textContent = `${done}/${tot}`;
+  if (ring)      ring.title = `${done} of ${tot} tasks complete`;
+}
+
+// ═══════════════════════════════════════════
+//  DASHBOARD
+// ═══════════════════════════════════════════
+function updateDashboard() {
+  const all   = document.querySelectorAll('.task-cb');
+  const done  = [...all].filter(c=>c.checked).length;
+  const tot   = all.length;
+  const pct   = tot ? Math.round(done/tot*100) : 0;
+
+  document.getElementById('overall-pct').textContent  = pct+'%';
+  document.getElementById('overall-fill').style.width = pct+'%';
+  document.getElementById('dash-done').textContent    = done;
+  document.getElementById('dash-remain').textContent  = tot-done;
+
+  const resources = loadResources();
+  let totalResources = 0;
+  const modulesWithResources = new Set();
+  Object.entries(resources).forEach(([modId, list]) => {
+    if (list && list.length > 0) {
+      totalResources += list.length;
+      modulesWithResources.add(modId);
+    }
+  });
+  document.getElementById('dash-resources').textContent = totalResources;
+
+  const allModuleIds = new Set();
+  document.querySelectorAll('[data-res-module-id]').forEach(el => {
+    allModuleIds.add(el.dataset.resModuleId);
+  });
+  const pendingCount = [...allModuleIds].filter(id => !modulesWithResources.has(id)).length;
+  document.getElementById('dash-pending').textContent = pendingCount;
+
+  updateActionBar();
+  if (_activeRoadmap) updateRvStats();
+}
+
+function fmtDate(iso) {
+  try { return new Date(iso).toLocaleString(undefined,{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}); }
+  catch { return iso; }
+}
+
+// ═══════════════════════════════════════════
+//  FILTER
+// ═══════════════════════════════════════════
+let _filter = 'all';
+function setFilter(f, btn) {
+  _filter = f;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  applyCurrentFilter();
+}
+function onSearchInput() {
+  const q = document.getElementById('search')?.value||'';
+  const btn = document.getElementById('search-clear');
+  if (btn) btn.classList.toggle('visible', q.length > 0);
+  applyCurrentFilter();
+}
+function clearSearch() {
+  const inp = document.getElementById('search');
+  if (inp) { inp.value = ''; inp.focus(); }
+  const btn = document.getElementById('search-clear');
+  if (btn) btn.classList.remove('visible');
+  applyCurrentFilter();
+}
+function applyCurrentFilter() {
+  const q = (document.getElementById('search')?.value||'').trim().toLowerCase();
+  let any = false;
+  document.querySelectorAll('.phase-card').forEach(card => {
+    const stateMatch = _filter==='all' || card.dataset.state===_filter;
+    let searchMatch  = true;
+    if (q) {
+      const title = card.querySelector('.phase-name')?.textContent.toLowerCase()||'';
+      const tasks = [...card.querySelectorAll('.task-text')].some(t=>t.textContent.toLowerCase().includes(q));
+      searchMatch = tasks || title.includes(q);
+    }
+    const show = stateMatch && searchMatch;
+    card.style.display = show ? '' : 'none';
+    if (show) any = true;
+    if (show && (q || _filter!=='all')) card.classList.add('open');
+  });
+  const noRes = document.getElementById('no-results');
+  if (noRes) noRes.style.display = any ? 'none' : 'block';
+}
+
+// ═══════════════════════════════════════════
+//  ACCORDION
+// ═══════════════════════════════════════════
+function togglePhase(card)    { card.classList.toggle('open'); }
+function toggleModule(group)  { group.classList.toggle('open'); }
+function expandAll()  {
+  document.querySelectorAll('.phase-card').forEach(c=>c.classList.add('open'));
+  document.querySelectorAll('.module-group').forEach(m=>m.classList.add('open'));
+}
+function collapseAll(){
+  document.querySelectorAll('.phase-card').forEach(c=>c.classList.remove('open'));
+  document.querySelectorAll('.module-group').forEach(m=>m.classList.remove('open'));
+}
+function toggleMoreMenu() { document.getElementById('more-menu').classList.toggle('open'); }
+function closeMoreMenu()  { document.getElementById('more-menu').classList.remove('open'); }
+document.addEventListener('click', e => {
+  if (!e.target.closest('#more-btn')&&!e.target.closest('#more-menu')) closeMoreMenu();
+});
+
+// ═══════════════════════════════════════════
+//  KEYBOARD SHORTCUTS
+//  Ctrl+S / Cmd+S → Save to Gist
+// ═══════════════════════════════════════════
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+    e.preventDefault();
+    saveToGist();
+  }
+});
+
+// ═══════════════════════════════════════════
+//  UTILS
+// ═══════════════════════════════════════════
+function esc(s='') { const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+function mkEl(tag,cls,text) { const e=document.createElement(tag); if(cls)e.className=cls; if(text)e.textContent=text; return e; }
+
+// ═══════════════════════════════════════════
+//  CATALOG PARSER
+//  Reads config/catalog.md
+//  Supported formats per line:
+//    path/to/ROADMAP.md | Title | Badge | Subtitle
+//    path/to/ROADMAP.md | Title | Badge
+//    path/to/ROADMAP.md | Title
+//    path/to/ROADMAP.md          ← title inferred from path
+//  Lines starting with # or empty are ignored.
+// ═══════════════════════════════════════════
+function parseCatalog(md) {
+  return md.split('\n')
+    .map(l => l.trim())
+    .filter(l => l && !l.startsWith('#'))
+    .map(l => {
+      const parts = l.split('|').map(p => p.trim());
+      const path     = parts[0];
+      const title    = parts[1] || path.split('/').slice(-2,-1)[0]?.replace(/-/g,' ') || path;
+      const badge    = parts[2] || '📄';
+      const subtitle = parts[3] || '';
+      // ID: last two meaningful path segments, slugified
+      const segs = path.replace(/\/ROADMAP\.md$/i,'').split('/').filter(Boolean);
+      const id   = segs.slice(-2).join('-').toLowerCase().replace(/[^a-z0-9]+/g,'-');
+      return { id, path, title, badge, subtitle };
+    })
+    .filter(e => e.path);
+}
+
+// ═══════════════════════════════════════════
+//  GO HOME  — back to catalog card view
+// ═══════════════════════════════════════════
+function goHome() {
+  _activeRoadmap = null;
+  _dirty = false;
+  document.title = 'My Learning Platform';
+
+  // Switch header to home-view
+  const hdr = document.getElementById('site-header');
+  hdr.className = 'site-header home-view';
+  window.scrollTo(0, 0);
+  if (window.__resetHeaderScrollState) window.__resetHeaderScrollState();
+  document.getElementById('hv-content').style.display = '';
+  document.getElementById('rv-content').style.display = 'none';
+
+  // Hide progress bar in action-bar
+  document.getElementById('action-bar').classList.add('home-mode');
+
+  // Hide toolbar (filter/search not relevant on home)
+  document.querySelector('.sticky-bar').style.display = 'none';
+
+  // Render cards first so DOM is ready, then animate stats in next frame
+  renderHomeView();
+  updateActionBar();
+  syncStickyOffsets();
+  // Defer stat rendering by two frames so the ring SVG is visible and
+  // laid out before the stroke-dashoffset transition fires.
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    renderHomeStats();
+    syncStickyOffsets();
+  }));
+  setTimeout(syncStickyOffsets, 300);
+}
+
+// ═══════════════════════════════════════════
+//  RENDER HOME STATS  (aggregate across all roadmaps)
+// ═══════════════════════════════════════════
+function renderHomeStats() {
+  let totalTasks = 0, totalDone = 0, totalRes = 0;
+  _catalog.forEach(entry => {
+    const prog = loadProgress(entry.id);
+    const res  = loadResources(entry.id);
+    let tasks = 0, done = 0;
+    Object.entries(prog).forEach(([k,v]) => {
+      if (k.startsWith('__')) return;
+      tasks++; if (v) done++;
+    });
+    // Never opened yet? Fall back to the prefetched real total so the
+    // aggregate isn't missing roadmaps the user hasn't visited.
+    if (tasks === 0 && _catalogStats[entry.id]) tasks = _catalogStats[entry.id].totalTasks;
+    totalTasks += tasks; totalDone += done;
+    Object.values(res).forEach(list => { totalRes += (list||[]).length; });
+  });
+  const pct = totalTasks ? Math.round(totalDone / totalTasks * 100) : 0;
+
+  // Animate the ring
+  const circumference = 182;
+  const offset = circumference - (pct / 100) * circumference;
+  const ringFill = document.getElementById('hv-ring-fill');
+  const ringPct  = document.getElementById('hv-ring-pct');
+  const ringCap  = document.getElementById('hv-ring-caption');
+  if (ringFill) ringFill.style.strokeDashoffset = offset;
+  if (ringPct)  ringPct.textContent  = pct + '%';
+  if (ringCap)  ringCap.textContent  = `${_catalog.length} roadmap${_catalog.length !== 1 ? 's' : ''}`;
+
+  // Stats strip
+  const el = document.getElementById('hv-global-stats');
+  if (!el) return;
+  el.innerHTML = `
+    <div class="hv-stat"><span class="hv-stat-val c-blue">${_catalog.length}</span><span class="hv-stat-lbl">Roadmaps</span></div>
+    <div class="hv-stat"><span class="hv-stat-val">${totalTasks}</span><span class="hv-stat-lbl">Total Tasks</span></div>
+    <div class="hv-stat"><span class="hv-stat-val c-green">${totalDone}</span><span class="hv-stat-lbl">Completed</span></div>
+    <div class="hv-stat"><span class="hv-stat-val c-orange">${totalTasks - totalDone}</span><span class="hv-stat-lbl">Remaining</span></div>
+    <div class="hv-stat"><span class="hv-stat-val c-purple">${totalRes}</span><span class="hv-stat-lbl">Resources</span></div>
+  `;
+}
+
+// ═══════════════════════════════════════════
+//  RENDER HOME VIEW  — roadmap cards in main
+// ═══════════════════════════════════════════
+function renderHomeView() {
+  const main = document.getElementById('main-content');
+  if (!main) return;
+
+  const cardsHTML = _catalog.map(entry => {
+    const prog  = loadProgress(entry.id);
+    const res   = loadResources(entry.id);
+
+    let tasks = 0, done = 0;
+    Object.entries(prog).forEach(([k,v]) => {
+      if (k.startsWith('__')) return;
+      tasks++; if (v) done++;
+    });
+    // Never opened yet? Use the real total fetched up front instead of 0,
+    // so the card shows actual scale (e.g. "0/42") rather than looking empty.
+    const knownTotal = _catalogStats[entry.id]?.totalTasks;
+    if (tasks === 0 && knownTotal) tasks = knownTotal;
+    const pct      = tasks ? Math.round(done / tasks * 100) : 0;
+    const resCount = Object.values(res).reduce((s,l) => s + (l||[]).length, 0);
+    const isDirty  = (() => {
+      const lt = prog.__localSaveTime, gt = prog.__gistSyncTime;
+      return lt ? (!gt || new Date(lt) > new Date(gt)) : false;
+    })();
+
+    const footerStats = [
+      done > 0        ? `<span class="rc-stat green">${done} done</span>` : '',
+      tasks-done > 0  ? `<span class="rc-stat orange">${tasks-done} left</span>` : '',
+      resCount > 0    ? `<span class="rc-stat blue">${resCount} resources</span>` : '',
+      isDirty         ? `<span class="rc-stat purple">● unsaved</span>` : '',
+    ].filter(Boolean).join('');
+
+    // "Not started" means no progress has ever been saved for this
+    // roadmap — distinct from "total task count not yet known".
+    const hasLocalProgress = Object.keys(prog).some(k => !k.startsWith('__'));
+    const notStarted = !hasLocalProgress;
+
+    // Ring geometry — small ring, circumference for r=15.5 (2*pi*r ≈ 97.4)
+    const ringC = 97.4;
+    const ringOffset = ringC - (pct/100) * ringC;
+
+    return `
+      <div class="roadmap-card" data-roadmap-id="${esc(entry.id)}" onclick="loadRoadmap(this.dataset.roadmapId)">
+        <div class="rc-body">
+          <div class="rc-header">
+            <div class="rc-icon">${entry.badge}</div>
+            <div class="rc-meta">
+              <div class="rc-title">${esc(entry.title)}</div>
+              ${entry.subtitle ? `<div class="rc-subtitle">${esc(entry.subtitle)}</div>` : ''}
+            </div>
+            <!-- Circular progress ring, same visual language as the home hero ring -->
+            <div class="rc-ring${pct===100?' is-done':''}" title="${done} of ${tasks} tasks complete">
+              <svg viewBox="0 0 36 36">
+                <circle class="rc-ring-bg"   cx="18" cy="18" r="15.5"/>
+                <circle class="rc-ring-fill" cx="18" cy="18" r="15.5"
+                        stroke-dasharray="${ringC}"
+                        stroke-dashoffset="${ringOffset}"/>
+              </svg>
+              <div class="rc-ring-label">${done}/${tasks}</div>
+            </div>
+          </div>
+        </div>
+        <div class="rc-footer">
+          ${footerStats || ''}
+          ${notStarted ? `<span class="rc-nudge">Start exploring →</span>` : `<span class="rc-stat-spacer"></span>`}
+        </div>
+      </div>`;
+  }).join('');
+
+  main.innerHTML = `
+    <div class="home-view-wrap">
+      <div class="home-section-label">Your Roadmaps &mdash; ${_catalog.length} available</div>
+      <div class="roadmap-cards-grid">${cardsHTML}</div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════
+//  UPDATE RV STATS  — glassmorphic stats strip in roadmap view header
+// ═══════════════════════════════════════════
+function updateRvStats() {
+  const done   = parseInt(document.getElementById('dash-done')?.textContent   || 0);
+  const remain = parseInt(document.getElementById('dash-remain')?.textContent || 0);
+  const total  = done + remain;
+
+  // Full glassmorphic stats strip — sections / phases / tasks / completed / remaining
+  const strip = document.getElementById('rv-global-stats');
+  if (!strip) return;
+  strip.innerHTML = `
+    <div class="hv-stat"><span class="hv-stat-val c-blue">${_rvStructure.sections}</span><span class="hv-stat-lbl">Sections</span></div>
+    <div class="hv-stat"><span class="hv-stat-val">${_rvStructure.phases}</span><span class="hv-stat-lbl">Phases</span></div>
+    <div class="hv-stat"><span class="hv-stat-val">${total}</span><span class="hv-stat-lbl">Total Tasks</span></div>
+    <div class="hv-stat"><span class="hv-stat-val c-green">${done}</span><span class="hv-stat-lbl">Completed</span></div>
+    <div class="hv-stat"><span class="hv-stat-val c-orange">${remain}</span><span class="hv-stat-lbl">Remaining</span></div>
+  `;
+}
+
+// ═══════════════════════════════════════════
+//  SWITCH ROADMAP  (called from home card click or programmatically)
+// ═══════════════════════════════════════════
+async function switchRoadmap(id) {
+  if (_activeRoadmap?.id === id) return;
+  const entry = _catalog.find(e => e.id === id);
+  if (!entry) return;
+  await loadRoadmap(entry);
+}
+
+// ═══════════════════════════════════════════
+//  LOAD ROADMAP  (fetch + parse + render)
+// ═══════════════════════════════════════════
+async function loadRoadmap(entry) {
+  // entry may arrive as a plain object or as a catalog id string
+  if (typeof entry === 'string') entry = _catalog.find(e => e.id === entry);
+  if (!entry) {
+    showToast('Could not find that roadmap — try reloading the page.', 'error');
+    return;
+  }
+
+  _activeRoadmap = entry;
+  try { localStorage.setItem(KEY_LAST_ACTIVE, entry.id); } catch {}
+
+  // Switch header to roadmap-view
+  const hdr = document.getElementById('site-header');
+  hdr.className = 'site-header roadmap-view';
+  window.scrollTo(0, 0);
+  if (window.__resetHeaderScrollState) window.__resetHeaderScrollState();
+  document.getElementById('hv-content').style.display = 'none';
+  document.getElementById('rv-content').style.display = '';
+  document.getElementById('rv-badge').textContent   = entry.badge;
+  document.getElementById('rv-title').textContent   = entry.title;
+  document.getElementById('rv-subtitle').textContent = entry.subtitle || '';
+
+  // Show action-bar progress row and toolbar
+  document.getElementById('action-bar').classList.remove('home-mode');
+  document.querySelector('.sticky-bar').style.display = '';
+  syncStickyOffsets();
+
+  // Restore dirty state for this roadmap
+  const prog    = loadProgress();
+  const localTs = prog.__localSaveTime;
+  const gistTs  = prog.__gistSyncTime;
+  _dirty = localTs ? (!gistTs || new Date(localTs) > new Date(gistTs)) : false;
+  document.title = _dirty ? `● ${entry.title}` : entry.title;
+
+  updateActionBar();
+
+  // Show loading state
+  const main = document.getElementById('main-content');
+  if (main) main.innerHTML = '<div class="loading-state"><div class="loading-spinner"></div><p>Loading roadmap…</p></div>';
+
+  try {
+    const res  = await fetchWithTimeout(REPO_BASE + entry.path);
+    if (!res.ok) throw new Error(`HTTP ${res.status} — ${entry.path}`);
+    const data = parseRoadmap(await res.text());
+    if (!data.sections.length) throw new Error('No sections found. Check the ROADMAP.md structure.');
+    render(data);
+    updateRvStats();
+    syncStickyOffsets();
+    setTimeout(syncStickyOffsets, 300);
+  } catch(e) {
+    if (main) main.innerHTML = `<div class="error-state"><strong>⚠ Could not load roadmap</strong><br>${esc(e.message)}<br><br><small style="color:var(--text-muted)">Check the path in config/catalog.md and try again.</small></div>`;
+    updateActionBar();
+    syncStickyOffsets();
+  }
+}
+
+// Legacy — no-op now (tabs replaced by home card view)
+function renderSelectorTabs() {}
+
+// ═══════════════════════════════════════════
+//  PREFETCH CATALOG STATS
+//  Computes structural counts (sections / phases / total
+//  tasks) for EVERY roadmap in the catalog up front, so home
+//  cards can show real numbers before a roadmap is ever opened.
+//  Results are cached in localStorage (keyed by a content hash
+//  of the markdown) so repeat visits don't re-fetch/re-parse
+//  unless the underlying ROADMAP.md actually changed.
+// ═══════════════════════════════════════════
+function hashStr(s) {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) { h = (h * 31 + s.charCodeAt(i)) | 0; }
+  return h.toString(36);
+}
+function countStructure(data) {
+  let totalTasks = 0, totalMods = 0, totalItems = 0;
+  data.sections.forEach(sec => {
+    (sec.items || []).forEach(item => {
+      totalItems++;
+      (item.tasks || []).forEach(() => totalTasks++);
+      (item.modules || []).forEach(m => {
+        totalMods++;
+        (m.tasks || []).forEach(() => totalTasks++);
+        (m.modules || []).forEach(s => (s.tasks || []).forEach(() => totalTasks++));
+      });
+    });
+  });
+  return { sections: data.sections.length, phases: totalItems, modules: totalMods, totalTasks };
+}
+async function prefetchCatalogStats() {
+  await Promise.all(_catalog.map(async entry => {
+    try {
+      const res = await fetchWithTimeout(REPO_BASE + entry.path);
+      if (!res.ok) return;
+      const text = await res.text();
+      const hash = hashStr(text);
+
+      // Use cache if the markdown hasn't changed since last time.
+      const cacheKey = keyTotalCache(entry.id);
+      try {
+        const cached = JSON.parse(localStorage.getItem(cacheKey) || 'null');
+        if (cached && cached.hash === hash) {
+          _catalogStats[entry.id] = cached.stats;
+          return;
+        }
+      } catch {}
+
+      const stats = countStructure(parseRoadmap(text));
+      _catalogStats[entry.id] = stats;
+      try { localStorage.setItem(cacheKey, JSON.stringify({ hash, stats })); } catch {}
+    } catch {
+      // Network/parse failure for this one roadmap — just skip it,
+      // its card will fall back to locally-saved progress only.
+    }
+  }));
+}
+
+// ═══════════════════════════════════════════
+//  BOOT
+// ═══════════════════════════════════════════
+async function boot() {
+  const cfg = getCfg();
+  if (cfg.pat)    document.getElementById('pat-input').value  = cfg.pat;
+  if (cfg.gistId) document.getElementById('gist-input').value = cfg.gistId;
+
+  updateActionBar();
+  syncStickyOffsets();
+  setTimeout(syncStickyOffsets, 100);
+
+  // 1. Fetch and parse the catalog
+  try {
+    const catRes     = await fetchWithTimeout(REPO_BASE + 'config/catalog.md');
+    if (!catRes.ok) throw new Error(`Catalog HTTP ${catRes.status}`);
+    _catalog = parseCatalog(await catRes.text());
+    if (!_catalog.length) throw new Error('config/catalog.md is empty — add at least one roadmap path.');
+  } catch(e) {
+    document.getElementById('main-content').innerHTML = `
+      <div class="home-view-wrap">
+        <div class="error-state"><strong>⚠ Could not load catalog</strong><br>${esc(e.message)}<br><br>
+        <small style="color:var(--text-muted)">Create <code>config/catalog.md</code> in your repository.</small></div>
+      </div>`;
+    return;
+  }
+
+  // 2. Show home view immediately (uses cached stats if available)
+  goHome();
+
+  // 3. Fetch real total-task counts for every roadmap in the background,
+  //    then refresh the cards once we know them (covers never-opened roadmaps).
+  prefetchCatalogStats().then(() => {
+    if (!_activeRoadmap) { renderHomeView(); renderHomeStats(); }
+  });
+}
+// ═══════════════════════════════════════════
+//  SYNC STICKY OFFSETS
+//  Measures actual header / action-bar heights and
+//  stacks the sticky layers (header → action-bar →
+//  toolbar) so none of them overlap, regardless of
+//  font scaling, screen size, or theme. When the
+//  header is auto-hidden (scrolled down), its space
+//  is reclaimed so action-bar/toolbar slide up to top:0.
+// ═══════════════════════════════════════════
+function syncStickyOffsets() {
+  const hdr = document.getElementById('site-header');
+  const ab  = document.getElementById('action-bar');
+  const sb  = document.querySelector('.sticky-bar');
+  if (!ab || !sb || !hdr) return;
+
+  // The header is only sticky in roadmap-view; in home-view it scrolls
+  // away normally, so the action-bar sits at top:0 on its own.
+  const headerIsSticky = hdr.classList.contains('roadmap-view');
+  const headerHidden    = hdr.classList.contains('header-hidden');
+  const headerH = (headerIsSticky && !headerHidden) ? Math.ceil(hdr.getBoundingClientRect().height) : 0;
+
+  ab.style.top = headerH + 'px';
+  const abH = Math.ceil(ab.getBoundingClientRect().height);
+  sb.style.top = (headerH + abH) + 'px';
+}
+// Run on load and whenever the window resizes
+window.addEventListener('resize', syncStickyOffsets);
+
+// ═══════════════════════════════════════════
+//  AUTO-HIDE HEADER ON SCROLL (roadmap view only)
+//  Scrolling down hides the gradient header band to
+//  reclaim space; scrolling up reveals it again.
+//  Action-bar + toolbar stay pinned at all times.
+// ═══════════════════════════════════════════
+(function () {
+  let lastY = window.scrollY || 0;
+  let ticking = false;
+  const HIDE_THRESHOLD = 8;     // ignore tiny jitters
+  const MIN_Y_TO_HIDE  = 40;    // don't hide until scrolled a bit past the top
+
+  window.__resetHeaderScrollState = function () {
+    lastY = window.scrollY || 0;
+    const hdr = document.getElementById('site-header');
+    if (hdr) hdr.classList.remove('header-hidden');
+  };
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const hdr = document.getElementById('site-header');
+      if (hdr && hdr.classList.contains('roadmap-view')) {
+        const y = window.scrollY || 0;
+        const delta = y - lastY;
+        if (y <= MIN_Y_TO_HIDE) {
+          hdr.classList.remove('header-hidden');
+        } else if (delta > HIDE_THRESHOLD) {
+          hdr.classList.add('header-hidden');
+        } else if (delta < -HIDE_THRESHOLD) {
+          hdr.classList.remove('header-hidden');
+        }
+        syncStickyOffsets();
+        lastY = y;
+      }
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+
+document.addEventListener('DOMContentLoaded', boot);
+</script>
+  <script>
+  try {
+    document.getElementById('ext-status').textContent = '✅ AFTER marker — B_toast_dash is FINE';
+    document.getElementById('ext-status').style.background = 'green';
+  } catch(e) {
+    document.getElementById('ext-status').textContent = '⚠️ threw in B_toast_dash: ' + e.message;
+  }
+  </script>
+</body>
+</html>
