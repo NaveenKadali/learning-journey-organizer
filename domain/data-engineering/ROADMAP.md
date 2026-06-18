@@ -1,45 +1,38 @@
-> # Data Engineering Roadmap (Beginner → Expert)
+> # 1. Executive Summary
 
-> ## 1. Executive Summary
+- [ ] Target Role: **Data Engineer**
+- [ ] Goal: Progress from Beginner → Expert while maximizing employability, technical depth, portfolio quality, interview readiness, and long-term career growth.
+- [ ] Most Efficient Path:
+  - SQL → Python → Data Modeling → ETL/ELT → Data Warehousing → Cloud → Spark → Streaming → Architecture → Leadership
+- [ ] Focus Areas:
+  - Data Engineering Fundamentals
+  - Cloud Data Platforms
+  - Distributed Systems
+  - Data Architecture
+  - Data Governance
+  - Performance Optimization
+- [ ] Expected Timeline:
+  - Beginner → Junior: 6–12 months
+  - Junior → Mid-Level: 2–4 years
+  - Mid-Level → Senior: 4–7 years
+  - Senior → Expert: 8–15+ years
 
-- [ ] Learn Programming Fundamentals (Python + SQL)
-- [ ] Learn Databases (OLTP + OLAP)
-- [ ] Learn Data Modeling
-- [ ] Learn ETL/ELT Pipelines
-- [ ] Learn Data Warehousing
-- [ ] Learn Cloud Platforms
-- [ ] Learn Big Data Ecosystem
-- [ ] Learn Distributed Computing
-- [ ] Learn Data Lake & Lakehouse Architecture
-- [ ] Learn Streaming Systems
-- [ ] Learn Data Quality & Governance
-- [ ] Learn DataOps & MLOps Basics
-- [ ] Learn Architecture & System Design
-- [ ] Build Portfolio Projects
-- [ ] Gain Real-World Experience
-- [ ] Prepare for Interviews
-- [ ] Develop Leadership & Architecture Skills
-
----
-
-> ## 2. Career Overview
+> # 2. Career Overview
 
 ### What Data Engineers Do
 
-- [ ] Build data pipelines
-- [ ] Design databases and warehouses
-- [ ] Process large-scale datasets
-- [ ] Enable analytics and AI teams
-- [ ] Maintain data quality and reliability
-- [ ] Optimize data infrastructure
+- [ ] Build and maintain data pipelines
+- [ ] Design data warehouses and lakehouses
+- [ ] Process large-scale data efficiently
+- [ ] Enable analytics, BI, AI, and ML teams
+- [ ] Ensure reliability, quality, governance, and security of data
 
 ### Industry Demand & Future Outlook
 
 - [ ] Extremely high demand globally
-- [ ] Critical for AI, ML, Analytics, GenAI
-- [ ] Strong salary growth
-- [ ] Cloud-first data platforms increasing demand
-- [ ] Lakehouse architecture becoming standard
+- [ ] Core role in AI, Analytics, and Digital Transformation
+- [ ] Strong demand for Cloud + Spark + Lakehouse engineers
+- [ ] Increasing focus on Data Platforms, Real-Time Systems, and AI Infrastructure
 
 ### Key Responsibilities
 
@@ -47,659 +40,629 @@
 - [ ] ETL/ELT development
 - [ ] Data modeling
 - [ ] Data warehouse design
-- [ ] Pipeline monitoring
-- [ ] Data governance
+- [ ] Pipeline orchestration
+- [ ] Monitoring and observability
 - [ ] Performance optimization
+- [ ] Data governance and security
 
 ### Career Progression
 
-- [ ] Intern
+- [ ] Intern/Trainee
 - [ ] Junior Data Engineer
 - [ ] Data Engineer
 - [ ] Senior Data Engineer
 - [ ] Lead Data Engineer
-- [ ] Staff/Principal Data Engineer
+- [ ] Staff/Principal Engineer
 - [ ] Data Architect
-- [ ] Director/Head of Data
+- [ ] Director/Head of Data Engineering
 
----
+> # 3. Roadmap by Expertise Level
 
-> ## 3. Roadmap by Expertise Level
+## Beginner (0–3 Months)
 
-> ### Beginner Level
+### Skills
 
-#### Skills
+- [ ] Computer fundamentals
+- [ ] Basic SQL
+- [ ] Python basics
+- [ ] Linux basics
+- [ ] Git & GitHub
 
-- [ ] Computer Fundamentals
-- [ ] Linux Basics
-- [ ] Git Basics
-- [ ] Python Fundamentals
-- [ ] SQL Fundamentals
+### Tools
 
-#### Tools
-
+- [ ] PostgreSQL
 - [ ] Python
+- [ ] VS Code
 - [ ] Git
-- [ ] GitHub
-- [ ] MySQL/PostgreSQL
 
-#### Key Concepts
+### Key Concepts
 
-- [ ] Variables
-- [ ] Functions
-- [ ] OOP
-- [ ] SQL Queries
+- [ ] Databases
+- [ ] Tables
 - [ ] Joins
-- [ ] Aggregations
+- [ ] Functions
+- [ ] APIs
+- [ ] CSV/JSON
 
-#### Learning Resources
+### Learning Resources
 
-- [ ] Python Official Docs
-- [ ] PostgreSQL Docs
 - [ ] SQLBolt
-- [ ] LeetCode SQL
+- [ ] PostgreSQL Documentation
+- [ ] Python Official Tutorial
+- [ ] GitHub Skills
 
-#### Expected Outcomes
+### Expected Outcome
 
-- [ ] Write Python scripts
-- [ ] Query databases confidently
+- [ ] Write SQL queries confidently
+- [ ] Build simple Python scripts
 - [ ] Use Git professionally
 
 ---
 
-> ### Foundation Level
+## Foundation (3–6 Months)
 
-#### Skills
+### Skills
 
 - [ ] Advanced SQL
-- [ ] Database Design
-- [ ] Data Modeling
-- [ ] API Integration
+- [ ] Python for data processing
+- [ ] Data cleaning
+- [ ] ETL basics
 
-#### Tools
+### Tools
 
-- [ ] PostgreSQL
-- [ ] MySQL
-- [ ] pgAdmin
-- [ ] Postman
-
-#### Concepts
-
-- [ ] Normalization
-- [ ] Denormalization
-- [ ] Indexing
-- [ ] Transactions
-- [ ] ACID
-
-#### Resources
-
-- [ ] Designing Data Intensive Applications
-- [ ] PostgreSQL Documentation
-
-#### Outcomes
-
-- [ ] Design schemas
-- [ ] Build small ETL pipelines
-
----
-
-> ### Junior Data Engineer
-
-#### Skills
-
-- [ ] ETL Development
-- [ ] Data Warehousing
-- [ ] Python Automation
-- [ ] Airflow Basics
-
-#### Tools
-
-- [ ] Airflow
 - [ ] Pandas
+- [ ] NumPy
 - [ ] PostgreSQL
 - [ ] Docker
 
-#### Concepts
+### Key Concepts
 
-- [ ] ETL
-- [ ] ELT
-- [ ] Star Schema
-- [ ] Snowflake Schema
+- [ ] Data pipelines
+- [ ] Data quality
+- [ ] Data modeling
+- [ ] Normalization
 
-#### Resources
+### Resources
 
-- [ ] DataTalksClub
-- [ ] Airflow Documentation
+- [ ] DataTalksClub Data Engineering Zoomcamp
+- [ ] Designing Data Intensive Applications (DDIA)
 
-#### Outcomes
+### Expected Outcome
 
-- [ ] Build production pipelines
-- [ ] Schedule workflows
+- [ ] Build end-to-end ETL pipelines
 
 ---
 
-> ### Mid-Level Data Engineer
+## Junior (6–18 Months)
 
-#### Skills
+### Skills
 
-- [ ] Cloud Platforms
-- [ ] Spark
+- [ ] Data Warehousing
+- [ ] Batch Processing
+- [ ] Airflow
+- [ ] Cloud Fundamentals
+
+### Tools
+
+- [ ] Apache Airflow
+- [ ] AWS/GCP/Azure
+- [ ] Snowflake/BigQuery
+
+### Concepts
+
+- [ ] Star Schema
+- [ ] Dimensional Modeling
 - [ ] Data Lakes
+- [ ] ELT
+
+### Resources
+
+- [ ] Kimball Data Warehouse Toolkit
+- [ ] Cloud Fundamentals Courses
+
+### Expected Outcome
+
+- [ ] Production-grade pipelines
+- [ ] Cloud-based data solutions
+
+---
+
+## Mid-Level (2–5 Years)
+
+### Skills
+
+- [ ] Apache Spark
+- [ ] Distributed Computing
+- [ ] Streaming Systems
 - [ ] CI/CD
 
-#### Tools
+### Tools
 
 - [ ] Spark
-- [ ] AWS
-- [ ] Azure
-- [ ] GCP
+- [ ] Kafka
+- [ ] Databricks
+- [ ] Terraform
 
-#### Concepts
+### Concepts
 
-- [ ] Distributed Computing
 - [ ] Partitioning
-- [ ] Data Lakes
+- [ ] Parallelism
+- [ ] Streaming Architectures
+- [ ] Infrastructure as Code
 
-#### Resources
+### Resources
 
 - [ ] Spark Documentation
-- [ ] AWS Data Engineering Paths
-
-#### Outcomes
-
-- [ ] Manage large-scale pipelines
-- [ ] Handle TB-scale datasets
-
----
-
-> ### Senior Data Engineer
-
-#### Skills
-
-- [ ] Architecture Design
-- [ ] Performance Optimization
-- [ ] Streaming Systems
-- [ ] Data Governance
-
-#### Tools
-
-- [ ] Kafka
-- [ ] Snowflake
-- [ ] Databricks
-
-#### Concepts
-
-- [ ] Event-Driven Architecture
-- [ ] CDC
-- [ ] Data Contracts
-
-#### Resources
-
 - [ ] Kafka Documentation
 - [ ] Databricks Academy
 
-#### Outcomes
+### Expected Outcome
 
-- [ ] Lead projects
-- [ ] Architect enterprise systems
+- [ ] Handle TB-scale workloads
 
 ---
 
-> ### Expert Level
+## Senior (5–8 Years)
 
-#### Skills
+### Skills
+
+- [ ] Architecture Design
+- [ ] Scalability
+- [ ] Reliability Engineering
+- [ ] Team Mentoring
+
+### Tools
+
+- [ ] Lakehouse Platforms
+- [ ] Kubernetes
+- [ ] Monitoring Tools
+
+### Concepts
+
+- [ ] CAP Theorem
+- [ ] Distributed Systems
+- [ ] Event-Driven Architecture
+
+### Expected Outcome
+
+- [ ] Design enterprise-scale platforms
+
+---
+
+## Expert (8+ Years)
+
+### Skills
 
 - [ ] Enterprise Architecture
-- [ ] Leadership
-- [ ] Strategy
+- [ ] Organizational Leadership
 - [ ] Platform Engineering
+- [ ] Strategic Decision Making
 
-#### Tools
+### Tools
 
-- [ ] Multi-Cloud Platforms
-- [ ] Lakehouse Platforms
+- [ ] Multi-cloud Platforms
+- [ ] Advanced Observability Stack
 
-#### Concepts
+### Concepts
 
 - [ ] Data Mesh
-- [ ] Data Fabric
-- [ ] AI Infrastructure
+- [ ] Data Products
+- [ ] Platform Strategy
 
-#### Outcomes
+### Expected Outcome
 
-- [ ] Influence organizational strategy
-- [ ] Design enterprise-wide platforms
+- [ ] Define architecture for entire organizations
 
----
+> # 4. Roadmap by Designation
 
-> ## 4. Roadmap by Designation
+## Intern / Trainee
 
-> ### Intern / Trainee
+### Responsibilities
 
-#### Responsibilities
+- [ ] SQL development
+- [ ] Data validation
+- [ ] Documentation
 
-- [ ] SQL Queries
-- [ ] Data Validation
-- [ ] Pipeline Support
+### Skills
 
-#### Skills
-
-- [ ] Python
 - [ ] SQL
+- [ ] Python
 - [ ] Git
 
-#### Experience
+### Experience
 
-- [ ] 0–1 Years
+- [ ] 0–1 year
 
 ---
 
-> ### Junior Data Engineer
+## Junior Data Engineer
 
-#### Responsibilities
+### Responsibilities
 
-- [ ] ETL Development
-- [ ] Monitoring Jobs
+- [ ] ETL development
+- [ ] Basic pipeline maintenance
 
-#### Skills
+### Skills
 
-- [ ] Python
 - [ ] SQL
+- [ ] Python
 - [ ] Airflow
 
-#### Experience
+### Experience
 
-- [ ] 1–3 Years
+- [ ] 1–2 years
 
 ---
 
-> ### Mid-Level Data Engineer
+## Mid-Level Data Engineer
 
-#### Responsibilities
+### Responsibilities
 
-- [ ] Build Data Platforms
-- [ ] Optimize Pipelines
+- [ ] Build scalable pipelines
+- [ ] Cloud implementation
 
-#### Skills
+### Skills
 
 - [ ] Spark
 - [ ] Cloud
-- [ ] Warehousing
+- [ ] Data Modeling
 
-#### Experience
+### Experience
 
-- [ ] 3–5 Years
+- [ ] 3–5 years
 
 ---
 
-> ### Senior Data Engineer
+## Senior Data Engineer
 
-#### Responsibilities
+### Responsibilities
 
-- [ ] Lead Projects
-- [ ] Mentor Team
+- [ ] Lead projects
+- [ ] Mentor engineers
+- [ ] Architecture reviews
 
-#### Skills
+### Skills
 
-- [ ] Kafka
+- [ ] Distributed Systems
 - [ ] Architecture
-- [ ] Databricks
 
-#### Experience
+### Experience
 
-- [ ] 5–8 Years
+- [ ] 5–8 years
 
 ---
 
-> ### Lead Data Engineer
+## Lead Data Engineer
 
-#### Responsibilities
+### Responsibilities
 
-- [ ] Technical Leadership
-- [ ] Design Reviews
+- [ ] Technical leadership
+- [ ] Cross-team collaboration
 
-#### Skills
+### Skills
 
 - [ ] Leadership
-- [ ] Architecture
+- [ ] System Design
 
-#### Experience
+### Experience
 
-- [ ] 7–10 Years
+- [ ] 7–10 years
 
 ---
 
-> ### Principal / Staff Data Engineer
+## Principal / Staff Engineer
 
-#### Responsibilities
+### Responsibilities
 
-- [ ] Company-Wide Standards
+- [ ] Organization-wide engineering decisions
+
+### Skills
+
+- [ ] Architecture
 - [ ] Platform Strategy
 
-#### Skills
+### Experience
 
-- [ ] Data Mesh
-- [ ] Governance
-
-#### Experience
-
-- [ ] 10+ Years
+- [ ] 10+ years
 
 ---
 
-> ### Data Architect / Director
+## Architect / Director / Expert
 
-#### Responsibilities
+### Responsibilities
 
-- [ ] Enterprise Architecture
-- [ ] Budgeting
-- [ ] Strategic Planning
+- [ ] Enterprise architecture
+- [ ] Strategic planning
 
-#### Skills
+### Skills
 
-- [ ] Executive Communication
-- [ ] Architecture
+- [ ] Executive communication
+- [ ] Organizational leadership
 
-#### Experience
+### Experience
 
-- [ ] 12+ Years
+- [ ] 12+ years
 
----
+> # 5. Tools & Technologies
 
-> ## 5. Tools & Technologies
+### Essential
 
-### Programming
-
-- [ ] Python
 - [ ] SQL
+- [ ] Python
+- [ ] Git
+- [ ] Linux
 
-### Databases
+### Data Storage
 
 - [ ] PostgreSQL
 - [ ] MySQL
-
-### Data Warehouses
-
 - [ ] Snowflake
 - [ ] BigQuery
-- [ ] Redshift
-- [ ] Synapse
 
-### ETL/Orchestration
-
-- [ ] Airflow
-- [ ] Dagster
-
-### Big Data
+### Processing
 
 - [ ] Spark
-- [ ] Hadoop (Concepts Only)
+- [ ] Databricks
+
+### Orchestration
+
+- [ ] Airflow
 
 ### Streaming
 
 - [ ] Kafka
-- [ ] Kinesis
 
 ### Cloud
 
-- [ ] AWS (Priority 1)
-- [ ] Azure
+- [ ] AWS
 - [ ] GCP
+- [ ] Azure
 
-### Containers
+### Infrastructure
 
 - [ ] Docker
 - [ ] Kubernetes
-
-### Lakehouse
-
-- [ ] Databricks
-- [ ] Delta Lake
-- [ ] Apache Iceberg
+- [ ] Terraform
 
 ### Monitoring
 
 - [ ] Prometheus
 - [ ] Grafana
 
----
+> # 6. Projects & Portfolio
 
-> ## 6. Projects & Portfolio
+## Beginner Project
 
-> ### Beginner Projects
+### Sales ETL Pipeline
 
-#### SQL Analytics Project
-
-- [ ] Objective: Analyze sales data
-- [ ] Stack: PostgreSQL
-- [ ] Demonstrates: SQL
-
-#### API to Database Pipeline
-
-- [ ] Objective: Fetch API data and store
-- [ ] Stack: Python + PostgreSQL
-- [ ] Demonstrates: ETL
-
----
-
-> ### Intermediate Projects
-
-#### ETL Pipeline
-
-- [ ] Objective: Daily ingestion pipeline
-- [ ] Stack: Airflow + PostgreSQL
-- [ ] Demonstrates: Scheduling
-
-#### Data Warehouse
-
-- [ ] Objective: Build analytics warehouse
-- [ ] Stack: Snowflake
-- [ ] Demonstrates: Modeling
-
----
-
-> ### Advanced Projects
-
-#### Streaming Analytics Platform
-
-- [ ] Objective: Real-time analytics
-- [ ] Stack: Kafka + Spark
-- [ ] Demonstrates: Streaming
-
-#### Data Lakehouse
-
-- [ ] Objective: Unified analytics platform
-- [ ] Stack: Databricks + Delta Lake
-- [ ] Demonstrates: Lakehouse
-
----
-
-> ### Expert-Level Projects
-
-#### Enterprise Data Platform
-
-- [ ] Objective: End-to-End Data Ecosystem
-- [ ] Stack:
-  - [ ] Kafka
-  - [ ] Spark
-  - [ ] Airflow
-  - [ ] Snowflake
-  - [ ] AWS
-  - [ ] Terraform
-
+- [ ] Objective: Load CSV data into PostgreSQL
+- [ ] Stack: Python, PostgreSQL
 - [ ] Demonstrates:
-  - [ ] Architecture
-  - [ ] Scalability
-  - [ ] Governance
-  - [ ] Leadership
+  - SQL
+  - ETL
+  - Data Cleaning
 
 ---
 
-> ## 7. Certifications (Ranked)
+## Intermediate Project
 
-| Rank | Certification | ROI | Industry Value | Priority |
-|-------|--------------|------|---------------|----------|
-| 1 | AWS Certified Data Engineer Associate | Very High | Very High | Essential |
-| 2 | Databricks Data Engineer Associate | Very High | Very High | Essential |
-| 3 | Snowflake SnowPro Core | High | High | Essential |
-| 4 | Azure Data Engineer Associate (DP-203) | High | High | Optional |
-| 5 | Google Professional Data Engineer | High | High | Optional |
-| 6 | Kafka Certification | Medium | Medium | Optional |
-| 7 | Airflow Certification | Medium | Medium | Optional |
+### Cloud Data Warehouse
+
+- [ ] Objective: Build ELT pipeline
+- [ ] Stack: Airflow, Snowflake/BigQuery
+- [ ] Demonstrates:
+  - Orchestration
+  - Data Modeling
+  - Cloud Skills
 
 ---
 
-> ## 8. Interview & Job Strategy
+## Advanced Project
 
-### SQL
+### Real-Time Analytics Platform
 
-- [ ] Joins
-- [ ] Window Functions
-- [ ] CTEs
-- [ ] Query Optimization
+- [ ] Objective: Stream events and build dashboards
+- [ ] Stack: Kafka, Spark, Databricks
+- [ ] Demonstrates:
+  - Streaming
+  - Distributed Computing
+  - Scalability
 
-### Python
+---
 
-- [ ] OOP
-- [ ] Generators
-- [ ] Decorators
-- [ ] Concurrency
+## Expert-Level Project
 
-### Data Engineering
+### Enterprise Lakehouse Platform
 
-- [ ] ETL vs ELT
-- [ ] Data Lakes
-- [ ] Warehouses
-- [ ] CDC
-- [ ] Streaming
+- [ ] Objective: End-to-end modern data platform
+- [ ] Stack:
+  - Spark
+  - Kafka
+  - Airflow
+  - Terraform
+  - Kubernetes
+  - Cloud
+- [ ] Demonstrates:
+  - Architecture
+  - Reliability
+  - Governance
+  - Leadership
 
-### System Design
+> # 7. Certifications (Ranked)
 
-- [ ] Design ETL Systems
-- [ ] Design Data Lake
-- [ ] Design Analytics Platform
+## Tier 1 (Highest ROI)
 
-### Portfolio
+### Essential
 
-- [ ] 4 Strong Projects
-- [ ] GitHub Repositories
-- [ ] Architecture Diagrams
+- [ ] AWS Certified Data Engineer Associate
+- [ ] Google Professional Data Engineer
+- [ ] Databricks Data Engineer Associate
+
+---
+
+## Tier 2
+
+### Valuable
+
+- [ ] Snowflake SnowPro Core
+- [ ] Azure Data Engineer Associate
+
+---
+
+## Tier 3
+
+### Optional
+
+- [ ] Confluent Kafka Certification
+- [ ] Terraform Associate
+
+### Ranking by Industry Value
+
+1. [ ] Google Professional Data Engineer
+2. [ ] AWS Data Engineer Associate
+3. [ ] Databricks Data Engineer
+4. [ ] SnowPro Core
+5. [ ] Azure Data Engineer
+
+> # 8. Interview & Job Strategy
+
+### Technical Preparation
+
+- [ ] SQL (Top Priority)
+- [ ] Python coding
+- [ ] Data Modeling
+- [ ] ETL Design
+- [ ] Spark Fundamentals
+- [ ] System Design
+
+### Portfolio Strategy
+
+- [ ] 3 strong projects minimum
+- [ ] Cloud deployment
+- [ ] Architecture diagrams
 - [ ] Documentation
 
-### Job Search
+### Resume Strategy
 
-- [ ] LinkedIn Optimization
-- [ ] Networking
-- [ ] Referrals
-- [ ] Open Source Contributions
+- [ ] Quantified impact
+- [ ] Cloud technologies
+- [ ] Business outcomes
+- [ ] GitHub links
 
----
+### FAANG-Level Preparation
 
-> ## 9. Expert-Level Growth Plan
+- [ ] Advanced SQL
+- [ ] Distributed Systems
+- [ ] Data Architecture
+- [ ] Leadership Principles
+- [ ] System Design Interviews
+
+> # 9. Expert-Level Growth Plan
 
 ### Become Top 1%
 
-- [ ] Master Distributed Systems
-- [ ] Master Spark Internals
-- [ ] Master Kafka Internals
-- [ ] Master Cloud Architecture
-- [ ] Master Data Modeling
-- [ ] Learn Cost Optimization
-- [ ] Learn Leadership
+- [ ] Master distributed systems
+- [ ] Master cloud architecture
+- [ ] Understand business deeply
+- [ ] Build large-scale production systems
+- [ ] Teach and mentor others
+- [ ] Contribute to open source
+
+### Leadership Skills
+
+- [ ] Stakeholder management
+- [ ] Technical strategy
+- [ ] Roadmap planning
+- [ ] Team development
 
 ### Architecture Skills
 
 - [ ] Data Mesh
-- [ ] Data Fabric
-- [ ] Event-Driven Architecture
-- [ ] Multi-Cloud Design
+- [ ] Lakehouse Design
+- [ ] Event-Driven Systems
+- [ ] Multi-cloud Architecture
 
 ### Emerging Trends
 
+- [ ] AI Data Infrastructure
+- [ ] Data Products
+- [ ] Data Mesh
 - [ ] Lakehouse Architecture
-- [ ] Apache Iceberg
-- [ ] Delta Lake
-- [ ] Real-Time Analytics
-- [ ] AI Data Platforms
 - [ ] Vector Databases
-- [ ] Agentic AI Data Pipelines
+- [ ] Real-Time Analytics
+- [ ] Data Observability
 
----
+> # 10. Action Plan
 
-> ## 10. Action Plan
+## First 90 Days
 
-### Phase 1 (0–2 Months)
+- [ ] Learn SQL thoroughly
+- [ ] Learn Python fundamentals
+- [ ] Learn Git
+- [ ] Complete one ETL project
 
-- [ ] Python
-- [ ] SQL
-- [ ] Git
-- [ ] PostgreSQL
+## Months 4–6
 
-### Phase 2 (2–4 Months)
+- [ ] Learn Data Modeling
+- [ ] Learn Airflow
+- [ ] Learn Docker
+- [ ] Build cloud project
 
-- [ ] Advanced SQL
-- [ ] Data Modeling
-- [ ] ETL Fundamentals
+## Months 7–12
 
-### Phase 3 (4–6 Months)
+- [ ] Learn Spark
+- [ ] Learn Cloud Platform
+- [ ] Build portfolio projects
+- [ ] Apply for Junior roles
 
-- [ ] Airflow
-- [ ] Docker
-- [ ] Warehousing
+## Year 2+
 
-### Phase 4 (6–9 Months)
+- [ ] Master distributed systems
+- [ ] Learn Kafka
+- [ ] Learn Terraform
+- [ ] Build real-time systems
 
-- [ ] AWS
-- [ ] Spark
-- [ ] Data Lakes
-
-### Phase 5 (9–12 Months)
-
-- [ ] Kafka
-- [ ] Databricks
-- [ ] Streaming
-
-### Phase 6 (12–18 Months)
-
-- [ ] Architecture
-- [ ] Governance
-- [ ] System Design
-
----
-
-> ## 11. Final Priority Checklist
+> # 11. Final Priority Checklist
 
 ### Must Learn
 
-- [ ] Python
 - [ ] SQL
-- [ ] PostgreSQL
+- [ ] Python
 - [ ] Data Modeling
 - [ ] Airflow
-- [ ] AWS
+- [ ] Cloud Platform
 - [ ] Spark
-- [ ] Kafka
-- [ ] Snowflake
-- [ ] Databricks
 
 ### Must Build
 
-- [ ] ETL Pipeline
-- [ ] Data Warehouse
-- [ ] Streaming System
-- [ ] Lakehouse Project
+- [ ] ETL Project
+- [ ] Data Warehouse Project
+- [ ] Streaming Project
+- [ ] Cloud Deployment Project
 
-### Must Practice
+### Must Demonstrate
 
-- [ ] SQL Interview Questions
-- [ ] Python Interview Questions
-- [ ] Data Engineering System Design
-- [ ] Cloud Design
+- [ ] Scalability
+- [ ] Reliability
+- [ ] Data Quality
+- [ ] Architecture Thinking
 
-### Must Achieve
+### Avoid
 
-- [ ] Strong GitHub Portfolio
-- [ ] Production-Grade Projects
-- [ ] Cloud Experience
-- [ ] Certification (AWS + Databricks)
-- [ ] Job-Ready Data Engineering Profile
+- [ ] Collecting too many certifications
+- [ ] Learning multiple clouds too early
+- [ ] Tool-hopping without projects
+- [ ] Over-focusing on theory
+
+### Highest ROI Learning Sequence
+
+- [ ] SQL
+- [ ] Python
+- [ ] Data Modeling
+- [ ] ETL/ELT
+- [ ] Airflow
+- [ ] Cloud
+- [ ] Spark
+- [ ] Kafka
+- [ ] Terraform
+- [ ] Architecture & Leadership
