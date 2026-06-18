@@ -1080,18 +1080,26 @@ function toggleTheme() {
   const current = document.documentElement.getAttribute('data-theme') || 'dark';
   const next = current === 'dark' ? 'light' : 'dark';
   applyTheme(next);
-  localStorage.setItem(KEY_THEME, next);
+  try { localStorage.setItem(KEY_THEME, next); } catch (e) { console.warn('Could not persist theme:', e); }
 }
 (function() {
-  const saved = localStorage.getItem(KEY_THEME) || 'dark';
-  applyTheme(saved);
+  try {
+    const saved = localStorage.getItem(KEY_THEME) || 'dark';
+    applyTheme(saved);
+  } catch (e) {
+    // localStorage can throw (SecurityError) in some hosted/sandboxed
+    // contexts even though it works fine from a local file:// load.
+    // Never let that kill the rest of the script — fall back to dark.
+    console.warn('localStorage unavailable, using default theme:', e);
+    applyTheme('dark');
+  }
 })();
 
 // ═══════════════════════════════════════════
 //  GIST CONFIG
 // ═══════════════════════════════════════════
 function getCfg() { try { return JSON.parse(localStorage.getItem(KEY_CFG)||'{}'); } catch { return {}; } }
-function setCfg(o) { localStorage.setItem(KEY_CFG, JSON.stringify(o)); }
+function setCfg(o) { try { localStorage.setItem(KEY_CFG, JSON.stringify(o)); } catch (e) { showToast('Could not save settings — storage is blocked in this browser', 'error'); } }
 
 // ═══════════════════════════════════════════
 //  LOCAL PROGRESS  (per roadmap)
@@ -1102,7 +1110,8 @@ function loadProgress(id) {
 }
 function saveLocalProgress(data, id) {
   const k = keyProgress(id || _activeRoadmap?.id || 'default');
-  localStorage.setItem(k, JSON.stringify(data));
+  try { localStorage.setItem(k, JSON.stringify(data)); }
+  catch (e) { showToast('Could not save progress — storage is blocked in this browser', 'error'); }
 }
 
 // ═══════════════════════════════════════════
@@ -1114,7 +1123,8 @@ function loadResources(id) {
 }
 function saveLocalResources(data, id) {
   const k = keyResources(id || _activeRoadmap?.id || 'default');
-  localStorage.setItem(k, JSON.stringify(data));
+  try { localStorage.setItem(k, JSON.stringify(data)); }
+  catch (e) { showToast('Could not save resources — storage is blocked in this browser', 'error'); }
 }
 
 // ═══════════════════════════════════════════
@@ -2193,7 +2203,7 @@ async function loadRoadmap(entry) {
   }
 
   _activeRoadmap = entry;
-  localStorage.setItem(KEY_LAST_ACTIVE, entry.id);
+  try { localStorage.setItem(KEY_LAST_ACTIVE, entry.id); } catch {}
 
   // Switch header to roadmap-view
   const hdr = document.getElementById('site-header');
@@ -2251,26 +2261,4 @@ function renderSelectorTabs() {}
 //  Results are cached in localStorage (keyed by a content hash
 //  of the markdown) so repeat visits don't re-fetch/re-parse
 //  unless the underlying ROADMAP.md actually changed.
-// ═══════════════════════════════════════════
-function hashStr(s) {
-  let h = 0;
-  for (let i = 0; i < s.length; i++) { h = (h * 31 + s.charCodeAt(i)) | 0; }
-  return h.toString(36);
-}
-function countStructure(data) {
-  let totalTasks = 0, totalMods = 0, totalItems = 0;
-  data.sections.forEach(sec => {
-    (sec.items || []).forEach(item => {
-      totalItems++;
-      (item.tasks || []).forEach(() => totalTasks++);
-      (item.modules || []).forEach(m => {
-        totalMods++;
-        (m.tasks || []).forEach(() => totalTasks++);
-        (m.modules || []).forEach(s => (s.tasks || []).forEach(() => totalTasks++));
-      });
-    });
-  });
-  return { sections: data.sections.length, phases: totalItems, modules: totalMods, totalTasks };
-}
-async function prefetchCatalogStats() {
-  await 
+// ══════════════════════════════════════════
