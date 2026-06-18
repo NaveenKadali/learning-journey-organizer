@@ -1,212 +1,171 @@
-> # Backend Development (Python) Roadmap
+> # Phase 1 — Beginner
 
-> ## Phase 1 — Beginner
-
-> ### Designation
-
-- [ ] Python Learner
+> ## Designation
 - [ ] Backend Development Learner
+- [ ] Python Trainee
 
-> ### Goal
-
+> ## Goal
 - [ ] Learn programming fundamentals
-- [ ] Build problem-solving skills
+- [ ] Build coding habits
 
-> ### Module 1: Python Fundamentals
+> ## Module 1: Python Fundamentals
 
-> #### Variables & Data Types
-
+### Variables & Data Types
 - [ ] Variables
 - [ ] Strings
 - [ ] Integers
 - [ ] Floats
-- [ ] Booleans
 
-> #### Control Flow
-
+### Control Flow
 - [ ] If Statements
 - [ ] Loops
-- [ ] Nested Conditions
-
-> #### Functions
-
-- [ ] Function Definition
-- [ ] Parameters
-- [ ] Return Values
-
-> ### Module 2: Object-Oriented Programming
-
-> #### Topics
-
-- [ ] Classes
-- [ ] Objects
-- [ ] Inheritance
-- [ ] Encapsulation
-- [ ] Polymorphism
-
-> ### Tools & Technologies
-
-- [ ] Python
-- [ ] VS Code
-- [ ] Git
 
 ---
 
-> ## Phase 2 — Foundation
+> ## Module 2: Programming Foundations
 
-> ### Designation
+### OOP
+- [ ] Classes
+- [ ] Objects
+- [ ] Inheritance
 
-- [ ] Backend Intern
+### Error Handling
+- [ ] Try/Except
+- [ ] Custom Exceptions
+
+---
+
+> ## Projects
+
+### Expense Tracker
+
+#### Objective
+- [ ] Learn CRUD operations
+
+#### Tech Stack
+- [ ] Python
+- [ ] SQLite
+
+#### Skills Demonstrated
+- [ ] OOP
+- [ ] Data Storage
+
+---
+
+> # Phase 2 — Foundation
+
+> ## Designation
+- [ ] Backend Development Intern
 - [ ] Python Intern
 
-> ### Goal
+> ## Goal
+- [ ] Learn backend fundamentals
+- [ ] Understand databases and APIs
 
-- [ ] Understand backend fundamentals
-- [ ] Learn databases and networking
+> ## Module 1: Git & GitHub
 
-> ### Module 1: Git & GitHub
-
-> #### Topics
-
+### Topics
 - [ ] Git Basics
 - [ ] Branching
-- [ ] Merging
 - [ ] Pull Requests
 
-> ### Module 2: Databases
+---
 
-> #### SQL Fundamentals
+> ## Module 2: Databases
 
+### SQL
 - [ ] SELECT
 - [ ] INSERT
 - [ ] UPDATE
 - [ ] DELETE
 
-> #### Advanced SQL
-
-- [ ] JOINS
-- [ ] Transactions
-- [ ] Indexes
+### Database Design
+- [ ] ER Diagrams
+- [ ] Normalization
+- [ ] Indexing
 
 ---
 
-> ## Phase 3 — Junior Backend Engineer
+> ## Projects
 
-> ### Designation
+### Student Management API
 
+#### Objective
+- [ ] Build first REST API
+
+#### Tech Stack
+- [ ] FastAPI
+- [ ] PostgreSQL
+
+#### Skills Demonstrated
+- [ ] REST APIs
+- [ ] Database Integration
+
+---
+
+> # Phase 3 — Junior Backend Engineer
+
+> ## Designation
 - [ ] Backend Engineer I
 - [ ] Junior Python Developer
 
-> ### Module 1: FastAPI
+> ## Goal
+- [ ] Become job-ready
 
-> #### API Development
+> ## Module 1: Advanced Python
 
+### Topics
+- [ ] Decorators
+- [ ] Generators
+- [ ] Async/Await
+
+---
+
+> ## Module 2: FastAPI
+
+### API Development
 - [ ] Routing
 - [ ] Middleware
 - [ ] Dependency Injection
 
-> #### Database Integration
-
-- [ ] SQLAlchemy
-- [ ] Alembic
-
-> ### Module 2: Authentication
-
-> #### Topics
-
+### Authentication
 - [ ] JWT
 - [ ] OAuth2
 - [ ] RBAC
 
 ---
 
-> ## Phase 4 — Mid-Level Backend Engineer
+> ## Projects
 
-> ### Designation
+### E-Commerce Backend
 
-- [ ] Software Engineer
-- [ ] Backend Engineer II
+#### Objective
+- [ ] Build production-style backend
 
-> ### Module 1: Cloud & Scalability
+#### Tech Stack
+- [ ] FastAPI
+- [ ] PostgreSQL
+- [ ] Redis
+- [ ] Docker
 
-> #### AWS
-
-- [ ] EC2
-- [ ] S3
-- [ ] RDS
-- [ ] Lambda
-
-> #### Redis
-
+#### Skills Demonstrated
+- [ ] Authentication
 - [ ] Caching
-- [ ] Session Storage
-- [ ] Rate Limiting
-
-> #### System Design
-
-- [ ] Load Balancing
-- [ ] Caching
-- [ ] Scalability
+- [ ] API Design
 
 ---
 
-> ## Phase 5 — Senior Backend Engineer
+> # Phase 4 — Mid-Level Backend Engineer
 
-> ### Designation
+> # Phase 5 — Senior Backend Engineer
 
-- [ ] Senior Backend Engineer
-
-> ### Module 1: Distributed Systems
-
-> #### Topics
-
-- [ ] CAP Theorem
-- [ ] Sharding
-- [ ] Replication
-- [ ] Consensus
-
-> ### Module 2: Kubernetes
-
-> #### Topics
-
-- [ ] Pods
-- [ ] Services
-- [ ] Deployments
+> # Phase 6 — Expert Backend Engineer
 
 ---
 
-> ## Phase 6 — Expert Backend Engineer
+> # Final Priority Checklist
 
-> ### Designation
-
-- [ ] Staff Engineer
-- [ ] Principal Engineer
-- [ ] Backend Architect
-
-> ### Module 1: AI Backend Engineering
-
-> #### Topics
-
-- [ ] RAG Systems
-- [ ] Vector Databases
-- [ ] AI Agents
-- [ ] LLM Integrations
-
-> ### Module 2: Large Scale Systems
-
-> #### Topics
-
-- [ ] Multi-Region Deployment
-- [ ] Event Sourcing
-- [ ] CQRS
-- [ ] Global Scalability
-
----
-
-> ## Final Priority Checklist
-
-> ### Must Master
-
+> ## Must Master
 - [ ] Python
 - [ ] Git
 - [ ] Linux
@@ -215,17 +174,19 @@
 - [ ] FastAPI
 - [ ] Docker
 
-> ### Learn Next
-
+> ## Learn Next
 - [ ] Redis
 - [ ] AWS
-- [ ] Kafka
 - [ ] CI/CD
-- [ ] System Design
+- [ ] Kafka
 
-> ### Advanced Mastery
-
+> ## Advanced Mastery
 - [ ] Kubernetes
 - [ ] Distributed Systems
 - [ ] Observability
-- [ ] Performance Engineering
+
+> ## Future-Proof Skills
+- [ ] AI Backend Development
+- [ ] Agentic Systems
+- [ ] Vector Databases
+- [ ] RAG Systems
