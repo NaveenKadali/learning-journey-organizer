@@ -18,7 +18,10 @@
 #   2. Add one line here in the format above
 #   3. Commit to the feature/multi-roadmap branch
 #
-# domain/data-engineering/ROADMAP.md | Data Engineering
+# domain
+# data-engineering
+# README
+# Data Engineering
 ─────────────────────────────────────────────────────────────────
 
 domain/ai/agentic-ai/ROADMAP.md | Agent Engineer Journey | 🤖 | 2026 Roadmap
