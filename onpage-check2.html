@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnostic v2</title>
+</head>
+<body style="font-family: sans-serif; padding: 20px; background:#111; color:#fff;">
+  <h2>Diagnostic v2 — Response Inspection</h2>
+  <div id="result" style="font-size: 1.05em; line-height: 1.8; white-space: pre-wrap; word-break: break-all;">Running...</div>
+
+  <script>
+    const lines = [];
+    function log(label, val) { lines.push(label + ': ' + val); render(); }
+    function render() { document.getElementById('result').textContent = lines.join('\n'); }
+
+    fetch('https://naveenkadali.github.io/learning-journey-organizer/index.html', { cache: 'no-store' })
+      .then(r => {
+        log('HTTP status', r.status);
+        log('Content-Length header', r.headers.get('content-length'));
+        log('Content-Type header', r.headers.get('content-type'));
+        log('Cache-Control header', r.headers.get('cache-control'));
+        log('ETag header', r.headers.get('etag'));
+        log('Last-Modified header', r.headers.get('last-modified'));
+        // List ALL headers we received
+        let allHeaders = [];
+        for (const [k,v] of r.headers.entries()) allHeaders.push(k + '=' + v);
+        log('ALL headers', allHeaders.join(' | '));
+        return r.text();
+      })
+      .then(text => {
+        log('Actual body length received', text.length);
+        log('Last 100 chars received', JSON.stringify(text.slice(-100)));
+        log('Does body end with </html>', text.trim().endsWith('</html>'));
+      })
+      .catch(e => log('FETCH ERROR', e.message));
+  </script>
+</body>
+</html>
