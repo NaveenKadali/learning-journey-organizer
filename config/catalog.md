@@ -28,4 +28,4 @@ domain/ai/agentic-ai/ROADMAP.md | Agent Engineer Journey | 🤖 | 2026 Roadmap
 domain/backend/python/ROADMAP.md | Python Backend Developer
 domain/testing/sdet/ROADMAP.md | Software Development Engineer in Test
 domain/data-engineering/ROADMAP.md | Data Engineering
-domain/test-roadmap.md | Backend Development
+domain/test-roadmap.md | SED / Backend Dev / Python / | 🐍 | 20206
