@@ -142,6 +142,11 @@ Prepare professional development environment.
 
 #### ☑ Installation
 
+- [ ] What is a Kernal
+- [ ] what is an OS
+- [ ] What is a distro
+- [ ] what is ubuntu, Red Hat, MintOS, Raspberry Pi, Android, openSue, Windows, MacOS
+- [ ] Why Ubuntu
 - [ ] Ubuntu Installation
 - [ ] WSL Setup
 - [ ] Dual Boot Concepts
