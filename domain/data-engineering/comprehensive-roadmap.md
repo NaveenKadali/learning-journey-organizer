@@ -157,7 +157,7 @@ Machine Learning / AI
 
 ---
 
-> # PHASE 1 — COMPUTER SCIENCE FUNDAMENTALS
+> ## PHASE 1 — COMPUTER SCIENCE FUNDAMENTALS
 
 ## ☑ Objective
 
@@ -165,9 +165,7 @@ Understand systems before building pipelines.
 
 ---
 
-> ## Module 1.1 — Operating Systems
-
-### ☑ Learn
+> ### Module 1.1 — Operating Systems
 
 - [ ] Processes
 - [ ] Threads
@@ -177,9 +175,7 @@ Understand systems before building pipelines.
 
 ---
 
-> ## Module 1.2 — Networking
-
-### ☑ Learn
+> ### Module 1.2 — Networking
 
 - [ ] IP
 - [ ] DNS
@@ -190,9 +186,7 @@ Understand systems before building pipelines.
 
 ---
 
-> ## Module 1.3 — Linux
-
-### ☑ Commands
+> ### Module 1.3 — Linux
 
 - [ ] pwd
 - [ ] ls
@@ -221,15 +215,15 @@ Required before ETL pipelines
 
 ---
 
-> # PHASE 2 — PYTHON FOR DATA ENGINEERING
+> ## PHASE 2 — PYTHON FOR DATA ENGINEERING
 
-## ☑ Objective
+### ☑ Objective
 
 Learn Python specifically for data processing.
 
 ---
 
-> ## Module 2.1 — Python Fundamentals
+> ### Module 2.1 — Python Fundamentals
 
 ### ☑ Basics
 
@@ -240,9 +234,7 @@ Learn Python specifically for data processing.
 
 ---
 
-> ## Module 2.2 — Data Structures
-
-### ☑ Learn
+> ### Module 2.2 — Data Structures
 
 - [ ] Lists
 - [ ] Tuples
@@ -251,9 +243,7 @@ Learn Python specifically for data processing.
 
 ---
 
-> ## Module 2.3 — File Processing
-
-### ☑ Learn
+> ### Module 2.3 — File Processing
 
 - [ ] CSV
 - [ ] JSON
@@ -263,9 +253,7 @@ Learn Python specifically for data processing.
 
 ---
 
-> ## Module 2.4 — Python for Data
-
-### ☑ Libraries
+> ### Module 2.4 — Python for Data
 
 #### Pandas
 
@@ -281,7 +269,7 @@ Learn Python specifically for data processing.
 
 ---
 
-> ## Module 2.5 — Python Advanced
+> ### Module 2.5 — Python Advanced
 
 ### ☑ Learn
 
