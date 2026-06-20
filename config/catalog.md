@@ -30,3 +30,4 @@ domain/ai/compressive-roadmap.md | AI workflows | 🧠 | 2026
 domain/backend/python/ROADMAP.md | Python Backend Developer
 domain/testing/sdet/ROADMAP.md | Software Development Engineer in Test
 domain/data-engineering/ROADMAP.md | Data Engineering
+domain/data-engineering/comprehensive-roadmap.md | Data Engineering
