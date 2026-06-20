@@ -154,6 +154,7 @@
 - [ ] URLs
 - [ ] Templates
 - [ ] Django ORM
+- [ ] Django Middle wares
 
 > ## Phase 3: Database Integration
 
