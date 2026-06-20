@@ -1,14 +1,7 @@
 > # Software Engineering / Backend Development / Python Roadmap
 > # Beginner → Expert (Industry-Grade, Employability-Focused, FAANG-Aligned)
->
-> Goal:
-> - Become a highly employable Backend Engineer
-> - Master Python and Software Engineering
-> - Build production-grade systems
-> - Crack product companies and FAANG interviews
-> - Reach Senior/Staff Engineer capability
->
-> Learning Philosophy:
+
+> ## Learning Philosophy:
 > 1. Fundamentals First
 > 2. Build While Learning
 > 3. Portfolio Before Certificates
@@ -66,7 +59,7 @@ Phase 15 → Expert/Staff Engineer Competencies
 
 ---
 
-> # ROADMAP OVERVIEW
+# ROADMAP OVERVIEW
 
 ```text
 BEGINNER
