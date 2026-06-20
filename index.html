@@ -366,13 +366,17 @@
     /* Hide progress bar row in action-bar when in home view */
     .action-bar.home-mode .action-progress { display:none; }
 
-    /* ── ACTION BAR — minimalist pill row ─── */
+    /* ── ACTION BAR — minimalist pill row ───
+       Auto-hides on scroll-down and reappears on scroll-up, in lockstep
+       with the header (roadmap view only) — see AUTO-HIDE SCROLL STACK. */
     .action-bar {
       position:sticky; top:0; z-index:200;
       background:var(--surface);
       border-bottom:1px solid var(--border);
       padding:10px 24px;
+      transition: transform .22s ease, box-shadow .22s ease;
     }
+    .action-bar.bar-hidden { transform: translateY(-100%); box-shadow:none; }
     .action-bar-inner {
       max-width:940px; margin:0 auto;
       display:flex; flex-direction:column; gap:7px;
@@ -436,12 +440,16 @@
     .hbtn-settings { background:transparent; border-color:var(--border); color:var(--text-muted); }
     .hbtn-settings:hover { background:var(--surface2); color:var(--text); }
 
-    /* ── TOOLBAR — search + filters as one line ── */
+    /* ── TOOLBAR — search + filters as one line ──
+       Auto-hides on scroll-down and reappears on scroll-up, in lockstep
+       with the header (roadmap view only) — see AUTO-HIDE SCROLL STACK. */
     .sticky-bar {
       position:sticky; top:96px; z-index:190;
       background:var(--bg); border-bottom:1px solid var(--border);
       padding:9px 24px;
+      transition: transform .22s ease;
     }
+    .sticky-bar.bar-hidden { transform: translateY(-100%); }
     .toolbar-inner {
       max-width:940px; margin:0 auto;
       display:flex; flex-wrap:wrap; gap:8px; align-items:center;
