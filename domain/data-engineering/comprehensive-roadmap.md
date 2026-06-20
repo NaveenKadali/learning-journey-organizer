@@ -151,7 +151,7 @@ Machine Learning / AI
 
 > ## PHASE 1 — COMPUTER SCIENCE FUNDAMENTALS
 
-> ### ☑ Objective
+### ☑ Objective
 
 Understand systems before building pipelines.
 
