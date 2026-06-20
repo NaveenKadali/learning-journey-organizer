@@ -519,7 +519,7 @@ Build warehouse schema.
 
 > # PART 2 — JUNIOR DATA ENGINEER ROADMAP
 
-#### Designation
+Designations
 
 - Junior Data Engineer
 - Data Engineer I
@@ -1052,7 +1052,7 @@ Build trusted data.
 - Lakehouse
 - Production Data Pipelines
 
-# JUNIOR DATA ENGINEER INTERVIEW PREPARATION
+> # JUNIOR DATA ENGINEER INTERVIEW PREPARATION
 
 ## SQL
 
@@ -1110,7 +1110,7 @@ Build trusted data.
 - [ ] GitHub Portfolio
 - [ ] Resume Ready
 
-# PART 3 — MID-LEVEL DATA ENGINEER ROADMAP
+> # PART 3 — MID-LEVEL DATA ENGINEER ROADMAP
 
 #### Designation
 
