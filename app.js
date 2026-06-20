@@ -7,6 +7,31 @@
 // ═══════════════════════════════════════════
 const REPO_BASE = 'https://raw.githubusercontent.com/NaveenKadali/learning-journey-organizer/feature/multi-roadmap/';
 
+// Derive { owner, repo, branch } from REPO_BASE so the markdown editor can
+// call the GitHub Contents API without a second hardcoded constant to keep
+// in sync. Branch names can contain slashes (e.g. "feature/multi-roadmap"),
+// so everything after owner/repo is treated as the branch.
+function getRepoInfo() {
+  const u = new URL(REPO_BASE);
+  const segs = u.pathname.split('/').filter(Boolean);
+  return { owner: segs[0], repo: segs[1], branch: segs.slice(2).join('/') };
+}
+
+// GitHub's Contents API speaks base64. atob/btoa alone mangle anything
+// outside Latin-1 (emoji, arrows, etc.), so route through TextEncoder/
+// TextDecoder to round-trip UTF-8 content correctly.
+function b64DecodeUtf8(b64) {
+  const binary = atob(b64.replace(/\n/g, ''));
+  const bytes = Uint8Array.from(binary, c => c.charCodeAt(0));
+  return new TextDecoder('utf-8').decode(bytes);
+}
+function b64EncodeUtf8(str) {
+  const bytes = new TextEncoder().encode(str);
+  let binary = '';
+  bytes.forEach(b => { binary += String.fromCharCode(b); });
+  return btoa(binary);
+}
+
 // Wrap fetch with a hard timeout so a hung/pending request (no response,
 // no error — e.g. blocked by an extension, DNS hiccup, captive portal)
 // can't leave the UI stuck on a loading spinner forever.
@@ -39,6 +64,7 @@ let _catalog        = [];   // array of { id, title, badge, subtitle, path }
 let _activeRoadmap  = null; // currently loaded catalog entry
 let _rvStructure    = { sections:0, phases:0, modules:0, totalTasks:0 }; // structural counts for the active roadmap, set once on render()
 let _catalogStats   = {};   // { [id]: { sections, phases, totalTasks } } — structural counts for EVERY catalog roadmap, known up front (even before opening it)
+let _mdEditorState  = null; // { path, sha, originalText } for the raw markdown editor, while open
 
 // ═══════════════════════════════════════════
 //  DIRTY FLAG  (unsaved local changes)
@@ -214,7 +240,10 @@ function showToast(msg, type='info') {
 function openModal(id)  { document.getElementById(id)?.classList.add('open'); }
 function closeModal(id) { document.getElementById(id)?.classList.remove('open'); }
 document.addEventListener('click', e => {
-  if (e.target.classList.contains('modal-overlay')) e.target.classList.remove('open');
+  if (e.target.classList.contains('modal-overlay')) {
+    if (e.target.id === 'md-editor-modal') { closeMarkdownEditor(); return; }
+    e.target.classList.remove('open');
+  }
 });
 
 function saveGistSettings() {
@@ -225,6 +254,136 @@ function saveGistSettings() {
   closeModal('settings-modal');
   showToast('Settings saved', 'success');
   updateActionBar();
+}
+
+// ═══════════════════════════════════════════
+//  RAW MARKDOWN EDITOR
+//  Lets the active roadmap's ROADMAP.md be edited and committed straight
+//  to GitHub via the Contents API, using the same PAT already collected
+//  for Gist sync (it just needs the broader "repo" scope to write files,
+//  not only "gist").
+// ═══════════════════════════════════════════
+async function openMarkdownEditor() {
+  const cfg = getCfg();
+  if (!cfg.pat) { openModal('settings-modal'); showToast('Add a GitHub PAT first (Settings) — it needs "repo" scope to save edits', 'info'); return; }
+  if (!_activeRoadmap) { showToast('Open a roadmap first', 'info'); return; }
+
+  const ta       = document.getElementById('md-editor-textarea');
+  const titleEl  = document.getElementById('md-editor-title');
+  const statusEl = document.getElementById('md-editor-status');
+  const saveBtn  = document.getElementById('md-editor-save-btn');
+  _mdEditorState = null;
+  ta.value = '';
+  ta.disabled = true;
+  saveBtn.disabled = true;
+  titleEl.textContent = `✎ Edit — ${_activeRoadmap.title}`;
+  statusEl.textContent = 'Loading current content from GitHub…';
+  statusEl.style.color = '';
+  openModal('md-editor-modal');
+
+  try {
+    const { owner, repo, branch } = getRepoInfo();
+    const res = await fetch(
+      `https://api.github.com/repos/${owner}/${repo}/contents/${_activeRoadmap.path}?ref=${encodeURIComponent(branch)}`,
+      { headers: { Authorization: `token ${cfg.pat}` } }
+    );
+    if (res.status === 401 || res.status === 403) {
+      throw new Error('GitHub rejected this request — your PAT may be missing "repo" scope (Gist-only scope isn\'t enough to read/write repo files).');
+    }
+    if (!res.ok) throw new Error(`GitHub API ${res.status}${res.status === 404 ? ' — file not found at this path/branch' : ''}`);
+    const data = await res.json();
+    const text = b64DecodeUtf8(data.content);
+    _mdEditorState = { path: _activeRoadmap.path, sha: data.sha, originalText: text };
+    ta.value = text;
+    ta.disabled = false;
+    saveBtn.disabled = false;
+    statusEl.textContent = `Editing ${_activeRoadmap.path} on branch "${branch}". Saving commits directly to GitHub.`;
+  } catch (e) {
+    statusEl.textContent = `⚠ Could not load file: ${e.message}`;
+    statusEl.style.color = 'var(--c-reset)';
+  }
+}
+
+function closeMarkdownEditor(force) {
+  const ta = document.getElementById('md-editor-textarea');
+  if (!force && _mdEditorState && ta.value !== _mdEditorState.originalText) {
+    if (!confirm('Discard unsaved edits?')) return;
+  }
+  closeModal('md-editor-modal');
+  _mdEditorState = null;
+}
+
+async function saveMarkdownEdits() {
+  const cfg = getCfg();
+  if (!cfg.pat) { openModal('settings-modal'); return; }
+  if (!_mdEditorState) { showToast('Nothing loaded to save yet', 'error'); return; }
+
+  const ta = document.getElementById('md-editor-textarea');
+  const newText = ta.value;
+
+  if (newText === _mdEditorState.originalText) {
+    showToast('No changes to save', 'info');
+    return;
+  }
+
+  // Validate locally before committing anything — a save that produces a
+  // structurally empty roadmap is almost certainly a mistake, not intent.
+  const parsed = parseRoadmap(newText);
+  if (!parsed.sections.length) {
+    showToast('No phases (##) found in the edited markdown — check it before saving', 'error');
+    return;
+  }
+
+  const btn = document.getElementById('md-editor-save-btn');
+  const statusEl = document.getElementById('md-editor-status');
+  btn.disabled = true;
+  btn.textContent = 'Saving…';
+  try {
+    const { owner, repo, branch } = getRepoInfo();
+    const msgInput = document.getElementById('md-editor-commit-msg');
+    const message  = (msgInput?.value || '').trim() || `Update ${_mdEditorState.path} via roadmap editor`;
+    const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${_mdEditorState.path}`, {
+      method: 'PUT',
+      headers: { Authorization: `token ${cfg.pat}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message,
+        content: b64EncodeUtf8(newText),
+        sha: _mdEditorState.sha,
+        branch
+      })
+    });
+    if (res.status === 401 || res.status === 403) {
+      throw new Error('GitHub rejected this request — your PAT may be missing "repo" scope.');
+    }
+    if (res.status === 409) {
+      throw new Error('File changed on GitHub since you opened it — close and reopen the editor to get the latest version, then redo your edits.');
+    }
+    if (!res.ok) {
+      const errBody = await res.json().catch(() => ({}));
+      throw new Error(errBody.message || `GitHub API ${res.status}`);
+    }
+    const result = await res.json();
+    _mdEditorState.sha          = result.content.sha;
+    _mdEditorState.originalText = newText;
+    if (msgInput) msgInput.value = '';
+
+    // Render straight from what was just committed — raw.githubusercontent.com
+    // is CDN-cached for a few minutes, so re-fetching it here could still
+    // show the pre-edit version.
+    render(parsed);
+    updateRvStats();
+    syncStickyOffsets();
+
+    showToast('✓ Saved to GitHub', 'success');
+    closeMarkdownEditor(true);
+  } catch (e) {
+    statusEl.textContent = `⚠ ${e.message}`;
+    statusEl.style.color = 'var(--c-reset)';
+    showToast(`Save failed: ${e.message}`, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Save to GitHub';
+  }
 }
 
 // ═══════════════════════════════════════════
@@ -518,7 +677,15 @@ function parseRoadmap(md) {
       continue;
     }
 
-    // Section syntax: "> # Label" — single hash, must be blockquoted.
+    const secM = raw.match(/<!--\s*section:\s*(.+?)\s*-->/i);
+    if (secM) {
+      curSection = makeSection(secM[1].trim());
+      sections.push(curSection);
+      curItem = curMod = curSubMod = curTopic = null;
+      target = curSection; paraBuf = [];
+      i++; continue;
+    }
+    // Alt section syntax: "> # Label" — single hash, must be blockquoted.
     if (wasQuoted && /^#\s+/.test(line) && !/^##/.test(line)) {
       const label = line.replace(/^#\s+/, '').trim();
       curSection = makeSection(label);
