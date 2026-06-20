@@ -419,70 +419,193 @@ function slug(s) {
 function normaliseBlockquote(line) {
   return line.replace(/^(>\s*)+/, '');
 }
+
+// Every level (phase / module / submodule / topic) shares the same shape,
+// which is what lets rendering and task-collection recurse generically
+// instead of having one hand-written function per heading depth.
+function makeNode(title) {
+  return { title, id: slug(title), modules: [], tasks: [], _blocks: [] };
+}
+function makeSection(label) {
+  return { label, items: [], _blocks: [] };
+}
+
+// Collapse the raw paragraph/list/code blocks captured for a heading into
+// its final `supporting` field. A single short paragraph stays inline
+// ("simple"); anything richer (a list, a code fence, multiple paragraphs)
+// becomes a collapsible notes block ("rich") so it can't crowd the checklist.
+function finalizeSupporting(blocks) {
+  if (!blocks || !blocks.length) return null;
+  if (blocks.length === 1 && blocks[0].type === 'p') {
+    return { kind: 'simple', text: blocks[0].text };
+  }
+  return { kind: 'rich', blocks };
+}
+function finalizeNode(node) {
+  node.supporting = finalizeSupporting(node._blocks);
+  delete node._blocks;
+  (node.modules || []).forEach(finalizeNode);
+  return node;
+}
+
 function parseRoadmap(md) {
   const lines = md.split('\n');
   const sections = [];
-  let curSection = null, curItem = null, curMod = null, curSubMod = null;
+  const overviewBlocks = [];
+  let curSection = null, curItem = null, curMod = null, curSubMod = null, curTopic = null;
 
-  function addTask(line, target) {
+  // `target` is whichever node is currently eligible to receive supporting
+  // content (paragraphs / lists / code fences). It's reassigned every time a
+  // new heading is created, and cleared the moment a task line appears —
+  // matching the authoring rule "supporting content must come immediately
+  // after its heading, before that heading's first child or task".
+  let target = { _blocks: overviewBlocks };
+  let paraBuf = [];
+
+  function flushPara() {
+    if (paraBuf.length && target) {
+      target._blocks.push({ type: 'p', text: paraBuf.join(' ') });
+    }
+    paraBuf = [];
+  }
+  function pushListItem(ordered, text) {
+    flushPara();
+    if (!target) return;
+    const blocks = target._blocks;
+    const last = blocks[blocks.length - 1];
+    if (last && last.type === 'list' && last.ordered === ordered) last.items.push(text);
+    else blocks.push({ type: 'list', ordered, items: [text] });
+  }
+  function handlePlainLine(line) {
+    const trimmed = line.trim();
+    if (!trimmed) { flushPara(); return; }
+    const olM = trimmed.match(/^\d+\.\s+(.*)/);
+    const ulM = trimmed.match(/^[-*]\s+(?!\[[ xX✓]\])(.*)/);
+    if (olM) { pushListItem(true, olM[1]); return; }
+    if (ulM) { pushListItem(false, ulM[1]); return; }
+    paraBuf.push(trimmed);
+  }
+  function addTask(line, taskArr) {
     const m = line.match(/^[-*]\s+\[([ xX✓])\]\s+(.*)/);
-    if (!m) return;
+    if (!m) return false;
     const checked = /^[xX✓]$/.test(m[1].trim());
-    target.push({ text: m[2].trim(), checked, id: slug(m[2].trim()) });
+    taskArr.push({ text: m[2].trim(), checked, id: slug(m[2].trim()) });
+    return true;
   }
 
-  for (const raw of lines) {
-    // Was this line originally inside a blockquote (started with ">")?
+  let i = 0;
+  while (i < lines.length) {
+    const raw = lines[i];
     const wasQuoted = /^>\s*/.test(raw);
-    // Normalise blockquote prefix so "> ## Foo" is treated same as "## Foo"
     const line = normaliseBlockquote(raw);
+
+    // ── Fenced code block — consumed as one atomic, opaque block. Its
+    // contents are never re-parsed as headings/tasks, and never flattened
+    // into prose (this is what keeps an ASCII diagram or phase index intact).
+    const fenceM = line.match(/^```\s*([a-zA-Z0-9_-]*)/);
+    if (fenceM) {
+      flushPara();
+      const lang = fenceM[1] || '';
+      const codeLines = [];
+      i++;
+      while (i < lines.length) {
+        const innerLine = normaliseBlockquote(lines[i]);
+        if (/^```\s*$/.test(innerLine)) { i++; break; }
+        codeLines.push(innerLine);
+        i++;
+      }
+      if (target) target._blocks.push({ type: 'code', lang, text: codeLines.join('\n') });
+      continue;
+    }
 
     const secM = raw.match(/<!--\s*section:\s*(.+?)\s*-->/i);
     if (secM) {
-      curSection = { label: secM[1].trim(), items: [] };
+      curSection = makeSection(secM[1].trim());
       sections.push(curSection);
-      curItem = curMod = curSubMod = null;
-      continue;
+      curItem = curMod = curSubMod = curTopic = null;
+      target = curSection; paraBuf = [];
+      i++; continue;
     }
     // Alt section syntax: "> # Label" — single hash, must be blockquoted.
     if (wasQuoted && /^#\s+/.test(line) && !/^##/.test(line)) {
       const label = line.replace(/^#\s+/, '').trim();
-      curSection = { label, items: [] };
+      curSection = makeSection(label);
       sections.push(curSection);
-      curItem = curMod = curSubMod = null;
-      continue;
+      curItem = curMod = curSubMod = curTopic = null;
+      target = curSection; paraBuf = [];
+      i++; continue;
     }
     if (/^##\s+/.test(line) && !/^###/.test(line)) {
+      flushPara();
       const title = line.replace(/^##\s+/, '').trim();
-      if (!curSection) { curSection = { label: '', items: [] }; sections.push(curSection); }
-      curItem = { title, id: slug(title), modules: [], tasks: [] };
-      curMod = null; curSubMod = null;
+      if (!curSection) { curSection = makeSection(''); sections.push(curSection); }
+      curItem = makeNode(title);
+      curMod = curSubMod = curTopic = null;
       curSection.items.push(curItem);
-      continue;
+      target = curItem; paraBuf = [];
+      i++; continue;
     }
-    if (!curItem) continue;
+    if (!curItem) {
+      // Before the first Phase — plain text here belongs to whatever's
+      // currently active: the roadmap-level overview, or a section overview.
+      handlePlainLine(line);
+      i++; continue;
+    }
     if (/^###\s+/.test(line) && !/^####/.test(line)) {
+      flushPara();
       const title = line.replace(/^###\s+/, '').trim();
-      curMod = { title, id: slug(title), modules: [], tasks: [] };
-      curSubMod = null;
+      curMod = makeNode(title);
+      curSubMod = curTopic = null;
       curItem.modules.push(curMod);
-      continue;
+      target = curMod; paraBuf = [];
+      i++; continue;
     }
     if (/^####\s+/.test(line) && !/^#####/.test(line)) {
+      flushPara();
       const title = line.replace(/^####\s+/, '').trim();
-      curSubMod = { title, id: slug(title), tasks: [] };
+      curSubMod = makeNode(title);
+      curTopic = null;
       (curMod || curItem).modules.push(curSubMod);
-      continue;
+      target = curSubMod; paraBuf = [];
+      i++; continue;
     }
     if (/^#####\s+/.test(line)) {
+      flushPara();
       const title = line.replace(/^#####\s+/, '').trim();
-      curSubMod = { title, id: slug(title), tasks: [] };
-      (curMod || curItem).modules.push(curSubMod);
-      continue;
+      curTopic = makeNode(title);
+      // Nests under the nearest Submodule (falling back to Module, then
+      // Phase, if shallower levels were skipped) — this is the fix for the
+      // old bug where ##### became a sibling instead of a true child.
+      (curSubMod || curMod || curItem).modules.push(curTopic);
+      target = curTopic; paraBuf = [];
+      i++; continue;
     }
-    addTask(line, (curSubMod || curMod || curItem).tasks);
+    const taskArr = (curTopic || curSubMod || curMod || curItem).tasks;
+    if (addTask(line, taskArr)) {
+      flushPara();
+      target = null; // this node's supporting-content window has closed
+      i++; continue;
+    }
+    handlePlainLine(line);
+    i++;
   }
-  return { sections };
+  flushPara();
+
+  const overview = finalizeSupporting(overviewBlocks);
+  sections.forEach(sec => {
+    sec.overview = finalizeSupporting(sec._blocks || []);
+    delete sec._blocks;
+    (sec.items || []).forEach(finalizeNode);
+  });
+  return { sections, overview };
+}
+
+// Recursively gather every task under a node, no matter how deep the
+// module/submodule/topic chain goes.
+function collectTasks(node) {
+  let tasks = (node.tasks || []).slice();
+  (node.modules || []).forEach(child => { tasks = tasks.concat(collectTasks(child)); });
+  return tasks;
 }
 
 // ═══════════════════════════════════════════
@@ -519,48 +642,88 @@ function resSection(id, resources) {
 }
 
 // ═══════════════════════════════════════════
-//  RENDER MODULE BODY (### level)
+//  SUPPORTING CONTENT (description / notes) — shared by every level,
+//  including sections and the roadmap itself.
 // ═══════════════════════════════════════════
-function renderModBody(mod, progress, resources) {
-  let html = renderTaskList(mod.tasks || [], progress);
-  html += resSection(mod.id, resources);
-  (mod.modules || []).forEach(sub => {
-    html += `<div class="submod-group">
-      <div class="submod-title">${esc(sub.title)}</div>
-      ${renderTaskList(sub.tasks || [], progress)}
-      ${resSection(sub.id, resources)}
-    </div>`;
-  });
-  return html;
+function renderSuppBlocks(blocks) {
+  return blocks.map(b => {
+    if (b.type === 'p')    return `<p>${esc(b.text)}</p>`;
+    if (b.type === 'code') return `<pre class="supp-code"><code>${esc(b.text)}</code></pre>`;
+    if (b.type === 'list') {
+      const tag = b.ordered ? 'ol' : 'ul';
+      return `<${tag}>${b.items.map(it => `<li>${esc(it)}</li>`).join('')}</${tag}>`;
+    }
+    return '';
+  }).join('');
+}
+function renderSupporting(supporting, id) {
+  if (!supporting) return '';
+  if (supporting.kind === 'simple') {
+    return `<p class="supp-caption">${esc(supporting.text)}</p>`;
+  }
+  return `<div class="supp-notes" id="supp-${id}">
+    <div class="supp-notes-header" onclick="this.parentElement.classList.toggle('open')">
+      <span class="supp-notes-icon">ⓘ</span>
+      <span class="supp-notes-label">Notes</span>
+      <svg class="supp-notes-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="supp-notes-body"><div class="supp-notes-body-inner">${renderSuppBlocks(supporting.blocks)}</div></div>
+  </div>`;
 }
 
 // ═══════════════════════════════════════════
-//  RENDER ITEM BODY  (## level)
+//  RECURSIVE NODE RENDERING (### module, #### submodule, ##### topic —
+//  one function handles every depth, so adding a level never means adding
+//  another hand-written render function again).
+//
+//  `depth` = the depth of the CHILDREN about to be rendered:
+//    1 = module, 2 = submodule, 3 = topic (and beyond, if ever extended).
 // ═══════════════════════════════════════════
-function renderItemBody(item, progress, resources) {
-  let html = '';
-  if ((item.tasks || []).length) {
-    html += renderTaskList(item.tasks, progress);
-    html += resSection(item.id, resources);
-  }
-  (item.modules || []).forEach(mod => {
-    const resCnt = (resources[mod.id] || []).length;
-    html += `<div class="module-group" id="mg-${mod.id}">
+function renderNodeBody(node, progress, resources, depth) {
+  let html = renderSupporting(node.supporting, node.id);
+  html += renderTaskList(node.tasks || [], progress);
+  html += resSection(node.id, resources);
+  html += renderGroupChildren(node, progress, resources, depth);
+  return html;
+}
+function renderGroupChildren(node, progress, resources, depth) {
+  return (node.modules || []).map(child => {
+    const resCnt   = (resources[child.id] || []).length;
+    const lvlClass  = depth === 2 ? ' lvl-2' : depth === 3 ? ' lvl-3' : '';
+    // Modules start collapsed (there can be many); submodules and topics
+    // start open since they're usually short — no extra click just to see
+    // what's inside a card you already chose to expand.
+    const openClass = depth === 1 ? '' : ' open';
+    return `<div class="module-group${lvlClass}${openClass}" id="mg-${child.id}">
       <div class="module-header" onclick="toggleModule(this.parentElement)">
-        <div class="module-title">${esc(mod.title)}</div>
+        <div class="module-title">${esc(child.title)}</div>
         <div class="module-header-right">
-          <span class="mod-res-pill${resCnt > 0 ? ' visible' : ''}" id="mod-res-pill-${mod.id}">📚 ${resCnt}</span>
+          <span class="mod-res-pill${resCnt > 0 ? ' visible' : ''}" id="mod-res-pill-${child.id}">📚 ${resCnt}</span>
           <svg class="module-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
       </div>
       <div class="module-body">
         <div class="module-body-inner">
-          ${renderModBody(mod, progress, resources)}
+          ${renderNodeBody(child, progress, resources, depth + 1)}
         </div>
       </div>
     </div>`;
-  });
-  if (!html) html += resSection(item.id, resources);
+  }).join('');
+}
+
+// ═══════════════════════════════════════════
+//  RENDER ITEM BODY  (## level — the phase card itself)
+// ═══════════════════════════════════════════
+function renderItemBody(item, progress, resources) {
+  let html = renderSupporting(item.supporting, item.id);
+  if ((item.tasks || []).length) {
+    html += renderTaskList(item.tasks, progress);
+    html += resSection(item.id, resources);
+  }
+  html += renderGroupChildren(item, progress, resources, 1);
+  if (!(item.tasks || []).length && !(item.modules || []).length) {
+    html += resSection(item.id, resources);
+  }
   return html;
 }
 
@@ -569,10 +732,7 @@ function renderItemBody(item, progress, resources) {
 // ═══════════════════════════════════════════
 function buildCard(item, progress, resources, meta, numStr) {
   const body = renderItemBody(item, progress, resources);
-  const allTasks = [
-    ...(item.tasks || []),
-    ...(item.modules || []).flatMap(m => [...(m.tasks||[]), ...(m.modules||[]).flatMap(s=>s.tasks||[])])
-  ];
+  const allTasks = collectTasks(item);
   allTasks.forEach(t => { if (progress[t.id] !== undefined) t.checked = progress[t.id]; });
   const done  = allTasks.filter(t => t.checked).length;
   const tot   = allTasks.length;
@@ -621,12 +781,8 @@ function render(data) {
   data.sections.forEach(sec => {
     (sec.items || []).forEach(item => {
       totalItems++;
-      (item.tasks || []).forEach(() => totalTasks++);
-      (item.modules || []).forEach(m => {
-        totalMods++;
-        (m.tasks || []).forEach(() => totalTasks++);
-        (m.modules || []).forEach(s => (s.tasks || []).forEach(() => totalTasks++));
-      });
+      totalTasks += collectTasks(item).length;
+      totalMods  += (item.modules || []).length;
     });
   });
   const roadmapMeta = document.getElementById('roadmap-meta');
@@ -637,8 +793,19 @@ function render(data) {
   const main = document.getElementById('main-content');
   main.innerHTML = '';
 
-  data.sections.forEach(section => {
+  if (data.overview) {
+    const ov = mkEl('div', 'roadmap-overview');
+    ov.innerHTML = renderSupporting(data.overview, 'roadmap');
+    main.appendChild(ov);
+  }
+
+  data.sections.forEach((section, secIdx) => {
     if (section.label) main.appendChild(mkEl('div', 'section-label', section.label));
+    if (section.overview) {
+      const so = mkEl('div', 'section-overview');
+      so.innerHTML = renderSupporting(section.overview, 'sec-' + secIdx);
+      main.appendChild(so);
+    }
     const list = mkEl('div', 'phase-list');
     (section.items || []).forEach((item) => {
       const meta = nextMeta();
@@ -1280,12 +1447,8 @@ function countStructure(data) {
   data.sections.forEach(sec => {
     (sec.items || []).forEach(item => {
       totalItems++;
-      (item.tasks || []).forEach(() => totalTasks++);
-      (item.modules || []).forEach(m => {
-        totalMods++;
-        (m.tasks || []).forEach(() => totalTasks++);
-        (m.modules || []).forEach(s => (s.tasks || []).forEach(() => totalTasks++));
-      });
+      totalTasks += collectTasks(item).length;
+      totalMods  += (item.modules || []).length;
     });
   });
   return { sections: data.sections.length, phases: totalItems, modules: totalMods, totalTasks };
