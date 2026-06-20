@@ -3,7 +3,6 @@
 # Location: config/catalog.md
 #
 # Format (pipe-separated, one roadmap per line):
-#   path/to/ROADMAP.md | Display Title | Badge Emoji | Subtitle
 #
 # Rules:
 #   - Lines starting with # are comments and are ignored
