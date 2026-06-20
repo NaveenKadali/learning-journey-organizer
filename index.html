@@ -880,6 +880,28 @@
     .mbtn-cancel:hover { border-color:var(--text-muted); color:var(--text); }
     .mbtn-ok { background:rgba(59,130,246,.12); border-color:rgba(59,130,246,.4); color:var(--c-nav); }
     .mbtn-ok:hover { background:rgba(59,130,246,.22); }
+    .mbtn-ok:disabled { opacity:.5; cursor:not-allowed; }
+
+    /* ── MODAL — LARGE VARIANT (raw markdown editor) ──
+       Wide on desktop; takes the full screen on mobile so there's room
+       to actually edit, rather than squeezing a textarea into a 440px box. */
+    .modal-lg { max-width:760px; display:flex; flex-direction:column; }
+    .modal-overlay-lg.open { padding:0; }
+    @media (max-width:680px) {
+      .modal-overlay-lg .modal-lg {
+        max-width:100%; width:100%; height:100%; max-height:100%;
+        border-radius:0; padding:18px 16px;
+      }
+    }
+    .md-editor-textarea {
+      width:100%; flex:1; min-height:320px; resize:vertical;
+      background:var(--input-bg); border:1px solid var(--border); border-radius:8px;
+      color:var(--text); font-family:var(--font-mono); font-size:.78rem; line-height:1.5;
+      padding:12px; outline:none; tab-size:2; white-space:pre; overflow:auto;
+      margin-bottom:13px;
+    }
+    .md-editor-textarea:focus { border-color:var(--c-nav); }
+    .md-editor-textarea:disabled { opacity:.5; }
 
     /* ── NO RESULTS / LOADING / ERROR ─────────── */
     .loading-state { text-align:center; padding:70px 20px; color:var(--text-muted); }
@@ -900,7 +922,8 @@
     <div class="modal-sub">
       Progress is saved to a private GitHub Gist.<br>
       <a href="https://github.com/settings/tokens/new?scopes=gist&description=RoadmapProgress" target="_blank">Create a PAT</a> with <strong>gist</strong> scope, then paste it below.<br>
-      Leave Gist ID blank on first save — one will be created automatically.
+      Leave Gist ID blank on first save — one will be created automatically.<br>
+      <span style="color:var(--text-dim)">Using the <strong>✎ Edit Markdown</strong> tool too? That needs a PAT with <strong>repo</strong> scope instead (it writes files, not just gists) — <a href="https://github.com/settings/tokens/new?scopes=repo,gist&description=RoadmapEditor" target="_blank">create one with both</a>.</span>
     </div>
     <label class="m-label">GitHub Personal Access Token</label>
     <input class="m-input" id="pat-input" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
@@ -912,6 +935,22 @@
     </div>
   </div>
 </div>
+
+<!-- MARKDOWN EDITOR MODAL -->
+<div class="modal-overlay modal-overlay-lg" id="md-editor-modal">
+  <div class="modal modal-lg">
+    <div class="modal-title" id="md-editor-title">✎ Edit Roadmap Markdown</div>
+    <div class="modal-sub" id="md-editor-status">Loading…</div>
+    <textarea class="md-editor-textarea" id="md-editor-textarea" spellcheck="false" disabled placeholder="Loading current content…"></textarea>
+    <label class="m-label">Commit message <span style="color:var(--text-dim)">(optional)</span></label>
+    <input class="m-input" id="md-editor-commit-msg" type="text" placeholder="Update ROADMAP.md">
+    <div class="modal-actions">
+      <button class="mbtn mbtn-cancel" onclick="closeMarkdownEditor()">Cancel</button>
+      <button class="mbtn mbtn-ok" id="md-editor-save-btn" disabled onclick="saveMarkdownEdits()">Save to GitHub</button>
+    </div>
+  </div>
+</div>
+
 
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
@@ -1055,6 +1094,7 @@
         <div class="more-menu" id="more-menu">
           <button class="more-item" onclick="expandAll();closeMoreMenu()">Expand All</button>
           <button class="more-item" onclick="collapseAll();closeMoreMenu()">Collapse All</button>
+          <button class="more-item" onclick="openMarkdownEditor();closeMoreMenu()">✎ Edit Markdown</button>
         </div>
       </div>
     </div>
