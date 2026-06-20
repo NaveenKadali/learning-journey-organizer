@@ -687,12 +687,71 @@
     .res-section-chevron { color:var(--text-dim); transition:transform .18s; flex-shrink:0; opacity:.5; }
     .res-section-header.open .res-section-chevron { transform:rotate(180deg); opacity:1; }
 
-    /* Sub-module (####) */
-    .submod-group { margin-top:10px; padding-left:12px; border-left:1px solid var(--border); }
-    .submod-title {
-      font-size:.6rem; font-weight:500; color:var(--text-dim); margin-bottom:4px;
-      text-transform:uppercase; letter-spacing:.08em; font-family:var(--font-mono);
+    /* ── NESTED LEVELS (submodule ####, topic #####) ──
+       Same collapsible accordion as .module-group — header, chevron, body —
+       just scaled down per level so depth reads visually without needing
+       a different interaction model at each level. */
+    .module-group.lvl-2 { margin-left:8px; }
+    .module-group.lvl-2 .module-header {
+      padding:6px 10px; background:transparent; border-style:dashed;
     }
+    .module-group.lvl-2 .module-title { font-size:.7rem; font-weight:600; color:var(--text-dim); }
+    .module-group.lvl-2.open .module-title { color:var(--c-nav); }
+
+    .module-group.lvl-3 { margin-left:14px; }
+    .module-group.lvl-3 .module-header {
+      padding:5px 9px; background:transparent; border-style:dotted; opacity:.92;
+    }
+    .module-group.lvl-3 .module-title {
+      font-size:.66rem; font-weight:500; color:var(--text-dim);
+      text-transform:uppercase; letter-spacing:.04em; font-family:var(--font-mono);
+    }
+    .module-group.lvl-3.open .module-title { color:var(--c-nav); }
+
+    /* ── SUPPORTING CONTENT (description / notes) ──
+       A short single paragraph renders inline as a muted caption. Anything
+       richer (a list, a code fence, multiple paragraphs) becomes a
+       collapsed-by-default "Notes" panel so it never crowds the checklist —
+       it costs zero scroll space until someone opens it. */
+    .supp-caption {
+      font-size:.76rem; color:var(--text-dim); font-style:italic;
+      line-height:1.45; margin:0 0 10px 0;
+    }
+    .supp-notes { margin:0 0 10px 0; }
+    .supp-notes-header {
+      display:flex; align-items:center; gap:6px;
+      padding:5px 9px; border-radius:5px; border:1px solid var(--border);
+      background:transparent; cursor:pointer; user-select:none; transition:all .13s;
+    }
+    .supp-notes-header:hover { background:var(--surface2); }
+    .supp-notes.open .supp-notes-header { background:rgba(139,92,246,.07); border-color:rgba(139,92,246,.3); }
+    .supp-notes-icon { font-size:.72rem; flex-shrink:0; opacity:.8; }
+    .supp-notes-label {
+      font-family:var(--font-mono); font-size:.6rem; letter-spacing:.08em;
+      text-transform:uppercase; color:var(--text-dim); flex:1;
+    }
+    .supp-notes.open .supp-notes-label { color:var(--c-progress); }
+    .supp-notes-chevron { color:var(--text-dim); transition:transform .18s; flex-shrink:0; opacity:.5; }
+    .supp-notes.open .supp-notes-chevron { transform:rotate(180deg); opacity:1; }
+    .supp-notes-body { max-height:0; overflow:hidden; transition:max-height .28s cubic-bezier(.4,0,.2,1); }
+    .supp-notes.open .supp-notes-body { max-height:9999px; }
+    .supp-notes-body-inner {
+      padding:10px 4px 2px 4px; font-size:.78rem; color:var(--text-dim); line-height:1.55;
+    }
+    .supp-notes-body-inner p { margin:0 0 8px 0; }
+    .supp-notes-body-inner ul, .supp-notes-body-inner ol { margin:0 0 8px 0; padding-left:18px; }
+    .supp-notes-body-inner li { margin-bottom:3px; }
+    .supp-code {
+      background:var(--surface2); border:1px solid var(--border); border-radius:6px;
+      padding:10px 12px; overflow-x:auto; font-family:var(--font-mono); font-size:.72rem;
+      line-height:1.5; color:var(--text); margin:0 0 8px 0; white-space:pre;
+    }
+
+    /* ── ROADMAP / SECTION OVERVIEW ── */
+    .roadmap-overview { margin-bottom:18px; }
+    .roadmap-overview .supp-caption { font-size:.84rem; margin:0; }
+    .section-overview { margin:-4px 0 12px 2px; }
+    .section-overview .supp-caption { margin:0; }
 
     /* ── TASK ITEMS ───────────────────────────── */
     .task-list { list-style:none; display:flex; flex-direction:column; gap:0; }
