@@ -2,30 +2,7 @@
 
 ## Complete Beginner → Expert Roadmap
 
-### Goal
-
-Become:
-
-- Data Engineer
-- Analytics Engineer
-- Cloud Data Engineer
-- Senior Data Engineer
-- Staff Data Engineer
-- Principal Data Engineer
-- Data Platform Architect
-
-Optimized For:
-
-- Employability
-- Modern Data Stack
-- Cloud Data Platforms
-- Big Data Engineering
-- Data Warehousing
-- Streaming Systems
-- FAANG/Product Companies
-- Long-Term Career Growth
-
-# DATA ENGINEERING CAREER LADDER
+> # DATA ENGINEERING CAREER LADDER
 
 ```text
 BEGINNER
@@ -83,8 +60,6 @@ EXPERT
 └── Engineering Strategy
 ```
 
-# WHY DATA ENGINEERING?
-
 ## What Data Engineers Build
 
 ### Data Collection
@@ -115,7 +90,7 @@ EXPERT
 - [ ] Machine Learning
 - [ ] AI Systems
 
-# MODERN DATA ENGINEERING ARCHITECTURE
+> # MODERN DATA ENGINEERING ARCHITECTURE
 
 ```text
 Source Systems
@@ -139,7 +114,7 @@ Analytics / BI
 Machine Learning / AI
 ```
 
-# BEGINNER LEVEL
+> # BEGINNER LEVEL
 
 ## PHASE 1 — COMPUTER SCIENCE FUNDAMENTALS
 
