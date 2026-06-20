@@ -1,33 +1,31 @@
-> # DATA ENGINEERING ROADMAP
->
-> ## Complete Beginner → Expert Roadmap
->
-> ### Goal
->
-> Become:
->
-> - Data Engineer
-> - Analytics Engineer
-> - Cloud Data Engineer
-> - Senior Data Engineer
-> - Staff Data Engineer
-> - Principal Data Engineer
-> - Data Platform Architect
->
-> Optimized For:
->
-> - Employability
-> - Modern Data Stack
-> - Cloud Data Platforms
-> - Big Data Engineering
-> - Data Warehousing
-> - Streaming Systems
-> - FAANG/Product Companies
-> - Long-Term Career Growth
+# DATA ENGINEERING ROADMAP
 
----
+## Complete Beginner → Expert Roadmap
 
-> # DATA ENGINEERING CAREER LADDER
+### Goal
+
+Become:
+
+- Data Engineer
+- Analytics Engineer
+- Cloud Data Engineer
+- Senior Data Engineer
+- Staff Data Engineer
+- Principal Data Engineer
+- Data Platform Architect
+
+Optimized For:
+
+- Employability
+- Modern Data Stack
+- Cloud Data Platforms
+- Big Data Engineering
+- Data Warehousing
+- Streaming Systems
+- FAANG/Product Companies
+- Long-Term Career Growth
+
+# DATA ENGINEERING CAREER LADDER
 
 ```text
 BEGINNER
@@ -85,11 +83,9 @@ EXPERT
 └── Engineering Strategy
 ```
 
----
+# WHY DATA ENGINEERING?
 
-> # WHY DATA ENGINEERING?
-
-## ☑ What Data Engineers Build
+## What Data Engineers Build
 
 ### Data Collection
 
@@ -119,9 +115,7 @@ EXPERT
 - [ ] Machine Learning
 - [ ] AI Systems
 
----
-
-> # MODERN DATA ENGINEERING ARCHITECTURE
+# MODERN DATA ENGINEERING ARCHITECTURE
 
 ```text
 Source Systems
@@ -145,18 +139,15 @@ Analytics / BI
 Machine Learning / AI
 ```
 
----
+# BEGINNER LEVEL
 
-> # BEGINNER LEVEL
+## PHASE 1 — COMPUTER SCIENCE FUNDAMENTALS
 
-> ## PHASE 1 — COMPUTER SCIENCE FUNDAMENTALS
-
-### ☑ Objective
+#### Objective
 
 Understand systems before building pipelines.
 
-
-> ### Module 1.1 — Operating Systems
+### Module 1.1 — Operating Systems
 
 - [ ] Processes
 - [ ] Threads
@@ -164,9 +155,7 @@ Understand systems before building pipelines.
 - [ ] Storage
 - [ ] Scheduling
 
----
-
-> ### Module 1.2 — Networking
+### Module 1.2 — Networking
 
 - [ ] IP
 - [ ] DNS
@@ -175,9 +164,7 @@ Understand systems before building pipelines.
 - [ ] TCP
 - [ ] REST APIs
 
----
-
-> ### Module 1.3 — Linux
+### Module 1.3 — Linux
 
 - [ ] pwd
 - [ ] ls
@@ -189,52 +176,40 @@ Understand systems before building pipelines.
 - [ ] curl
 - [ ] wget
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Linux CLI Practice
 - [ ] API Requests using curl
 
----
-
-### Dependencies
+#### Dependencies
 
 ```text
 Required before ETL pipelines
 ```
 
----
+## PHASE 2 — PYTHON FOR DATA ENGINEERING
 
-> ## PHASE 2 — PYTHON FOR DATA ENGINEERING
-
-### ☑ Objective
+#### Objective
 
 Learn Python specifically for data processing.
 
----
+### Module 2.1 — Python Fundamentals
 
-> ### Module 2.1 — Python Fundamentals
-
-### ☑ Basics
+#### Basics
 
 - [ ] Variables
 - [ ] Data Types
 - [ ] Loops
 - [ ] Functions
 
----
-
-> ### Module 2.2 — Data Structures
+### Module 2.2 — Data Structures
 
 - [ ] Lists
 - [ ] Tuples
 - [ ] Sets
 - [ ] Dictionaries
 
----
-
-> ### Module 2.3 — File Processing
+### Module 2.3 — File Processing
 
 - [ ] CSV
 - [ ] JSON
@@ -242,9 +217,7 @@ Learn Python specifically for data processing.
 - [ ] Parquet
 - [ ] Avro
 
----
-
-> ### Module 2.4 — Python for Data
+### Module 2.4 — Python for Data
 
 #### Pandas
 
@@ -258,11 +231,9 @@ Learn Python specifically for data processing.
 - [ ] Arrays
 - [ ] Vectorization
 
----
+### Module 2.5 — Python Advanced
 
-> ### Module 2.5 — Python Advanced
-
-### ☑ Learn
+#### Learn
 
 - [ ] OOP
 - [ ] Type Hints
@@ -270,58 +241,46 @@ Learn Python specifically for data processing.
 - [ ] Logging
 - [ ] Exception Handling
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] CSV Processor
 - [ ] JSON Transformation Tool
 - [ ] Data Cleaning Project
 - [ ] ETL Script
 
----
-
-### Dependencies
+#### Dependencies
 
 ```text
 Required before Airflow and Spark
 ```
 
----
+## PHASE 3 — SQL MASTERY
 
-> # PHASE 3 — SQL MASTERY
-
-## ☑ Objective
+#### Objective
 
 Become exceptional at SQL.
 
----
+### Module 3.1 — SQL Fundamentals
 
-> ## Module 3.1 — SQL Fundamentals
-
-### ☑ Learn
+#### Learn
 
 - [ ] SELECT
 - [ ] INSERT
 - [ ] UPDATE
 - [ ] DELETE
 
----
+### Module 3.2 — Filtering
 
-> ## Module 3.2 — Filtering
-
-### ☑ Learn
+#### Learn
 
 - [ ] WHERE
 - [ ] LIKE
 - [ ] IN
 - [ ] EXISTS
 
----
+### Module 3.3 — Aggregations
 
-> ## Module 3.3 — Aggregations
-
-### ☑ Learn
+#### Learn
 
 - [ ] COUNT
 - [ ] SUM
@@ -329,11 +288,9 @@ Become exceptional at SQL.
 - [ ] GROUP BY
 - [ ] HAVING
 
----
+### Module 3.4 — Joins
 
-> ## Module 3.4 — Joins
-
-### ☑ Learn
+#### Learn
 
 - [ ] INNER JOIN
 - [ ] LEFT JOIN
@@ -341,22 +298,18 @@ Become exceptional at SQL.
 - [ ] FULL JOIN
 - [ ] SELF JOIN
 
----
+### Module 3.5 — Advanced SQL
 
-> ## Module 3.5 — Advanced SQL
-
-### ☑ Learn
+#### Learn
 
 - [ ] CTE
 - [ ] Window Functions
 - [ ] Recursive Queries
 - [ ] Subqueries
 
----
+### Module 3.6 — Window Functions (Critical)
 
-> ## Module 3.6 — Window Functions (Critical)
-
-### ☑ Learn
+#### Learn
 
 - [ ] ROW_NUMBER
 - [ ] RANK
@@ -364,215 +317,167 @@ Become exceptional at SQL.
 - [ ] LAG
 - [ ] LEAD
 
----
+### Module 3.7 — Query Optimization
 
-> ## Module 3.7 — Query Optimization
-
-### ☑ Learn
+#### Learn
 
 - [ ] Indexes
 - [ ] Execution Plans
 - [ ] Query Tuning
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] 300 SQL Problems
 - [ ] Data Analyst SQL Projects
 - [ ] Query Optimization Exercises
 
----
-
-### Dependencies
+#### Dependencies
 
 ```text
 Most Important Skill in Data Engineering
 ```
 
----
+## PHASE 4 — DATABASES
 
-> # PHASE 4 — DATABASES
-
-## ☑ Objective
+#### Objective
 
 Understand where data lives.
 
----
+### Module 4.1 — Relational Databases
 
-> ## Module 4.1 — Relational Databases
-
-### ☑ PostgreSQL
+#### PostgreSQL
 
 - [ ] Tables
 - [ ] Constraints
 - [ ] Indexes
 - [ ] Transactions
 
----
-
-### ☑ MySQL
+#### MySQL
 
 - [ ] CRUD
 - [ ] Query Tuning
 
----
+### Module 4.2 — NoSQL
 
-> ## Module 4.2 — NoSQL
-
-### ☑ MongoDB
+#### MongoDB
 
 - [ ] Collections
 - [ ] Documents
 - [ ] Aggregation
 
----
-
-### ☑ Redis
+#### Redis
 
 - [ ] Key Value Storage
 - [ ] Caching
 
----
+### Module 4.3 — Database Design
 
-> ## Module 4.3 — Database Design
-
-### ☑ Learn
+#### Learn
 
 - [ ] ERD
 - [ ] Normalization
 - [ ] Denormalization
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Design E-Commerce Database
 - [ ] Design Analytics Database
 
----
+## PHASE 5 — DATA MODELING
 
-> # PHASE 5 — DATA MODELING
-
-## ☑ Objective
+#### Objective
 
 Learn how analytics data is structured.
 
----
+### Module 5.1 — OLTP vs OLAP
 
-> ## Module 5.1 — OLTP vs OLAP
-
-### ☑ Learn
+#### Learn
 
 - [ ] Transactional Systems
 - [ ] Analytical Systems
 
----
+### Module 5.2 — Data Modeling
 
-> ## Module 5.2 — Data Modeling
-
-### ☑ Learn
+#### Learn
 
 - [ ] Facts
 - [ ] Dimensions
 - [ ] Measures
 
----
+### Module 5.3 — Star Schema
 
-> ## Module 5.3 — Star Schema
-
-### ☑ Learn
+#### Learn
 
 - [ ] Fact Tables
 - [ ] Dimension Tables
 
----
+### Module 5.4 — Snowflake Schema
 
-> ## Module 5.4 — Snowflake Schema
-
-### ☑ Learn
+#### Learn
 
 - [ ] Normalized Dimensions
 
----
+### Module 5.5 — Slowly Changing Dimensions
 
-> ## Module 5.5 — Slowly Changing Dimensions
-
-### ☑ Learn
+#### Learn
 
 - [ ] SCD Type 1
 - [ ] SCD Type 2
 - [ ] SCD Type 3
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Sales Data Warehouse Model
 - [ ] E-Commerce Data Model
 - [ ] Customer Analytics Model
 
----
+## PHASE 6 — DATA ENGINEERING FUNDAMENTALS
 
-> # PHASE 6 — DATA ENGINEERING FUNDAMENTALS
-
-## ☑ Objective
+#### Objective
 
 Understand core Data Engineering concepts.
 
----
+### Module 6.1 — ETL
 
-> ## Module 6.1 — ETL
-
-### ☑ Learn
+#### Learn
 
 - [ ] Extract
 - [ ] Transform
 - [ ] Load
 
----
+### Module 6.2 — ELT
 
-> ## Module 6.2 — ELT
-
-### ☑ Learn
+#### Learn
 
 - [ ] Extract
 - [ ] Load
 - [ ] Transform
 
----
+### Module 6.3 — Data Quality
 
-> ## Module 6.3 — Data Quality
-
-### ☑ Learn
+#### Learn
 
 - [ ] Completeness
 - [ ] Consistency
 - [ ] Accuracy
 - [ ] Freshness
 
----
+### Module 6.4 — Data Lineage
 
-> ## Module 6.4 — Data Lineage
-
-### ☑ Learn
+#### Learn
 
 - [ ] Upstream Sources
 - [ ] Downstream Consumers
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Build ETL Pipeline
 - [ ] Data Validation Pipeline
 - [ ] Data Quality Dashboard
 
----
+# BEGINNER → FOUNDATION PORTFOLIO PROJECTS
 
-> # BEGINNER → FOUNDATION PORTFOLIO PROJECTS
-
-## ☑ Project 1 — CSV to PostgreSQL Pipeline
+## Project 1 — CSV to PostgreSQL Pipeline
 
 ### Objective
 
@@ -590,9 +495,7 @@ Learn ETL fundamentals.
 - SQL
 - Data Cleaning
 
----
-
-## ☑ Project 2 — API Data Ingestion Pipeline
+## Project 2 — API Data Ingestion Pipeline
 
 ### Objective
 
@@ -610,9 +513,7 @@ Ingest external data.
 - ETL
 - Scheduling
 
----
-
-## ☑ Project 3 — Analytics Warehouse
+## Project 3 — Analytics Warehouse
 
 ### Objective
 
@@ -628,9 +529,7 @@ Build warehouse schema.
 - Star Schema
 - SQL
 
----
-
-> # FOUNDATION CHECKLIST
+# FOUNDATION CHECKLIST
 
 - [ ] Python
 - [ ] Pandas
@@ -643,90 +542,71 @@ Build warehouse schema.
 - [ ] APIs
 - [ ] Portfolio Projects
 
----
+# PART 2 — JUNIOR DATA ENGINEER ROADMAP
 
+#### Designation
 
-> # PART 2 — JUNIOR DATA ENGINEER ROADMAP
->
-> Designation:
->
-> - Junior Data Engineer
-> - Data Engineer I
-> - Analytics Engineer
-> - Cloud Data Engineer (Junior)
+- Junior Data Engineer
+- Data Engineer I
+- Analytics Engineer
+- Cloud Data Engineer (Junior)
 
----
+## PHASE 7 — DATA WAREHOUSING
 
-> # PHASE 7 — DATA WAREHOUSING
-
-## ☑ Objective
+#### Objective
 
 Learn how modern companies store analytical data.
 
----
+### Module 7.1 — Data Warehouse Fundamentals
 
-> ## Module 7.1 — Data Warehouse Fundamentals
-
-### ☑ Learn
+#### Learn
 
 - [ ] OLTP vs OLAP
 - [ ] Analytical Workloads
 - [ ] Business Intelligence
 - [ ] Reporting Systems
 
----
+### Module 7.2 — Warehouse Architecture
 
-> ## Module 7.2 — Warehouse Architecture
-
-### ☑ Learn
+#### Learn
 
 - [ ] Source Systems
 - [ ] Staging Layer
 - [ ] Transformation Layer
 - [ ] Serving Layer
 
----
+### Module 7.3 — Data Warehouse Concepts
 
-> ## Module 7.3 — Data Warehouse Concepts
-
-### ☑ Learn
+#### Learn
 
 - [ ] Fact Tables
 - [ ] Dimension Tables
 - [ ] Surrogate Keys
 - [ ] Slowly Changing Dimensions
 
----
+### Module 7.4 — Partitioning
 
-> ## Module 7.4 — Partitioning
-
-### ☑ Learn
+#### Learn
 
 - [ ] Time-Based Partitioning
 - [ ] Range Partitioning
 - [ ] Hash Partitioning
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Build Sales Warehouse
 - [ ] Design Retail Analytics Warehouse
 - [ ] Customer Analytics Warehouse
 
----
+## PHASE 8 — DATA WAREHOUSE PLATFORMS
 
-> # PHASE 8 — DATA WAREHOUSE PLATFORMS
-
-## ☑ Objective
+#### Objective
 
 Master industry-standard warehouse solutions.
 
----
+### Module 8.1 — Snowflake
 
-> ## Module 8.1 — Snowflake
-
-### ☑ Learn
+#### Learn
 
 - [ ] Architecture
 - [ ] Virtual Warehouses
@@ -735,11 +615,9 @@ Master industry-standard warehouse solutions.
 - [ ] Time Travel
 - [ ] Zero Copy Cloning
 
----
+### Module 8.2 — BigQuery
 
-> ## Module 8.2 — BigQuery
-
-### ☑ Learn
+#### Learn
 
 - [ ] Datasets
 - [ ] Tables
@@ -747,28 +625,22 @@ Master industry-standard warehouse solutions.
 - [ ] Clustering
 - [ ] Cost Optimization
 
----
+### Module 8.3 — Amazon Redshift
 
-> ## Module 8.3 — Amazon Redshift
-
-### ☑ Learn
+#### Learn
 
 - [ ] Clusters
 - [ ] Spectrum
 - [ ] Distribution Keys
 - [ ] Sort Keys
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Build Warehouse in Snowflake
 - [ ] Build Warehouse in BigQuery
 - [ ] Cost Optimization Exercise
 
----
-
-### Industry Priority
+#### Industry Priority
 
 ```text
 Most Valuable Today:
@@ -778,180 +650,142 @@ Most Valuable Today:
 3. Redshift
 ```
 
----
+## PHASE 9 — APACHE AIRFLOW
 
-> # PHASE 9 — APACHE AIRFLOW
-
-## ☑ Objective
+#### Objective
 
 Learn workflow orchestration.
 
----
+### Module 9.1 — Airflow Fundamentals
 
-> ## Module 9.1 — Airflow Fundamentals
-
-### ☑ Learn
+#### Learn
 
 - [ ] DAGs
 - [ ] Tasks
 - [ ] Operators
 - [ ] Scheduling
 
----
+### Module 9.2 — DAG Development
 
-> ## Module 9.2 — DAG Development
-
-### ☑ Learn
+#### Learn
 
 - [ ] PythonOperator
 - [ ] BashOperator
 - [ ] SQL Operators
 
----
+### Module 9.3 — Scheduling
 
-> ## Module 9.3 — Scheduling
-
-### ☑ Learn
+#### Learn
 
 - [ ] Cron Expressions
 - [ ] Dependencies
 - [ ] Trigger Rules
 
----
+### Module 9.4 — Production Airflow
 
-> ## Module 9.4 — Production Airflow
-
-### ☑ Learn
+#### Learn
 
 - [ ] Retries
 - [ ] Failure Handling
 - [ ] Monitoring
 - [ ] Alerts
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Daily ETL DAG
 - [ ] Warehouse Load DAG
 - [ ] Multi-Step Pipeline
 
----
-
-### Dependencies
+#### Dependencies
 
 ```text
 Python + SQL Required
 ```
 
----
+## PHASE 10 — APACHE SPARK
 
-> # PHASE 10 — APACHE SPARK
-
-## ☑ Objective
+#### Objective
 
 Process large-scale datasets.
 
----
+### Module 10.1 — Spark Fundamentals
 
-> ## Module 10.1 — Spark Fundamentals
-
-### ☑ Learn
+#### Learn
 
 - [ ] Driver
 - [ ] Executors
 - [ ] Cluster Manager
 
----
+### Module 10.2 — PySpark
 
-> ## Module 10.2 — PySpark
-
-### ☑ Learn
+#### Learn
 
 - [ ] DataFrames
 - [ ] Transformations
 - [ ] Actions
 
----
+### Module 10.3 — Spark SQL
 
-> ## Module 10.3 — Spark SQL
-
-### ☑ Learn
+#### Learn
 
 - [ ] SQL Queries
 - [ ] Aggregations
 - [ ] Joins
 
----
+### Module 10.4 — Performance
 
-> ## Module 10.4 — Performance
-
-### ☑ Learn
+#### Learn
 
 - [ ] Partitioning
 - [ ] Repartition
 - [ ] Broadcast Joins
 - [ ] Caching
 
----
+### Module 10.5 — Spark Internals
 
-> ## Module 10.5 — Spark Internals
-
-### ☑ Learn
+#### Learn
 
 - [ ] DAG Execution
 - [ ] Shuffle
 - [ ] Catalyst Optimizer
 - [ ] Tungsten Engine
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Large CSV Processing
 - [ ] Spark ETL Pipeline
 - [ ] Spark Analytics Project
 
----
-
-### Dependencies
+#### Dependencies
 
 ```text
 SQL + Python + DataFrames
 ```
 
----
+## PHASE 11 — HADOOP ECOSYSTEM (CONCEPTUAL)
 
-> # PHASE 11 — HADOOP ECOSYSTEM (CONCEPTUAL)
-
-## ☑ Objective
+#### Objective
 
 Understand legacy and foundational Big Data systems.
 
----
+### Module 11.1 — Hadoop Fundamentals
 
-> ## Module 11.1 — Hadoop Fundamentals
-
-### ☑ Learn
+#### Learn
 
 - [ ] HDFS
 - [ ] NameNode
 - [ ] DataNode
 
----
+### Module 11.2 — Hadoop Ecosystem
 
-> ## Module 11.2 — Hadoop Ecosystem
-
-### ☑ Learn
+#### Learn
 
 - [ ] Hive
 - [ ] HBase
 - [ ] Sqoop
 - [ ] Oozie
 
----
-
-### Recommendation
+#### Recommendation
 
 ```text
 Understand concepts.
@@ -967,174 +801,123 @@ Databricks
 Kafka
 ```
 
----
+## PHASE 12 — DATABRICKS
 
-> # PHASE 12 — DATABRICKS
-
-## ☑ Objective
+#### Objective
 
 Learn the dominant modern data platform.
 
----
+### Module 12.1 — Databricks Fundamentals
 
-> ## Module 12.1 — Databricks Fundamentals
-
-### ☑ Learn
+#### Learn
 
 - [ ] Workspace
 - [ ] Clusters
 - [ ] Notebooks
 
----
+### Module 12.2 — Delta Lake
 
-> ## Module 12.2 — Delta Lake
-
-### ☑ Learn
+#### Learn
 
 - [ ] ACID Transactions
 - [ ] Time Travel
 - [ ] Schema Enforcement
 
----
+### Module 12.3 — Medallion Architecture
 
-> ## Module 12.3 — Medallion Architecture
-
-### ☑ Learn
+#### Learn
 
 - [ ] Bronze Layer
 - [ ] Silver Layer
 - [ ] Gold Layer
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Delta Lake Project
 - [ ] Medallion Pipeline
 
----
-
-### Industry Value
+#### Industry Value
 
 ```text
 Very High ROI Skill
 ```
 
----
+## PHASE 13 — DBT (DATA BUILD TOOL)
 
-> # PHASE 13 — DBT (DATA BUILD TOOL)
-
-## ☑ Objective
+#### Objective
 
 Modern analytics engineering.
 
----
+### Module 13.1 — dbt Fundamentals
 
-> ## Module 13.1 — dbt Fundamentals
-
-### ☑ Learn
+#### Learn
 
 - [ ] Models
 - [ ] Sources
 - [ ] Seeds
 
----
+### Module 13.2 — Transformations
 
-> ## Module 13.2 — Transformations
-
-### ☑ Learn
+#### Learn
 
 - [ ] Incremental Models
 - [ ] Materializations
 
----
+### Module 13.3 — Testing
 
-> ## Module 13.3 — Testing
-
-### ☑ Learn
+#### Learn
 
 - [ ] Schema Tests
 - [ ] Data Tests
 
----
+### Module 13.4 — Documentation
 
-> ## Module 13.4 — Documentation
+#### Learn
+## PHASE 14 — CLOUD FOR DATA ENGINEERING
 
-### ☑ Learn
-
-- [ ] Lineage
-- [ ] Auto Documentation
-
----
-
-### Deliverables
-
-- [ ] Analytics Project
-- [ ] dbt Warehouse Transformation
-
----
-
-### Industry Value
-
-```text
-Extremely High ROI
-```
-
----
-
-> # PHASE 14 — CLOUD FOR DATA ENGINEERING
-
-## ☑ Objective
+#### Objective
 
 Become cloud-ready.
 
----
+### Module 14.1 — AWS Data Engineering
 
-> ## Module 14.1 — AWS Data Engineering
-
-### ☑ Storage
+#### Storage
 
 - [ ] S3
 
-### ☑ Compute
+#### Compute
 
 - [ ] EC2
 - [ ] Lambda
 
-### ☑ Data
+#### Data
 
 - [ ] Glue
 - [ ] Athena
 - [ ] Redshift
 
-### ☑ Streaming
+#### Streaming
 
 - [ ] Kinesis
 
----
+### Module 14.2 — GCP Data Engineering
 
-> ## Module 14.2 — GCP Data Engineering
-
-### ☑ Learn
+#### Learn
 
 - [ ] BigQuery
 - [ ] Dataflow
 - [ ] Pub/Sub
 - [ ] Cloud Storage
 
----
+### Module 14.3 — Azure Data Engineering
 
-> ## Module 14.3 — Azure Data Engineering
-
-### ☑ Learn
+#### Learn
 
 - [ ] Data Factory
 - [ ] Synapse
 - [ ] Data Lake Storage
 
----
-
-### Recommendation
+#### Recommendation
 
 ```text
 Pick ONE cloud first.
@@ -1146,17 +929,13 @@ GCP → Strong Data Ecosystem
 Azure → Enterprise Companies
 ```
 
----
+## PHASE 15 — MODERN DATA STACK
 
-> # PHASE 15 — MODERN DATA STACK
-
-## ☑ Objective
+#### Objective
 
 Learn what modern startups use.
 
----
-
-### Typical Modern Stack
+#### Typical Modern Stack
 
 ```text
 Sources
@@ -1174,86 +953,66 @@ dbt
 Looker / Tableau / Power BI
 ```
 
----
+### Module 15.1 — Data Ingestion
 
-> ## Module 15.1 — Data Ingestion
-
-### ☑ Learn
+#### Learn
 
 - [ ] Airbyte
 - [ ] Fivetran Concepts
 
----
+### Module 15.2 — Transformation
 
-> ## Module 15.2 — Transformation
-
-### ☑ Learn
+#### Learn
 
 - [ ] dbt
 
----
+### Module 15.3 — Visualization
 
-> ## Module 15.3 — Visualization
-
-### ☑ Learn
+#### Learn
 
 - [ ] Tableau Basics
 - [ ] Power BI Basics
 - [ ] Looker Concepts
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] End-to-End Analytics Stack
 
----
+## PHASE 16 — DATA QUALITY & TESTING
 
-> # PHASE 16 — DATA QUALITY & TESTING
-
-## ☑ Objective
+#### Objective
 
 Build trusted data.
 
----
+### Module 16.1 — Data Validation
 
-> ## Module 16.1 — Data Validation
-
-### ☑ Learn
+#### Learn
 
 - [ ] Null Checks
 - [ ] Uniqueness
 - [ ] Freshness
 
----
+### Module 16.2 — Great Expectations
 
-> ## Module 16.2 — Great Expectations
-
-### ☑ Learn
+#### Learn
 
 - [ ] Expectations
 - [ ] Validation Pipelines
 
----
+### Module 16.3 — Monitoring
 
-> ## Module 16.3 — Monitoring
-
-### ☑ Learn
+#### Learn
 
 - [ ] Data Drift
 - [ ] Pipeline Failures
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Data Quality Framework
 
----
+# JOB-READY PORTFOLIO PROJECTS
 
-> # JOB-READY PORTFOLIO PROJECTS
-
-## ☑ Project 1 — End-to-End ETL Platform
+## Project 1 — End-to-End ETL Platform
 
 ### Stack
 
@@ -1267,9 +1026,7 @@ Build trusted data.
 - Scheduling
 - Automation
 
----
-
-## ☑ Project 2 — Data Warehouse Project
+## Project 2 — Data Warehouse Project
 
 ### Stack
 
@@ -1282,9 +1039,7 @@ Build trusted data.
 - Modeling
 - Analytics
 
----
-
-## ☑ Project 3 — Spark Data Processing Platform
+## Project 3 — Spark Data Processing Platform
 
 ### Stack
 
@@ -1296,9 +1051,7 @@ Build trusted data.
 - Big Data Processing
 - Optimization
 
----
-
-## ☑ Project 4 — Modern Data Stack Project
+## Project 4 — Modern Data Stack Project
 
 ### Stack
 
@@ -1312,9 +1065,7 @@ Build trusted data.
 - Modern Data Engineering
 - Analytics Engineering
 
----
-
-## ☑ Project 5 — Databricks Medallion Pipeline
+## Project 5 — Databricks Medallion Pipeline
 
 ### Stack
 
@@ -1326,9 +1077,7 @@ Build trusted data.
 - Lakehouse
 - Production Data Pipelines
 
----
-
-> # JUNIOR DATA ENGINEER INTERVIEW PREPARATION
+# JUNIOR DATA ENGINEER INTERVIEW PREPARATION
 
 ## SQL
 
@@ -1343,8 +1092,6 @@ Build trusted data.
 - [ ] CTEs
 - [ ] Optimization
 
----
-
 ## Python
 
 ### Topics
@@ -1353,8 +1100,6 @@ Build trusted data.
 - [ ] File Processing
 - [ ] OOP
 - [ ] Data Structures
-
----
 
 ## Data Engineering
 
@@ -1365,8 +1110,6 @@ Build trusted data.
 - [ ] Airflow
 - [ ] Spark
 
----
-
 ## Cloud
 
 ### Topics
@@ -1376,9 +1119,7 @@ Build trusted data.
 - [ ] BigQuery
 - [ ] Data Lakes
 
----
-
-> # EMPLOYABLE CHECKLIST
+# EMPLOYABLE CHECKLIST
 
 - [ ] Python
 - [ ] SQL
@@ -1394,132 +1135,116 @@ Build trusted data.
 - [ ] GitHub Portfolio
 - [ ] Resume Ready
 
----
+# PART 3 — MID-LEVEL DATA ENGINEER ROADMAP
 
+#### Designation
 
-> # PART 3 — MID-LEVEL DATA ENGINEER ROADMAP
->
-> Designation:
->
-> - Data Engineer II
-> - Mid-Level Data Engineer
-> - Data Platform Engineer
-> - Analytics Platform Engineer
-> - Cloud Data Engineer
+- Data Engineer II
+- Mid-Level Data Engineer
+- Data Platform Engineer
+- Analytics Platform Engineer
+- Cloud Data Engineer
 
----
+## PHASE 17 — DISTRIBUTED SYSTEMS FOR DATA ENGINEERS
 
-> # PHASE 17 — DISTRIBUTED SYSTEMS FOR DATA ENGINEERS
-
-## ☑ Objective
+#### Objective
 
 Understand how large-scale data systems operate.
 
----
+### Module 17.1 — Distributed Systems Fundamentals
 
-> ## Module 17.1 — Distributed Systems Fundamentals
-
-### ☑ Learn
+#### Learn
 
 - [ ] Horizontal Scaling
 - [ ] Vertical Scaling
 - [ ] Distributed Storage
 - [ ] Distributed Processing
 
----
+### Module 17.2 — Core Concepts
 
-> ## Module 17.2 — Core Concepts
-
-### ☑ Learn
+#### Learn
 
 - [ ] CAP Theorem
 - [ ] Consistency Models
 - [ ] Replication
 - [ ] Fault Tolerance
 
----
+### Module 17.3 — Data Engineering Context
 
-> ## Module 17.3 — Data Engineering Context
-
-### ☑ Learn
+#### Learn
 
 - [ ] Distributed ETL
 - [ ] Distributed Query Engines
 - [ ] Distributed Storage
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Explain Spark Architecture
 - [ ] Explain Distributed Warehouses
 - [ ] Explain Data Lake Architecture
 
----
-
-### Dependencies
+#### Dependencies
 
 ```text
 Required before advanced Spark and streaming
 ```
+- [ ] Lineage
+- [ ] Auto Documentation
 
----
+#### Deliverables
 
-> # PHASE 18 — STREAMING DATA ENGINEERING
+- [ ] Analytics Project
+- [ ] dbt Warehouse Transformation
 
-## ☑ Objective
+#### Industry Value
+
+```text
+Extremely High ROI
+```
+
+## PHASE 18 — STREAMING DATA ENGINEERING
+
+#### Objective
 
 Move from batch processing to real-time systems.
 
----
+### Module 18.1 — Streaming Fundamentals
 
-> ## Module 18.1 — Streaming Fundamentals
-
-### ☑ Learn
+#### Learn
 
 - [ ] Event Streams
 - [ ] Event Time
 - [ ] Processing Time
 - [ ] Watermarks
 
----
+### Module 18.2 — Stream Processing
 
-> ## Module 18.2 — Stream Processing
-
-### ☑ Learn
+#### Learn
 
 - [ ] Stateless Processing
 - [ ] Stateful Processing
 - [ ] Windowing
 
----
-
-### Window Types
+#### Window Types
 
 - [ ] Tumbling Windows
 - [ ] Sliding Windows
 - [ ] Session Windows
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Real-Time Analytics Pipeline
 - [ ] Streaming Dashboard
 
----
+## PHASE 19 — APACHE KAFKA
 
-> # PHASE 19 — APACHE KAFKA
-
-## ☑ Objective
+#### Objective
 
 Master event-driven data pipelines.
 
----
+### Module 19.1 — Kafka Fundamentals
 
-> ## Module 19.1 — Kafka Fundamentals
-
-### ☑ Learn
+#### Learn
 
 - [ ] Brokers
 - [ ] Topics
@@ -1527,130 +1252,102 @@ Master event-driven data pipelines.
 - [ ] Producers
 - [ ] Consumers
 
----
+### Module 19.2 — Kafka Architecture
 
-> ## Module 19.2 — Kafka Architecture
-
-### ☑ Learn
+#### Learn
 
 - [ ] Replication
 - [ ] Fault Tolerance
 - [ ] Consumer Groups
 - [ ] Offsets
 
----
+### Module 19.3 — Kafka Ecosystem
 
-> ## Module 19.3 — Kafka Ecosystem
-
-### ☑ Learn
+#### Learn
 
 - [ ] Kafka Connect
 - [ ] Schema Registry
 - [ ] Kafka Streams
 
----
+### Module 19.4 — Production Kafka
 
-> ## Module 19.4 — Production Kafka
-
-### ☑ Learn
+#### Learn
 
 - [ ] Retention Policies
 - [ ] Topic Design
 - [ ] Partition Strategy
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Real-Time Event Pipeline
 - [ ] Kafka Ingestion System
 - [ ] CDC Pipeline
 
----
-
-### Dependencies
+#### Dependencies
 
 ```text
 Streaming fundamentals required
 ```
 
----
+## PHASE 20 — CHANGE DATA CAPTURE (CDC)
 
-> # PHASE 20 — CHANGE DATA CAPTURE (CDC)
-
-## ☑ Objective
+#### Objective
 
 Capture database changes in real time.
 
----
+### Module 20.1 — CDC Fundamentals
 
-> ## Module 20.1 — CDC Fundamentals
-
-### ☑ Learn
+#### Learn
 
 - [ ] Transaction Logs
 - [ ] Binlogs
 - [ ] WAL
 
----
+### Module 20.2 — Debezium
 
-> ## Module 20.2 — Debezium
-
-### ☑ Learn
+#### Learn
 
 - [ ] Connectors
 - [ ] Kafka Integration
 - [ ] Change Events
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] PostgreSQL CDC Pipeline
 - [ ] MySQL CDC Pipeline
 
----
-
-### Industry Importance
+#### Industry Importance
 
 ```text
 Extremely High ROI
 Widely Used in Modern Data Platforms
 ```
 
----
+## PHASE 21 — DATA LAKES
 
-> # PHASE 21 — DATA LAKES
-
-## ☑ Objective
+#### Objective
 
 Understand modern data storage.
 
----
+### Module 21.1 — Data Lake Fundamentals
 
-> ## Module 21.1 — Data Lake Fundamentals
-
-### ☑ Learn
+#### Learn
 
 - [ ] Structured Data
 - [ ] Semi-Structured Data
 - [ ] Unstructured Data
 
----
+### Module 21.2 — Object Storage
 
-> ## Module 21.2 — Object Storage
-
-### ☑ Learn
+#### Learn
 
 - [ ] AWS S3
 - [ ] Google Cloud Storage
 - [ ] Azure Data Lake Storage
 
----
+### Module 21.3 — File Formats
 
-> ## Module 21.3 — File Formats
-
-### ☑ Learn
+#### Learn
 
 - [ ] CSV
 - [ ] JSON
@@ -1658,63 +1355,49 @@ Understand modern data storage.
 - [ ] ORC
 - [ ] Avro
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Data Lake Setup
 - [ ] Data Lake Analytics Project
 
----
+## PHASE 22 — LAKEHOUSE ARCHITECTURE
 
-> # PHASE 22 — LAKEHOUSE ARCHITECTURE
-
-## ☑ Objective
+#### Objective
 
 Master the future of analytics platforms.
 
----
+### Module 22.1 — Lakehouse Concepts
 
-> ## Module 22.1 — Lakehouse Concepts
-
-### ☑ Learn
+#### Learn
 
 - [ ] Data Lake
 - [ ] Data Warehouse
 - [ ] Lakehouse
 
----
+### Module 22.2 — Delta Lake
 
-> ## Module 22.2 — Delta Lake
-
-### ☑ Learn
+#### Learn
 
 - [ ] ACID Transactions
 - [ ] Time Travel
 - [ ] Schema Evolution
 
----
+### Module 22.3 — Apache Iceberg
 
-> ## Module 22.3 — Apache Iceberg
-
-### ☑ Learn
+#### Learn
 
 - [ ] Table Metadata
 - [ ] Partition Evolution
 - [ ] Snapshots
 
----
+### Module 22.4 — Apache Hudi
 
-> ## Module 22.4 — Apache Hudi
-
-### ☑ Learn
+#### Learn
 
 - [ ] Incremental Processing
 - [ ] Upserts
 
----
-
-### Industry Priority
+#### Industry Priority
 
 ```text
 Priority Order:
@@ -1724,303 +1407,238 @@ Priority Order:
 3. Apache Hudi
 ```
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Lakehouse Project
 - [ ] Delta Lake Pipeline
 - [ ] Iceberg Project
 
----
+## PHASE 23 — ADVANCED SPARK
 
-> # PHASE 23 — ADVANCED SPARK
-
-## ☑ Objective
+#### Objective
 
 Become highly effective with large-scale processing.
 
----
+### Module 23.1 — Spark Optimization
 
-> ## Module 23.1 — Spark Optimization
-
-### ☑ Learn
+#### Learn
 
 - [ ] Partition Pruning
 - [ ] Predicate Pushdown
 - [ ] Broadcast Joins
 
----
+### Module 23.2 — Memory Management
 
-> ## Module 23.2 — Memory Management
-
-### ☑ Learn
+#### Learn
 
 - [ ] Executor Memory
 - [ ] Driver Memory
 - [ ] Caching
 
----
+### Module 23.3 — Spark Streaming
 
-> ## Module 23.3 — Spark Streaming
-
-### ☑ Learn
+#### Learn
 
 - [ ] Structured Streaming
 - [ ] Kafka Integration
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Optimized Spark Pipeline
 - [ ] Streaming Spark Application
 
----
+## PHASE 24 — DATA GOVERNANCE
 
-> # PHASE 24 — DATA GOVERNANCE
-
-## ☑ Objective
+#### Objective
 
 Manage enterprise data responsibly.
 
----
+### Module 24.1 — Governance Fundamentals
 
-> ## Module 24.1 — Governance Fundamentals
-
-### ☑ Learn
+#### Learn
 
 - [ ] Data Ownership
 - [ ] Data Stewardship
 - [ ] Compliance
 
----
+### Module 24.2 — Metadata Management
 
-> ## Module 24.2 — Metadata Management
-
-### ☑ Learn
+#### Learn
 
 - [ ] Data Catalogs
 - [ ] Metadata Stores
 
----
-
-### Tools
+#### Tools
 
 - [ ] DataHub
 - [ ] Amundsen
 - [ ] OpenMetadata
 
----
+### Module 24.3 — Lineage
 
-> ## Module 24.3 — Lineage
-
-### ☑ Learn
+#### Learn
 
 - [ ] Upstream Dependencies
 - [ ] Downstream Impact
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Data Catalog Project
 - [ ] Lineage Mapping Exercise
 
----
 
-> # PHASE 25 — DATA RELIABILITY ENGINEERING
+## PHASE 25 — DATA RELIABILITY ENGINEERING
 
-## ☑ Objective
+#### Objective
 
 Make pipelines trustworthy.
 
----
+### Module 25.1 — Reliability Fundamentals
 
-> ## Module 25.1 — Reliability Fundamentals
-
-### ☑ Learn
+#### Learn
 
 - [ ] SLAs
 - [ ] SLOs
 - [ ] Data Freshness
 
----
+### Module 25.2 — Data Quality
 
-> ## Module 25.2 — Data Quality
-
-### ☑ Learn
+#### Learn
 
 - [ ] Validation
 - [ ] Anomaly Detection
 - [ ] Schema Validation
 
----
+### Module 25.3 — Observability
 
-> ## Module 25.3 — Observability
-
-### ☑ Learn
+#### Learn
 
 - [ ] Metrics
 - [ ] Alerts
 - [ ] Monitoring
 
----
-
-### Tools
+#### Tools
 
 - [ ] Great Expectations
 - [ ] Soda
 - [ ] Monte Carlo (Conceptual)
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Reliability Dashboard
 - [ ] Data Monitoring Framework
 
----
+## PHASE 26 — PLATFORM ENGINEERING FOR DATA
 
-> # PHASE 26 — PLATFORM ENGINEERING FOR DATA
-
-## ☑ Objective
+#### Objective
 
 Build self-service data platforms.
 
----
+### Module 26.1 — Platform Concepts
 
-> ## Module 26.1 — Platform Concepts
-
-### ☑ Learn
+#### Learn
 
 - [ ] Data Platform
 - [ ] Internal Developer Platforms
 - [ ] Self-Service Analytics
 
----
+### Module 26.2 — Infrastructure Automation
 
-> ## Module 26.2 — Infrastructure Automation
-
-### ☑ Learn
+#### Learn
 
 - [ ] Terraform
 - [ ] Infrastructure as Code
 
----
+### Module 26.3 — CI/CD for Data
 
-> ## Module 26.3 — CI/CD for Data
-
-### ☑ Learn
+#### Learn
 
 - [ ] Automated Testing
 - [ ] Data Deployments
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Automated Data Platform
 - [ ] Infrastructure as Code Project
 
----
+## PHASE 27 — KUBERNETES FOR DATA ENGINEERS
 
-> # PHASE 27 — KUBERNETES FOR DATA ENGINEERS
-
-## ☑ Objective
+#### Objective
 
 Run data workloads at scale.
 
----
+### Module 27.1 — Kubernetes Fundamentals
 
-> ## Module 27.1 — Kubernetes Fundamentals
-
-### ☑ Learn
+#### Learn
 
 - [ ] Pods
 - [ ] Deployments
 - [ ] Services
 
----
+### Module 27.2 — Data Workloads
 
-> ## Module 27.2 — Data Workloads
-
-### ☑ Learn
+#### Learn
 
 - [ ] Spark on Kubernetes
 - [ ] Airflow on Kubernetes
 - [ ] Streaming Applications
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Deploy Spark Cluster
 - [ ] Deploy Airflow Cluster
 
----
-
-### Dependencies
+#### Dependencies
 
 ```text
 Docker + Cloud Fundamentals Required
 ```
 
----
+## PHASE 28 — ADVANCED CLOUD DATA ENGINEERING
 
-> # PHASE 28 — ADVANCED CLOUD DATA ENGINEERING
-
-## ☑ Objective
+#### Objective
 
 Become cloud-native.
 
----
+### AWS Data Stack
 
-> ## AWS Data Stack
-
-### Storage
+#### Storage
 
 - [ ] S3
 
-### ETL
+#### ETL
 
 - [ ] AWS Glue
 
-### Streaming
+#### Streaming
 
 - [ ] Kinesis
 
-### Analytics
+#### Analytics
 
 - [ ] Athena
 
-### Warehouse
+#### Warehouse
 
 - [ ] Redshift
 
----
+### GCP Data Stack
 
-> ## GCP Data Stack
-
-### Learn
+#### Learn
 
 - [ ] BigQuery
 - [ ] Dataflow
 - [ ] Pub/Sub
 - [ ] Dataproc
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Cloud Data Platform
 - [ ] End-to-End Cloud Pipeline
 
----
+# MID-LEVEL PORTFOLIO PROJECTS
 
-> # MID-LEVEL PORTFOLIO PROJECTS
-
-## ☑ Project 1 — Real-Time Analytics Platform
+## Project 1 — Real-Time Analytics Platform
 
 ### Stack
 
@@ -2035,9 +1653,7 @@ Become cloud-native.
 - Analytics
 - Monitoring
 
----
-
-## ☑ Project 2 — Lakehouse Platform
+## Project 2 — Lakehouse Platform
 
 ### Stack
 
@@ -2051,9 +1667,7 @@ Become cloud-native.
 - Data Engineering
 - Optimization
 
----
-
-## ☑ Project 3 — CDC Data Platform
+## Project 3 — CDC Data Platform
 
 ### Stack
 
@@ -2066,9 +1680,7 @@ Become cloud-native.
 - Change Data Capture
 - Streaming Pipelines
 
----
-
-## ☑ Project 4 — Modern Data Platform
+## Project 4 — Modern Data Platform
 
 ### Stack
 
@@ -2082,9 +1694,7 @@ Become cloud-native.
 - Platform Engineering
 - Analytics Engineering
 
----
-
-## ☑ Project 5 — Streaming Fraud Detection Platform
+## Project 5 — Streaming Fraud Detection Platform
 
 ### Stack
 
@@ -2096,9 +1706,7 @@ Become cloud-native.
 - Real-Time Processing
 - Event Pipelines
 
----
-
-> # MID-LEVEL INTERVIEW PREPARATION
+# MID-LEVEL INTERVIEW PREPARATION
 
 ## SQL
 
@@ -2106,15 +1714,11 @@ Become cloud-native.
 - [ ] Optimization
 - [ ] Warehouse Queries
 
----
-
 ## Spark
 
 - [ ] Execution Model
 - [ ] Optimization
 - [ ] Partitioning
-
----
 
 ## Kafka
 
@@ -2122,15 +1726,11 @@ Become cloud-native.
 - [ ] Consumer Groups
 - [ ] Replication
 
----
-
 ## Data Modeling
 
 - [ ] Star Schema
 - [ ] SCD
 - [ ] Warehouse Design
-
----
 
 ## System Design
 
@@ -2141,9 +1741,7 @@ Become cloud-native.
 - [ ] Streaming Platform
 - [ ] CDC Platform
 
----
-
-> # PROMOTION CHECKLIST (JUNIOR → MID)
+# PROMOTION CHECKLIST (JUNIOR → MID)
 
 - [ ] Strong SQL
 - [ ] Strong Spark
@@ -2157,33 +1755,26 @@ Become cloud-native.
 - [ ] Data Governance Basics
 - [ ] 5+ Production-Level Projects
 
+# PART 4 — SENIOR → EXPERT DATA ENGINEERING ROADMAP
 
----
+#### Designation Progression
 
-> # PART 4 — SENIOR → EXPERT DATA ENGINEERING ROADMAP
->
-> Designation Progression
->
-> - Senior Data Engineer
-> - Lead Data Engineer
-> - Staff Data Engineer
-> - Principal Data Engineer
-> - Data Architect
-> - Distinguished Engineer / Head of Data Platform
+- Senior Data Engineer
+- Lead Data Engineer
+- Staff Data Engineer
+- Principal Data Engineer
+- Data Architect
+- Distinguished Engineer / Head of Data Platform
 
----
+## PHASE 29 — SENIOR DATA ENGINEERING
 
-> # PHASE 29 — SENIOR DATA ENGINEERING
-
-## ☑ Objective
+#### Objective
 
 Move from building pipelines to owning data ecosystems.
 
----
+### Senior Data Engineer Responsibilities
 
-> ## Senior Data Engineer Responsibilities
-
-### ☑ Technical Ownership
+#### Technical Ownership
 
 - [ ] Own critical data platforms
 - [ ] Define architecture standards
@@ -2192,44 +1783,34 @@ Move from building pipelines to owning data ecosystems.
 - [ ] Improve performance
 - [ ] Reduce costs
 
----
-
-### ☑ Team Impact
+#### Team Impact
 
 - [ ] Code Reviews
 - [ ] Design Reviews
 - [ ] Mentorship
 - [ ] Knowledge Sharing
 
----
-
-### ☑ Business Impact
+#### Business Impact
 
 - [ ] Data Strategy Alignment
 - [ ] KPI Enablement
 - [ ] Analytics Acceleration
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Data Platform Standards
 - [ ] Architecture Review Process
 - [ ] Data Engineering Playbook
 
----
+## PHASE 30 — ADVANCED DATA PLATFORM ARCHITECTURE
 
-> # PHASE 30 — ADVANCED DATA PLATFORM ARCHITECTURE
-
-## ☑ Objective
+#### Objective
 
 Design enterprise-scale data platforms.
 
----
+### Module 30.1 — Data Platform Architecture
 
-> ## Module 30.1 — Data Platform Architecture
-
-### ☑ Learn
+#### Learn
 
 - [ ] Ingestion Layer
 - [ ] Storage Layer
@@ -2237,262 +1818,204 @@ Design enterprise-scale data platforms.
 - [ ] Serving Layer
 - [ ] Governance Layer
 
----
+### Module 30.2 — Architectural Patterns
 
-> ## Module 30.2 — Architectural Patterns
-
-### ☑ Learn
+#### Learn
 
 - [ ] Lambda Architecture
 - [ ] Kappa Architecture
 - [ ] Lakehouse Architecture
 
----
+### Module 30.3 — Enterprise Data Platforms
 
-> ## Module 30.3 — Enterprise Data Platforms
-
-### ☑ Learn
+#### Learn
 
 - [ ] Batch Platforms
 - [ ] Streaming Platforms
 - [ ] Hybrid Architectures
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Enterprise Data Architecture Document
 - [ ] Lakehouse Architecture Design
 
----
+## PHASE 31 — MULTI-PETABYTE DATA SYSTEMS
 
-> # PHASE 31 — MULTI-PETABYTE DATA SYSTEMS
-
-## ☑ Objective
+#### Objective
 
 Design for extreme scale.
 
----
+### Module 31.1 — Scaling Storage
 
-> ## Module 31.1 — Scaling Storage
-
-### ☑ Learn
+#### Learn
 
 - [ ] Partitioning
 - [ ] Bucketing
 - [ ] Compression
 - [ ] Archival Strategies
 
----
+### Module 31.2 — Scaling Compute
 
-> ## Module 31.2 — Scaling Compute
-
-### ☑ Learn
+#### Learn
 
 - [ ] Distributed Processing
 - [ ] Resource Allocation
 - [ ] Autoscaling
 
----
+### Module 31.3 — Data Lifecycle
 
-> ## Module 31.3 — Data Lifecycle
-
-### ☑ Learn
+#### Learn
 
 - [ ] Retention Policies
 - [ ] Archival
 - [ ] Deletion
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Petabyte-Scale Architecture Design
 - [ ] Storage Cost Optimization Plan
 
----
+## PHASE 32 — PERFORMANCE ENGINEERING
 
-> # PHASE 32 — PERFORMANCE ENGINEERING
-
-## ☑ Objective
+#### Objective
 
 Build high-performance data systems.
 
----
+### Module 32.1 — Spark Performance
 
-> ## Module 32.1 — Spark Performance
-
-### ☑ Learn
+#### Learn
 
 - [ ] Shuffle Optimization
 - [ ] Skew Handling
 - [ ] Adaptive Query Execution
 
----
+### Module 32.2 — Warehouse Performance
 
-> ## Module 32.2 — Warehouse Performance
-
-### ☑ Learn
+#### Learn
 
 - [ ] Clustering
 - [ ] Partition Pruning
 - [ ] Materialized Views
 
----
+### Module 32.3 — Pipeline Optimization
 
-> ## Module 32.3 — Pipeline Optimization
-
-### ☑ Learn
+#### Learn
 
 - [ ] Incremental Loads
 - [ ] Parallelism
 - [ ] Resource Optimization
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Performance Benchmark Report
 - [ ] Query Optimization Portfolio
 
----
+## PHASE 33 — COST OPTIMIZATION
 
-> # PHASE 33 — COST OPTIMIZATION
-
-## ☑ Objective
+#### Objective
 
 Reduce cloud spend while maintaining performance.
 
----
+### Module 33.1 — Storage Cost Optimization
 
-> ## Module 33.1 — Storage Cost Optimization
-
-### ☑ Learn
+#### Learn
 
 - [ ] Compression
 - [ ] Tiered Storage
 - [ ] Lifecycle Policies
 
----
+### Module 33.2 — Compute Cost Optimization
 
-> ## Module 33.2 — Compute Cost Optimization
-
-### ☑ Learn
+#### Learn
 
 - [ ] Autoscaling
 - [ ] Spot Instances
 - [ ] Resource Right-Sizing
 
----
+### Module 33.3 — Warehouse Cost Optimization
 
-> ## Module 33.3 — Warehouse Cost Optimization
-
-### ☑ Learn
+#### Learn
 
 - [ ] Snowflake Warehouses
 - [ ] BigQuery Cost Controls
 - [ ] Redshift Optimization
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Cost Reduction Plan
 - [ ] FinOps Dashboard
 
----
+## PHASE 34 — SECURITY & COMPLIANCE
 
-> # PHASE 34 — SECURITY & COMPLIANCE
-
-## ☑ Objective
+#### Objective
 
 Build secure and compliant data platforms.
 
----
+### Module 34.1 — Data Security
 
-> ## Module 34.1 — Data Security
-
-### ☑ Learn
+#### Learn
 
 - [ ] Encryption at Rest
 - [ ] Encryption in Transit
 - [ ] Key Management
 
----
+### Module 34.2 — Access Control
 
-> ## Module 34.2 — Access Control
-
-### ☑ Learn
+#### Learn
 
 - [ ] RBAC
 - [ ] ABAC
 - [ ] Row-Level Security
 
----
+### Module 34.3 — Compliance
 
-> ## Module 34.3 — Compliance
-
-### ☑ Learn
+#### Learn
 
 - [ ] GDPR
 - [ ] HIPAA
 - [ ] SOC 2
 - [ ] PCI DSS
 
----
+### Module 34.4 — Data Privacy
 
-> ## Module 34.4 — Data Privacy
-
-### ☑ Learn
+#### Learn
 
 - [ ] PII
 - [ ] Data Masking
 - [ ] Tokenization
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Security Architecture
 - [ ] Compliance Readiness Checklist
 
----
+## PHASE 35 — DATA MESH
 
-> # PHASE 35 — DATA MESH
-
-## ☑ Objective
+#### Objective
 
 Understand modern decentralized data ownership.
 
----
+### Module 35.1 — Data Mesh Principles
 
-> ## Module 35.1 — Data Mesh Principles
-
-### ☑ Learn
+#### Learn
 
 - [ ] Domain Ownership
 - [ ] Data as a Product
 - [ ] Self-Service Platform
 
----
+### Module 35.2 — Organizational Design
 
-> ## Module 35.2 — Organizational Design
-
-### ☑ Learn
+#### Learn
 
 - [ ] Data Product Teams
 - [ ] Federated Governance
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Data Mesh Proposal
 - [ ] Domain Ownership Model
 
----
-
-### Industry Reality
+#### Industry Reality
 
 ```text
 Important for architecture interviews.
@@ -2508,207 +2031,160 @@ Databricks
 for most individual contributor roles.
 ```
 
----
+## PHASE 36 — DATA FABRIC
 
-> # PHASE 36 — DATA FABRIC
-
-## ☑ Objective
+#### Objective
 
 Understand enterprise-wide data integration.
 
----
-
-> ## Learn
+#### Learn
 
 - [ ] Metadata-Driven Systems
 - [ ] Unified Data Access
 - [ ] Intelligent Data Discovery
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Data Fabric Architecture Diagram
 
----
 
-> # PHASE 37 — AI DATA INFRASTRUCTURE
+## PHASE 37 — AI DATA INFRASTRUCTURE
 
-## ☑ Objective
+#### Objective
 
 Future-proof your career.
 
----
+### Module 37.1 — ML Data Engineering
 
-> ## Module 37.1 — ML Data Engineering
-
-### ☑ Learn
+#### Learn
 
 - [ ] Feature Engineering
 - [ ] Feature Pipelines
 - [ ] Feature Stores
 
----
-
-### Tools
+#### Tools
 
 - [ ] Feast
 - [ ] Tecton (Conceptual)
 
----
+### Module 37.2 — Vector Databases
 
-> ## Module 37.2 — Vector Databases
-
-### ☑ Learn
+#### Learn
 
 - [ ] Embeddings
 - [ ] Similarity Search
 
-### Tools
+#### Tools
 
 - [ ] Pinecone
 - [ ] Weaviate
 - [ ] Qdrant
 
----
+### Module 37.3 — LLM Data Pipelines
 
-> ## Module 37.3 — LLM Data Pipelines
-
-### ☑ Learn
+#### Learn
 
 - [ ] RAG Pipelines
 - [ ] Document Processing
 - [ ] Chunking
 - [ ] Embeddings Pipeline
 
----
+### Module 37.4 — AI Data Platforms
 
-> ## Module 37.4 — AI Data Platforms
-
-### ☑ Learn
+#### Learn
 
 - [ ] Offline Pipelines
 - [ ] Online Pipelines
 - [ ] Real-Time Features
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Feature Store Project
 - [ ] RAG Data Platform
 - [ ] AI Data Pipeline
 
----
+## PHASE 38 — MLOPS FOUNDATIONS
 
-> # PHASE 38 — MLOPS FOUNDATIONS
-
-## ☑ Objective
+#### Objective
 
 Bridge Data Engineering and Machine Learning.
 
----
+### Module 38.1 — MLOps Basics
 
-> ## Module 38.1 — MLOps Basics
-
-### ☑ Learn
+#### Learn
 
 - [ ] Model Lifecycle
 - [ ] Experiment Tracking
 
----
-
-### Tools
+#### Tools
 
 - [ ] MLflow
 - [ ] Weights & Biases
 
----
+### Module 38.2 — ML Pipelines
 
-> ## Module 38.2 — ML Pipelines
-
-### ☑ Learn
+#### Learn
 
 - [ ] Training Pipelines
 - [ ] Feature Pipelines
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] End-to-End ML Pipeline
 
----
+## PHASE 39 — STAFF DATA ENGINEER TRACK
 
-> # PHASE 39 — STAFF DATA ENGINEER TRACK
-
-## ☑ Objective
+#### Objective
 
 Multiply impact across teams.
 
----
+### Expectations
 
-> ## Expectations
-
-### Technical Leadership
+#### Technical Leadership
 
 - [ ] Cross-Team Architecture
 - [ ] Platform Standards
 - [ ] Technical Governance
 
----
-
-### Organizational Impact
+#### Organizational Impact
 
 - [ ] Mentor Engineers
 - [ ] Influence Roadmaps
 - [ ] Drive Platform Evolution
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Company-Wide Data Standards
 - [ ] Platform Modernization Strategy
 
----
+## PHASE 40 — PRINCIPAL DATA ENGINEER TRACK
 
-> # PHASE 40 — PRINCIPAL DATA ENGINEER TRACK
-
-## ☑ Objective
+#### Objective
 
 Shape organizational data strategy.
 
----
+### Expectations
 
-> ## Expectations
-
-### Strategic Thinking
+#### Strategic Thinking
 
 - [ ] Multi-Year Planning
 - [ ] Data Platform Vision
 - [ ] Technology Selection
 
----
-
-### Executive Influence
+#### Executive Influence
 
 - [ ] Executive Communication
 - [ ] Build vs Buy Decisions
 - [ ] Budget Planning
 
----
-
-### Deliverables
+#### Deliverables
 
 - [ ] Enterprise Data Strategy
 - [ ] Multi-Year Data Roadmap
 
----
+# DATA ARCHITECT TRACK
 
-> # DATA ARCHITECT TRACK
-
-## ☑ Responsibilities
+#### Responsibilities
 
 ### Architecture
 
@@ -2716,23 +2192,17 @@ Shape organizational data strategy.
 - [ ] Data Platform Design
 - [ ] Governance Strategy
 
----
-
 ### Technology
 
 - [ ] Vendor Evaluation
 - [ ] Architecture Reviews
 - [ ] Future-State Design
 
----
-
 ### Deliverables
 
 - [ ] Enterprise Architecture Blueprint
 
----
-
-> # FAANG / TOP PRODUCT COMPANY PREPARATION
+# FAANG / TOP PRODUCT COMPANY PREPARATION
 
 ## SQL
 
@@ -2746,8 +2216,6 @@ Shape organizational data strategy.
 - [ ] Optimization
 - [ ] Advanced Aggregations
 
----
-
 ## Spark
 
 ### Master
@@ -2756,8 +2224,6 @@ Shape organizational data strategy.
 - [ ] Optimization
 - [ ] Streaming
 
----
-
 ## Kafka
 
 ### Master
@@ -2765,8 +2231,6 @@ Shape organizational data strategy.
 - [ ] Architecture
 - [ ] Scaling
 - [ ] Reliability
-
----
 
 ## System Design
 
@@ -2780,8 +2244,6 @@ Shape organizational data strategy.
 - [ ] Recommendation Pipeline
 - [ ] Analytics Platform
 
----
-
 ## Cloud
 
 ### Deep Expertise
@@ -2790,11 +2252,9 @@ Shape organizational data strategy.
 - [ ] GCP Data Stack
 - [ ] Databricks
 
----
+# EXPERT PORTFOLIO PROJECTS
 
-> # EXPERT PORTFOLIO PROJECTS
-
-## ☑ Project 1 — Enterprise Lakehouse Platform
+## Project 1 — Enterprise Lakehouse Platform
 
 ### Stack
 
@@ -2809,9 +2269,7 @@ Shape organizational data strategy.
 - Platform Engineering
 - Data Governance
 
----
-
-## ☑ Project 2 — Real-Time Event Platform
+## Project 2 — Real-Time Event Platform
 
 ### Stack
 
@@ -2824,9 +2282,7 @@ Shape organizational data strategy.
 - Streaming
 - Distributed Systems
 
----
-
-## ☑ Project 3 — Data Mesh Platform
+## Project 3 — Data Mesh Platform
 
 ### Stack
 
@@ -2840,9 +2296,7 @@ Shape organizational data strategy.
 - Governance
 - Architecture
 
----
-
-## ☑ Project 4 — AI Data Platform
+## Project 4 — AI Data Platform
 
 ### Stack
 
@@ -2855,9 +2309,7 @@ Shape organizational data strategy.
 - AI Infrastructure
 - RAG Pipelines
 
----
-
-## ☑ Project 5 — Multi-Cloud Data Platform
+## Project 5 — Multi-Cloud Data Platform
 
 ### Stack
 
@@ -2871,9 +2323,7 @@ Shape organizational data strategy.
 - Reliability
 - Cloud Engineering
 
----
-
-> # HIGHEST ROI LEARNING SEQUENCE
+# HIGHEST ROI LEARNING SEQUENCE
 
 ## Tier 1 — Get Employable Fast
 
@@ -2883,8 +2333,6 @@ Shape organizational data strategy.
 - [ ] Data Modeling
 - [ ] ETL
 
----
-
 ## Tier 2 — Get First Data Engineering Job
 
 - [ ] Airflow
@@ -2892,8 +2340,6 @@ Shape organizational data strategy.
 - [ ] Snowflake/BigQuery
 - [ ] AWS/GCP
 - [ ] dbt
-
----
 
 ## Tier 3 — Become Mid-Level
 
@@ -2903,16 +2349,12 @@ Shape organizational data strategy.
 - [ ] Delta Lake
 - [ ] Terraform
 
----
-
 ## Tier 4 — Become Senior
 
 - [ ] Data Architecture
 - [ ] Performance Engineering
 - [ ] Security
 - [ ] Governance
-
----
 
 ## Tier 5 — Become Expert
 
@@ -2922,9 +2364,7 @@ Shape organizational data strategy.
 - [ ] Multi-Petabyte Design
 - [ ] Engineering Strategy
 
----
-
-> # WHAT MATTERS MOST IN THE REAL MARKET (2026)
+# WHAT MATTERS MOST IN THE REAL MARKET (2026)
 
 ## Highest ROI Skills
 
@@ -2937,16 +2377,12 @@ Shape organizational data strategy.
 - [ ] Snowflake
 - [ ] Databricks
 
----
-
 ### Tier S
 
 - [ ] Kafka
 - [ ] dbt
 - [ ] AWS
 - [ ] BigQuery
-
----
 
 ### Tier A
 
@@ -2955,17 +2391,13 @@ Shape organizational data strategy.
 - [ ] Iceberg
 - [ ] Kubernetes
 
----
-
 ### Tier B
 
 - [ ] Data Mesh
 - [ ] Hadoop
 - [ ] Data Fabric
 
----
-
-> # FINAL DATA ENGINEERING CHECKLIST
+# FINAL DATA ENGINEERING CHECKLIST
 
 ## Beginner
 
@@ -2975,16 +2407,12 @@ Shape organizational data strategy.
 - [ ] Git
 - [ ] PostgreSQL
 
----
-
 ## Foundation
 
 - [ ] Data Modeling
 - [ ] ETL
 - [ ] APIs
 - [ ] Warehousing
-
----
 
 ## Junior
 
@@ -2994,8 +2422,6 @@ Shape organizational data strategy.
 - [ ] dbt
 - [ ] Cloud Basics
 
----
-
 ## Mid-Level
 
 - [ ] Kafka
@@ -3004,16 +2430,12 @@ Shape organizational data strategy.
 - [ ] Delta Lake
 - [ ] Terraform
 
----
-
 ## Senior
 
 - [ ] Architecture
 - [ ] Governance
 - [ ] Security
 - [ ] Cost Optimization
-
----
 
 ## Expert
 
@@ -3022,9 +2444,7 @@ Shape organizational data strategy.
 - [ ] Data Mesh
 - [ ] Principal-Level Strategy
 
----
-
-> # CAREER MILESTONE TARGETS
+# CAREER MILESTONE TARGETS
 
 ## 0–6 Months
 
@@ -3034,11 +2454,10 @@ Shape organizational data strategy.
 - [ ] ETL
 - [ ] 3 Projects
 
-Target Role:
+### Target Role
+
 - [ ] Data Intern
 - [ ] Junior Analyst
-
----
 
 ## 6–12 Months
 
@@ -3047,10 +2466,9 @@ Target Role:
 - [ ] Snowflake/BigQuery
 - [ ] Cloud Basics
 
-Target Role:
-- [ ] Junior Data Engineer
+### Target Role
 
----
+- [ ] Junior Data Engineer
 
 ## 1–3 Years
 
@@ -3059,10 +2477,9 @@ Target Role:
 - [ ] Databricks
 - [ ] Data Warehousing
 
-Target Role:
-- [ ] Data Engineer II
+### Target Role
 
----
+- [ ] Data Engineer II
 
 ## 3–6 Years
 
@@ -3071,10 +2488,9 @@ Target Role:
 - [ ] Reliability
 - [ ] Platform Engineering
 
-Target Role:
-- [ ] Senior Data Engineer
+### Target Role
 
----
+- [ ] Senior Data Engineer
 
 ## 6–10+ Years
 
@@ -3082,14 +2498,13 @@ Target Role:
 - [ ] Principal Engineer
 - [ ] Data Architect
 
-Target Role:
+### Target Role
+
 - [ ] Technical Leadership
 
+## Highest ROI Path
 
----
-
-> ## Highest ROI path
-
+```text
 SQL
  ↓
 Python
@@ -3119,3 +2534,4 @@ CDC
 Lakehouse
  ↓
 Data Architecture
+```
