@@ -279,6 +279,7 @@ async function openMarkdownEditor() {
   titleEl.textContent = `✎ Edit — ${_activeRoadmap.title}`;
   statusEl.textContent = 'Loading current content from GitHub…';
   statusEl.style.color = '';
+  mdFindClose();
   openModal('md-editor-modal');
 
   try {
@@ -309,6 +310,8 @@ function closeMarkdownEditor(force) {
   if (!force && _mdEditorState && ta.value !== _mdEditorState.originalText) {
     if (!confirm('Discard unsaved edits?')) return;
   }
+  document.getElementById('md-find-bar')?.classList.remove('open');
+  _mdFindState = { matches: [], idx: -1, query: '' };
   closeModal('md-editor-modal');
   _mdEditorState = null;
 }
@@ -383,6 +386,139 @@ async function saveMarkdownEdits() {
   } finally {
     btn.disabled = false;
     btn.textContent = 'Save to GitHub';
+  }
+}
+
+// ═══════════════════════════════════════════
+//  FIND & REPLACE (markdown editor)
+//  A textarea's content is form-control value, not rendered DOM text, so
+//  the browser's native Ctrl+F can't search it — this implements find/
+//  replace directly against the textarea value, with explicit next/
+//  previous navigation (not just jump-to-first) and a position counter,
+//  using selection + manual scroll since textareas can't highlight
+//  multiple matches at once the way a real code editor can.
+// ═══════════════════════════════════════════
+let _mdFindState = { matches: [], idx: -1, query: '' };
+
+function mdFindOpen() {
+  const bar = document.getElementById('md-find-bar');
+  bar.classList.add('open');
+  const input = document.getElementById('md-find-input');
+  input.focus();
+  input.select();
+  mdFindUpdateMatches();
+}
+function mdFindClose() {
+  document.getElementById('md-find-bar')?.classList.remove('open');
+  _mdFindState = { matches: [], idx: -1, query: '' };
+  document.getElementById('md-editor-textarea')?.focus();
+}
+
+function mdFindUpdateMatches() {
+  const ta = document.getElementById('md-editor-textarea');
+  const q  = document.getElementById('md-find-input').value;
+  _mdFindState.query = q;
+  _mdFindState.matches = [];
+  _mdFindState.idx = -1;
+  if (!q) { mdFindUpdateCounter(); return; }
+  const text = ta.value.toLowerCase();
+  const needle = q.toLowerCase();
+  let i = 0;
+  while (true) {
+    const found = text.indexOf(needle, i);
+    if (found === -1) break;
+    _mdFindState.matches.push(found);
+    i = found + needle.length;
+  }
+  // Jump to the match nearest the current cursor, not always the first —
+  // feels more like "find from here" than restarting at the top every time.
+  if (_mdFindState.matches.length) {
+    const cursor = ta.selectionStart || 0;
+    let nearest = _mdFindState.matches.findIndex(p => p >= cursor);
+    if (nearest === -1) nearest = 0;
+    mdFindGoTo(nearest);
+  } else {
+    mdFindUpdateCounter();
+  }
+}
+
+function mdFindGoTo(idx) {
+  const ta = document.getElementById('md-editor-textarea');
+  const m  = _mdFindState.matches;
+  if (!m.length) { mdFindUpdateCounter(); return; }
+  _mdFindState.idx = ((idx % m.length) + m.length) % m.length; // wraps both directions
+  const start = m[_mdFindState.idx];
+  const end   = start + _mdFindState.query.length;
+  ta.focus();
+  ta.setSelectionRange(start, end);
+  mdScrollSelectionIntoView(ta, start);
+  mdFindUpdateCounter();
+}
+function mdFindNext() { mdFindGoTo(_mdFindState.idx + 1); }
+function mdFindPrev() { mdFindGoTo(_mdFindState.idx - 1); }
+
+function mdFindUpdateCounter() {
+  const el = document.getElementById('md-find-counter');
+  if (!el) return;
+  el.textContent = _mdFindState.matches.length
+    ? `${_mdFindState.idx + 1}/${_mdFindState.matches.length}`
+    : (_mdFindState.query ? '0/0' : '');
+}
+
+// Textareas don't auto-scroll to a programmatic selection — estimate the
+// selection's line position from line-height and nudge scrollTop so it's
+// actually visible, rather than just selecting text off-screen.
+function mdScrollSelectionIntoView(ta, pos) {
+  const lineNum    = ta.value.substring(0, pos).split('\n').length - 1;
+  const lineHeight = parseFloat(getComputedStyle(ta).lineHeight) || 18;
+  const target     = lineNum * lineHeight;
+  const visibleH   = ta.clientHeight;
+  if (target < ta.scrollTop || target > ta.scrollTop + visibleH - lineHeight) {
+    ta.scrollTop = Math.max(0, target - visibleH / 2);
+  }
+}
+
+function mdReplaceCurrent() {
+  const ta = document.getElementById('md-editor-textarea');
+  const replaceVal = document.getElementById('md-replace-input').value;
+  const m = _mdFindState.matches;
+  if (!_mdFindState.query) return;
+  if (_mdFindState.idx < 0 || !m.length) { mdFindUpdateMatches(); return; }
+  const start = m[_mdFindState.idx];
+  const end   = start + _mdFindState.query.length;
+  ta.setRangeText(replaceVal, start, end, 'end');
+  mdFindUpdateMatches();
+}
+
+function mdReplaceAll() {
+  const ta = document.getElementById('md-editor-textarea');
+  const q  = document.getElementById('md-find-input').value;
+  const replaceVal = document.getElementById('md-replace-input').value;
+  if (!q) return;
+  const count = _mdFindState.matches.length;
+  if (!count) { showToast('No matches to replace', 'info'); return; }
+  const escaped = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const re = new RegExp(escaped, 'gi');
+  const cursor = ta.selectionStart;
+  ta.value = ta.value.replace(re, replaceVal);
+  ta.setSelectionRange(cursor, cursor);
+  showToast(`Replaced ${count} occurrence${count === 1 ? '' : 's'}`, 'success');
+  mdFindUpdateMatches();
+}
+
+function mdFindInputKeydown(e) {
+  if (e.key === 'Enter') { e.preventDefault(); e.shiftKey ? mdFindPrev() : mdFindNext(); }
+  else if (e.key === 'Escape') { e.preventDefault(); mdFindClose(); }
+}
+// Ctrl/Cmd+F inside the editor opens our find bar instead of the browser's
+// native in-page find, which can't search textarea content anyway.
+function mdEditorKeydown(e) {
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'f') {
+    e.preventDefault();
+    mdFindOpen();
+  } else if (e.key === 'Escape') {
+    const bar = document.getElementById('md-find-bar');
+    if (bar && bar.classList.contains('open')) { e.preventDefault(); mdFindClose(); }
   }
 }
 
@@ -579,11 +715,27 @@ function normaliseBlockquote(line) {
   return line.replace(/^(>\s*)+/, '');
 }
 
+// Two headings (or two tasks) with identical text would otherwise collide
+// on the same slug — e.g. a "Learn" submodule repeated under every module
+// all becoming id="learn". That's not just cosmetic: it means duplicate
+// DOM ids, so getElementById-based lookups (resource panels, pills, counts)
+// for every occurrence after the first silently act on the *first* one
+// instead. uniqueSlug appends a disambiguating suffix only when a collision
+// actually happens, so every other id is completely unaffected.
+let _idSeenNodes = new Map();
+let _idSeenTasks = new Map();
+function uniqueSlug(seenMap, title) {
+  const base = slug(title);
+  const n = (seenMap.get(base) || 0) + 1;
+  seenMap.set(base, n);
+  return n === 1 ? base : `${base}-${n}`;
+}
+
 // Every level (phase / module / submodule / topic) shares the same shape,
 // which is what lets rendering and task-collection recurse generically
 // instead of having one hand-written function per heading depth.
 function makeNode(title) {
-  return { title, id: slug(title), modules: [], tasks: [], _blocks: [] };
+  return { title, id: uniqueSlug(_idSeenNodes, title), modules: [], tasks: [], _blocks: [] };
 }
 function makeSection(label) {
   return { label, items: [], _blocks: [] };
@@ -608,6 +760,8 @@ function finalizeNode(node) {
 }
 
 function parseRoadmap(md) {
+  _idSeenNodes = new Map();
+  _idSeenTasks = new Map();
   const lines = md.split('\n');
   const sections = [];
   const overviewBlocks = [];
@@ -648,7 +802,7 @@ function parseRoadmap(md) {
     const m = line.match(/^[-*]\s+\[([ xX✓])\]\s+(.*)/);
     if (!m) return false;
     const checked = /^[xX✓]$/.test(m[1].trim());
-    taskArr.push({ text: m[2].trim(), checked, id: slug(m[2].trim()) });
+    taskArr.push({ text: m[2].trim(), checked, id: uniqueSlug(_idSeenTasks, m[2].trim()) });
     return true;
   }
 
@@ -829,6 +983,18 @@ function renderSupporting(supporting, id) {
     <div class="supp-notes-body"><div class="supp-notes-body-inner">${renderSuppBlocks(supporting.blocks)}</div></div>
   </div>`;
 }
+// Roadmap-level and section-level overviews aren't nested inside a
+// space-constrained accordion card the way a phase/module/submodule's
+// supporting content is — they sit directly in the page flow with plenty
+// of room, so hiding them behind a "Notes" click adds friction without
+// saving anything. Render the same block types, just always expanded.
+function renderSupportingExpanded(supporting) {
+  if (!supporting) return '';
+  if (supporting.kind === 'simple') {
+    return `<p class="supp-caption">${esc(supporting.text)}</p>`;
+  }
+  return `<div class="supp-expanded">${renderSuppBlocks(supporting.blocks)}</div>`;
+}
 
 // ═══════════════════════════════════════════
 //  RECURSIVE NODE RENDERING (### module, #### submodule, ##### topic —
@@ -841,7 +1007,7 @@ function renderSupporting(supporting, id) {
 function renderNodeBody(node, progress, resources, depth) {
   let html = renderSupporting(node.supporting, node.id);
   html += renderTaskList(node.tasks || [], progress);
-  html += resSection(node.id, resources);
+  if ((node.tasks || []).length) html += resSection(node.id, resources);
   html += renderGroupChildren(node, progress, resources, depth);
   return html;
 }
@@ -880,9 +1046,6 @@ function renderItemBody(item, progress, resources) {
     html += resSection(item.id, resources);
   }
   html += renderGroupChildren(item, progress, resources, 1);
-  if (!(item.tasks || []).length && !(item.modules || []).length) {
-    html += resSection(item.id, resources);
-  }
   return html;
 }
 
@@ -954,15 +1117,19 @@ function render(data) {
 
   if (data.overview) {
     const ov = mkEl('div', 'roadmap-overview');
-    ov.innerHTML = renderSupporting(data.overview, 'roadmap');
+    ov.innerHTML = renderSupportingExpanded(data.overview);
     main.appendChild(ov);
   }
 
   data.sections.forEach((section, secIdx) => {
-    if (section.label) main.appendChild(mkEl('div', 'section-label', section.label));
+    if (section.label) {
+      const lbl = mkEl('div', 'section-divider');
+      lbl.innerHTML = `<span class="section-divider-tag">${esc(section.label)}</span><span class="section-divider-line"></span>`;
+      main.appendChild(lbl);
+    }
     if (section.overview) {
       const so = mkEl('div', 'section-overview');
-      so.innerHTML = renderSupporting(section.overview, 'sec-' + secIdx);
+      so.innerHTML = renderSupportingExpanded(section.overview);
       main.appendChild(so);
     }
     const list = mkEl('div', 'phase-list');
