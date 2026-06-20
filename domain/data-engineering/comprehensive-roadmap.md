@@ -208,8 +208,6 @@ Learn Python specifically for data processing.
 
 ### Module 2.5 — Python Advanced
 
-#### Learn
-
 - [ ] OOP
 - [ ] Type Hints
 - [ ] Virtual Environments
@@ -237,8 +235,6 @@ Become exceptional at SQL.
 
 ### Module 3.1 — SQL Fundamentals
 
-#### Learn
-
 - [ ] SELECT
 - [ ] INSERT
 - [ ] UPDATE
@@ -246,16 +242,12 @@ Become exceptional at SQL.
 
 ### Module 3.2 — Filtering
 
-#### Learn
-
 - [ ] WHERE
 - [ ] LIKE
 - [ ] IN
 - [ ] EXISTS
 
 ### Module 3.3 — Aggregations
-
-#### Learn
 
 - [ ] COUNT
 - [ ] SUM
@@ -265,8 +257,6 @@ Become exceptional at SQL.
 
 ### Module 3.4 — Joins
 
-#### Learn
-
 - [ ] INNER JOIN
 - [ ] LEFT JOIN
 - [ ] RIGHT JOIN
@@ -275,16 +265,12 @@ Become exceptional at SQL.
 
 ### Module 3.5 — Advanced SQL
 
-#### Learn
-
 - [ ] CTE
 - [ ] Window Functions
 - [ ] Recursive Queries
 - [ ] Subqueries
 
 ### Module 3.6 — Window Functions (Critical)
-
-#### Learn
 
 - [ ] ROW_NUMBER
 - [ ] RANK
@@ -293,8 +279,6 @@ Become exceptional at SQL.
 - [ ] LEAD
 
 ### Module 3.7 — Query Optimization
-
-#### Learn
 
 - [ ] Indexes
 - [ ] Execution Plans
@@ -347,8 +331,6 @@ Understand where data lives.
 
 ### Module 4.3 — Database Design
 
-#### Learn
-
 - [ ] ERD
 - [ ] Normalization
 - [ ] Denormalization
@@ -366,14 +348,10 @@ Learn how analytics data is structured.
 
 ### Module 5.1 — OLTP vs OLAP
 
-#### Learn
-
 - [ ] Transactional Systems
 - [ ] Analytical Systems
 
 ### Module 5.2 — Data Modeling
-
-#### Learn
 
 - [ ] Facts
 - [ ] Dimensions
@@ -381,20 +359,14 @@ Learn how analytics data is structured.
 
 ### Module 5.3 — Star Schema
 
-#### Learn
-
 - [ ] Fact Tables
 - [ ] Dimension Tables
 
 ### Module 5.4 — Snowflake Schema
 
-#### Learn
-
 - [ ] Normalized Dimensions
 
 ### Module 5.5 — Slowly Changing Dimensions
-
-#### Learn
 
 - [ ] SCD Type 1
 - [ ] SCD Type 2
@@ -414,15 +386,11 @@ Understand core Data Engineering concepts.
 
 ### Module 6.1 — ETL
 
-#### Learn
-
 - [ ] Extract
 - [ ] Transform
 - [ ] Load
 
 ### Module 6.2 — ELT
-
-#### Learn
 
 - [ ] Extract
 - [ ] Load
@@ -430,16 +398,12 @@ Understand core Data Engineering concepts.
 
 ### Module 6.3 — Data Quality
 
-#### Learn
-
 - [ ] Completeness
 - [ ] Consistency
 - [ ] Accuracy
 - [ ] Freshness
 
 ### Module 6.4 — Data Lineage
-
-#### Learn
 
 - [ ] Upstream Sources
 - [ ] Downstream Consumers
@@ -534,16 +498,12 @@ Learn how modern companies store analytical data.
 
 ### Module 7.1 — Data Warehouse Fundamentals
 
-#### Learn
-
 - [ ] OLTP vs OLAP
 - [ ] Analytical Workloads
 - [ ] Business Intelligence
 - [ ] Reporting Systems
 
 ### Module 7.2 — Warehouse Architecture
-
-#### Learn
 
 - [ ] Source Systems
 - [ ] Staging Layer
@@ -560,8 +520,6 @@ Learn how modern companies store analytical data.
 - [ ] Slowly Changing Dimensions
 
 ### Module 7.4 — Partitioning
-
-#### Learn
 
 - [ ] Time-Based Partitioning
 - [ ] Range Partitioning
@@ -581,8 +539,6 @@ Master industry-standard warehouse solutions.
 
 ### Module 8.1 — Snowflake
 
-#### Learn
-
 - [ ] Architecture
 - [ ] Virtual Warehouses
 - [ ] Storage Layer
@@ -592,8 +548,6 @@ Master industry-standard warehouse solutions.
 
 ### Module 8.2 — BigQuery
 
-#### Learn
-
 - [ ] Datasets
 - [ ] Tables
 - [ ] Partitioning
@@ -601,8 +555,6 @@ Master industry-standard warehouse solutions.
 - [ ] Cost Optimization
 
 ### Module 8.3 — Amazon Redshift
-
-#### Learn
 
 - [ ] Clusters
 - [ ] Spectrum
@@ -633,16 +585,12 @@ Learn workflow orchestration.
 
 ### Module 9.1 — Airflow Fundamentals
 
-#### Learn
-
 - [ ] DAGs
 - [ ] Tasks
 - [ ] Operators
 - [ ] Scheduling
 
 ### Module 9.2 — DAG Development
-
-#### Learn
 
 - [ ] PythonOperator
 - [ ] BashOperator
@@ -657,8 +605,6 @@ Learn workflow orchestration.
 - [ ] Trigger Rules
 
 ### Module 9.4 — Production Airflow
-
-#### Learn
 
 - [ ] Retries
 - [ ] Failure Handling
@@ -685,15 +631,11 @@ Process large-scale datasets.
 
 ### Module 10.1 — Spark Fundamentals
 
-#### Learn
-
 - [ ] Driver
 - [ ] Executors
 - [ ] Cluster Manager
 
 ### Module 10.2 — PySpark
-
-#### Learn
 
 - [ ] DataFrames
 - [ ] Transformations
@@ -701,15 +643,11 @@ Process large-scale datasets.
 
 ### Module 10.3 — Spark SQL
 
-#### Learn
-
 - [ ] SQL Queries
 - [ ] Aggregations
 - [ ] Joins
 
 ### Module 10.4 — Performance
-
-#### Learn
 
 - [ ] Partitioning
 - [ ] Repartition
@@ -717,8 +655,6 @@ Process large-scale datasets.
 - [ ] Caching
 
 ### Module 10.5 — Spark Internals
-
-#### Learn
 
 - [ ] DAG Execution
 - [ ] Shuffle
@@ -745,15 +681,11 @@ Understand legacy and foundational Big Data systems.
 
 ### Module 11.1 — Hadoop Fundamentals
 
-#### Learn
-
 - [ ] HDFS
 - [ ] NameNode
 - [ ] DataNode
 
 ### Module 11.2 — Hadoop Ecosystem
-
-#### Learn
 
 - [ ] Hive
 - [ ] HBase
@@ -784,23 +716,17 @@ Learn the dominant modern data platform.
 
 ### Module 12.1 — Databricks Fundamentals
 
-#### Learn
-
 - [ ] Workspace
 - [ ] Clusters
 - [ ] Notebooks
 
 ### Module 12.2 — Delta Lake
 
-#### Learn
-
 - [ ] ACID Transactions
 - [ ] Time Travel
 - [ ] Schema Enforcement
 
 ### Module 12.3 — Medallion Architecture
-
-#### Learn
 
 - [ ] Bronze Layer
 - [ ] Silver Layer
@@ -825,29 +751,22 @@ Modern analytics engineering.
 
 ### Module 13.1 — dbt Fundamentals
 
-#### Learn
-
 - [ ] Models
 - [ ] Sources
 - [ ] Seeds
 
 ### Module 13.2 — Transformations
 
-#### Learn
-
 - [ ] Incremental Models
 - [ ] Materializations
 
 ### Module 13.3 — Testing
-
-#### Learn
 
 - [ ] Schema Tests
 - [ ] Data Tests
 
 ### Module 13.4 — Documentation
 
-#### Learn
 ## PHASE 14 — CLOUD FOR DATA ENGINEERING
 
 #### Objective
@@ -877,16 +796,12 @@ Become cloud-ready.
 
 ### Module 14.2 — GCP Data Engineering
 
-#### Learn
-
 - [ ] BigQuery
 - [ ] Dataflow
 - [ ] Pub/Sub
 - [ ] Cloud Storage
 
 ### Module 14.3 — Azure Data Engineering
-
-#### Learn
 
 - [ ] Data Factory
 - [ ] Synapse
@@ -930,20 +845,14 @@ Looker / Tableau / Power BI
 
 ### Module 15.1 — Data Ingestion
 
-#### Learn
-
 - [ ] Airbyte
 - [ ] Fivetran Concepts
 
 ### Module 15.2 — Transformation
 
-#### Learn
-
 - [ ] dbt
 
 ### Module 15.3 — Visualization
-
-#### Learn
 
 - [ ] Tableau Basics
 - [ ] Power BI Basics
@@ -961,22 +870,16 @@ Build trusted data.
 
 ### Module 16.1 — Data Validation
 
-#### Learn
-
 - [ ] Null Checks
 - [ ] Uniqueness
 - [ ] Freshness
 
 ### Module 16.2 — Great Expectations
 
-#### Learn
-
 - [ ] Expectations
 - [ ] Validation Pipelines
 
 ### Module 16.3 — Monitoring
-
-#### Learn
 
 - [ ] Data Drift
 - [ ] Pipeline Failures
@@ -1137,16 +1040,12 @@ Understand how large-scale data systems operate.
 
 ### Module 17.2 — Core Concepts
 
-#### Learn
-
 - [ ] CAP Theorem
 - [ ] Consistency Models
 - [ ] Replication
 - [ ] Fault Tolerance
 
 ### Module 17.3 — Data Engineering Context
-
-#### Learn
 
 - [ ] Distributed ETL
 - [ ] Distributed Query Engines
@@ -1185,8 +1084,6 @@ Move from batch processing to real-time systems.
 
 ### Module 18.1 — Streaming Fundamentals
 
-#### Learn
-
 - [ ] Event Streams
 - [ ] Event Time
 - [ ] Processing Time
@@ -1219,8 +1116,6 @@ Master event-driven data pipelines.
 
 ### Module 19.1 — Kafka Fundamentals
 
-#### Learn
-
 - [ ] Brokers
 - [ ] Topics
 - [ ] Partitions
@@ -1229,8 +1124,6 @@ Master event-driven data pipelines.
 
 ### Module 19.2 — Kafka Architecture
 
-#### Learn
-
 - [ ] Replication
 - [ ] Fault Tolerance
 - [ ] Consumer Groups
@@ -1238,15 +1131,11 @@ Master event-driven data pipelines.
 
 ### Module 19.3 — Kafka Ecosystem
 
-#### Learn
-
 - [ ] Kafka Connect
 - [ ] Schema Registry
 - [ ] Kafka Streams
 
 ### Module 19.4 — Production Kafka
-
-#### Learn
 
 - [ ] Retention Policies
 - [ ] Topic Design
@@ -1272,15 +1161,11 @@ Capture database changes in real time.
 
 ### Module 20.1 — CDC Fundamentals
 
-#### Learn
-
 - [ ] Transaction Logs
 - [ ] Binlogs
 - [ ] WAL
 
 ### Module 20.2 — Debezium
-
-#### Learn
 
 - [ ] Connectors
 - [ ] Kafka Integration
@@ -1306,23 +1191,17 @@ Understand modern data storage.
 
 ### Module 21.1 — Data Lake Fundamentals
 
-#### Learn
-
 - [ ] Structured Data
 - [ ] Semi-Structured Data
 - [ ] Unstructured Data
 
 ### Module 21.2 — Object Storage
 
-#### Learn
-
 - [ ] AWS S3
 - [ ] Google Cloud Storage
 - [ ] Azure Data Lake Storage
 
 ### Module 21.3 — File Formats
-
-#### Learn
 
 - [ ] CSV
 - [ ] JSON
@@ -1343,8 +1222,6 @@ Master the future of analytics platforms.
 
 ### Module 22.1 — Lakehouse Concepts
 
-#### Learn
-
 - [ ] Data Lake
 - [ ] Data Warehouse
 - [ ] Lakehouse
@@ -1359,15 +1236,11 @@ Master the future of analytics platforms.
 
 ### Module 22.3 — Apache Iceberg
 
-#### Learn
-
 - [ ] Table Metadata
 - [ ] Partition Evolution
 - [ ] Snapshots
 
 ### Module 22.4 — Apache Hudi
-
-#### Learn
 
 - [ ] Incremental Processing
 - [ ] Upserts
@@ -1396,23 +1269,17 @@ Become highly effective with large-scale processing.
 
 ### Module 23.1 — Spark Optimization
 
-#### Learn
-
 - [ ] Partition Pruning
 - [ ] Predicate Pushdown
 - [ ] Broadcast Joins
 
 ### Module 23.2 — Memory Management
 
-#### Learn
-
 - [ ] Executor Memory
 - [ ] Driver Memory
 - [ ] Caching
 
 ### Module 23.3 — Spark Streaming
-
-#### Learn
 
 - [ ] Structured Streaming
 - [ ] Kafka Integration
