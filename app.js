@@ -518,7 +518,7 @@ function parseRoadmap(md) {
       continue;
     }
 
-    // Section syntax: "> # Label" — single hash, must be blockquoted.
+    // Seection syntax: "> # Label" — single hash, must be blockquoted.
     if (wasQuoted && /^#\s+/.test(line) && !/^##/.test(line)) {
       const label = line.replace(/^#\s+/, '').trim();
       curSection = makeSection(label);
@@ -1530,9 +1530,9 @@ async function boot() {
 //  Measures actual header / action-bar heights and
 //  stacks the sticky layers (header → action-bar →
 //  toolbar) so none of them overlap, regardless of
-//  font scaling, screen size, or theme. When the
-//  header is auto-hidden (scrolled down), its space
-//  is reclaimed so action-bar/toolbar slide up to top:0.
+//  font scaling, screen size, or theme. When a layer
+//  is auto-hidden (scrolled down), its space is
+//  reclaimed so the layer(s) below it slide up.
 // ═══════════════════════════════════════════
 function syncStickyOffsets() {
   const hdr = document.getElementById('site-header');
@@ -1547,17 +1547,21 @@ function syncStickyOffsets() {
   const headerH = (headerIsSticky && !headerHidden) ? Math.ceil(hdr.getBoundingClientRect().height) : 0;
 
   ab.style.top = headerH + 'px';
-  const abH = Math.ceil(ab.getBoundingClientRect().height);
+  const abHidden = ab.classList.contains('bar-hidden');
+  const abH = abHidden ? 0 : Math.ceil(ab.getBoundingClientRect().height);
   sb.style.top = (headerH + abH) + 'px';
 }
 // Run on load and whenever the window resizes
 window.addEventListener('resize', syncStickyOffsets);
 
 // ═══════════════════════════════════════════
-//  AUTO-HIDE HEADER ON SCROLL (roadmap view only)
-//  Scrolling down hides the gradient header band to
-//  reclaim space; scrolling up reveals it again.
-//  Action-bar + toolbar stay pinned at all times.
+//  AUTO-HIDE SCROLL STACK (roadmap view only)
+//  Scrolling down hides the header, the action-bar
+//  (dashboard: theme/save/sync/settings + progress),
+//  and the toolbar (filters/search) together, to
+//  reclaim screen space. Scrolling up reveals the
+//  whole stack again. They move as one unit so the
+//  stack never looks like it's partially open.
 // ═══════════════════════════════════════════
 (function () {
   let lastY = window.scrollY || 0;
@@ -1568,7 +1572,11 @@ window.addEventListener('resize', syncStickyOffsets);
   window.__resetHeaderScrollState = function () {
     lastY = window.scrollY || 0;
     const hdr = document.getElementById('site-header');
+    const ab  = document.getElementById('action-bar');
+    const sb  = document.querySelector('.sticky-bar');
     if (hdr) hdr.classList.remove('header-hidden');
+    if (ab)  ab.classList.remove('bar-hidden');
+    if (sb)  sb.classList.remove('bar-hidden');
   };
 
   function onScroll() {
@@ -1577,14 +1585,22 @@ window.addEventListener('resize', syncStickyOffsets);
     requestAnimationFrame(() => {
       const hdr = document.getElementById('site-header');
       if (hdr && hdr.classList.contains('roadmap-view')) {
+        const ab = document.getElementById('action-bar');
+        const sb = document.querySelector('.sticky-bar');
         const y = window.scrollY || 0;
         const delta = y - lastY;
         if (y <= MIN_Y_TO_HIDE) {
           hdr.classList.remove('header-hidden');
+          if (ab) ab.classList.remove('bar-hidden');
+          if (sb) sb.classList.remove('bar-hidden');
         } else if (delta > HIDE_THRESHOLD) {
           hdr.classList.add('header-hidden');
+          if (ab) ab.classList.add('bar-hidden');
+          if (sb) sb.classList.add('bar-hidden');
         } else if (delta < -HIDE_THRESHOLD) {
           hdr.classList.remove('header-hidden');
+          if (ab) ab.classList.remove('bar-hidden');
+          if (sb) sb.classList.remove('bar-hidden');
         }
         syncStickyOffsets();
         lastY = y;
