@@ -518,7 +518,7 @@ function parseRoadmap(md) {
       continue;
     }
 
-    // Seection syntax: "> # Label" — single hash, must be blockquoted.
+    // Section syntax: "> # Label" — single hash, must be blockquoted.
     if (wasQuoted && /^#\s+/.test(line) && !/^##/.test(line)) {
       const label = line.replace(/^#\s+/, '').trim();
       curSection = makeSection(label);
@@ -1147,10 +1147,18 @@ function mkEl(tag,cls,text) { const e=document.createElement(tag); if(cls)e.clas
 //  Lines starting with # or empty are ignored.
 // ═══════════════════════════════════════════
 function parseCatalog(md) {
-  return md.split('\n')
+  const entries = [];
+  md.split('\n')
     .map(l => l.trim())
     .filter(l => l && !l.startsWith('#'))
-    .map(l => {
+    .forEach(l => {
+      // Skip markdown-table-divider-style lines (e.g. "---|---|---|---")
+      // — these sometimes get left in from a header/template the row was
+      // copied from, and aren't real catalog entries.
+      if (/^[\s|:-]+$/.test(l)) {
+        console.warn('[catalog] skipped divider-style line:', l);
+        return;
+      }
       const parts = l.split('|').map(p => p.trim());
       const path     = parts[0];
       const title    = parts[1] || path.split('/').slice(-2,-1)[0]?.replace(/-/g,' ') || path;
@@ -1159,9 +1167,23 @@ function parseCatalog(md) {
       // ID: last two meaningful path segments, slugified
       const segs = path.replace(/\/ROADMAP\.md$/i,'').split('/').filter(Boolean);
       const id   = segs.slice(-2).join('-').toLowerCase().replace(/[^a-z0-9]+/g,'-');
-      return { id, path, title, badge, subtitle };
-    })
-    .filter(e => e.path);
+
+      // A real entry must point at an actual markdown file and have a
+      // real title. This is what catches incomplete/placeholder rows
+      // (a blank or dash/underscore-only field in any column) here —
+      // before one ever reaches the UI as a broken "ghost" card with a
+      // default icon, an unreadable title, and 0/0 tasks.
+      if (!path || !/\.md$/i.test(path)) {
+        console.warn('[catalog] skipped entry with invalid path:', l);
+        return;
+      }
+      if (!title || /^[\s\-–—_.]+$/.test(title)) {
+        console.warn('[catalog] skipped entry with placeholder/empty title:', l);
+        return;
+      }
+      entries.push({ id, path, title, badge, subtitle });
+    });
+  return entries;
 }
 
 // ═══════════════════════════════════════════
