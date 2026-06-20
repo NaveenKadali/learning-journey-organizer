@@ -518,15 +518,7 @@ function parseRoadmap(md) {
       continue;
     }
 
-    const secM = raw.match(/<!--\s*section:\s*(.+?)\s*-->/i);
-    if (secM) {
-      curSection = makeSection(secM[1].trim());
-      sections.push(curSection);
-      curItem = curMod = curSubMod = curTopic = null;
-      target = curSection; paraBuf = [];
-      i++; continue;
-    }
-    // Alt section syntax: "> # Label" — single hash, must be blockquoted.
+    // Section syntax: "> # Label" — single hash, must be blockquoted.
     if (wasQuoted && /^#\s+/.test(line) && !/^##/.test(line)) {
       const label = line.replace(/^#\s+/, '').trim();
       curSection = makeSection(label);
