@@ -450,7 +450,7 @@ Understand core Data Engineering concepts.
 - [ ] Data Validation Pipeline
 - [ ] Data Quality Dashboard
 
-# BEGINNER → FOUNDATION PORTFOLIO PROJECTS
+> # BEGINNER → FOUNDATION PORTFOLIO PROJECTS
 
 ## Project 1 — CSV to PostgreSQL Pipeline
 
@@ -517,7 +517,7 @@ Build warehouse schema.
 - [ ] APIs
 - [ ] Portfolio Projects
 
-# PART 2 — JUNIOR DATA ENGINEER ROADMAP
+> # PART 2 — JUNIOR DATA ENGINEER ROADMAP
 
 #### Designation
 
