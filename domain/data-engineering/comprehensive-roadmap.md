@@ -148,22 +148,13 @@ Machine Learning / AI
 ---
 
 > # BEGINNER LEVEL
->
-> Designation:
->
-> - Student
-> - Data Engineering Aspirant
-> - Data Intern
-
----
 
 > ## PHASE 1 — COMPUTER SCIENCE FUNDAMENTALS
 
-## ☑ Objective
+### ☑ Objective
 
 Understand systems before building pipelines.
 
----
 
 > ### Module 1.1 — Operating Systems
 
