@@ -2,13 +2,13 @@
 > # Beginner → Expert (Industry-Grade, Employability-Focused, FAANG-Aligned)
 
 > ## Learning Philosophy:
-> 1. Fundamentals First
-> 2. Build While Learning
-> 3. Portfolio Before Certificates
-> 4. Systems Before Frameworks
-> 5. Engineering Before Coding
-> 6. Scalability Before Optimization
-> 7. Continuous Interview Preparation
+- 1. Fundamentals First
+- 2. Build While Learning
+- 3. Portfolio Before Certificates
+- 4. Systems Before Frameworks
+- 5. Engineering Before Coding
+- 6. Scalability Before Optimization
+- 7. Continuous Interview Preparation
 
 ---
 
