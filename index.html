@@ -541,37 +541,45 @@
 
     /* ── MAIN ─────────────────────────────────── */
     .main { max-width:940px; margin:24px auto 80px; padding:0 24px; }
-    .section-divider {
-      display:flex; align-items:center; gap:12px;
-      margin:30px 0 16px 0;
-    }
+
+    /* Section divider — reuses the same tinted-box language as
+       .module-header (rather than a one-off pill/gradient) so it reads as
+       part of the same system, just one size up. Doubles as a collapsible
+       "Overview" box when a section has supporting text — defaults OPEN
+       (same as submodules/topics), since unlike the in-card Notes panel
+       there's no checklist here competing for space. */
+    .section-divider { margin:28px 0 14px 0; }
     .section-divider:first-child { margin-top:6px; }
+    .section-divider-header {
+      display:flex; align-items:center; gap:11px;
+      padding:8px 13px; border-radius:8px;
+      border:1px solid var(--border); background:var(--surface2);
+      transition:background .15s, border-color .15s;
+    }
+    .section-divider.has-content .section-divider-header { cursor:pointer; user-select:none; }
+    .section-divider.has-content .section-divider-header:hover { border-color:rgba(59,130,246,.3); }
+    .section-divider.open .section-divider-header {
+      border-color:rgba(59,130,246,.28);
+      background:rgba(59,130,246,.06);
+    }
     .section-divider-tag {
       font-family:var(--font-mono); font-weight:700; font-size:.68rem;
       letter-spacing:.1em; text-transform:uppercase; white-space:nowrap;
-      color:var(--c-nav);
-      background:linear-gradient(135deg, rgba(59,130,246,.13), rgba(139,92,246,.13));
-      border:1px solid rgba(59,130,246,.28);
-      border-radius:20px; padding:6px 14px;
+      color:var(--text-dim);
     }
-    .section-divider-line {
-      flex:1; height:1px;
-      background:linear-gradient(90deg, var(--border), transparent);
+    .section-divider.open .section-divider-tag { color:var(--c-nav); }
+    .section-divider-line { flex:1; height:1px; background:var(--border); }
+    .section-divider-chevron { color:var(--text-dim); transition:transform .18s; flex-shrink:0; opacity:.7; }
+    .section-divider.open .section-divider-chevron { transform:rotate(180deg); opacity:1; color:var(--c-nav); }
+    .section-divider-body { max-height:0; overflow:hidden; transition:max-height .28s cubic-bezier(.4,0,.2,1); }
+    .section-divider.open .section-divider-body { max-height:9999px; }
+    .section-divider-body-inner {
+      padding:12px 13px 2px 13px; font-size:.8rem; color:var(--text-dim); line-height:1.6;
     }
-
-    /* Roadmap/section overview — always expanded, not tucked behind a
-       click, since this sits in open page flow rather than a cramped card. */
-    .roadmap-overview { margin:4px 0 22px 0; }
-    .roadmap-overview .supp-caption { font-size:.84rem; margin:0; }
-    .section-overview { margin:-6px 0 16px 2px; }
-    .section-overview .supp-caption { margin:0; }
-    .supp-expanded {
-      font-size:.82rem; color:var(--text-dim); line-height:1.6;
-      border-left:2px solid rgba(59,130,246,.25); padding-left:14px;
-    }
-    .supp-expanded p { margin:0 0 10px 0; }
-    .supp-expanded ul, .supp-expanded ol { margin:0 0 10px 0; padding-left:20px; }
-    .supp-expanded li { margin-bottom:4px; }
+    .section-divider-body-inner p { margin:0 0 10px 0; }
+    .section-divider-body-inner ul, .section-divider-body-inner ol { margin:0 0 10px 0; padding-left:20px; }
+    .section-divider-body-inner li { margin-bottom:4px; }
+    .section-divider.roadmap-overview-box { margin:4px 0 24px 0; }
 
     /* ── PHASE ACCORDION — spatial card design ─ */
     .phase-list { display:flex; flex-direction:column; gap:4px; margin-bottom:32px; }
@@ -998,10 +1006,10 @@
 
     <div class="md-find-bar" id="md-find-bar">
       <div class="md-find-row">
-        <input type="text" id="md-find-input" class="md-find-input" placeholder="Find" autocomplete="off" oninput="mdFindUpdateMatches()" onkeydown="mdFindInputKeydown(event)">
+        <input type="text" id="md-find-input" class="md-find-input" placeholder="Find (Enter to search)" autocomplete="off" oninput="mdFindInputChanged()" onkeydown="mdFindInputKeydown(event)">
         <span class="md-find-counter" id="md-find-counter"></span>
-        <button class="md-find-icon-btn" onclick="mdFindPrev()" title="Previous match (Shift+Enter)">↑</button>
-        <button class="md-find-icon-btn" onclick="mdFindNext()" title="Next match (Enter)">↓</button>
+        <button class="md-find-icon-btn" onclick="mdFindTriggerPrev()" title="Previous match (Shift+Enter)">↑</button>
+        <button class="md-find-icon-btn" onclick="mdFindTriggerNext()" title="Find / next match (Enter)">↓</button>
         <button class="md-find-icon-btn md-find-close" onclick="mdFindClose()" title="Close">✕</button>
       </div>
       <div class="md-find-row">
