@@ -1,5 +1,5 @@
 > # Software Engineering / Backend Development / Python Roadmap
-> # Beginner → Expert (Industry-Grade, Employability-Focused, FAANG-Aligned)
+> # Beginner → Expert
 
 > ## Learning Philosophy:
 - 1. Fundamentals First
@@ -10,9 +10,18 @@
 - 6. Scalability Before Optimization
 - 7. Continuous Interview Preparation
 
+
+## 2 Learning Philosophy:
+- 1. Fundamentals First
+- 2. Build While Learning
+- 3. Portfolio Before Certificates
+- 4. Systems Before Frameworks
+- 5. Engineering Before Coding
+- 6. Scalability Before Optimization
+- 7. Continuous Interview Preparation
 ---
 
-> # ROADMAP OVERVIEW
+# ROADMAP OVERVIEW
 
 ```text
 Phase 0 → Computer Foundations
