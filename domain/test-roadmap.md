@@ -123,7 +123,7 @@ EXPERT
 
 ---
 
-> # PHASE 0 — ENVIRONMENT SETUP
+> ## PHASE 0 — ENVIRONMENT SETUP
 
 ## ☑ Objective
 
