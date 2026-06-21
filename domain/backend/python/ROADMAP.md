@@ -106,9 +106,9 @@
 
 > # Stage 2: Backend Developer (Python Backend Engineer)
 
-> ## Phase 1: Web Development Fundamentals
+## Phase 1: Web Development Fundamentals
 
-> ### Module: HTTP & Web
+### Module: HTTP & Web
 
 - [ ] HTTP & HTTPS
 - [ ] Request Lifecycle
@@ -126,9 +126,9 @@
 - [ ] API Design Basics
 - [ ] API Versioning
 
-> ## Phase 2: Backend Framework
+## Phase 2: Backend Framework
 
-> ### Module: FastAPI
+### Module: FastAPI
 
 - [ ] Routing
 - [ ] Path Parameters
@@ -138,14 +138,14 @@
 - [ ] Response Models
 - [ ] Middleware
 
-> #### Sub Module: Pydantic
+#### Sub Module: Pydantic
 
 - [ ] Schemas
 - [ ] Validation Rules
 - [ ] Nested Models
 - [ ] Settings Management
 
-> ### Module: Django Fundamentals
+### Module: Django Fundamentals
 
 - [ ] Project Structure
 - [ ] Apps
@@ -156,9 +156,9 @@
 - [ ] Django ORM
 - [ ] Django Middle wares
 
-> ## Phase 3: Database Integration
+## Phase 3: Database Integration
 
-> ### Module: ORM
+### Module: ORM
 
 - [ ] SQLAlchemy
 - [ ] Django ORM
