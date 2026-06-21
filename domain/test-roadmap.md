@@ -111,7 +111,7 @@ EXPERT
 
 > ## PHASE 0 — ENVIRONMENT SETUP
 
-### ☑ Objective
+#### ☑ Objective
 
 Prepare professional development environment.
 
@@ -119,7 +119,7 @@ Prepare professional development environment.
 
 > ### Module.1 — Operating System
 
-### ☑ Linux Fundamentals
+#### ☑ Linux Fundamentals
 
 #### ☑ Installation
 
@@ -189,7 +189,7 @@ Prepare professional development environment.
 
 > ## PHASE 1 — COMPUTER SCIENCE FUNDAMENTALS
 
-### ☑ Module 1.1 — Computer Basics
+#### ☑ Module 1.1 — Computer Basics
 
 #### ☑ Binary
 
@@ -213,7 +213,7 @@ Prepare professional development environment.
 
 ---
 
-### ☑ Module 1.2 — Operating Systems
+#### ☑ Module 1.2 — Operating Systems
 
 #### ☑ Concepts
 
@@ -225,7 +225,7 @@ Prepare professional development environment.
 
 ---
 
-### ☑ Module 1.3 — Internet Fundamentals
+#### ☑ Module 1.3 — Internet Fundamentals
 
 #### ☑ Networking Basics
 
@@ -257,7 +257,7 @@ Required before Backend Development
 
 > ## PHASE 2 — PYTHON FUNDAMENTALS
 
-### ☑ Module 2.1 — Syntax
+#### ☑ Module 2.1 — Syntax
 
 #### ☑ Variables
 
@@ -275,7 +275,7 @@ Required before Backend Development
 
 ---
 
-### ☑ Module 2.2 — Control Flow
+#### ☑ Module 2.2 — Control Flow
 
 #### ☑ Conditionals
 
@@ -293,7 +293,7 @@ Required before Backend Development
 
 ---
 
-### ☑ Module 2.3 — Functions
+#### ☑ Module 2.3 — Functions
 
 #### ☑ Fundamentals
 
@@ -310,7 +310,7 @@ Required before Backend Development
 
 ---
 
-### ☑ Module 2.4 — Collections
+#### ☑ Module 2.4 — Collections
 
 #### ☑ Lists
 
@@ -336,7 +336,7 @@ Required before Backend Development
 
 ---
 
-### ☑ Module 2.5 — Strings
+#### ☑ Module 2.5 — Strings
 
 - [ ] Formatting
 - [ ] f-strings
@@ -344,7 +344,7 @@ Required before Backend Development
 
 ---
 
-### ☑ Module 2.6 — Error Handling
+#### ☑ Module 2.6 — Error Handling
 
 - [ ] try
 - [ ] except
@@ -372,7 +372,7 @@ Required before OOP
 
 > ## PHASE 3 — OBJECT ORIENTED PROGRAMMING
 
-### ☑ Module 3.1 — Core OOP
+#### ☑ Module 3.1 — Core OOP
 
 #### ☑ Concepts
 
@@ -390,7 +390,7 @@ Required before OOP
 
 ---
 
-### ☑ Module 3.2 — Advanced OOP
+#### ☑ Module 3.2 — Advanced OOP
 
 #### ☑ Design
 
@@ -423,7 +423,7 @@ Required before Django/FastAPI
 
 > ## PHASE 4 — GIT & GITHUB
 
-### ☑ Module 4.1 — Git Basics
+#### ☑ Module 4.1 — Git Basics
 
 - [ ] git init
 - [ ] git add
@@ -434,7 +434,7 @@ Required before Django/FastAPI
 
 ---
 
-### ☑ Module 4.2 — Branching
+#### ☑ Module 4.2 — Branching
 
 - [ ] Branches
 - [ ] Merge
@@ -443,7 +443,7 @@ Required before Django/FastAPI
 
 ---
 
-### ☑ Module 4.3 — Collaboration
+#### ☑ Module 4.3 — Collaboration
 
 - [ ] Pull Requests
 - [ ] Code Reviews
@@ -461,7 +461,7 @@ Required before Django/FastAPI
 
 > ## PHASE 5 — DATA STRUCTURES & ALGORITHMS
 
-### ☑ Module 5.1 — Complexity
+#### ☑ Module 5.1 — Complexity
 
 - [ ] Big O
 - [ ] Big Theta
@@ -469,7 +469,7 @@ Required before Django/FastAPI
 
 ---
 
-### ☑ Module 5.2 — Data Structures
+#### ☑ Module 5.2 — Data Structures
 
 #### ☑ Linear
 
@@ -492,7 +492,7 @@ Required before Django/FastAPI
 
 ---
 
-### ☑ Module 5.3 — Algorithms
+#### ☑ Module 5.3 — Algorithms
 
 #### ☑ Searching
 
@@ -538,7 +538,7 @@ Required before Django/FastAPI
 
 > ## PHASE 6 — INTERMEDIATE PYTHON
 
-### ☑ Module 6.1 — Files
+#### ☑ Module 6.1 — Files
 
 - [ ] Read Files
 - [ ] Write Files
@@ -548,7 +548,7 @@ Required before Django/FastAPI
 
 ---
 
-### ☑ Module 6.2 — Modules
+#### ☑ Module 6.2 — Modules
 
 - [ ] Packages
 - [ ] Imports
@@ -557,7 +557,7 @@ Required before Django/FastAPI
 
 ---
 
-### ☑ Module 6.3 — Advanced Python
+#### ☑ Module 6.3 — Advanced Python
 
 #### ☑ Memory
 
@@ -602,7 +602,7 @@ Required before Django/FastAPI
 
 > ## PHASE 7 — DATABASES
 
-### ☑ Module 7.1 — SQL Fundamentals
+#### ☑ Module 7.1 — SQL Fundamentals
 
 - [ ] SELECT
 - [ ] INSERT
@@ -611,7 +611,7 @@ Required before Django/FastAPI
 
 ---
 
-### ☑ Module 7.2 — Joins
+#### ☑ Module 7.2 — Joins
 
 - [ ] INNER JOIN
 - [ ] LEFT JOIN
@@ -620,7 +620,7 @@ Required before Django/FastAPI
 
 ---
 
-### ☑ Module 7.3 — Advanced SQL
+#### ☑ Module 7.3 — Advanced SQL
 
 - [ ] Subqueries
 - [ ] CTE
@@ -630,7 +630,7 @@ Required before Django/FastAPI
 
 ---
 
-### ☑ Module 7.4 — Database Design
+#### ☑ Module 7.4 — Database Design
 
 - [ ] ER Diagrams
 - [ ] Normalization
@@ -639,7 +639,7 @@ Required before Django/FastAPI
 
 ---
 
-### ☑ Module 7.5 — PostgreSQL
+#### ☑ Module 7.5 — PostgreSQL
 
 - [ ] Indexing
 - [ ] Query Optimization
@@ -674,23 +674,23 @@ Learn how professional software is built, maintained, tested, and deployed.
 
 ---
 
-> ## Module 8.1 — Clean Code
+> ### Module 8.1 — Clean Code
 
-### ☑ Naming
+#### ☑ Naming
 
 - [ ] Meaningful variable names
 - [ ] Meaningful function names
 - [ ] Meaningful class names
 - [ ] Naming conventions (PEP8)
 
-### ☑ Code Quality
+#### ☑ Code Quality
 
 - [ ] Single Responsibility Principle
 - [ ] DRY (Don't Repeat Yourself)
 - [ ] KISS
 - [ ] YAGNI
 
-### ☑ Refactoring
+#### ☑ Refactoring
 
 - [ ] Code smells
 - [ ] Extract methods
@@ -698,7 +698,7 @@ Learn how professional software is built, maintained, tested, and deployed.
 
 ---
 
-> ## Module 8.2 — SOLID Principles
+> ### Module 8.2 — SOLID Principles
 
 
 
@@ -710,21 +710,21 @@ Learn how professional software is built, maintained, tested, and deployed.
 
 ---
 
-> ## Module 8.3 — Design Patterns
+> ### Module 8.3 — Design Patterns
 
-### ☑ Creational
+#### ☑ Creational
 
 - [ ] Singleton
 - [ ] Factory
 - [ ] Builder
 
-### ☑ Structural
+#### ☑ Structural
 
 - [ ] Adapter
 - [ ] Facade
 - [ ] Proxy
 
-### ☑ Behavioral
+#### ☑ Behavioral
 
 - [ ] Strategy
 - [ ] Observer
@@ -756,15 +756,15 @@ Master full-featured backend development.
 
 ---
 
-> ## Module 9.1 — Django Fundamentals
+> ### Module 9.1 — Django Fundamentals
 
-### ☑ Installation
+#### ☑ Installation
 
 - [ ] Django Installation
 - [ ] Virtual Environments
 - [ ] Project Structure
 
-### ☑ Core Concepts
+#### ☑ Core Concepts
 
 - [ ] Project
 - [ ] App
@@ -775,21 +775,21 @@ Master full-featured backend development.
 
 ---
 
-> ## Module 9.2 — Models
+> ### Module 9.2 — Models
 
-### ☑ ORM Fundamentals
+#### ☑ ORM Fundamentals
 
 - [ ] Models
 - [ ] Fields
 - [ ] Relationships
 
-### ☑ Relationships
+#### ☑ Relationships
 
 - [ ] One To One
 - [ ] One To Many
 - [ ] Many To Many
 
-### ☑ Migrations
+#### ☑ Migrations
 
 - [ ] makemigrations
 - [ ] migrate
@@ -797,16 +797,16 @@ Master full-featured backend development.
 
 ---
 
-> ## Module 9.3 — QuerySets
+> ### Module 9.3 — QuerySets
 
-### ☑ Queries
+#### ☑ Queries
 
 - [ ] filter()
 - [ ] exclude()
 - [ ] get()
 - [ ] create()
 
-### ☑ Advanced Queries
+#### ☑ Advanced Queries
 
 - [ ] annotate()
 - [ ] aggregate()
@@ -815,9 +815,9 @@ Master full-featured backend development.
 
 ---
 
-> ## Module 9.4 — Django Admin
+> ### Module 9.4 — Django Admin
 
-### ☑ Customization
+#### ☑ Customization
 
 - [ ] Admin Models
 - [ ] Admin Actions
@@ -826,9 +826,9 @@ Master full-featured backend development.
 
 ---
 
-> ## Module 9.5 — Forms
+> ### Module 9.5 — Forms
 
-### ☑ Forms
+#### ☑ Forms
 
 - [ ] Form Class
 - [ ] ModelForm
@@ -836,27 +836,27 @@ Master full-featured backend development.
 
 ---
 
-> ## Module 9.6 — Django REST Framework
+> ### Module 9.6 — Django REST Framework
 
-### ☑ API Basics
+#### ☑ API Basics
 
 - [ ] Serializers
 - [ ] Views
 - [ ] ViewSets
 - [ ] Routers
 
-### ☑ Validation
+#### ☑ Validation
 
 - [ ] Serializer Validation
 - [ ] Field Validation
 
-### ☑ Pagination
+#### ☑ Pagination
 
 - [ ] Limit Offset
 - [ ] Page Number
 - [ ] Cursor Pagination
 
-### ☑ Filtering
+#### ☑ Filtering
 
 - [ ] Search Filters
 - [ ] Ordering
@@ -864,15 +864,15 @@ Master full-featured backend development.
 
 ---
 
-> ## Module 9.7 — Authentication
+> ### Module 9.7 — Authentication
 
-### ☑ Authentication Methods
+#### ☑ Authentication Methods
 
 - [ ] Session Authentication
 - [ ] Token Authentication
 - [ ] JWT Authentication
 
-### ☑ Authorization
+#### ☑ Authorization
 
 - [ ] Permissions
 - [ ] Roles
@@ -880,14 +880,14 @@ Master full-featured backend development.
 
 ---
 
-> ## Module 9.8 — Django Advanced
+> ### Module 9.8 — Django Advanced
 
-### ☑ Performance
+#### ☑ Performance
 
 - [ ] Query Optimization
 - [ ] Caching
 
-### ☑ Security
+#### ☑ Security
 
 - [ ] CSRF
 - [ ] XSS
@@ -920,9 +920,9 @@ Master modern high-performance API development.
 
 ---
 
-> ## Module 10.1 — FastAPI Fundamentals
+> ### Module 10.1 — FastAPI Fundamentals
 
-### ☑ Basics
+#### ☑ Basics
 
 - [ ] Application Setup
 - [ ] Routing
@@ -931,22 +931,22 @@ Master modern high-performance API development.
 
 ---
 
-> ## Module 10.2 — Pydantic
+> ### Module 10.2 — Pydantic
 
-### ☑ Models
+#### ☑ Models
 
 - [ ] Validation
 - [ ] Serialization
 - [ ] Type Enforcement
 
-### ☑ Advanced
+#### ☑ Advanced
 
 - [ ] Nested Models
 - [ ] Custom Validators
 
 ---
 
-> ## Module 10.3 — Dependency Injection
+> ### Module 10.3 — Dependency Injection
 
 
 
@@ -956,24 +956,24 @@ Master modern high-performance API development.
 
 ---
 
-> ## Module 10.4 — Database Integration
+> ### Module 10.4 — Database Integration
 
-### ☑ SQLAlchemy
+#### ☑ SQLAlchemy
 
 - [ ] Models
 - [ ] Sessions
 - [ ] Relationships
 
-### ☑ Alembic
+#### ☑ Alembic
 
 - [ ] Migrations
 - [ ] Versioning
 
 ---
 
-> ## Module 10.5 — Authentication
+> ### Module 10.5 — Authentication
 
-### ☑ Security
+#### ☑ Security
 
 - [ ] JWT
 - [ ] OAuth2
@@ -981,9 +981,9 @@ Master modern high-performance API development.
 
 ---
 
-> ## Module 10.6 — Async Programming
+> ### Module 10.6 — Async Programming
 
-### ☑ Async
+#### ☑ Async
 
 - [ ] async
 - [ ] await
@@ -991,9 +991,9 @@ Master modern high-performance API development.
 
 ---
 
-> ## Module 10.7 — Production APIs
+> ### Module 10.7 — Production APIs
 
-### ☑ Features
+#### ☑ Features
 
 - [ ] Pagination
 - [ ] Filtering
@@ -1027,9 +1027,9 @@ Learn professional API design.
 
 ---
 
-> ## Module 11.1 — REST
+> ### Module 11.1 — REST
 
-### ☑ Concepts
+#### ☑ Concepts
 
 - [ ] Resources
 - [ ] Endpoints
@@ -1038,9 +1038,9 @@ Learn professional API design.
 
 ---
 
-> ## Module 11.2 — API Design
+> ### Module 11.2 — API Design
 
-### ☑ Best Practices
+#### ☑ Best Practices
 
 - [ ] Naming
 - [ ] Versioning
@@ -1050,9 +1050,9 @@ Learn professional API design.
 
 ---
 
-> ## Module 11.3 — Documentation
+> ### Module 11.3 — Documentation
 
-### ☑ Tools
+#### ☑ Tools
 
 - [ ] Swagger
 - [ ] OpenAPI
@@ -1075,9 +1075,9 @@ Write reliable production code.
 
 ---
 
-> ## Module 12.1 — Unit Testing
+> ### Module 12.1 — Unit Testing
 
-### ☑ Pytest
+#### ☑ Pytest
 
 - [ ] Fixtures
 - [ ] Assertions
@@ -1085,7 +1085,7 @@ Write reliable production code.
 
 ---
 
-> ## Module 12.2 — Integration Testing
+> ### Module 12.2 — Integration Testing
 
 
 
@@ -1094,18 +1094,18 @@ Write reliable production code.
 
 ---
 
-> ## Module 12.3 — Mocking
+> ### Module 12.3 — Mocking
 
-### ☑ Tools
+#### ☑ Tools
 
 - [ ] unittest.mock
 - [ ] monkeypatch
 
 ---
 
-> ## Module 12.4 — Coverage
+> ### Module 12.4 — Coverage
 
-### ☑ Metrics
+#### ☑ Metrics
 
 - [ ] Coverage Reports
 - [ ] Branch Coverage
@@ -1127,7 +1127,7 @@ Containerize applications.
 
 ---
 
-> ## Module 13.1 — Docker Basics
+> ### Module 13.1 — Docker Basics
 
 
 
@@ -1138,7 +1138,7 @@ Containerize applications.
 
 ---
 
-> ## Module 13.2 — Dockerfile
+> ### Module 13.2 — Dockerfile
 
 
 
@@ -1148,9 +1148,9 @@ Containerize applications.
 
 ---
 
-> ## Module 13.3 — Docker Compose
+> ### Module 13.3 — Docker Compose
 
-### ☑ Services
+#### ☑ Services
 
 - [ ] Backend
 - [ ] PostgreSQL
@@ -1173,7 +1173,7 @@ Learn caching and high-speed storage.
 
 ---
 
-### ☑ Topics
+#### ☑ Topics
 
 - [ ] Redis Data Structures
 - [ ] Strings
@@ -1181,7 +1181,7 @@ Learn caching and high-speed storage.
 - [ ] Sets
 - [ ] Sorted Sets
 
-### ☑ Use Cases
+#### ☑ Use Cases
 
 - [ ] Caching
 - [ ] Rate Limiting
@@ -1212,7 +1212,7 @@ Background task processing.
 - [ ] Queues
 - [ ] Scheduling
 
-### ☑ Tools
+#### ☑ Tools
 
 - [ ] Celery
 - [ ] Redis
@@ -1236,13 +1236,13 @@ Automate software delivery.
 
 ---
 
-### ☑ GitHub Actions
+#### ☑ GitHub Actions
 
 - [ ] Workflows
 - [ ] Jobs
 - [ ] Secrets
 
-### ☑ Pipelines
+#### ☑ Pipelines
 
 - [ ] Build
 - [ ] Test
@@ -1265,7 +1265,7 @@ Deploy real-world systems.
 
 ---
 
-### ☑ AWS Core Services
+#### ☑ AWS Core Services
 
 #### Compute
 
@@ -1287,7 +1287,7 @@ Deploy real-world systems.
 
 ---
 
-### ☑ Deployment
+#### ☑ Deployment
 
 - [ ] Nginx
 - [ ] Gunicorn
@@ -1458,9 +1458,9 @@ Transition from writing code to engineering systems.
 
 ---
 
-> ## Module 18.1 — Advanced Clean Architecture
+> ### Module 18.1 — Advanced Clean Architecture
 
-### ☑ Layered Architecture
+#### ☑ Layered Architecture
 
 - [ ] Presentation Layer
 - [ ] Service Layer
@@ -1468,7 +1468,7 @@ Transition from writing code to engineering systems.
 - [ ] Repository Layer
 - [ ] Infrastructure Layer
 
-### ☑ Separation of Concerns
+#### ☑ Separation of Concerns
 
 - [ ] Dependency Injection
 - [ ] Domain Driven Design Basics
@@ -1476,9 +1476,9 @@ Transition from writing code to engineering systems.
 
 ---
 
-> ## Module 18.2 — Architectural Patterns
+> ### Module 18.2 — Architectural Patterns
 
-### ☑ Patterns
+#### ☑ Patterns
 
 - [ ] Monolith
 - [ ] Modular Monolith
@@ -1486,7 +1486,7 @@ Transition from writing code to engineering systems.
 - [ ] Event Driven Architecture
 - [ ] Serverless
 
-### ☑ Tradeoffs
+#### ☑ Tradeoffs
 
 - [ ] Complexity
 - [ ] Cost
@@ -1519,16 +1519,16 @@ Become highly proficient in data modeling and database performance.
 
 ---
 
-> ## Module 19.1 — PostgreSQL Deep Dive
+> ### Module 19.1 — PostgreSQL Deep Dive
 
-### ☑ Storage Internals
+#### ☑ Storage Internals
 
 - [ ] Pages
 - [ ] WAL
 - [ ] MVCC
 - [ ] VACUUM
 
-### ☑ Transactions
+#### ☑ Transactions
 
 - [ ] ACID
 - [ ] Isolation Levels
@@ -1537,7 +1537,7 @@ Become highly proficient in data modeling and database performance.
 
 ---
 
-> ## Module 19.2 — Query Optimization
+> ### Module 19.2 — Query Optimization
 
 
 
@@ -1549,9 +1549,9 @@ Become highly proficient in data modeling and database performance.
 
 ---
 
-> ## Module 19.3 — Indexing
+> ### Module 19.3 — Indexing
 
-### ☑ Types
+#### ☑ Types
 
 - [ ] B-Tree
 - [ ] Hash
@@ -1562,9 +1562,9 @@ Become highly proficient in data modeling and database performance.
 
 ---
 
-> ## Module 19.4 — Scaling Databases
+> ### Module 19.4 — Scaling Databases
 
-### ☑ Techniques
+#### ☑ Techniques
 
 - [ ] Read Replicas
 - [ ] Partitioning
@@ -1589,9 +1589,9 @@ Design systems that scale.
 
 ---
 
-> ## Module 20.1 — System Design Basics
+> ### Module 20.1 — System Design Basics
 
-### ☑ Concepts
+#### ☑ Concepts
 
 - [ ] Scalability
 - [ ] Reliability
@@ -1601,7 +1601,7 @@ Design systems that scale.
 
 ---
 
-> ## Module 20.2 — CAP Theorem
+> ### Module 20.2 — CAP Theorem
 
 
 
@@ -1611,7 +1611,7 @@ Design systems that scale.
 
 ---
 
-> ## Module 20.3 — Load Balancing
+> ### Module 20.3 — Load Balancing
 
 
 
@@ -1619,14 +1619,14 @@ Design systems that scale.
 - [ ] Least Connections
 - [ ] Health Checks
 
-### ☑ Tools
+#### ☑ Tools
 
 - [ ] NGINX
 - [ ] HAProxy
 
 ---
 
-> ## Module 20.4 — Reverse Proxies
+> ### Module 20.4 — Reverse Proxies
 
 
 
@@ -1651,7 +1651,7 @@ Reduce latency and database load.
 
 ---
 
-> ## Module 21.1 — Caching Fundamentals
+> ### Module 21.1 — Caching Fundamentals
 
 
 
@@ -1662,9 +1662,9 @@ Reduce latency and database load.
 
 ---
 
-> ## Module 21.2 — Redis Advanced
+> ### Module 21.2 — Redis Advanced
 
-### ☑ Topics
+#### ☑ Topics
 
 - [ ] Pub/Sub
 - [ ] Streams
@@ -1672,7 +1672,7 @@ Reduce latency and database load.
 
 ---
 
-> ## Module 21.3 — Distributed Caching
+> ### Module 21.3 — Distributed Caching
 
 
 
@@ -1698,7 +1698,7 @@ Build asynchronous systems.
 
 ---
 
-> ## Module 22.1 — Messaging Fundamentals
+> ### Module 22.1 — Messaging Fundamentals
 
 
 
@@ -1710,7 +1710,7 @@ Build asynchronous systems.
 
 ---
 
-> ## Module 22.2 — RabbitMQ
+> ### Module 22.2 — RabbitMQ
 
 
 
@@ -1721,16 +1721,16 @@ Build asynchronous systems.
 
 ---
 
-> ## Module 22.3 — Apache Kafka
+> ### Module 22.3 — Apache Kafka
 
-### ☑ Fundamentals
+#### ☑ Fundamentals
 
 - [ ] Brokers
 - [ ] Topics
 - [ ] Partitions
 - [ ] Replication
 
-### ☑ Advanced
+#### ☑ Advanced
 
 - [ ] Consumer Groups
 - [ ] Rebalancing
@@ -1763,7 +1763,7 @@ Design independently deployable services.
 
 ---
 
-> ## Module 23.1 — Fundamentals
+> ### Module 23.1 — Fundamentals
 
 
 
@@ -1773,21 +1773,21 @@ Design independently deployable services.
 
 ---
 
-> ## Module 23.2 — Communication
+> ### Module 23.2 — Communication
 
-### ☑ Synchronous
+#### ☑ Synchronous
 
 - [ ] REST
 - [ ] gRPC
 
-### ☑ Asynchronous
+#### ☑ Asynchronous
 
 - [ ] Kafka
 - [ ] RabbitMQ
 
 ---
 
-> ## Module 23.3 — Data Management
+> ### Module 23.3 — Data Management
 
 
 
@@ -1814,7 +1814,7 @@ Build enterprise-grade APIs.
 
 ---
 
-> ## Module 24.1 — API Security
+> ### Module 24.1 — API Security
 
 
 
@@ -1825,9 +1825,9 @@ Build enterprise-grade APIs.
 
 ---
 
-> ## Module 24.2 — API Gateway
+> ### Module 24.2 — API Gateway
 
-### ☑ Concepts
+#### ☑ Concepts
 
 - [ ] Routing
 - [ ] Rate Limiting
@@ -1836,7 +1836,7 @@ Build enterprise-grade APIs.
 
 ---
 
-> ## Module 24.3 — GraphQL
+> ### Module 24.3 — GraphQL
 
 
 
@@ -1847,7 +1847,7 @@ Build enterprise-grade APIs.
 
 ---
 
-> ## Module 24.4 — gRPC
+> ### Module 24.4 — gRPC
 
 
 
@@ -1873,7 +1873,7 @@ Own deployments and infrastructure.
 
 ---
 
-> ## Module 25.1 — Linux Administration
+> ### Module 25.1 — Linux Administration
 
 
 
@@ -1885,7 +1885,7 @@ Own deployments and infrastructure.
 
 ---
 
-> ## Module 25.2 — Networking
+> ### Module 25.2 — Networking
 
 
 
@@ -1896,9 +1896,9 @@ Own deployments and infrastructure.
 
 ---
 
-> ## Module 25.3 — Infrastructure as Code
+> ### Module 25.3 — Infrastructure as Code
 
-### ☑ Terraform
+#### ☑ Terraform
 
 - [ ] Providers
 - [ ] Resources
@@ -1922,7 +1922,7 @@ Orchestrate containers at scale.
 
 ---
 
-> ## Module 26.1 — Kubernetes Fundamentals
+> ### Module 26.1 — Kubernetes Fundamentals
 
 
 
@@ -1933,7 +1933,7 @@ Orchestrate containers at scale.
 
 ---
 
-> ## Module 26.2 — Workloads
+> ### Module 26.2 — Workloads
 
 
 
@@ -1944,7 +1944,7 @@ Orchestrate containers at scale.
 
 ---
 
-> ## Module 26.3 — Networking
+> ### Module 26.3 — Networking
 
 
 
@@ -1953,7 +1953,7 @@ Orchestrate containers at scale.
 
 ---
 
-> ## Module 26.4 — Storage
+> ### Module 26.4 — Storage
 
 
 
@@ -1986,7 +1986,7 @@ Become production-cloud capable.
 
 ---
 
-> ## Module 27.1 — Compute
+> ### Module 27.1 — Compute
 
 
 
@@ -1997,7 +1997,7 @@ Become production-cloud capable.
 
 ---
 
-> ## Module 27.2 — Storage
+> ### Module 27.2 — Storage
 
 
 
@@ -2006,7 +2006,7 @@ Become production-cloud capable.
 
 ---
 
-> ## Module 27.3 — Databases
+> ### Module 27.3 — Databases
 
 
 
@@ -2016,7 +2016,7 @@ Become production-cloud capable.
 
 ---
 
-> ## Module 27.4 — Networking
+> ### Module 27.4 — Networking
 
 
 
@@ -2027,7 +2027,7 @@ Become production-cloud capable.
 
 ---
 
-> ## Module 27.5 — Monitoring
+> ### Module 27.5 — Monitoring
 
 
 
@@ -2052,42 +2052,42 @@ Understand production behavior.
 
 ---
 
-> ## Module 28.1 — Logging
+> ### Module 28.1 — Logging
 
 
 
 - [ ] Structured Logging
 - [ ] Correlation IDs
 
-### ☑ Tools
+#### ☑ Tools
 
 - [ ] ELK Stack
 - [ ] OpenSearch
 
 ---
 
-> ## Module 28.2 — Metrics
+> ### Module 28.2 — Metrics
 
 
 
 - [ ] RED Metrics
 - [ ] USE Metrics
 
-### ☑ Tools
+#### ☑ Tools
 
 - [ ] Prometheus
 - [ ] Grafana
 
 ---
 
-> ## Module 28.3 — Tracing
+> ### Module 28.3 — Tracing
 
 
 
 - [ ] Distributed Tracing
 - [ ] Span Analysis
 
-### ☑ Tools
+#### ☑ Tools
 
 - [ ] OpenTelemetry
 - [ ] Jaeger
@@ -2109,7 +2109,7 @@ Build fast systems.
 
 ---
 
-> ## Module 29.1 — Application Performance
+> ### Module 29.1 — Application Performance
 
 
 
@@ -2119,7 +2119,7 @@ Build fast systems.
 
 ---
 
-> ## Module 29.2 — Database Performance
+> ### Module 29.2 — Database Performance
 
 
 
@@ -2128,9 +2128,9 @@ Build fast systems.
 
 ---
 
-> ## Module 29.3 — Load Testing
+> ### Module 29.3 — Load Testing
 
-### ☑ Tools
+#### ☑ Tools
 
 - [ ] Locust
 - [ ] k6
@@ -2317,7 +2317,7 @@ Move from implementing systems to owning systems.
 
 > ## Senior Engineer Responsibilities
 
-### ☑ Technical Ownership
+#### ☑ Technical Ownership
 
 - [ ] Own business-critical services
 - [ ] Define architecture decisions
@@ -2325,14 +2325,14 @@ Move from implementing systems to owning systems.
 - [ ] Improve reliability
 - [ ] Improve performance
 
-### ☑ Team Impact
+#### ☑ Team Impact
 
 - [ ] Code Reviews
 - [ ] Mentoring Juniors
 - [ ] Technical Documentation
 - [ ] Design Reviews
 
-### ☑ Business Impact
+#### ☑ Business Impact
 
 - [ ] Translate business requirements
 - [ ] Estimate engineering effort
@@ -2342,7 +2342,7 @@ Move from implementing systems to owning systems.
 
 > ## Senior Engineer Expectations
 
-### ☑ Technical
+#### ☑ Technical
 
 - [ ] Strong Python
 - [ ] Strong PostgreSQL
@@ -2350,7 +2350,7 @@ Move from implementing systems to owning systems.
 - [ ] Strong System Design
 - [ ] Strong Cloud
 
-### ☑ Non-Technical
+#### ☑ Non-Technical
 
 - [ ] Communication
 - [ ] Leadership
@@ -2366,7 +2366,7 @@ Master systems operating across multiple machines.
 
 ---
 
-> ## Module 31.1 — Distributed Systems Fundamentals
+> ### Module 31.1 — Distributed Systems Fundamentals
 
 
 
@@ -2377,21 +2377,21 @@ Master systems operating across multiple machines.
 
 ---
 
-> ## Module 31.2 — Consensus
+> ### Module 31.2 — Consensus
 
 
 
 - [ ] Consensus Problem
 - [ ] Leader Election
 
-### ☑ Algorithms
+#### ☑ Algorithms
 
 - [ ] Raft
 - [ ] Paxos (Conceptual)
 
 ---
 
-> ## Module 31.3 — Data Consistency
+> ### Module 31.3 — Data Consistency
 
 
 
@@ -2402,7 +2402,7 @@ Master systems operating across multiple machines.
 
 ---
 
-> ## Module 31.4 — Distributed Transactions
+> ### Module 31.4 — Distributed Transactions
 
 
 
@@ -2412,7 +2412,7 @@ Master systems operating across multiple machines.
 
 ---
 
-> ## Module 31.5 — Time & Ordering
+> ### Module 31.5 — Time & Ordering
 
 
 
@@ -2438,7 +2438,7 @@ Master database internals.
 
 ---
 
-> ## Module 32.1 — Storage Engines
+> ### Module 32.1 — Storage Engines
 
 
 
@@ -2448,7 +2448,7 @@ Master database internals.
 
 ---
 
-> ## Module 32.2 — Replication
+> ### Module 32.2 — Replication
 
 
 
@@ -2458,7 +2458,7 @@ Master database internals.
 
 ---
 
-> ## Module 32.3 — Sharding
+> ### Module 32.3 — Sharding
 
 
 
@@ -2468,22 +2468,22 @@ Master database internals.
 
 ---
 
-> ## Module 32.4 — NoSQL
+> ### Module 32.4 — NoSQL
 
-### ☑ MongoDB
+#### ☑ MongoDB
 
 - [ ] Collections
 - [ ] Aggregation
 - [ ] Indexing
 
-### ☑ DynamoDB
+#### ☑ DynamoDB
 
 - [ ] Partition Keys
 - [ ] Sort Keys
 - [ ] GSI
 - [ ] LSI
 
-### ☑ Cassandra
+#### ☑ Cassandra
 
 - [ ] Data Modeling
 - [ ] Replication
@@ -2505,7 +2505,7 @@ Build secure production systems.
 
 ---
 
-> ## Module 33.1 — Web Security
+> ### Module 33.1 — Web Security
 
 
 
@@ -2518,7 +2518,7 @@ Build secure production systems.
 
 ---
 
-> ## Module 33.2 — Authentication
+> ### Module 33.2 — Authentication
 
 
 
@@ -2528,7 +2528,7 @@ Build secure production systems.
 
 ---
 
-> ## Module 33.3 — Authorization
+> ### Module 33.3 — Authorization
 
 
 
@@ -2538,7 +2538,7 @@ Build secure production systems.
 
 ---
 
-> ## Module 33.4 — Infrastructure Security
+> ### Module 33.4 — Infrastructure Security
 
 
 
@@ -2549,7 +2549,7 @@ Build secure production systems.
 
 ---
 
-> ## Module 33.5 — Secure Development
+> ### Module 33.5 — Secure Development
 
 
 
@@ -2576,7 +2576,7 @@ Enable entire engineering organizations.
 
 ---
 
-> ## Module 34.1 — Internal Platforms
+> ### Module 34.1 — Internal Platforms
 
 
 
@@ -2586,7 +2586,7 @@ Enable entire engineering organizations.
 
 ---
 
-> ## Module 34.2 — Developer Experience
+> ### Module 34.2 — Developer Experience
 
 
 
@@ -2595,7 +2595,7 @@ Enable entire engineering organizations.
 
 ---
 
-> ## Module 34.3 — CI/CD at Scale
+> ### Module 34.3 — CI/CD at Scale
 
 
 
@@ -2621,7 +2621,7 @@ Design systems for years, not releases.
 
 ---
 
-> ## Module 35.1 — Architecture Styles
+> ### Module 35.1 — Architecture Styles
 
 
 
@@ -2632,7 +2632,7 @@ Design systems for years, not releases.
 
 ---
 
-> ## Module 35.2 — Domain Driven Design
+> ### Module 35.2 — Domain Driven Design
 
 
 
@@ -2643,7 +2643,7 @@ Design systems for years, not releases.
 
 ---
 
-> ## Module 35.3 — Architecture Tradeoffs
+> ### Module 35.3 — Architecture Tradeoffs
 
 
 
@@ -2671,19 +2671,19 @@ Multiply impact through influence.
 
 > ## Staff Engineer Expectations
 
-### ☑ Technical Leadership
+#### ☑ Technical Leadership
 
 - [ ] Cross-Team Design
 - [ ] Architecture Reviews
 - [ ] Technical Standards
 
-### ☑ Organization Impact
+#### ☑ Organization Impact
 
 - [ ] Mentor Engineers
 - [ ] Resolve Ambiguity
 - [ ] Influence Roadmaps
 
-### ☑ System Ownership
+#### ☑ System Ownership
 
 - [ ] Multi-Service Platforms
 - [ ] Large Scale Architecture
@@ -2707,13 +2707,13 @@ Shape engineering strategy.
 
 > ## Principal Expectations
 
-### ☑ Strategic Thinking
+#### ☑ Strategic Thinking
 
 - [ ] Multi-Year Planning
 - [ ] Technology Direction
 - [ ] Build vs Buy Analysis
 
-### ☑ Organization Influence
+#### ☑ Organization Influence
 
 - [ ] Engineering Vision
 - [ ] Executive Communication
@@ -2735,7 +2735,7 @@ Future-proof backend career.
 
 ---
 
-> ## Module 38.1 — AI Fundamentals
+> ### Module 38.1 — AI Fundamentals
 
 
 
@@ -2745,7 +2745,7 @@ Future-proof backend career.
 
 ---
 
-> ## Module 38.2 — LLM Engineering
+> ### Module 38.2 — LLM Engineering
 
 
 
@@ -2756,7 +2756,7 @@ Future-proof backend career.
 
 ---
 
-> ## Module 38.3 — AI Infrastructure
+> ### Module 38.3 — AI Infrastructure
 
 
 
@@ -2766,7 +2766,7 @@ Future-proof backend career.
 
 ---
 
-> ## Module 38.4 — AI Backend Systems
+> ### Module 38.4 — AI Backend Systems
 
 
 
@@ -2838,7 +2838,7 @@ Lead teams and organizations.
 
 > ## Leadership Skills
 
-### ☑ Communication
+#### ☑ Communication
 
 - [ ] Technical Writing
 - [ ] Design Documents
@@ -2846,7 +2846,7 @@ Lead teams and organizations.
 
 ---
 
-### ☑ Project Leadership
+#### ☑ Project Leadership
 
 - [ ] Project Planning
 - [ ] Risk Management
@@ -2854,7 +2854,7 @@ Lead teams and organizations.
 
 ---
 
-### ☑ People Leadership
+#### ☑ People Leadership
 
 - [ ] Mentoring
 - [ ] Coaching
