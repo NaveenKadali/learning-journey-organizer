@@ -1,6 +1,7 @@
 > # Beginner → Expert Roadmap
 
-## Fundamentals First
+## Learning Philosophy
+- Fundamentals First
 - Practice While Learning
 - Build While Progressing
 - Portfolio Before Certificates
