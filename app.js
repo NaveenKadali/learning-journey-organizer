@@ -406,12 +406,23 @@ function mdFindOpen() {
   const input = document.getElementById('md-find-input');
   input.focus();
   input.select();
-  mdFindUpdateMatches();
 }
 function mdFindClose() {
   document.getElementById('md-find-bar')?.classList.remove('open');
   _mdFindState = { matches: [], idx: -1, query: '' };
+  mdFindUpdateCounter();
   document.getElementById('md-editor-textarea')?.focus();
+}
+
+// Typing alone does NOT search — it only clears the now-stale match count,
+// so the counter doesn't claim a result for text that hasn't been searched
+// yet. The actual scan only runs on an explicit action: Enter, or the ▲/▼
+// buttons (see mdFindTriggerNext/Prev below).
+function mdFindInputChanged() {
+  _mdFindState.matches = [];
+  _mdFindState.idx = -1;
+  const el = document.getElementById('md-find-counter');
+  if (el) el.textContent = '';
 }
 
 function mdFindUpdateMatches() {
@@ -456,6 +467,21 @@ function mdFindGoTo(idx) {
 }
 function mdFindNext() { mdFindGoTo(_mdFindState.idx + 1); }
 function mdFindPrev() { mdFindGoTo(_mdFindState.idx - 1); }
+
+// Entry points for Enter / ▼ / ▲: scan only if the box's text doesn't match
+// what was last searched (first search, or the query was edited since);
+// otherwise just step to the next/previous already-found match. This is
+// what makes search "manual" — nothing happens just from typing.
+function mdFindTriggerNext() {
+  const q = document.getElementById('md-find-input').value;
+  if (q !== _mdFindState.query) mdFindUpdateMatches();
+  else mdFindNext();
+}
+function mdFindTriggerPrev() {
+  const q = document.getElementById('md-find-input').value;
+  if (q !== _mdFindState.query) mdFindUpdateMatches();
+  else mdFindPrev();
+}
 
 function mdFindUpdateCounter() {
   const el = document.getElementById('md-find-counter');
@@ -507,7 +533,7 @@ function mdReplaceAll() {
 }
 
 function mdFindInputKeydown(e) {
-  if (e.key === 'Enter') { e.preventDefault(); e.shiftKey ? mdFindPrev() : mdFindNext(); }
+  if (e.key === 'Enter') { e.preventDefault(); e.shiftKey ? mdFindTriggerPrev() : mdFindTriggerNext(); }
   else if (e.key === 'Escape') { e.preventDefault(); mdFindClose(); }
 }
 // Ctrl/Cmd+F inside the editor opens our find bar instead of the browser's
@@ -983,17 +1009,32 @@ function renderSupporting(supporting, id) {
     <div class="supp-notes-body"><div class="supp-notes-body-inner">${renderSuppBlocks(supporting.blocks)}</div></div>
   </div>`;
 }
-// Roadmap-level and section-level overviews aren't nested inside a
-// space-constrained accordion card the way a phase/module/submodule's
-// supporting content is — they sit directly in the page flow with plenty
-// of room, so hiding them behind a "Notes" click adds friction without
-// saving anything. Render the same block types, just always expanded.
-function renderSupportingExpanded(supporting) {
-  if (!supporting) return '';
-  if (supporting.kind === 'simple') {
-    return `<p class="supp-caption">${esc(supporting.text)}</p>`;
-  }
-  return `<div class="supp-expanded">${renderSuppBlocks(supporting.blocks)}</div>`;
+// Used for the roadmap-level overview and section dividers — both are
+// "supporting content with no parent accordion to nest inside," so unlike
+// the phase/module Notes panel (which stays closed to protect the
+// checklist), this defaults OPEN, same as submodules/topics do — it's
+// still a real collapsible wrapped to its own heading row, just not
+// hidden by default since there's no checklist here to protect.
+function renderOverviewBox(tagHtml, supporting, id, extraClass) {
+  const hasContent = !!supporting;
+  const headerClick = hasContent ? ` onclick="this.parentElement.classList.toggle('open')"` : '';
+  const chevron = hasContent
+    ? `<svg class="section-divider-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>`
+    : '';
+  const bodyInner = !hasContent ? '' : (supporting.kind === 'simple'
+    ? `<p>${esc(supporting.text)}</p>`
+    : renderSuppBlocks(supporting.blocks));
+  const body = hasContent
+    ? `<div class="section-divider-body"><div class="section-divider-body-inner">${bodyInner}</div></div>`
+    : '';
+  return `<div class="section-divider${extraClass ? ' ' + extraClass : ''}${hasContent ? ' has-content open' : ''}" id="${id}">
+    <div class="section-divider-header"${headerClick}>
+      ${tagHtml}
+      <span class="section-divider-line"></span>
+      ${chevron}
+    </div>
+    ${body}
+  </div>`;
 }
 
 // ═══════════════════════════════════════════
@@ -1116,21 +1157,22 @@ function render(data) {
   main.innerHTML = '';
 
   if (data.overview) {
-    const ov = mkEl('div', 'roadmap-overview');
-    ov.innerHTML = renderSupportingExpanded(data.overview);
-    main.appendChild(ov);
+    const wrap = document.createElement('div');
+    wrap.innerHTML = renderOverviewBox(
+      `<span class="section-divider-tag">📖 Overview</span>`,
+      data.overview, 'roadmap-overview-box', 'roadmap-overview-box'
+    );
+    main.appendChild(wrap.firstElementChild);
   }
 
   data.sections.forEach((section, secIdx) => {
     if (section.label) {
-      const lbl = mkEl('div', 'section-divider');
-      lbl.innerHTML = `<span class="section-divider-tag">${esc(section.label)}</span><span class="section-divider-line"></span>`;
-      main.appendChild(lbl);
-    }
-    if (section.overview) {
-      const so = mkEl('div', 'section-overview');
-      so.innerHTML = renderSupportingExpanded(section.overview);
-      main.appendChild(so);
+      const wrap = document.createElement('div');
+      wrap.innerHTML = renderOverviewBox(
+        `<span class="section-divider-tag">${esc(section.label)}</span>`,
+        section.overview, 'sd-' + secIdx
+      );
+      main.appendChild(wrap.firstElementChild);
     }
     const list = mkEl('div', 'phase-list');
     (section.items || []).forEach((item) => {
