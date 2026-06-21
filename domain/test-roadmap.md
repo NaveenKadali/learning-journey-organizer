@@ -116,7 +116,7 @@ EXPERT
 Prepare professional development environment.
 
 ---
-## Module.1 — Operating System
+### Module.1 — Operating System
 
 #### ☑ Linux Fundamentals
 
@@ -155,7 +155,7 @@ Prepare professional development environment.
 
 ---
 
-## Module 0.2 — Developer Tools
+### Module 0.2 — Developer Tools
 
 #### ☑ Install
 
@@ -188,7 +188,7 @@ Prepare professional development environment.
 
 > ## PHASE 1 — COMPUTER SCIENCE FUNDAMENTALS
 
-#### ☑ Module 1.1 — Computer Basics
+### ☑ Module 1.1 — Computer Basics
 
 #### ☑ Binary
 
@@ -212,7 +212,7 @@ Prepare professional development environment.
 
 ---
 
-#### ☑ Module 1.2 — Operating Systems
+### ☑ Module 1.2 — Operating Systems
 
 #### ☑ Concepts
 
@@ -224,7 +224,7 @@ Prepare professional development environment.
 
 ---
 
-#### ☑ Module 1.3 — Internet Fundamentals
+### ☑ Module 1.3 — Internet Fundamentals
 
 #### ☑ Networking Basics
 
@@ -256,7 +256,7 @@ Required before Backend Development
 
 > ## PHASE 2 — PYTHON FUNDAMENTALS
 
-#### ☑ Module 2.1 — Syntax
+### ☑ Module 2.1 — Syntax
 
 #### ☑ Variables
 
@@ -274,7 +274,7 @@ Required before Backend Development
 
 ---
 
-#### ☑ Module 2.2 — Control Flow
+### ☑ Module 2.2 — Control Flow
 
 #### ☑ Conditionals
 
@@ -292,7 +292,7 @@ Required before Backend Development
 
 ---
 
-#### ☑ Module 2.3 — Functions
+### ☑ Module 2.3 — Functions
 
 #### ☑ Fundamentals
 
@@ -309,7 +309,7 @@ Required before Backend Development
 
 ---
 
-#### ☑ Module 2.4 — Collections
+### ☑ Module 2.4 — Collections
 
 #### ☑ Lists
 
@@ -335,7 +335,7 @@ Required before Backend Development
 
 ---
 
-#### ☑ Module 2.5 — Strings
+### ☑ Module 2.5 — Strings
 
 - [ ] Formatting
 - [ ] f-strings
@@ -343,7 +343,7 @@ Required before Backend Development
 
 ---
 
-#### ☑ Module 2.6 — Error Handling
+### ☑ Module 2.6 — Error Handling
 
 - [ ] try
 - [ ] except
@@ -371,7 +371,7 @@ Required before OOP
 
 > ## PHASE 3 — OBJECT ORIENTED PROGRAMMING
 
-#### ☑ Module 3.1 — Core OOP
+### ☑ Module 3.1 — Core OOP
 
 #### ☑ Concepts
 
@@ -389,7 +389,7 @@ Required before OOP
 
 ---
 
-#### ☑ Module 3.2 — Advanced OOP
+### ☑ Module 3.2 — Advanced OOP
 
 #### ☑ Design
 
@@ -422,7 +422,7 @@ Required before Django/FastAPI
 
 > ## PHASE 4 — GIT & GITHUB
 
-#### ☑ Module 4.1 — Git Basics
+### ☑ Module 4.1 — Git Basics
 
 - [ ] git init
 - [ ] git add
@@ -433,7 +433,7 @@ Required before Django/FastAPI
 
 ---
 
-#### ☑ Module 4.2 — Branching
+### ☑ Module 4.2 — Branching
 
 - [ ] Branches
 - [ ] Merge
@@ -442,7 +442,7 @@ Required before Django/FastAPI
 
 ---
 
-#### ☑ Module 4.3 — Collaboration
+### ☑ Module 4.3 — Collaboration
 
 - [ ] Pull Requests
 - [ ] Code Reviews
@@ -460,7 +460,7 @@ Required before Django/FastAPI
 
 > ## PHASE 5 — DATA STRUCTURES & ALGORITHMS
 
-#### ☑ Module 5.1 — Complexity
+### ☑ Module 5.1 — Complexity
 
 - [ ] Big O
 - [ ] Big Theta
@@ -468,7 +468,7 @@ Required before Django/FastAPI
 
 ---
 
-#### ☑ Module 5.2 — Data Structures
+### ☑ Module 5.2 — Data Structures
 
 #### ☑ Linear
 
@@ -491,7 +491,7 @@ Required before Django/FastAPI
 
 ---
 
-#### ☑ Module 5.3 — Algorithms
+### ☑ Module 5.3 — Algorithms
 
 #### ☑ Searching
 
@@ -537,7 +537,7 @@ Required before Django/FastAPI
 
 > ## PHASE 6 — INTERMEDIATE PYTHON
 
-#### ☑ Module 6.1 — Files
+### ☑ Module 6.1 — Files
 
 - [ ] Read Files
 - [ ] Write Files
@@ -547,7 +547,7 @@ Required before Django/FastAPI
 
 ---
 
-#### ☑ Module 6.2 — Modules
+### ☑ Module 6.2 — Modules
 
 - [ ] Packages
 - [ ] Imports
@@ -556,7 +556,7 @@ Required before Django/FastAPI
 
 ---
 
-#### ☑ Module 6.3 — Advanced Python
+### ☑ Module 6.3 — Advanced Python
 
 #### ☑ Memory
 
@@ -601,7 +601,7 @@ Required before Django/FastAPI
 
 > ## PHASE 7 — DATABASES
 
-#### ☑ Module 7.1 — SQL Fundamentals
+### ☑ Module 7.1 — SQL Fundamentals
 
 - [ ] SELECT
 - [ ] INSERT
@@ -610,7 +610,7 @@ Required before Django/FastAPI
 
 ---
 
-#### ☑ Module 7.2 — Joins
+### ☑ Module 7.2 — Joins
 
 - [ ] INNER JOIN
 - [ ] LEFT JOIN
@@ -619,7 +619,7 @@ Required before Django/FastAPI
 
 ---
 
-#### ☑ Module 7.3 — Advanced SQL
+### ☑ Module 7.3 — Advanced SQL
 
 - [ ] Subqueries
 - [ ] CTE
@@ -629,7 +629,7 @@ Required before Django/FastAPI
 
 ---
 
-#### ☑ Module 7.4 — Database Design
+### ☑ Module 7.4 — Database Design
 
 - [ ] ER Diagrams
 - [ ] Normalization
@@ -638,7 +638,7 @@ Required before Django/FastAPI
 
 ---
 
-#### ☑ Module 7.5 — PostgreSQL
+### ☑ Module 7.5 — PostgreSQL
 
 - [ ] Indexing
 - [ ] Query Optimization
