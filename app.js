@@ -1015,7 +1015,8 @@ function renderSupporting(supporting, id) {
 // checklist), this defaults OPEN, same as submodules/topics do — it's
 // still a real collapsible wrapped to its own heading row, just not
 // hidden by default since there's no checklist here to protect.
-function renderOverviewBox(tagHtml, supporting, id, extraClass) {
+function renderOverviewBox(label, supporting, id, opts = {}) {
+  const { extraClass = '', icon = '◆' } = opts;
   const hasContent = !!supporting;
   const headerClick = hasContent ? ` onclick="this.parentElement.classList.toggle('open')"` : '';
   const chevron = hasContent
@@ -1029,7 +1030,8 @@ function renderOverviewBox(tagHtml, supporting, id, extraClass) {
     : '';
   return `<div class="section-divider${extraClass ? ' ' + extraClass : ''}${hasContent ? ' has-content open' : ''}" id="${id}">
     <div class="section-divider-header"${headerClick}>
-      ${tagHtml}
+      <span class="section-divider-icon">${icon}</span>
+      <span class="section-divider-tag">${esc(label)}</span>
       <span class="section-divider-line"></span>
       ${chevron}
     </div>
@@ -1159,8 +1161,8 @@ function render(data) {
   if (data.overview) {
     const wrap = document.createElement('div');
     wrap.innerHTML = renderOverviewBox(
-      `<span class="section-divider-tag">📖 Overview</span>`,
-      data.overview, 'roadmap-overview-box', 'roadmap-overview-box'
+      'Overview', data.overview, 'roadmap-overview-box',
+      { extraClass: 'roadmap-overview-box', icon: '📖' }
     );
     main.appendChild(wrap.firstElementChild);
   }
@@ -1168,10 +1170,7 @@ function render(data) {
   data.sections.forEach((section, secIdx) => {
     if (section.label) {
       const wrap = document.createElement('div');
-      wrap.innerHTML = renderOverviewBox(
-        `<span class="section-divider-tag">${esc(section.label)}</span>`,
-        section.overview, 'sd-' + secIdx
-      );
+      wrap.innerHTML = renderOverviewBox(section.label, section.overview, 'sd-' + secIdx);
       main.appendChild(wrap.firstElementChild);
     }
     const list = mkEl('div', 'phase-list');
