@@ -110,7 +110,7 @@ EXPERT
 
 > ## PHASE 0 — ENVIRONMENT SETUP
 
-## ☑ Objective
+### ☑ Objective
 
 Prepare professional development environment.
 
@@ -157,7 +157,7 @@ Prepare professional development environment.
 
 > ### Module 0.2 — Developer Tools
 
-### ☑ Install
+#### ☑ Install
 
 - [ ] VS Code
 - [ ] Python
@@ -169,7 +169,7 @@ Prepare professional development environment.
 
 ---
 
-> ## Deliverables
+> ### Deliverables
 
 - [ ] Development Environment Ready
 - [ ] GitHub Account
