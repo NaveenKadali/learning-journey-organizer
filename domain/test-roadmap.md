@@ -116,8 +116,7 @@ EXPERT
 Prepare professional development environment.
 
 ---
-
-> ### Module.1 — Operating System
+### Module.1 — Operating System
 
 #### ☑ Linux Fundamentals
 
@@ -156,7 +155,7 @@ Prepare professional development environment.
 
 ---
 
-> ### Module 0.2 — Developer Tools
+### Module 0.2 — Developer Tools
 
 #### ☑ Install
 
