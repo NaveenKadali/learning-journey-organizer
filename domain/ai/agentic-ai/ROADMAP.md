@@ -47,7 +47,7 @@
 - [ ] Functions, `*args`/`**kwargs`
 - [ ] List & dict comprehensions
 - [ ] decorators
-- [ ] Generator expressions
+- [ ] Generators
 - [ ] Type hints (needed for Pydantic later)
 
 ### Module 1.2 — Object-Oriented Python
