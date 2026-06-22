@@ -108,6 +108,14 @@ EXPERT
 
 ---
 
+> # BEGINNER LEVEL
+> Designation:
+> - Student
+> - Beginner Programmer
+> - Aspiring Backend Developer
+
+---
+
 > ## PHASE 0 — ENVIRONMENT SETUP
 
 ##### ☑ Objective
@@ -229,14 +237,6 @@ Prepare professional development environment.
 - [ ] GitHub Account
 - [ ] LinkedIn Account
 - [ ] Notes Repository
-
----
-
-> # BEGINNER LEVEL
-> Designation:
-> - Student
-> - Beginner Programmer
-> - Aspiring Backend Developer
 
 ---
 
