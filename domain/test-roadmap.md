@@ -130,15 +130,13 @@ Prepare professional development environment.
 - [ ] WSL Setup
 - [ ] Dual Boot Concepts
 
-#### ☑ Terminal
-
-## File & Directory Navigation
+#### File & Directory Navigation
 
 - [ ] pwd
 - [ ] ls
 - [ ] cd
 
-## File & Folder Management
+#### File & Folder Management
 
 - [ ] mkdir
 - [ ] touch
@@ -146,45 +144,45 @@ Prepare professional development environment.
 - [ ] mv
 - [ ] rm
 
-## File Searching & Filtering
+#### File Searching & Filtering
 
 - [ ] find
 - [ ] grep
 
-## File Viewing & Text Processing
+#### File Viewing & Text Processing
 
 - [ ] cat
 - [ ] less
 - [ ] head
 - [ ] tail
 
-## Permissions & System Control
+#### Permissions & System Control
 
 - [ ] chmod
 - [ ] chown
 - [ ] sudo
 - [ ] man
 
-## Process Management
+#### Process Management
 
 - [ ] ps
 - [ ] top
 - [ ] htop
 - [ ] kill
 
-## Storage & Memory Monitoring
+#### Storage & Memory Monitoring
 
 - [ ] df
 - [ ] du
 - [ ] free
 
-## Networking & Remote Access
+#### Networking & Remote Access
 
 - [ ] ping
 - [ ] curl
 - [ ] ssh
 
-## Compression & Archiving
+#### Compression & Archiving
 
 - [ ] tar
 
