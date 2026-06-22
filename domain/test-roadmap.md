@@ -1,4 +1,4 @@
-> # Beginner → Expert Roadmap
+> # Intro / To Begin with
 
 ## Learning Philosophy
 - Fundamentals First
@@ -37,8 +37,7 @@ Phase 15 → Expert/Staff Engineer Competencies
 
 ---
 
-> # Complete Beginner → Expert Career Roadmap
-> ### Goal
+## Goal
 > - Backend Developer
 > - Software Engineer
 > - Senior Backend Engineer
