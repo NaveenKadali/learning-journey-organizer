@@ -767,15 +767,8 @@ function makeSection(label) {
   return { label, items: [], _blocks: [] };
 }
 
-// Collapse the raw paragraph/list/code blocks captured for a heading into
-// its final `supporting` field. A single short paragraph stays inline
-// ("simple"); anything richer (a list, a code fence, multiple paragraphs)
-// becomes a collapsible notes block ("rich") so it can't crowd the checklist.
 function finalizeSupporting(blocks) {
   if (!blocks || !blocks.length) return null;
-  if (blocks.length === 1 && blocks[0].type === 'p') {
-    return { kind: 'simple', text: blocks[0].text };
-  }
   return { kind: 'rich', blocks };
 }
 function finalizeNode(node) {
@@ -997,9 +990,6 @@ function renderSuppBlocks(blocks) {
 }
 function renderSupporting(supporting, id) {
   if (!supporting) return '';
-  if (supporting.kind === 'simple') {
-    return `<p class="supp-caption">${esc(supporting.text)}</p>`;
-  }
   return `<div class="supp-notes" id="supp-${id}">
     <div class="supp-notes-header" onclick="this.parentElement.classList.toggle('open')">
       <span class="supp-notes-icon">ⓘ</span>
@@ -1015,28 +1005,43 @@ function renderSupporting(supporting, id) {
 // checklist), this defaults OPEN, same as submodules/topics do — it's
 // still a real collapsible wrapped to its own heading row, just not
 // hidden by default since there's no checklist here to protect.
-function renderOverviewBox(label, supporting, id, opts = {}) {
-  const { extraClass = '', icon = '◆' } = opts;
-  const hasContent = !!supporting;
-  const headerClick = hasContent ? ` onclick="this.parentElement.classList.toggle('open')"` : '';
-  const chevron = hasContent
-    ? `<svg class="section-divider-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>`
-    : '';
-  const bodyInner = !hasContent ? '' : (supporting.kind === 'simple'
-    ? `<p>${esc(supporting.text)}</p>`
-    : renderSuppBlocks(supporting.blocks));
-  const body = hasContent
-    ? `<div class="section-divider-body"><div class="section-divider-body-inner">${bodyInner}</div></div>`
-    : '';
-  return `<div class="section-divider${extraClass ? ' ' + extraClass : ''}${hasContent ? ' has-content open' : ''}" id="${id}">
-    <div class="section-divider-header"${headerClick}>
-      <span class="section-divider-icon">${icon}</span>
-      <span class="section-divider-tag">${esc(label)}</span>
-      <span class="section-divider-line"></span>
+// Used only for the roadmap-level overview (no section label to attach to).
+// Returns a ready-to-append DOM element.
+function buildRoadmapOverviewEl(supporting) {
+  const el = document.createElement('div');
+  el.className = 'roadmap-overview-wrap';
+  el.innerHTML = renderSupporting(supporting, 'roadmap');
+  return el;
+}
+
+// Section accordion — the section label IS the collapsible header, and all
+// phase-cards for that section live inside its body. Default: open.
+// phaseListEl is a pre-built .phase-list DOM node.
+function buildSectionAccordion(section, secIdx, phaseListEl) {
+  const phaseCount = (section.items || []).length;
+  const taskCount  = (section.items || []).reduce((s, item) => s + collectTasks(item).length, 0);
+  const acc = document.createElement('div');
+  acc.className = 'section-accordion open';
+  acc.id = 'sa-' + secIdx;
+  const chevron = `<svg class="section-acc-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>`;
+  acc.innerHTML = `
+    <div class="section-acc-header" onclick="this.parentElement.classList.toggle('open')">
+      <span class="section-acc-icon">◆</span>
+      <span class="section-acc-label">${esc(section.label)}</span>
+      <span class="section-acc-stats">${phaseCount} phase${phaseCount !== 1 ? 's' : ''} · ${taskCount} tasks</span>
+      <span class="section-acc-line"></span>
       ${chevron}
     </div>
-    ${body}
-  </div>`;
+    <div class="section-acc-body"></div>`;
+  const body = acc.querySelector('.section-acc-body');
+  // Notes box for section-level overview, if present
+  if (section.overview) {
+    const notesWrap = document.createElement('div');
+    notesWrap.innerHTML = renderSupporting(section.overview, 'sec-' + secIdx);
+    body.appendChild(notesWrap.firstElementChild);
+  }
+  body.appendChild(phaseListEl);
+  return acc;
 }
 
 // ═══════════════════════════════════════════
@@ -1158,28 +1163,24 @@ function render(data) {
   const main = document.getElementById('main-content');
   main.innerHTML = '';
 
-  if (data.overview) {
-    const wrap = document.createElement('div');
-    wrap.innerHTML = renderOverviewBox(
-      'Overview', data.overview, 'roadmap-overview-box',
-      { extraClass: 'roadmap-overview-box', icon: '📖' }
-    );
-    main.appendChild(wrap.firstElementChild);
-  }
+  // Roadmap-level overview — standalone Notes box above all sections.
+  if (data.overview) main.appendChild(buildRoadmapOverviewEl(data.overview));
 
   data.sections.forEach((section, secIdx) => {
-    if (section.label) {
-      const wrap = document.createElement('div');
-      wrap.innerHTML = renderOverviewBox(section.label, section.overview, 'sd-' + secIdx);
-      main.appendChild(wrap.firstElementChild);
-    }
-    const list = mkEl('div', 'phase-list');
-    (section.items || []).forEach((item) => {
+    // Build phase cards
+    const phaseList = mkEl('div', 'phase-list');
+    (section.items || []).forEach(item => {
       const meta = nextMeta();
-      const card = buildCard(item, progress, resources, meta, '');
-      list.appendChild(card);
+      phaseList.appendChild(buildCard(item, progress, resources, meta, ''));
     });
-    main.appendChild(list);
+
+    if (section.label) {
+      // Named section → full collapsible accordion wrapping the phase-list
+      main.appendChild(buildSectionAccordion(section, secIdx, phaseList));
+    } else {
+      // Implicit section (no label) → just the phase-list, no wrapper
+      main.appendChild(phaseList);
+    }
   });
 
   const noRes = mkEl('div', 'no-results', 'No items match.'); noRes.id = 'no-results';
@@ -1471,6 +1472,16 @@ function applyCurrentFilter() {
     if (show) any = true;
     if (show && (q || _filter!=='all')) card.classList.add('open');
   });
+
+  // Section accordions: hide the whole accordion if none of its phases are
+  // visible, and auto-expand it if any are (so a match is never hiding
+  // inside a collapsed section the user just filtered for).
+  document.querySelectorAll('.section-accordion').forEach(acc => {
+    const visible = [...acc.querySelectorAll('.phase-card')].some(c => c.style.display !== 'none');
+    acc.style.display = visible ? '' : 'none';
+    if (visible && (q || _filter !== 'all')) acc.classList.add('open');
+  });
+
   const noRes = document.getElementById('no-results');
   if (noRes) noRes.style.display = any ? 'none' : 'block';
 }
