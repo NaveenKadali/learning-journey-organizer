@@ -132,25 +132,61 @@ Prepare professional development environment.
 
 #### ☑ Terminal
 
+## File & Directory Navigation
+
 - [ ] pwd
 - [ ] ls
 - [ ] cd
+
+## File & Folder Management
+
 - [ ] mkdir
-- [ ] rm
+- [ ] touch
 - [ ] cp
 - [ ] mv
-- [ ] cat
-- [ ] grep
+- [ ] rm
+
+## File Searching & Filtering
+
 - [ ] find
+- [ ] grep
+
+## File Viewing & Text Processing
+
+- [ ] cat
+- [ ] less
+- [ ] head
+- [ ] tail
+
+## Permissions & System Control
+
 - [ ] chmod
 - [ ] chown
+- [ ] sudo
+- [ ] man
 
-#### ☑ Processes
+## Process Management
 
 - [ ] ps
 - [ ] top
 - [ ] htop
 - [ ] kill
+
+## Storage & Memory Monitoring
+
+- [ ] df
+- [ ] du
+- [ ] free
+
+## Networking & Remote Access
+
+- [ ] ping
+- [ ] curl
+- [ ] ssh
+
+## Compression & Archiving
+
+- [ ] tar
 
 ---
 
