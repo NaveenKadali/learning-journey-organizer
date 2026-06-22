@@ -542,53 +542,59 @@
     /* ── MAIN ─────────────────────────────────── */
     .main { max-width:940px; margin:24px auto 80px; padding:0 24px; }
 
-    /* Section divider — reuses the same tinted-box language as
-       .module-header (rather than a one-off pill/gradient) so it reads as
-       part of the same system, just one size up. Doubles as a collapsible
-       "Overview" box when a section has supporting text — defaults OPEN
-       (same as submodules/topics), since unlike the in-card Notes panel
-       there's no checklist here competing for space. */
-    .section-divider { margin:28px 0 14px 0; }
-    .section-divider:first-child { margin-top:6px; }
-    .section-divider-header {
+    /* ── SECTION ACCORDION ──────────────────────────
+       Each named section is a full collapsible container wrapping all its
+       phase-cards. Stats pill (N phases · M tasks) in the header gives
+       enough context to decide which sections to open without scrolling.
+       Body uses display:none instead of max-height animation — with
+       potentially hundreds of phase-cards inside, max-height would be
+       laggy; instant toggle is snappier and feels more intentional. */
+    .section-accordion { margin:22px 0 4px; }
+    .section-accordion:first-child { margin-top:4px; }
+    .section-acc-header {
       display:flex; align-items:center; gap:10px;
-      padding:9px 14px; border-radius:9px;
+      padding:10px 14px; border-radius:9px;
       border:1px solid var(--border); border-left:3px solid rgba(59,130,246,.4);
       background:var(--surface2);
+      cursor:pointer; user-select:none;
       transition:background .15s, border-color .15s;
     }
-    .section-divider.has-content .section-divider-header { cursor:pointer; user-select:none; }
-    .section-divider.has-content .section-divider-header:hover { border-left-color:rgba(59,130,246,.65); }
-    .section-divider.open .section-divider-header {
+    .section-acc-header:hover { border-left-color:rgba(59,130,246,.65); background:rgba(59,130,246,.04); }
+    .section-accordion.open .section-acc-header {
       border-color:rgba(59,130,246,.28); border-left-color:var(--c-nav);
       background:rgba(59,130,246,.06);
     }
-    .section-divider-icon { font-size:.66rem; color:var(--c-nav); opacity:.85; flex-shrink:0; line-height:1; }
-    .section-divider-tag {
+    .section-acc-icon { font-size:.6rem; color:var(--c-nav); opacity:.7; flex-shrink:0; }
+    .section-acc-label {
       font-family:var(--font-mono); font-weight:700; font-size:.68rem;
       letter-spacing:.09em; text-transform:uppercase;
-      color:var(--text-dim);
-      white-space:normal; overflow-wrap:anywhere; word-break:break-word; min-width:0;
+      color:var(--text-dim); min-width:0;
+      white-space:normal; overflow-wrap:anywhere; word-break:break-word;
     }
-    .section-divider.open .section-divider-tag { color:var(--c-nav); }
-    .section-divider-line {
-      flex:1 1 16px; min-width:16px; height:1px; align-self:center;
+    .section-accordion.open .section-acc-label { color:var(--c-nav); }
+    .section-acc-stats {
+      font-family:var(--font-mono); font-size:.6rem; color:var(--text-dim);
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:10px; padding:2px 8px; white-space:nowrap; flex-shrink:0;
+    }
+    .section-accordion.open .section-acc-stats { border-color:rgba(59,130,246,.22); color:var(--text); }
+    .section-acc-line {
+      flex:1 1 16px; min-width:16px; height:1px;
       background:linear-gradient(90deg, var(--border), transparent);
     }
-    .section-divider-chevron { color:var(--text-dim); transition:transform .18s; flex-shrink:0; opacity:.7; }
-    .section-divider.open .section-divider-chevron { transform:rotate(180deg); opacity:1; color:var(--c-nav); }
-    .section-divider-body { max-height:0; overflow:hidden; transition:max-height .28s cubic-bezier(.4,0,.2,1); }
-    .section-divider.open .section-divider-body { max-height:9999px; }
-    .section-divider-body-inner {
-      padding:12px 14px 2px 14px; font-size:.8rem; color:var(--text-dim); line-height:1.6;
-    }
-    .section-divider-body-inner p { margin:0 0 10px 0; }
-    .section-divider-body-inner ul, .section-divider-body-inner ol { margin:0 0 10px 0; padding-left:20px; }
-    .section-divider-body-inner li { margin-bottom:4px; }
-    .section-divider.roadmap-overview-box { margin:4px 0 24px 0; }
+    .section-acc-chevron { color:var(--text-dim); transition:transform .2s; flex-shrink:0; opacity:.7; }
+    .section-accordion.open .section-acc-chevron { transform:rotate(180deg); opacity:1; color:var(--c-nav); }
+    .section-acc-body { display:none; padding-top:10px; }
+    .section-accordion.open > .section-acc-body { display:block; }
+
+    /* Roadmap-level overview (before any section) */
+    .roadmap-overview-wrap { margin:4px 0 18px; }
+    .roadmap-overview-wrap .supp-notes { margin:0; }
 
     /* ── PHASE ACCORDION — spatial card design ─ */
     .phase-list { display:flex; flex-direction:column; gap:4px; margin-bottom:32px; }
+
+
 
     .phase-card {
       background:var(--surface);
@@ -763,10 +769,10 @@
        richer (a list, a code fence, multiple paragraphs) becomes a
        collapsed-by-default "Notes" panel so it never crowds the checklist —
        it costs zero scroll space until someone opens it. */
-    .supp-caption {
-      font-size:.76rem; color:var(--text-dim); font-style:italic;
-      line-height:1.45; margin:0 0 10px 0;
-    }
+    /* ── SUPPORTING CONTENT NOTES BOX ──
+       Every piece of supporting content — even a single sentence — goes
+       under a Notes toggle. No raw text floats directly under a heading.
+       The closed-by-default state keeps the checklist front-and-centre. */
     .supp-notes { margin:0 0 10px 0; }
     .supp-notes-header {
       display:flex; align-items:center; gap:6px;
