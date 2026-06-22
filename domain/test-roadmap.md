@@ -135,6 +135,7 @@ Prepare professional development environment.
 - [ ] pwd
 - [ ] ls
 - [ ] cd
+- [ ] tree
 
 #### File & Folder Management
 
@@ -143,11 +144,13 @@ Prepare professional development environment.
 - [ ] cp
 - [ ] mv
 - [ ] rm
+- [ ] ln
 
 #### File Searching & Filtering
 
 - [ ] find
 - [ ] grep
+- [ ] ripgrep
 
 #### File Viewing & Text Processing
 
@@ -155,6 +158,10 @@ Prepare professional development environment.
 - [ ] less
 - [ ] head
 - [ ] tail
+- [ ] awk
+- [ ] sed
+- [ ] vim
+- [ ] nano
 
 #### Permissions & System Control
 
@@ -162,6 +169,10 @@ Prepare professional development environment.
 - [ ] chown
 - [ ] sudo
 - [ ] man
+- [ ] systemctl
+- [ ] journalctl
+
+
 
 #### Process Management
 
@@ -169,22 +180,32 @@ Prepare professional development environment.
 - [ ] top
 - [ ] htop
 - [ ] kill
+- [ ] nohup
+- [ ] killall
+- [ ] screen / tmux
 
 #### Storage & Memory Monitoring
 
 - [ ] df
 - [ ] du
 - [ ] free
+- [ ] ncdu
+
 
 #### Networking & Remote Access
 
 - [ ] ping
 - [ ] curl
 - [ ] ssh
+- [ ] scp
+- [ ] netstat / ss
+- [ ] lsof
+- [ ] rsync
 
 #### Compression & Archiving
 
 - [ ] tar
+- [ ] zip / unzip
 
 ---
 
