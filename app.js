@@ -767,8 +767,16 @@ function makeSection(label) {
   return { label, items: [], _blocks: [] };
 }
 
+// simple = exactly one paragraph → rendered as an inline muted caption at
+//          phase/module/submodule/topic level (no toggle needed for one line)
+// rich   = anything more (list, code fence, 2+ paragraphs) → Notes box
+// Section-level content always goes through renderSupporting (Notes box)
+// regardless of shape — see buildSectionAccordion.
 function finalizeSupporting(blocks) {
   if (!blocks || !blocks.length) return null;
+  if (blocks.length === 1 && blocks[0].type === 'p') {
+    return { kind: 'simple', text: blocks[0].text };
+  }
   return { kind: 'rich', blocks };
 }
 function finalizeNode(node) {
@@ -990,6 +998,9 @@ function renderSuppBlocks(blocks) {
 }
 function renderSupporting(supporting, id) {
   if (!supporting) return '';
+  if (supporting.kind === 'simple') {
+    return `<p class="supp-caption">${esc(supporting.text)}</p>`;
+  }
   return `<div class="supp-notes" id="supp-${id}">
     <div class="supp-notes-header" onclick="this.parentElement.classList.toggle('open')">
       <span class="supp-notes-icon">ⓘ</span>
@@ -1020,24 +1031,43 @@ function buildRoadmapOverviewEl(supporting) {
 function buildSectionAccordion(section, secIdx, phaseListEl) {
   const phaseCount = (section.items || []).length;
   const taskCount  = (section.items || []).reduce((s, item) => s + collectTasks(item).length, 0);
+  const progress   = loadProgress();
+  const doneTasks  = (section.items || []).reduce((s, item) => {
+    return s + collectTasks(item).filter(t => progress[t.id] === true || t.checked).length;
+  }, 0);
+  const pct = taskCount > 0 ? Math.round(doneTasks / taskCount * 100) : 0;
+
   const acc = document.createElement('div');
   acc.className = 'section-accordion open';
   acc.id = 'sa-' + secIdx;
-  const chevron = `<svg class="section-acc-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>`;
+  const chevron = `<svg class="section-acc-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>`;
+
+  // The progress track lives inside the header row so .section-acc-body
+  // stays a direct child of .section-accordion — that's required for the
+  // open > .section-acc-body CSS selector (and the expand/collapse JS) to work.
   acc.innerHTML = `
     <div class="section-acc-header" onclick="this.parentElement.classList.toggle('open')">
-      <span class="section-acc-icon">◆</span>
-      <span class="section-acc-label">${esc(section.label)}</span>
-      <span class="section-acc-stats">${phaseCount} phase${phaseCount !== 1 ? 's' : ''} · ${taskCount} tasks</span>
-      <span class="section-acc-line"></span>
-      ${chevron}
+      <div class="section-acc-left">
+        <div class="section-acc-title-row">
+          <span class="section-acc-label">${esc(section.label)}</span>
+          <span class="section-acc-stats">${phaseCount} phase${phaseCount !== 1 ? 's' : ''}</span>
+          ${chevron}
+        </div>
+        <div class="section-acc-track"><div class="section-acc-fill" style="width:${pct}%"></div></div>
+      </div>
+      <span class="section-acc-fraction">${doneTasks}/${taskCount}</span>
     </div>
     <div class="section-acc-body"></div>`;
+
   const body = acc.querySelector('.section-acc-body');
-  // Notes box for section-level overview, if present
   if (section.overview) {
+    // Section-level overview always goes through the Notes box —
+    // raw text never floats directly under a section header.
+    const richOverview = section.overview.kind === 'simple'
+      ? { kind: 'rich', blocks: [{ type: 'p', text: section.overview.text }] }
+      : section.overview;
     const notesWrap = document.createElement('div');
-    notesWrap.innerHTML = renderSupporting(section.overview, 'sec-' + secIdx);
+    notesWrap.innerHTML = renderSupporting(richOverview, 'sec-' + secIdx);
     body.appendChild(notesWrap.firstElementChild);
   }
   body.appendChild(phaseListEl);
@@ -1492,10 +1522,12 @@ function applyCurrentFilter() {
 function togglePhase(card)    { card.classList.toggle('open'); }
 function toggleModule(group)  { group.classList.toggle('open'); }
 function expandAll()  {
+  document.querySelectorAll('.section-accordion').forEach(s=>s.classList.add('open'));
   document.querySelectorAll('.phase-card').forEach(c=>c.classList.add('open'));
   document.querySelectorAll('.module-group').forEach(m=>m.classList.add('open'));
 }
 function collapseAll(){
+  document.querySelectorAll('.section-accordion').forEach(s=>s.classList.remove('open'));
   document.querySelectorAll('.phase-card').forEach(c=>c.classList.remove('open'));
   document.querySelectorAll('.module-group').forEach(m=>m.classList.remove('open'));
 }
