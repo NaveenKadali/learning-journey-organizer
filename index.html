@@ -543,56 +543,90 @@
     .main { max-width:940px; margin:24px auto 80px; padding:0 24px; }
 
     /* ── SECTION ACCORDION ──────────────────────────
-       Each named section is a full collapsible container wrapping all its
-       phase-cards. Stats pill (N phases · M tasks) in the header gives
-       enough context to decide which sections to open without scrolling.
-       Body uses display:none instead of max-height animation — with
-       potentially hundreds of phase-cards inside, max-height would be
-       laggy; instant toggle is snappier and feels more intentional. */
-    .section-accordion { margin:22px 0 4px; }
+       Sections sit one visual tier above phase-cards — they read as
+       chapters. Header is a single row: label on the left, stats pill +
+       fraction + chevron on the right. A thin progress bar sits inline
+       below the label inside the header. Body is display:none toggled
+       (no max-height animation — hundreds of phase-cards would be laggy). */
+    .section-accordion { margin:24px 0 0; }
     .section-accordion:first-child { margin-top:4px; }
+
     .section-acc-header {
-      display:flex; align-items:center; gap:10px;
-      padding:10px 14px; border-radius:9px;
-      border:1px solid var(--border); border-left:3px solid rgba(59,130,246,.4);
-      background:var(--surface2);
+      display:flex; align-items:center; gap:12px;
+      padding:12px 16px; border-radius:10px;
+      background:var(--surface2); border:1px solid var(--border);
       cursor:pointer; user-select:none;
-      transition:background .15s, border-color .15s;
+      transition:border-color .18s, background .18s;
     }
-    .section-acc-header:hover { border-left-color:rgba(59,130,246,.65); background:rgba(59,130,246,.04); }
+    .section-acc-header:hover { border-color:rgba(59,130,246,.35); background:rgba(59,130,246,.03); }
     .section-accordion.open .section-acc-header {
-      border-color:rgba(59,130,246,.28); border-left-color:var(--c-nav);
-      background:rgba(59,130,246,.06);
+      border-color:rgba(59,130,246,.32);
+      background:linear-gradient(135deg, rgba(59,130,246,.07), rgba(139,92,246,.04));
     }
-    .section-acc-icon { font-size:.6rem; color:var(--c-nav); opacity:.7; flex-shrink:0; }
+
+    /* Left side: label + mini progress bar stacked */
+    .section-acc-left { flex:1; min-width:0; display:flex; flex-direction:column; gap:6px; }
+    .section-acc-title-row {
+      display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+    }
     .section-acc-label {
-      font-family:var(--font-mono); font-weight:700; font-size:.68rem;
+      font-family:var(--font-mono); font-weight:800; font-size:.72rem;
       letter-spacing:.09em; text-transform:uppercase;
       color:var(--text-dim); min-width:0;
       white-space:normal; overflow-wrap:anywhere; word-break:break-word;
+      transition:color .18s;
     }
-    .section-accordion.open .section-acc-label { color:var(--c-nav); }
+    .section-accordion.open .section-acc-label { color:var(--text); }
     .section-acc-stats {
-      font-family:var(--font-mono); font-size:.6rem; color:var(--text-dim);
+      font-family:var(--font-mono); font-size:.56rem;
+      color:var(--text-dim); white-space:nowrap;
       background:var(--surface); border:1px solid var(--border);
-      border-radius:10px; padding:2px 8px; white-space:nowrap; flex-shrink:0;
+      border-radius:20px; padding:2px 8px; flex-shrink:0;
+      transition:border-color .18s, color .18s;
     }
-    .section-accordion.open .section-acc-stats { border-color:rgba(59,130,246,.22); color:var(--text); }
-    .section-acc-line {
-      flex:1 1 16px; min-width:16px; height:1px;
-      background:linear-gradient(90deg, var(--border), transparent);
+    .section-accordion.open .section-acc-stats { border-color:rgba(59,130,246,.28); color:var(--text-muted); }
+
+    /* Inline progress bar below the label */
+    .section-acc-track {
+      height:2px; border-radius:2px;
+      background:var(--border); overflow:hidden;
     }
-    .section-acc-chevron { color:var(--text-dim); transition:transform .2s; flex-shrink:0; opacity:.7; }
+    .section-acc-fill {
+      height:100%; border-radius:2px;
+      background:linear-gradient(90deg, var(--c-nav), var(--c-progress));
+      transition:width .4s ease;
+    }
+
+    /* Right side: fraction + chevron */
+    .section-acc-fraction {
+      font-family:var(--font-mono); font-size:.64rem; font-weight:700;
+      color:var(--text-dim); white-space:nowrap; flex-shrink:0;
+      transition:color .18s;
+    }
+    .section-accordion.open .section-acc-fraction { color:var(--c-nav); }
+    .section-acc-chevron {
+      flex-shrink:0; color:var(--text-dim);
+      transition:transform .22s, color .18s; opacity:.6;
+    }
     .section-accordion.open .section-acc-chevron { transform:rotate(180deg); opacity:1; color:var(--c-nav); }
+
+    /* Body: direct child of .section-accordion so open > selector works */
     .section-acc-body { display:none; padding-top:10px; }
     .section-accordion.open > .section-acc-body { display:block; }
 
     /* Roadmap-level overview (before any section) */
-    .roadmap-overview-wrap { margin:4px 0 18px; }
+    .roadmap-overview-wrap { margin:4px 0 20px; }
     .roadmap-overview-wrap .supp-notes { margin:0; }
 
+    /* Inline caption for simple (single-paragraph) supporting content
+       at phase / module / submodule / topic level — no box, no toggle. */
+    .supp-caption {
+      font-size:.76rem; color:var(--text-dim); font-style:italic;
+      line-height:1.5; margin:0 0 10px 0;
+    }
+
     /* ── PHASE ACCORDION — spatial card design ─ */
-    .phase-list { display:flex; flex-direction:column; gap:4px; margin-bottom:32px; }
+    .phase-list { display:flex; flex-direction:column; gap:4px; margin-bottom:8px; }
 
 
 
@@ -770,9 +804,15 @@
        collapsed-by-default "Notes" panel so it never crowds the checklist —
        it costs zero scroll space until someone opens it. */
     /* ── SUPPORTING CONTENT NOTES BOX ──
-       Every piece of supporting content — even a single sentence — goes
-       under a Notes toggle. No raw text floats directly under a heading.
-       The closed-by-default state keeps the checklist front-and-centre. */
+       Single paragraph at phase/module/submodule/topic level → inline
+       italic caption (supp-caption), no toggle needed for one sentence.
+       Anything richer (list, code, 2+ paras) → Notes collapsible box.
+       At section level everything always goes into Notes — see
+       buildSectionAccordion for the normalisation. */
+    .supp-caption {
+      font-size:.75rem; color:var(--text-dim); font-style:italic;
+      line-height:1.5; margin:0 0 10px 0; padding-left:2px;
+    }
     .supp-notes { margin:0 0 10px 0; }
     .supp-notes-header {
       display:flex; align-items:center; gap:6px;
