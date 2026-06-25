@@ -785,13 +785,22 @@ Learn how professional software is built, maintained, tested, and deployed.
 
 ---
 
-### Deliverables
+> ### Module 8.4 — OOD Principles
 
-- [ ] Refactor old projects
-- [ ] Implement 10 design patterns
-- [ ] Create reusable utilities package
+- [ ] search and fill the topics
 
 ---
+> ### Module 8.5 — CUPID Principles
+
+- [ ] search and fill the topics
+
+> ### Module 8.6 — GRASP Principles
+
+- [ ] search and fill the topics
+
+> ### Module 8.7 — SOLID vs CUPID vs GRASP
+
+- [ ] search and fill the topics
 
 ### Dependencies
 
