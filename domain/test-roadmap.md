@@ -31,8 +31,8 @@
 ## PHASE 1.1: FOUNDATIONAL PREREQUISITES
 - ⏱️ Duration: 3-4 weeks
 
-> ### M 1.1.1: Programming Fundamentals Deep Dive**
- > #### SM: Python Mastery (Primary Language)
+### M 1.1.1: Programming Fundamentals Deep Dive**
+#### SM: Python Mastery (Primary Language)
     - [ ] Variables, data types, type casting
     - [ ] Control flow: if/else, loops, comprehensions
     - [ ] Functions: definition, parameters, return values, *args, **kwargs
