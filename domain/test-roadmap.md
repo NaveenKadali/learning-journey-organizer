@@ -28,7 +28,7 @@
 
 ---
 
-## PHASE 1.1: FOUNDATIONAL PREREQUISITES
+# PHASE 1.1: FOUNDATIONAL PREREQUISITES
 - ⏱️ Duration: 3-4 weeks
 
 ### M 1.1.1: Programming Fundamentals Deep Dive**
