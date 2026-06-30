@@ -5,7 +5,7 @@
 
 > #  EXECUTIVE SUMMARY & LEARNING STRATEGY
 
-## Pre-Roadmap Requirements
+# Pre-Roadmap Requirements
 - **Estimated Timeline**: 18-24 months (Beginner to Expert, 15-20 hrs/week)
 - **Prerequisites**: Basic programming knowledge (any language), mathematics fundamentals
 - **Success Metrics**: Portfolio projects, certifications, real-world contributions, interview readiness
@@ -13,7 +13,7 @@
 
 ---
 
-## Core Learning Pillars (Throughout Entire Journey)
+# Core Learning Pillars (Throughout Entire Journey)
 1. **Foundation**: Programming, SQL, Data Structures
 2. **Infrastructure**: Cloud platforms, containerization, orchestration
 3. **Processing**: Batch & streaming data processing
@@ -24,12 +24,12 @@
 ---
 
 > #  LEVEL 1: BEGINNER DATA ENGINEER
-## Timeline: 3-4 months | Target: Foundation & First Production-Ready Skills
+- Timeline: 3-4 months | Target: Foundation & First Production-Ready Skills
 
 ---
 
 ## PHASE 1.1: FOUNDATIONAL PREREQUISITES
-### ⏱️ Duration: 3-4 weeks
+- ⏱️ Duration: 3-4 weeks
 
 - [ ] **MODULE 1.1.1: Programming Fundamentals Deep Dive**
   - [ ] SUBMODULE: Python Mastery (Primary Language)
@@ -127,7 +127,7 @@
 ---
 
 ## PHASE 1.2: CORE DATA ENGINEERING FUNDAMENTALS
-### ⏱️ Duration: 4-5 weeks
+- ⏱️ Duration: 4-5 weeks
 
 - [ ] **MODULE 1.2.1: Data Concepts & Ecosystem**
   - [ ] SUBMODULE: Data Engineering Fundamentals
@@ -209,7 +209,7 @@
 ---
 
 ## PHASE 1.3: FIRST CLOUD PLATFORM & STORAGE
-### ⏱️ Duration: 3-4 weeks | **DEPENDENCY**: Completion of Phase 1.2
+- ⏱️ Duration: 3-4 weeks | **DEPENDENCY**: Completion of Phase 1.2
 
 - [ ] **MODULE 1.3.1: Cloud Platform Fundamentals (Choose One Primary)**
   - [ ] SUBMODULE: AWS Fundamentals (Recommended for Data Engineering)
@@ -268,7 +268,7 @@
 ---
 
 ## PHASE 1.4: INTRODUCTION TO DATA PIPELINES & TOOLS
-### ⏱️ Duration: 4-5 weeks | **DEPENDENCY**: Phase 1.2 & 1.3 completion
+- ⏱️ Duration: 4-5 weeks | **DEPENDENCY**: Phase 1.2 & 1.3 completion
 
 - [ ] **MODULE 1.4.1: ETL Basics & Simple Pipelines**
   - [ ] SUBMODULE: ETL Concepts
@@ -346,7 +346,7 @@
 ---
 
 ## PHASE 1.5: CONTAINERIZATION & DEPLOYMENT
-### ⏱️ Duration: 3-4 weeks | **DEPENDENCY**: Phase 1.1, 1.3, 1.4 completion
+- ⏱️ Duration: 3-4 weeks | **DEPENDENCY**: Phase 1.1, 1.3, 1.4 completion
 
 - [ ] **MODULE 1.5.1: Docker Fundamentals**
   - [ ] SUBMODULE: Docker Basics
@@ -390,7 +390,7 @@
 ---
 
 ## PHASE 1.6: CAPSTONE PROJECT & PORTFOLIO
-### ⏱️ Duration: 3-4 weeks | **DEPENDENCY**: All previous phases
+- ⏱️ Duration: 3-4 weeks | **DEPENDENCY**: All previous phases
 
 - [ ] **MODULE 1.6.1: End-to-End Beginner Portfolio Project**
   - [ ] **PROJECT: E-Commerce Data Pipeline**
@@ -441,7 +441,7 @@
 ---
 
 ## PHASE 1.7: CERTIFICATIONS & ASSESSMENT
-### ⏱️ Duration: 2-3 weeks
+- ⏱️ Duration: 2-3 weeks
 
 - [ ] **MODULE 1.7.1: Beginner Level Certifications**
   - [ ] AWS Cloud Practitioner (optional but recommended)
@@ -598,7 +598,7 @@
 ---
 
 ## PHASE 2.1: ADVANCED SQL & DATA WAREHOUSE CONCEPTS
-### ⏱️ Duration: 3-4 weeks
+- ⏱️ Duration: 3-4 weeks
 
 - [ ] **MODULE 2.1.1: Data Warehouse Architecture**
   - [ ] SUBMODULE: Warehouse Fundamentals
@@ -708,7 +708,7 @@
 ---
 
 ## PHASE 2.2: STREAMING DATA & REAL-TIME PROCESSING
-### ⏱️ Duration: 4-5 weeks | **DEPENDENCY**: Phase 1.4, 2.1
+- ⏱️ Duration: 4-5 weeks | **DEPENDENCY**: Phase 1.4, 2.1
 
 - [ ] **MODULE 2.2.1: Streaming Concepts & Architectures**
   - [ ] SUBMODULE: Stream Processing Fundamentals
@@ -810,7 +810,7 @@
 ---
 
 ## PHASE 2.3: DISTRIBUTED SYSTEMS & ADVANCED SPARK
-### ⏱️ Duration: 4-5 weeks | **DEPENDENCY**: Phase 1.4, 2.1
+- ⏱️ Duration: 4-5 weeks | **DEPENDENCY**: Phase 1.4, 2.1
 
 - [ ] **MODULE 2.3.1: Distributed Computing Concepts**
   - [ ] SUBMODULE: Distributed System Fundamentals
@@ -896,7 +896,7 @@
 ---
 
 ## PHASE 2.4: ADVANCED DATA PIPELINE ORCHESTRATION
-### ⏱️ Duration: 3-4 weeks | **DEPENDENCY**: Phase 1.4, 2.3
+- ⏱️ Duration: 3-4 weeks | **DEPENDENCY**: Phase 1.4, 2.3
 
 - [ ] **MODULE 2.4.1: Advanced Airflow & DAG Patterns**
   - [ ] SUBMODULE: Airflow Architecture & Operations
@@ -977,7 +977,7 @@
 ---
 
 ## PHASE 2.5: ADVANCED CLOUD PLATFORMS & MANAGED SERVICES
-### ⏱️ Duration: 4-5 weeks | **DEPENDENCY**: Phase 1.3, 2.1
+- ⏱️ Duration: 4-5 weeks | **DEPENDENCY**: Phase 1.3, 2.1
 
 - [ ] **MODULE 2.5.1: AWS Data Engineering Advanced**
   - [ ] SUBMODULE: Advanced AWS Services
@@ -1055,7 +1055,7 @@
 ---
 
 ## PHASE 2.6: DATA GOVERNANCE & METADATA MANAGEMENT
-### ⏱️ Duration: 3 weeks | **DEPENDENCY**: Phase 2.1, 2.4
+- ⏱️ Duration: 3 weeks | **DEPENDENCY**: Phase 2.1, 2.4
 
 - [ ] **MODULE 2.6.1: Data Governance Framework**
   - [ ] SUBMODULE: Governance Fundamentals
@@ -1115,7 +1115,7 @@
 ---
 
 ## PHASE 2.7: ADVANCED ARCHITECTURE & DESIGN PATTERNS
-### ⏱️ Duration: 4 weeks | **DEPENDENCY**: All previous Phase 2 modules
+- ⏱️ Duration: 4 weeks | **DEPENDENCY**: All previous Phase 2 modules
 
 - [ ] **MODULE 2.7.1: Data Architecture Patterns**
   - [ ] SUBMODULE: Modern Architecture Patterns
@@ -1191,7 +1191,7 @@
 ---
 
 ## PHASE 2.8: INTERMEDIATE CAPSTONE PROJECTS
-### ⏱️ Duration: 6-8 weeks | **DEPENDENCY**: All Phase 2 modules
+- ⏱️ Duration: 6-8 weeks | **DEPENDENCY**: All Phase 2 modules
 
 - [ ] **PROJECT 1: Real-Time Analytics Platform**
   - [ ] **Architecture Components**:
@@ -1302,7 +1302,7 @@
 ---
 
 ## PHASE 2.9: CERTIFICATIONS & ADVANCED SKILLS
-### ⏱️ Duration: 4-6 weeks
+- ⏱️ Duration: 4-6 weeks
 
 - [ ] **Professional Certifications**
   - [ ] AWS Certified Data Analytics - Specialty
