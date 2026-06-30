@@ -28,11 +28,11 @@
 
 ---
 
-# PHASE 1.1: FOUNDATIONAL PREREQUISITES
+## PHASE 1.1: FOUNDATIONAL PREREQUISITES
 - ⏱️ Duration: 3-4 weeks
 
-### M 1.1.1: Programming Fundamentals Deep Dive**
-  #### SM: Python Mastery (Primary Language)
+> ### M 1.1.1: Programming Fundamentals Deep Dive**
+ > #### SM: Python Mastery (Primary Language)
     - [ ] Variables, data types, type casting
     - [ ] Control flow: if/else, loops, comprehensions
     - [ ] Functions: definition, parameters, return values, *args, **kwargs
@@ -44,7 +44,7 @@
     - [ ] Decorators and generators
     - [ ] Module system and package management
     - [ ] Virtual environments (venv, conda)
-    - **Practical Tasks**:
+    ##### Practical Tasks**:
       - [ ] Build 5 small utilities (file processor, data aggregator, etc.)
       - [ ] Refactor messy code to follow PEP 8
       - [ ] Create a reusable Python package with setup.py
@@ -90,7 +90,7 @@
     - [ ] Basic time series concepts
 
 ### M 1.1.3: SQL Foundation (Critical Skill)**
-  #### SM: SQL Basics
+#### SM: SQL Basics
     - [ ] Database concepts: tables, rows, columns, schemas
     - [ ] SELECT statements, filtering (WHERE), sorting (ORDER BY)
     - [ ] Aggregate functions: COUNT, SUM, AVG, MIN, MAX, GROUP BY, HAVING
@@ -101,7 +101,7 @@
       - [ ] Write 50+ SQL queries on sample databases
       - [ ] Practice on LeetCode Database problems (Easy level)
 
-  #### SM: SQL Joins & Advanced Queries
+> #### SM: SQL Joins & Advanced Queries
     - [ ] INNER, LEFT, RIGHT, FULL OUTER joins
     - [ ] Self-joins and cross joins
     - [ ] Multiple join scenarios (3+ tables)
@@ -114,7 +114,7 @@
       - [ ] Optimize 5 poorly written queries
       - [ ] Practice on LeetCode Database (Medium level)
 
-  #### SM: Database Design Fundamentals
+#### SM: Database Design Fundamentals
     - [ ] Normalization (1NF, 2NF, 3NF, BCNF)
     - [ ] Entity-Relationship Diagrams (ERDs)
     - [ ] Primary keys, foreign keys, constraints
