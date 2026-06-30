@@ -32,7 +32,7 @@
 - ⏱️ Duration: 3-4 weeks
 
 ### M 1.1.1: Programming Fundamentals Deep Dive**
-#### SM: Python Mastery (Primary Language)
+#### SM 1: Python Mastery (Primary Language)
 - [ ] Variables, data types, type casting
 - [ ] Control flow: if/else, loops, comprehensions
 - [ ] Functions: definition, parameters, return values, *args, **kwargs
@@ -45,11 +45,11 @@
 - [ ] Module system and package management
 - [ ] Virtual environments (venv, conda)
 ##### Practical Tasks**:
-  - [ ] Build 5 small utilities (file processor, data aggregator, etc.)
-  - [ ] Refactor messy code to follow PEP 8
-  - [ ] Create a reusable Python package with setup.py
+- [ ] Build 5 small utilities (file processor, data aggregator, etc.)
+- [ ] Refactor messy code to follow PEP 8
+- [ ] Create a reusable Python package with setup.py
 
-#### SM: Version Control (Git/GitHub)
+#### SM 2: Version Control (Git/GitHub)
 - [ ] Git basics: init, add, commit, push, pull
 - [ ] Branching strategies: feature branches, develop/main
 - [ ] Merging, rebasing, resolving conflicts
@@ -57,22 +57,22 @@
 - [ ] Collaborative workflows: fork, pull requests, code review
 - [ ] GitHub Actions fundamentals
 ##### Practical Tasks**:
-  - [ ] Contribute to 3 open-source projects (small fixes)
-  - [ ] Create 5 portfolio repositories with proper documentation
-  - [ ] Set up CI/CD pipeline with GitHub Actions
+- [ ] Contribute to 3 open-source projects (small fixes)
+- [ ] Create 5 portfolio repositories with proper documentation
+- [ ] Set up CI/CD pipeline with GitHub Actions
 
 ### M 1.1.2: Mathematics & Statistics Essentials**
-#### SM: Linear Algebra
+#### SM 1: Linear Algebra
 - [ ] Vectors and matrices
 - [ ] Matrix operations: addition, multiplication, transposition
 - [ ] Determinants and inverses
 - [ ] Eigenvalues and eigenvectors
 - [ ] Vector spaces and linear transformations
 ##### Practical Implementation**:
-  - [ ] Implement matrix operations from scratch
-  - [ ] Solve linear systems using Python (NumPy)
+- [ ] Implement matrix operations from scratch
+- [ ] Solve linear systems using Python (NumPy)
 
-#### SM: Probability & Statistics
+#### SM 2: Probability & Statistics
 - [ ] Probability distributions: normal, binomial, Poisson
 - [ ] Descriptive statistics: mean, median, std deviation, quartiles
 - [ ] Correlation and covariance
@@ -80,17 +80,17 @@
 - [ ] Central limit theorem
 - [ ] Sampling and bias
 ##### Practical Implementation**:
-  - [ ] Analyze 5 real datasets with statistical methods
-  - [ ] Conduct hypothesis tests on data
+- [ ] Analyze 5 real datasets with statistical methods
+- [ ] Conduct hypothesis tests on data
 
-#### SM: Data Analysis Fundamentals
+#### SM 3: Data Analysis Fundamentals
 - [ ] Data distribution analysis
 - [ ] Outlier detection methods
 - [ ] Data quality assessment (missing values, duplicates)
 - [ ] Basic time series concepts
 
 ### M 1.1.3: SQL Foundation (Critical Skill)**
-#### SM: SQL Basics
+#### SM 1: SQL Basics
 - [ ] Database concepts: tables, rows, columns, schemas
 - [ ] SELECT statements, filtering (WHERE), sorting (ORDER BY)
 - [ ] Aggregate functions: COUNT, SUM, AVG, MIN, MAX, GROUP BY, HAVING
@@ -98,10 +98,10 @@
 - [ ] CASE statements and conditional logic
 - [ ] Subqueries and derived tables
 ##### Practical Tasks**:
-  - [ ] Write 50+ SQL queries on sample databases
-  - [ ] Practice on LeetCode Database problems (Easy level)
+- [ ] Write 50+ SQL queries on sample databases
+- [ ] Practice on LeetCode Database problems (Easy level)
 
-#### SM: SQL Joins & Advanced Queries
+#### SM 2: SQL Joins & Advanced Queries
 - [ ] INNER, LEFT, RIGHT, FULL OUTER joins
 - [ ] Self-joins and cross joins
 - [ ] Multiple join scenarios (3+ tables)
@@ -110,19 +110,19 @@
 - [ ] Common Table Expressions (CTEs)
 - [ ] Query optimization basics (EXPLAIN PLAN)
 ##### Practical Tasks**:
-  - [ ] Solve 30+ complex SQL problems
-  - [ ] Optimize 5 poorly written queries
-  - [ ] Practice on LeetCode Database (Medium level)
+- [ ] Solve 30+ complex SQL problems
+- [ ] Optimize 5 poorly written queries
+- [ ] Practice on LeetCode Database (Medium level)
 
-#### SM: Database Design Fundamentals
+#### SM 3: Database Design Fundamentals
 - [ ] Normalization (1NF, 2NF, 3NF, BCNF)
 - [ ] Entity-Relationship Diagrams (ERDs)
 - [ ] Primary keys, foreign keys, constraints
 - [ ] Indexes and their performance impact
 - [ ] Transactions and ACID properties
 ##### Practical Implementation**:
-  - [ ] Design ERD for 3 different domains
-  - [ ] Create normalized database schemas
+- [ ] Design ERD for 3 different domains
+- [ ] Create normalized database schemas
 
 ---
 
@@ -130,7 +130,7 @@
 - ⏱️ Duration: 4-5 weeks
 
 ### M 1.2.1: Data Concepts & Ecosystem**
-#### SM: Data Engineering Fundamentals
+#### SM 1: Data Engineering Fundamentals
 - [ ] Data pipeline architecture: source → ingestion → processing → storage → consumption
 - [ ] Batch vs. Stream processing concepts
 - [ ] Data quality dimensions: accuracy, completeness, consistency, timeliness
@@ -138,10 +138,10 @@
 - [ ] Data contracts and schema evolution
 - [ ] GDPR, data privacy, security basics
 ##### Practical Understanding**:
-  - [ ] Map 5 real-world data pipelines to architecture
-  - [ ] Identify data quality issues in sample datasets
+- [ ] Map 5 real-world data pipelines to architecture
+- [ ] Identify data quality issues in sample datasets
 
-#### SM: The Modern Data Stack
+#### SM 2: The Modern Data Stack
 - [ ] Cloud data platforms (AWS, GCP, Azure) overview
 - [ ] ETL vs. ELT paradigms
 - [ ] Data lakes vs. data warehouses
@@ -151,7 +151,7 @@
 - [ ] Emerging trends: Data mesh, data fabric
 
 ### M 1.2.2: Python for Data Engineering**
-#### SM: NumPy & Pandas Deep Dive
+#### SM 1: NumPy & Pandas Deep Dive
 - [ ] NumPy: arrays, operations, broadcasting, performance
 - [ ] Pandas: DataFrames, Series, indexing, slicing
 - [ ] Data cleaning: handling missing values, duplicates, outliers
@@ -159,21 +159,21 @@
 - [ ] Performance optimization for large datasets
 - [ ] Reading/writing multiple formats: CSV, JSON, Parquet, Excel
 ##### Practical Projects**:
-  - [ ] Clean 5 messy real-world datasets (Kaggle)
-  - [ ] Perform exploratory data analysis on 3 datasets
-  - [ ] Optimize Pandas operations for 1GB+ files
+- [ ] Clean 5 messy real-world datasets (Kaggle)
+- [ ] Perform exploratory data analysis on 3 datasets
+- [ ] Optimize Pandas operations for 1GB+ files
 
-#### SM: Data Validation & Quality
+#### SM 2: Data Validation & Quality
 - [ ] Data profiling
 - [ ] Schema validation
 - [ ] Constraint checking
 - [ ] Custom validation rules
 - [ ] Libraries: Great Expectations, Pandera
 ##### Practical Implementation**:
-  - [ ] Build data quality suite for 2 datasets
-  - [ ] Create custom validators
+- [ ] Build data quality suite for 2 datasets
+- [ ] Create custom validators
 
-#### SM: Python Performance & Best Practices
+#### SM 3: Python Performance & Best Practices
 - [ ] Profiling and benchmarking
 - [ ] Memory optimization
 - [ ] List comprehensions vs. loops
@@ -181,11 +181,11 @@
 - [ ] Multiprocessing and threading basics
 - [ ] Code optimization patterns
 ##### Practical Tasks**:
-  - [ ] Optimize 5 slow Python scripts (10x improvement)
-  - [ ] Profile memory usage on large data operations
+- [ ] Optimize 5 slow Python scripts (10x improvement)
+- [ ] Profile memory usage on large data operations
 
 ### M 1.2.3: SQL Advanced for Data Engineering**
-#### SM: Performance & Optimization
+#### SM 1: Performance & Optimization
 - [ ] Query execution plans (EXPLAIN)
 - [ ] Index types and usage
 - [ ] Query optimization techniques
@@ -193,10 +193,10 @@
 - [ ] Columnar formats and compression
 - [ ] Statistics and query hints
 ##### Practical Tasks**:
-  - [ ] Optimize 10 slow queries (50%+ improvement)
-  - [ ] Design indexes for specific query patterns
+- [ ] Optimize 10 slow queries (50%+ improvement)
+- [ ] Design indexes for specific query patterns
 
-#### SM: Advanced SQL Patterns
+#### SM 2: Advanced SQL Patterns
 - [ ] Recursive CTEs
 - [ ] JSON/Array operations
 - [ ] Full-text search
@@ -204,7 +204,7 @@
 - [ ] Set operations and complex aggregations
 - [ ] Dynamic SQL
 ##### Practical Implementation**:
-  - [ ] Solve 20+ advanced SQL problems
+- [ ] Solve 20+ advanced SQL problems
 
 ---
 
@@ -212,7 +212,7 @@
 - ⏱️ Duration: 3-4 weeks | **DEPENDENCY**: Completion of Phase 1.2
 
 ### M 1.3.1: Cloud Platform Fundamentals (Choose One Primary)**
-#### SM: AWS Fundamentals (Recommended for Data Engineering)
+#### SM 1: AWS Fundamentals (Recommended for Data Engineering)
 - [ ] AWS Console and CLI basics
 - [ ] Identity and Access Management (IAM): users, roles, policies
 - [ ] Networking: VPC, subnets, security groups
@@ -221,18 +221,18 @@
 - [ ] CloudWatch: basic monitoring, logs, alarms
 - [ ] Cost optimization basics
 ##### Practical Tasks**:
-  - [ ] Launch and configure 5 EC2 instances
-  - [ ] Create S3 bucket with proper security and lifecycle policies
-  - [ ] Set up IAM policies for data access
-  - [ ] Create CloudWatch alarms and dashboards
+- [ ] Launch and configure 5 EC2 instances
+- [ ] Create S3 bucket with proper security and lifecycle policies
+- [ ] Set up IAM policies for data access
+- [ ] Create CloudWatch alarms and dashboards
 
-#### SM: Alternative: Google Cloud or Azure
+#### SM 2: Alternative: Google Cloud or Azure
 - [ ] GCP: Compute Engine, Cloud Storage, BigQuery basics
 - [ ] Azure: Virtual Machines, Blob Storage, Synapse basics
 - [ ] Choose based on target employer or specialization
 
 ### M 1.3.2: Data Storage Deep Dive**
-#### SM: Relational Databases
+#### SM 1: Relational Databases
 - [ ] PostgreSQL installation and setup
 - [ ] MySQL/MariaDB basics
 - [ ] Connection pooling
@@ -240,20 +240,20 @@
 - [ ] Replication concepts
 - [ ] High availability basics
 ##### Practical Setup**:
-  - [ ] Deploy PostgreSQL locally and in cloud
-  - [ ] Create complex schemas
-  - [ ] Set up automated backups
+- [ ] Deploy PostgreSQL locally and in cloud
+- [ ] Create complex schemas
+- [ ] Set up automated backups
 
-#### SM: NoSQL Databases (Conceptual)
+#### SM 2: NoSQL Databases (Conceptual)
 - [ ] MongoDB: document model, CRUD operations, aggregation
 - [ ] DynamoDB: key-value basics, design patterns
 - [ ] Cassandra: distributed database concepts
 - [ ] Use cases: when to use NoSQL over SQL
 ##### Practical Hands-On**:
-  - [ ] Design document schemas for 3 different use cases
-  - [ ] Perform CRUD operations and aggregations
+- [ ] Design document schemas for 3 different use cases
+- [ ] Perform CRUD operations and aggregations
 
-#### SM: Cloud Storage Solutions
+#### SM 3: Cloud Storage Solutions
 - [ ] S3 (AWS): storage classes, access patterns, optimization
 - [ ] GCS (Google Cloud): buckets, operations
 - [ ] Azure Blob Storage: containers, tiers
@@ -261,9 +261,9 @@
 - [ ] File formats: Parquet, ORC, Avro, JSON
 - [ ] Compression techniques
 ##### Practical Implementation**:
-  - [ ] Store 1GB+ datasets in cloud storage
-  - [ ] Implement partitioning strategy
-  - [ ] Compare performance of different file formats
+- [ ] Store 1GB+ datasets in cloud storage
+- [ ] Implement partitioning strategy
+- [ ] Compare performance of different file formats
 
 ---
 
@@ -271,7 +271,7 @@
 - ⏱️ Duration: 4-5 weeks | **DEPENDENCY**: Phase 1.2 & 1.3 completion
 
 ### M 1.4.1: ETL Basics & Simple Pipelines**
-#### SM: ETL Concepts
+#### SM 1: ETL Concepts
 - [ ] Extract: source identification, APIs, databases, files
 - [ ] Transform: data cleaning, validation, enrichment, aggregation
 - [ ] Load: target systems, incremental vs. full loads
@@ -279,22 +279,22 @@
 - [ ] Idempotency and deduplication
 - [ ] Data lineage and metadata
 ####Conceptual Understanding**:
-  - [ ] Document 5 ETL pipelines with lineage diagrams
+- [ ] Document 5 ETL pipelines with lineage diagrams
 
-#### SM: Building Pipelines with Python
+#### SM 2: Building Pipelines with Python
 - [ ] ETL script structure and best practices
 - [ ] Configuration management (YAML, JSON configs)
 - [ ] Logging and error handling
 - [ ] Retry mechanisms and backoff strategies
 - [ ] State management (checkpoints, bookmarks)
 - [ ] Testing ETL pipelines
-####Practical Projects**:
-  - [ ] Build 3 ETL scripts: CSV→DB, API→S3, DB→Data Lake
-  - [ ] Implement error handling and logging
-  - [ ] Add configuration management
-  - [ ] Write unit tests for transformations
+#### Practical Projects**:
+- [ ] Build 3 ETL scripts: CSV→DB, API→S3, DB→Data Lake
+- [ ] Implement error handling and logging
+- [ ] Add configuration management
+- [ ] Write unit tests for transformations
 
-#### SM: Introduction to Airflow (First Orchestrator)
+#### SM 3: Introduction to Airflow (First Orchestrator)
 - [ ] Airflow concepts: DAGs, tasks, operators
 - [ ] Installing and running Airflow locally
 - [ ] Creating simple DAGs with Python
@@ -302,13 +302,13 @@
 - [ ] Basic debugging and monitoring
 - [ ] Airflow hooks and connections
 ####Practical Hands-On**:
-  - [ ] Create 5 DAGs of increasing complexity
-  - [ ] Schedule daily, hourly, and conditional runs
-  - [ ] Debug failing tasks
-  - [ ] Monitor DAG execution
+- [ ] Create 5 DAGs of increasing complexity
+- [ ] Schedule daily, hourly, and conditional runs
+- [ ] Debug failing tasks
+- [ ] Monitor DAG execution
 
 ### M 1.4.2: Introduction to Batch Processing**
-#### SM: PySpark Fundamentals
+#### SM 1: PySpark Fundamentals
 - [ ] Spark concepts: RDD, DataFrame, DataSet
 - [ ] Spark SQL basics
 - [ ] DataFrame operations: select, filter, groupby, join
@@ -317,12 +317,12 @@
 - [ ] Basic performance optimization
 - [ ] Reading/writing data in Spark
 ####Practical Implementation**:
-  - [ ] Process 1GB+ files with PySpark
-  - [ ] Perform complex transformations
-  - [ ] Join large datasets
-  - [ ] Optimize Spark jobs (partitioning, caching)
+- [ ] Process 1GB+ files with PySpark
+- [ ] Perform complex transformations
+- [ ] Join large datasets
+- [ ] Optimize Spark jobs (partitioning, caching)
 
-#### SM: Spark SQL Deep Dive
+#### SM 2: Spark SQL Deep Dive
 - [ ] Spark SQL engine
 - [ ] Catalyst optimizer
 - [ ] Writing efficient SQL queries in Spark
@@ -331,7 +331,7 @@
 - [ ] Performance tuning
 
 ### M 1.4.3: Data Quality & Validation Framework**
-#### SM: Data Quality Implementation
+#### SM 1: Data Quality Implementation
 - [ ] Row-level validation
 - [ ] Aggregate-level validation
 - [ ] Schema validation
@@ -339,9 +339,9 @@
 - [ ] Quality metrics and SLAs
 - [ ] Great Expectations framework
 ####Practical Implementation**:
-  - [ ] Build data quality suite for 3 pipelines
-  - [ ] Create automated quality checks
-  - [ ] Set up alerting for quality failures
+- [ ] Build data quality suite for 3 pipelines
+- [ ] Create automated quality checks
+- [ ] Set up alerting for quality failures
 
 ---
 
@@ -349,7 +349,7 @@
 - ⏱️ Duration: 3-4 weeks | **DEPENDENCY**: Phase 1.1, 1.3, 1.4 completion
 
 ### M 1.5.1: Docker Fundamentals**
-#### SM: Docker Basics
+#### SM 1: Docker Basics
 - [ ] Containers vs. VMs
 - [ ] Docker images and layers
 - [ ] Dockerfile syntax: FROM, RUN, COPY, CMD, ENTRYPOINT
@@ -359,33 +359,33 @@
 - [ ] Volume management and networking
 - [ ] Best practices: security, size optimization
 ####Practical Tasks**:
-  - [ ] Create Dockerfiles for 5 applications
-  - [ ] Optimize Docker images (reduce size by 50%+)
-  - [ ] Build multi-stage builds
-  - [ ] Use Docker Compose for Airflow setup
+- [ ] Create Dockerfiles for 5 applications
+- [ ] Optimize Docker images (reduce size by 50%+)
+- [ ] Build multi-stage builds
+- [ ] Use Docker Compose for Airflow setup
 
-#### SM: Container Registry & Distribution
+#### SM 2: Container Registry & Distribution
 - [ ] Docker Hub
 - [ ] AWS ECR (Elastic Container Registry)
 - [ ] Private registries
 - [ ] Image tagging and versioning
 - [ ] Pushing and pulling images
 ####Practical Implementation**:
-  - [ ] Push images to Docker Hub
-  - [ ] Set up private ECR repository
+- [ ] Push images to Docker Hub
+- [ ] Set up private ECR repository
 
 ### M 1.5.2: Introduction to Kubernetes (Conceptual)**
-#### SM: Kubernetes Basics
+#### SM 1: Kubernetes Basics
 - [ ] Kubernetes architecture: master, nodes, pods
 - [ ] Deployments, Services, ConfigMaps
 - [ ] Basic kubectl commands
 - [ ] YAML configuration files
 - [ ] Local Kubernetes setup (Minikube, Docker Desktop)
 ####Hands-On Learning**:
-  - [ ] Deploy 3 applications to Minikube
-  - [ ] Expose services
-  - [ ] Scale deployments
-  - [ ] View logs and debug
+- [ ] Deploy 3 applications to Minikube
+- [ ] Expose services
+- [ ] Scale deployments
+- [ ] View logs and debug
 
 ---
 
@@ -393,39 +393,39 @@
 - ⏱️ Duration: 3-4 weeks | **DEPENDENCY**: All previous phases
 
 ### M 1.6.1: End-to-End Beginner Portfolio Project**
-  - [ ] **PROJECT: E-Commerce Data Pipeline**
+- [ ] **PROJECT: E-Commerce Data Pipeline**
 ####Objective**: Build complete production-like pipeline
 ####Components**:
-#### SM: Data Source Setup
+#### SM 1: Data Source Setup
 - [ ] Create sample e-commerce database (PostgreSQL)
 - [ ] Set up REST API mock data source
 - [ ] Create CSV/JSON data files
       
-#### SM: Ingestion & Storage
+#### SM 2: Ingestion & Storage
 - [ ] Build Python ETL script
 - [ ] Extract from multiple sources (DB, API, files)
 - [ ] Store in S3 with partitioning
 - [ ] Implement incremental loads
       
-#### SM: Processing & Transformation
+#### SM 3: Processing & Transformation
 - [ ] Build Spark job for data transformation
 - [ ] Aggregate sales data (daily, weekly summaries)
 - [ ] Data quality validation
 - [ ] Store processed data
       
-#### SM: Orchestration & Monitoring
+#### SM 4: Orchestration & Monitoring
 - [ ] Create Airflow DAG
 - [ ] Schedule pipeline execution
 - [ ] Implement error handling and retries
 - [ ] Add CloudWatch monitoring
       
-#### SM: Containerization & Deployment
+#### SM 5: Containerization & Deployment
 - [ ] Dockerize all components
 - [ ] Create Docker Compose setup
 - [ ] Deploy to cloud (AWS or GCP)
 - [ ] Document deployment process
       
-#### SM: Analytics & Visualization
+#### SM 6: Analytics & Visualization
 - [ ] Create SQL queries for business metrics
 - [ ] Basic visualization (Python/SQL output)
 - [ ] Document data schema and lineage
@@ -444,16 +444,16 @@
 - ⏱️ Duration: 2-3 weeks
 
 ### M 1.7.1: Beginner Level Certifications**
-  - [ ] AWS Cloud Practitioner (optional but recommended)
-  - [ ] Google Cloud Associate Cloud Engineer (alternative)
-  - [ ] Databricks Academy: Apache Spark fundamentals
-  - [ ] Data Engineering Path on Datacamp or Coursera
+- [ ] AWS Cloud Practitioner (optional but recommended)
+- [ ] Google Cloud Associate Cloud Engineer (alternative)
+- [ ] Databricks Academy: Apache Spark fundamentals
+- [ ] Data Engineering Path on Datacamp or Coursera
 
 ### M 1.7.2: Skill Assessment**
-  - [ ] SQL assessment: LeetCode (50+ Medium problems solved)
-  - [ ] Python assessment: HackerRank/LeetCode (30+ problems)
-  - [ ] Spark assessment: Build mini-project from scratch
-  - [ ] System design: Explain one end-to-end pipeline
+- [ ] SQL assessment: LeetCode (50+ Medium problems solved)
+- [ ] Python assessment: HackerRank/LeetCode (30+ problems)
+- [ ] Spark assessment: Build mini-project from scratch
+- [ ] System design: Explain one end-to-end pipeline
 
 ---
 
@@ -611,10 +611,10 @@
 - [ ] Surrogate keys vs. natural keys
 - [ ] Time dimensions and calendar tables
 ####Design Projects**:
-  - [ ] Design star schema for retail domain
-  - [ ] Design star schema for SaaS/subscription domain
-  - [ ] Design star schema for financial domain
-  - [ ] Implement SCD Type 2 slowly changing dimensions
+- [ ] Design star schema for retail domain
+- [ ] Design star schema for SaaS/subscription domain
+- [ ] Design star schema for financial domain
+- [ ] Implement SCD Type 2 slowly changing dimensions
 
 #### SM: Snowflake Deep Dive (Industry Standard)
 - [ ] Architecture: cloud, compute, storage separation
@@ -630,34 +630,34 @@
 - [ ] Materialized views
 - [ ] Snowpipe (continuous data ingestion)
 - [ ] Streams and tasks (change data capture)
-####Hands-On Implementation**:
-  - [ ] Set up Snowflake environment
-  - [ ] Create complete dimensional model
-  - [ ] Load 1GB+ of data
-  - [ ] Implement SCD Type 2 in Snowflake
-  - [ ] Query semi-structured data
-  - [ ] Optimize query performance
-  - [ ] Set up Snowpipe for automatic ingestion
-  - [ ] Implement stream-based CDC
+#### Hands-On Implementation**:
+- [ ] Set up Snowflake environment
+- [ ] Create complete dimensional model
+- [ ] Load 1GB+ of data
+- [ ] Implement SCD Type 2 in Snowflake
+- [ ] Query semi-structured data
+- [ ] Optimize query performance
+- [ ] Set up Snowpipe for automatic ingestion
+- [ ] Implement stream-based CDC
 
 #### SM: Alternative Warehouses
 - [ ] BigQuery (Google Cloud)
-  - [ ] BigQuery data model
-  - [ ] Partitioning and clustering
-  - [ ] Nested and repeated fields
-  - [ ] Query optimization
-  - [ ] Materialized views and logical views
-  - [ ] BigQuery ML basics
+- [ ] BigQuery data model
+- [ ] Partitioning and clustering
+- [ ] Nested and repeated fields
+- [ ] Query optimization
+- [ ] Materialized views and logical views
+- [ ] BigQuery ML basics
 - [ ] Redshift (AWS)
-  - [ ] Distribution and sort keys
-  - [ ] Compression and encoding
-  - [ ] Vacuum and analyze operations
-  - [ ] Performance optimization
+- [ ] Distribution and sort keys
+- [ ] Compression and encoding
+- [ ] Vacuum and analyze operations
+- [ ] Performance optimization
 - [ ] Databricks/Delta Lake
-  - [ ] Delta Lake architecture
-  - [ ] ACID transactions
-  - [ ] Schema evolution
-  - [ ] Time travel
+- [ ] Delta Lake architecture
+- [ ] ACID transactions
+- [ ] Schema evolution
+- [ ] Time travel
 
 ### M 2.1.2: Advanced SQL Performance & Optimization**
 #### SM: Query Tuning Deep Dive
@@ -669,11 +669,11 @@
 - [ ] Statistics and histograms
 - [ ] Parallelization and partitioning strategies
 - [ ] Cost-based optimization
-####Optimization Projects**:
-  - [ ] Optimize 20+ complex queries (measure improvement)
-  - [ ] Refactor queries from OLTP to warehouse format
-  - [ ] Analyze execution plans for 10 queries
-  - [ ] Rewrite queries using CTEs, window functions, subqueries
+#### Optimization Projects**:
+- [ ] Optimize 20+ complex queries (measure improvement)
+- [ ] Refactor queries from OLTP to warehouse format
+- [ ] Analyze execution plans for 10 queries
+- [ ] Rewrite queries using CTEs, window functions, subqueries
 
 #### SM: Advanced SQL Patterns
 - [ ] Recursive hierarchical queries
@@ -686,10 +686,10 @@
 - [ ] Sessionization
 - [ ] Running totals and cumulative calculations
 ####Practical Implementation**:
-  - [ ] Implement 10+ analytical patterns
-  - [ ] Build cohort analysis queries
-  - [ ] Create funnel analysis from event data
-  - [ ] Implement sessionization algorithm
+- [ ] Implement 10+ analytical patterns
+- [ ] Build cohort analysis queries
+- [ ] Create funnel analysis from event data
+- [ ] Implement sessionization algorithm
 
 #### SM: Data Transformation & Modeling
 - [ ] Incremental transformation strategies
@@ -702,8 +702,8 @@
 - [ ] Aggregate tables and summary tables
 - [ ] Factless fact tables
 ##### Design Tasks**:
-  - [ ] Design complex dimensional models (5+ fact tables)
-  - [ ] Handle late-arriving facts and dimensions
+- [ ] Design complex dimensional models (5+ fact tables)
+- [ ] Handle late-arriving facts and dimensions
 
 ---
 
@@ -722,9 +722,9 @@
 - [ ] Checkpointing and state management
 - [ ] Backpressure and consumer lag
 ##### Architectural Understanding**:
-  - [ ] Document 5 streaming system architectures
-  - [ ] Design streaming solution for 3 use cases
-  - [ ] Compare lambda vs. kappa architectures
+- [ ] Document 5 streaming system architectures
+- [ ] Design streaming solution for 3 use cases
+- [ ] Compare lambda vs. kappa architectures
 
 #### SM: Apache Kafka Mastery
 - [ ] Kafka architecture: brokers, topics, partitions
@@ -737,23 +737,23 @@
 - [ ] Monitoring and operations
 - [ ] Performance tuning
 ##### Hands-On Implementation**:
-  - [ ] Set up Kafka cluster locally
-  - [ ] Build 5 different producers
-  - [ ] Build 5 different consumers
-  - [ ] Set up Kafka Connect with 3 connectors
-  - [ ] Implement Schema Registry with multiple schemas
-  - [ ] Handle schema evolution
-  - [ ] Monitor Kafka cluster health
+- [ ] Set up Kafka cluster locally
+- [ ] Build 5 different producers
+- [ ] Build 5 different consumers
+- [ ] Set up Kafka Connect with 3 connectors
+- [ ] Implement Schema Registry with multiple schemas
+- [ ] Handle schema evolution
+- [ ] Monitor Kafka cluster health
 
 #### SM: Alternative Streaming Platforms
 - [ ] AWS Kinesis
-  - [ ] Kinesis Data Streams vs. Firehose
-  - [ ] Shard allocation and scaling
-  - [ ] Enhanced Fan-Out (EFO)
-  - [ ] Kinesis Data Analytics
+- [ ] Kinesis Data Streams vs. Firehose
+- [ ] Shard allocation and scaling
+- [ ] Enhanced Fan-Out (EFO)
+- [ ] Kinesis Data Analytics
 - [ ] Google Cloud Pub/Sub
-  - [ ] Topics and subscriptions
-  - [ ] Message ordering and delivery
+- [ ] Topics and subscriptions
+- [ ] Message ordering and delivery
 - [ ] Azure Event Hubs
 - [ ] Choosing platform based on requirements
 
@@ -769,11 +769,11 @@
 - [ ] Event time and watermarks
 - [ ] Side outputs
 ##### Practical Implementation**:
-  - [ ] Build 5 streaming applications
-  - [ ] Implement complex windowing logic
-  - [ ] Handle late data with watermarks
-  - [ ] Store state and manage state size
-  - [ ] Debug and monitor Flink jobs
+- [ ] Build 5 streaming applications
+- [ ] Implement complex windowing logic
+- [ ] Handle late data with watermarks
+- [ ] Store state and manage state size
+- [ ] Debug and monitor Flink jobs
 
 #### SM: Flink SQL & Advanced Features
 - [ ] Flink SQL on streaming data
@@ -792,9 +792,9 @@
 - [ ] Dead letter queues
 - [ ] Streaming data quality metrics
 ##### Implementation**:
-  - [ ] Build data quality checks for 3 streams
-  - [ ] Implement anomaly detection
-  - [ ] Create dead letter queue handling
+- [ ] Build data quality checks for 3 streams
+- [ ] Implement anomaly detection
+- [ ] Create dead letter queue handling
 
 #### SM: Streaming Metrics & Alerting
 - [ ] Real-time metric calculation
@@ -803,9 +803,9 @@
 - [ ] Custom metrics in Prometheus
 - [ ] Alert thresholds and automation
 ##### Monitoring Setup**:
-  - [ ] Implement metrics collection
-  - [ ] Create monitoring dashboards
-  - [ ] Set up stream lag alerts
+- [ ] Implement metrics collection
+- [ ] Create monitoring dashboards
+- [ ] Set up stream lag alerts
 
 ---
 
@@ -822,8 +822,8 @@
 - [ ] Clock synchronization challenges
 - [ ] Byzantine fault tolerance concepts
 ##### Understanding Application**:
-  - [ ] Analyze trade-offs in 5 real systems
-  - [ ] Design fault-tolerant architecture
+- [ ] Analyze trade-offs in 5 real systems
+- [ ] Design fault-tolerant architecture
 
 #### SM: MapReduce & Hadoop Ecosystem
 - [ ] MapReduce fundamentals (historical importance)
@@ -833,8 +833,8 @@
 - [ ] Hadoop ecosystem overview
 - [ ] YARN resource management
 ##### Practical Understanding**:
-  - [ ] Understand why Spark replaced MapReduce
-  - [ ] Grasp HDFS architecture concepts
+- [ ] Understand why Spark replaced MapReduce
+- [ ] Grasp HDFS architecture concepts
 
 ### M 2.3.2: Apache Spark Advanced**
 #### SM: Spark Architecture & Optimization
@@ -848,11 +848,11 @@
 - [ ] Broadcast and accumulator variables
 - [ ] Serialization formats (Kryo vs. default)
 ##### Performance Tuning Projects**:
-  - [ ] Optimize 10 Spark jobs (50%+ improvement)
-  - [ ] Reduce memory usage by 30%+
-  - [ ] Minimize shuffle operations
-  - [ ] Tune parallelism and executor allocation
-  - [ ] Measure and improve GC performance
+- [ ] Optimize 10 Spark jobs (50%+ improvement)
+- [ ] Reduce memory usage by 30%+
+- [ ] Minimize shuffle operations
+- [ ] Tune parallelism and executor allocation
+- [ ] Measure and improve GC performance
 
 #### SM: Spark SQL Deep Dive
 - [ ] Catalyst query optimizer internals
@@ -865,10 +865,10 @@
 - [ ] Complex joins (broadcast, sort-merge)
 - [ ] Adaptive Query Execution (AQE)
 ##### Advanced Implementations**:
-  - [ ] Write 20+ complex Spark SQL queries
-  - [ ] Analyze query plans for 15 jobs
-  - [ ] Implement cost-based optimization
-  - [ ] Use hints to optimize queries
+- [ ] Write 20+ complex Spark SQL queries
+- [ ] Analyze query plans for 15 jobs
+- [ ] Implement cost-based optimization
+- [ ] Use hints to optimize queries
 
 #### SM: Spark Structured APIs
 - [ ] DataFrame vs. RDD performance
@@ -878,9 +878,9 @@
 - [ ] MLlib for machine learning pipelines
 - [ ] Spark NLP basics
 ##### Implementation Projects**:
-  - [ ] Build 5+ complex DataFrame transformations
-  - [ ] Implement streaming DataFrame application
-  - [ ] Use MLlib for feature engineering
+- [ ] Build 5+ complex DataFrame transformations
+- [ ] Implement streaming DataFrame application
+- [ ] Use MLlib for feature engineering
 
 #### SM: Testing Spark Applications
 - [ ] Unit testing with pytest
@@ -889,9 +889,9 @@
 - [ ] Integration testing with embedded Spark
 - [ ] Data validation testing
 ##### Test Coverage**:
-  - [ ] Achieve 80%+ test coverage in projects
-  - [ ] Test transformation logic thoroughly
-  - [ ] Test error handling paths
+- [ ] Achieve 80%+ test coverage in projects
+- [ ] Test transformation logic thoroughly
+- [ ] Test error handling paths
 
 ---
 
@@ -910,12 +910,12 @@
 - [ ] SLA monitoring
 - [ ] Pools and queues for resource management
 ##### Advanced Implementations**:
-  - [ ] Create dynamic DAGs (generate 100+ tasks)
-  - [ ] Set up Celery executor with multiple workers
-  - [ ] Implement complex branching logic
-  - [ ] Use XCom for intermediate data passing
-  - [ ] Set up SLA monitoring
-  - [ ] Implement pool-based throttling
+- [ ] Create dynamic DAGs (generate 100+ tasks)
+- [ ] Set up Celery executor with multiple workers
+- [ ] Implement complex branching logic
+- [ ] Use XCom for intermediate data passing
+- [ ] Set up SLA monitoring
+- [ ] Implement pool-based throttling
 
 #### SM: Custom Operators & Hooks
 - [ ] Built-in operators deep dive
@@ -925,9 +925,9 @@
 - [ ] Branching operators
 - [ ] Parametrized DAGs
 ##### Custom Development**:
-  - [ ] Build 5 custom operators
-  - [ ] Build 3 custom hooks
-  - [ ] Publish to PyPI
+- [ ] Build 5 custom operators
+- [ ] Build 3 custom hooks
+- [ ] Publish to PyPI
 
 #### SM: Airflow Monitoring & Debugging
 - [ ] Logging in Airflow
@@ -937,9 +937,9 @@
 - [ ] Debugging failing tasks
 - [ ] Performance profiling
 ##### Operations Setup**:
-  - [ ] Implement centralized logging
-  - [ ] Create monitoring dashboard
-  - [ ] Set up alerting for failures
+- [ ] Implement centralized logging
+- [ ] Create monitoring dashboard
+- [ ] Set up alerting for failures
 
 ### M 2.4.2: Alternative Orchestrators**
 #### SM: Dagster
@@ -949,8 +949,8 @@
 - [ ] Modular data pipelines
 - [ ] Type systems and contracts
 ##### Hands-On Comparison**:
-  - [ ] Build same pipeline in Airflow and Dagster
-  - [ ] Evaluate trade-offs
+- [ ] Build same pipeline in Airflow and Dagster
+- [ ] Evaluate trade-offs
 
 #### SM: Prefect
 - [ ] Prefect concepts: Flows and Tasks
@@ -968,11 +968,11 @@
 - [ ] dbt Cloud and scheduling
 - [ ] Data lineage
 ##### Deep Implementation**:
-  - [ ] Build complete dbt project (20+ models)
-  - [ ] Implement comprehensive tests
-  - [ ] Create custom macros
-  - [ ] Integrate with data warehouse
-  - [ ] Set up dbt Cloud
+- [ ] Build complete dbt project (20+ models)
+- [ ] Implement comprehensive tests
+- [ ] Create custom macros
+- [ ] Integrate with data warehouse
+- [ ] Set up dbt Cloud
 
 ---
 
@@ -994,16 +994,16 @@
 - [ ] EMR: managed Hadoop/Spark clusters
 - [ ] DataSync: data migration and synchronization
 ##### Hands-On Implementation**:
-  - [ ] Build serverless data pipeline with Lambda
-  - [ ] Set up Glue ETL job
-  - [ ] Create Step Functions workflow
-  - [ ] Implement EventBridge rules
-  - [ ] Use SQS for reliable message delivery
-  - [ ] Stream data with Kinesis Firehose to S3
-  - [ ] Create Aurora read replica
-  - [ ] Manage DynamoDB with different access patterns
-  - [ ] Query S3 with Redshift Spectrum
-  - [ ] Launch and manage EMR cluster
+- [ ] Build serverless data pipeline with Lambda
+- [ ] Set up Glue ETL job
+- [ ] Create Step Functions workflow
+- [ ] Implement EventBridge rules
+- [ ] Use SQS for reliable message delivery
+- [ ] Stream data with Kinesis Firehose to S3
+- [ ] Create Aurora read replica
+- [ ] Manage DynamoDB with different access patterns
+- [ ] Query S3 with Redshift Spectrum
+- [ ] Launch and manage EMR cluster
 
 #### SM: AWS Security & Compliance
 - [ ] IAM advanced: policies, roles, service control policies
@@ -1014,9 +1014,9 @@
 - [ ] CloudTrail for audit logging
 - [ ] Compliance: HIPAA, GDPR, PCI-DSS requirements
 ##### Implementation**:
-  - [ ] Design secure IAM policies
-  - [ ] Implement encryption for 3 services
-  - [ ] Set up audit logging
+- [ ] Design secure IAM policies
+- [ ] Implement encryption for 3 services
+- [ ] Set up audit logging
 
 ### M 2.5.2: Google Cloud Advanced Data Services**
 #### SM: GCP Data Platform
@@ -1029,12 +1029,12 @@
 - [ ] Vertex AI: ML operations and feature store
 - [ ] Data Fusion: visual ETL tool
 ##### Hands-On Implementation**:
-  - [ ] Build BigQuery data warehouse
-  - [ ] Create Dataflow pipeline
-  - [ ] Implement Pub/Sub messaging
-  - [ ] Launch Dataproc cluster
-  - [ ] Deploy Composer environment
-  - [ ] Use Data Fusion for ETL
+- [ ] Build BigQuery data warehouse
+- [ ] Create Dataflow pipeline
+- [ ] Implement Pub/Sub messaging
+- [ ] Launch Dataproc cluster
+- [ ] Deploy Composer environment
+- [ ] Use Data Fusion for ETL
 
 #### SM: GCP Machine Learning Integration
 - [ ] BigQuery ML for simple models
@@ -1068,10 +1068,10 @@
 - [ ] Audit trails and compliance
 - [ ] Data governance tools
 ##### Framework Development**:
-  - [ ] Design data classification scheme
-  - [ ] Implement data lineage documentation
-  - [ ] Create data quality SLOs
-  - [ ] Document data access policies
+- [ ] Design data classification scheme
+- [ ] Implement data lineage documentation
+- [ ] Create data quality SLOs
+- [ ] Document data access policies
 
 #### SM: Metadata Management
 - [ ] Metadata repositories
@@ -1082,9 +1082,9 @@
 - [ ] Lineage tracking (automated)
 - [ ] Glossary management
 ##### Implementation**:
-  - [ ] Set up metadata repository
-  - [ ] Implement automated lineage tracking
-  - [ ] Create data glossary
+- [ ] Set up metadata repository
+- [ ] Implement automated lineage tracking
+- [ ] Create data glossary
 
 ### M 2.6.2: Data Privacy & Security**
 #### SM: Privacy Regulations
@@ -1095,9 +1095,9 @@
 - [ ] Data retention policies
 - [ ] Right to erasure implementation
 ##### Practical Compliance**:
-  - [ ] Implement GDPR-compliant pipeline
-  - [ ] Design anonymization strategy
-  - [ ] Create retention policies
+- [ ] Implement GDPR-compliant pipeline
+- [ ] Design anonymization strategy
+- [ ] Create retention policies
 
 #### SM: Security Best Practices
 - [ ] Role-based access control (RBAC)
@@ -1108,9 +1108,9 @@
 - [ ] Encryption strategies
 - [ ] Audit logging
 ##### Security Implementations**:
-  - [ ] Implement RBAC for data warehouse
-  - [ ] Set up column-level security
-  - [ ] Configure data masking for PII
+- [ ] Implement RBAC for data warehouse
+- [ ] Set up column-level security
+- [ ] Configure data masking for PII
 
 ---
 
@@ -1128,10 +1128,10 @@
 - [ ] Event sourcing
 - [ ] CQRS (Command Query Responsibility Segregation)
 ##### Architecture Design**:
-  - [ ] Design lambda architecture for use case
-  - [ ] Design data mesh for organization
-  - [ ] Compare kappa vs. lambda trade-offs
-  - [ ] Implement medallion layers
+- [ ] Design lambda architecture for use case
+- [ ] Design data mesh for organization
+- [ ] Compare kappa vs. lambda trade-offs
+- [ ] Implement medallion layers
 
 #### SM: Scalability Patterns
 - [ ] Horizontal vs. vertical scaling
@@ -1142,9 +1142,9 @@
 - [ ] Multi-region data replication
 - [ ] Cold/warm/hot data tiering
 ##### Design Implementation**:
-  - [ ] Design scalable architecture for 10TB+ dataset
-  - [ ] Implement tiered storage strategy
-  - [ ] Design multi-region replication
+- [ ] Design scalable architecture for 10TB+ dataset
+- [ ] Implement tiered storage strategy
+- [ ] Design multi-region replication
 
 #### SM: Reliability & Fault Tolerance
 - [ ] Replication strategies (synchronous, asynchronous)
@@ -1157,10 +1157,10 @@
 - [ ] Disaster recovery planning
 - [ ] RTO and RPO calculations
 ##### Reliability Design**:
-  - [ ] Design 99.99% uptime system
-  - [ ] Create disaster recovery plan
-  - [ ] Implement circuit breaker pattern
-  - [ ] Design idempotent operations
+- [ ] Design 99.99% uptime system
+- [ ] Create disaster recovery plan
+- [ ] Implement circuit breaker pattern
+- [ ] Design idempotent operations
 
 ### M 2.7.2: Cost Optimization**
 #### SM: Cloud Cost Management
@@ -1172,10 +1172,10 @@
 - [ ] Cost monitoring and budgets
 - [ ] Waste identification
 ##### Cost Reduction**:
-  - [ ] Analyze cloud bills and identify 20%+ savings
-  - [ ] Right-size compute resources
-  - [ ] Implement cost allocation tags
-  - [ ] Set up budget alerts
+- [ ] Analyze cloud bills and identify 20%+ savings
+- [ ] Right-size compute resources
+- [ ] Implement cost allocation tags
+- [ ] Set up budget alerts
 
 #### SM: Query Cost Optimization
 - [ ] Materialized views and summary tables
@@ -1184,9 +1184,9 @@
 - [ ] Query result caching
 - [ ] Approximate query processing
 ##### Cost Optimization Tasks**:
-  - [ ] Reduce warehouse query costs by 40%+
-  - [ ] Implement partitioning strategy
-  - [ ] Design materialized view strategy
+- [ ] Reduce warehouse query costs by 40%+
+- [ ] Implement partitioning strategy
+- [ ] Design materialized view strategy
 
 ---
 
@@ -1194,35 +1194,35 @@
 - ⏱️ Duration: 6-8 weeks | **DEPENDENCY**: All Phase 2 modules
 
 - [ ] **PROJECT 1: Real-Time Analytics Platform**
-  - [ ] **Architecture Components**:
+- [ ] **Architecture Components**:
 #### SM: Event Streaming
-  - [ ] Kafka cluster setup (3-node)
-  - [ ] Producer for real-time events
-  - [ ] Consumer for data ingestion
-  - [ ] Schema Registry with multiple schemas
+- [ ] Kafka cluster setup (3-node)
+- [ ] Producer for real-time events
+- [ ] Consumer for data ingestion
+- [ ] Schema Registry with multiple schemas
     
 #### SM: Stream Processing
-  - [ ] Flink/Kafka Streams for windowed aggregation
-  - [ ] Real-time metric calculation
-  - [ ] State management for user sessions
-  - [ ] Event-time processing with watermarks
+- [ ] Flink/Kafka Streams for windowed aggregation
+- [ ] Real-time metric calculation
+- [ ] State management for user sessions
+- [ ] Event-time processing with watermarks
     
 #### SM: Storage Layer
-  - [ ] Data warehouse (Snowflake/BigQuery)
-  - [ ] Real-time cache (Redis)
-  - [ ] Time-series database (InfluxDB/TimescaleDB)
-  - [ ] S3/Cloud Storage for raw events
+- [ ] Data warehouse (Snowflake/BigQuery)
+- [ ] Real-time cache (Redis)
+- [ ] Time-series database (InfluxDB/TimescaleDB)
+- [ ] S3/Cloud Storage for raw events
     
 #### SM: Orchestration & Monitoring
-  - [ ] Airflow/Dagster for batch jobs
-  - [ ] Monitoring dashboard
-  - [ ] Alert system for SLA violations
-  - [ ] End-to-end latency tracking
+- [ ] Airflow/Dagster for batch jobs
+- [ ] Monitoring dashboard
+- [ ] Alert system for SLA violations
+- [ ] End-to-end latency tracking
     
 #### SM: API Layer
-  - [ ] REST API for metrics query
-  - [ ] WebSocket for real-time push
-  - [ ] Caching strategy
+- [ ] REST API for metrics query
+- [ ] WebSocket for real-time push
+- [ ] Caching strategy
     
   - **Deliverables**:
 - [ ] Production-ready code on GitHub
@@ -1234,34 +1234,34 @@
 - [ ] Blog post on design decisions
 
 - [ ] **PROJECT 2: Data Lake with Medallion Architecture**
-  - [ ] **Implementation**:
+- [ ] **Implementation**:
 #### SM: Bronze Layer
-  - [ ] Ingestion from 5+ heterogeneous sources
-  - [ ] Raw data storage with metadata
-  - [ ] Data cataloging
+- [ ] Ingestion from 5+ heterogeneous sources
+- [ ] Raw data storage with metadata
+- [ ] Data cataloging
     
 #### SM: Silver Layer
-  - [ ] Data cleaning and validation
-  - [ ] Schema enforcement
-  - [ ] Deduplication
-  - [ ] Incremental processing
+- [ ] Data cleaning and validation
+- [ ] Schema enforcement
+- [ ] Deduplication
+- [ ] Incremental processing
     
 #### SM: Gold Layer
-  - [ ] Dimensional modeling
-  - [ ] Fact and dimension tables
-  - [ ] Aggregate tables
-  - [ ] Business-ready datasets
+- [ ] Dimensional modeling
+- [ ] Fact and dimension tables
+- [ ] Aggregate tables
+- [ ] Business-ready datasets
     
 #### SM: Governance & Quality
-  - [ ] Data lineage tracking
-  - [ ] Quality checks at each layer
-  - [ ] Access control and RBAC
-  - [ ] Audit logging
+- [ ] Data lineage tracking
+- [ ] Quality checks at each layer
+- [ ] Access control and RBAC
+- [ ] Audit logging
     
 #### SM: Orchestration
-  - [ ] DAG for each layer
-  - [ ] Error handling and recovery
-  - [ ] Monitoring and alerts
+- [ ] DAG for each layer
+- [ ] Error handling and recovery
+- [ ] Monitoring and alerts
     
   - **Deliverables**:
 - [ ] Complete lake setup
@@ -1272,26 +1272,26 @@
 - [ ] Cost breakdown by layer
 
 - [ ] **PROJECT 3: Data Mesh Implementation (Domain-Driven)**
-  - [ ] **Setup**:
+- [ ] **Setup**:
 #### SM: Domain 1 (e.g., User Events)
-  - [ ] Data product definition
-  - [ ] Self-service pipeline
-  - [ ] Quality SLOs
+- [ ] Data product definition
+- [ ] Self-service pipeline
+- [ ] Quality SLOs
     
 #### SM: Domain 2 (e.g., Transactions)
-  - [ ] Data product definition
-  - [ ] Federation pattern
-  - [ ] Contracts definition
+- [ ] Data product definition
+- [ ] Federation pattern
+- [ ] Contracts definition
     
 #### SM: Data Contracts & Governance
-  - [ ] Contract enforcement
-  - [ ] Schema versioning
-  - [ ] Cross-domain lineage
+- [ ] Contract enforcement
+- [ ] Schema versioning
+- [ ] Cross-domain lineage
     
 #### SM: Platform Services
-  - [ ] Data discovery service
-  - [ ] Access management
-  - [ ] Monitoring and observability
+- [ ] Data discovery service
+- [ ] Access management
+- [ ] Monitoring and observability
     
   - **Deliverables**:
 - [ ] Multiple data products
@@ -1305,17 +1305,17 @@
 - ⏱️ Duration: 4-6 weeks
 
 - [ ] **Professional Certifications**
-  - [ ] AWS Certified Data Analytics - Specialty
-  - [ ] Google Cloud Professional Data Engineer
-  - [ ] Databricks Data Engineer certification
-  - [ ] Snowflake University certification
-  - [ ] Confluent Kafka certification
+- [ ] AWS Certified Data Analytics - Specialty
+- [ ] Google Cloud Professional Data Engineer
+- [ ] Databricks Data Engineer certification
+- [ ] Snowflake University certification
+- [ ] Confluent Kafka certification
 
 - [ ] **Assessments & Validations**
-  - [ ] Build mini end-to-end system in 48 hours
-  - [ ] Explain complex system architecture
-  - [ ] Optimize underperforming system
-  - [ ] Lead system design interview
+- [ ] Build mini end-to-end system in 48 hours
+- [ ] Explain complex system architecture
+- [ ] Optimize underperforming system
+- [ ] Lead system design interview
 
 ---
 
