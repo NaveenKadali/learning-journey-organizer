@@ -3,7 +3,7 @@
 
 ---
 
-# > EXECUTIVE SUMMARY & LEARNING STRATEGY
+> #  EXECUTIVE SUMMARY & LEARNING STRATEGY
 
 ## Pre-Roadmap Requirements
 - **Estimated Timeline**: 18-24 months (Beginner to Expert, 15-20 hrs/week)
@@ -23,7 +23,7 @@
 
 ---
 
-# > LEVEL 1: BEGINNER DATA ENGINEER
+> #  LEVEL 1: BEGINNER DATA ENGINEER
 ## Timeline: 3-4 months | Target: Foundation & First Production-Ready Skills
 
 ---
@@ -588,7 +588,7 @@
 
 ---
 
-# > LEVEL 2: INTERMEDIATE DATA ENGINEER
+> #  LEVEL 2: INTERMEDIATE DATA ENGINEER
 ## Prerequisites
 - ✅ Completion of ALL Beginner Level (Part 1)
 - ✅ 1+ production-like project deployed
