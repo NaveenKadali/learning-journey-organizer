@@ -3,7 +3,7 @@
 
 ---
 
-# > EXECUTIVE SUMMARY & STRATEGIC OVERVIEW
+> # EXECUTIVE SUMMARY & STRATEGIC OVERVIEW
 
 ## What is Data Engineering?
 
