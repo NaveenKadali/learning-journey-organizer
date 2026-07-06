@@ -29,7 +29,7 @@
 ## PHASE 1.1: FOUNDATIONAL PREREQUISITES
 ### ⏱️ Duration: 3-4 weeks
 
-### 1.1.1: Programming Fundamentals Deep Dive**
+### MODULE 1.1.1: Programming Fundamentals Deep Dive**
 - [ ] SUBMODULE: Python Mastery (Primary Language)
 - [ ] Variables, data types, type casting
 - [ ] Control flow: if/else, loops, comprehensions
@@ -59,7 +59,7 @@
 - [ ] Create 5 portfolio repositories with proper documentation
 - [ ] Set up CI/CD pipeline with GitHub Actions
 
-- [ ] **MODULE 1.1.2: Mathematics & Statistics Essentials**
+### MODULE 1.1.2: Mathematics & Statistics Essentials**
 - [ ] SUBMODULE: Linear Algebra
 - [ ] Vectors and matrices
 - [ ] Matrix operations: addition, multiplication, transposition
@@ -87,7 +87,7 @@
 - [ ] Data quality assessment (missing values, duplicates)
 - [ ] Basic time series concepts
 
-- [ ] **MODULE 1.1.3: SQL Foundation (Critical Skill)**
+### MODULE 1.1.3: SQL Foundation (Critical Skill)**
 - [ ] SUBMODULE: SQL Basics
 - [ ] Database concepts: tables, rows, columns, schemas
 - [ ] SELECT statements, filtering (WHERE), sorting (ORDER BY)
@@ -127,7 +127,7 @@
 ## PHASE 1.2: CORE DATA ENGINEERING FUNDAMENTALS
 ### ⏱️ Duration: 4-5 weeks
 
-- [ ] **MODULE 1.2.1: Data Concepts & Ecosystem**
+### MODULE 1.2.1: Data Concepts & Ecosystem**
 - [ ] SUBMODULE: Data Engineering Fundamentals
 - [ ] Data pipeline architecture: source → ingestion → processing → storage → consumption
 - [ ] Batch vs. Stream processing concepts
@@ -148,7 +148,7 @@
 - [ ] Data orchestration tools overview
 - [ ] Emerging trends: Data mesh, data fabric
 
-- [ ] **MODULE 1.2.2: Python for Data Engineering**
+### MODULE 1.2.2: Python for Data Engineering**
 - [ ] SUBMODULE: NumPy & Pandas Deep Dive
 - [ ] NumPy: arrays, operations, broadcasting, performance
 - [ ] Pandas: DataFrames, Series, indexing, slicing
@@ -182,7 +182,7 @@
 - [ ] Optimize 5 slow Python scripts (10x improvement)
 - [ ] Profile memory usage on large data operations
 
-- [ ] **MODULE 1.2.3: SQL Advanced for Data Engineering**
+### MODULE 1.2.3: SQL Advanced for Data Engineering**
 - [ ] SUBMODULE: Performance & Optimization
 - [ ] Query execution plans (EXPLAIN)
 - [ ] Index types and usage
@@ -209,7 +209,7 @@
 ## PHASE 1.3: FIRST CLOUD PLATFORM & STORAGE
 ### ⏱️ Duration: 3-4 weeks | **DEPENDENCY**: Completion of Phase 1.2
 
-- [ ] **MODULE 1.3.1: Cloud Platform Fundamentals (Choose One Primary)**
+### MODULE 1.3.1: Cloud Platform Fundamentals (Choose One Primary)**
 - [ ] SUBMODULE: AWS Fundamentals (Recommended for Data Engineering)
 - [ ] AWS Console and CLI basics
 - [ ] Identity and Access Management (IAM): users, roles, policies
@@ -229,7 +229,7 @@
 - [ ] Azure: Virtual Machines, Blob Storage, Synapse basics
 - [ ] Choose based on target employer or specialization
 
-- [ ] **MODULE 1.3.2: Data Storage Deep Dive**
+### MODULE 1.3.2: Data Storage Deep Dive**
 - [ ] SUBMODULE: Relational Databases
 - [ ] PostgreSQL installation and setup
 - [ ] MySQL/MariaDB basics
@@ -268,7 +268,7 @@
 ## PHASE 1.4: INTRODUCTION TO DATA PIPELINES & TOOLS
 ### ⏱️ Duration: 4-5 weeks | **DEPENDENCY**: Phase 1.2 & 1.3 completion
 
-- [ ] **MODULE 1.4.1: ETL Basics & Simple Pipelines**
+### MODULE 1.4.1: ETL Basics & Simple Pipelines**
 - [ ] SUBMODULE: ETL Concepts
 - [ ] Extract: source identification, APIs, databases, files
 - [ ] Transform: data cleaning, validation, enrichment, aggregation
@@ -305,7 +305,7 @@
 - [ ] Debug failing tasks
 - [ ] Monitor DAG execution
 
-- [ ] **MODULE 1.4.2: Introduction to Batch Processing**
+### MODULE 1.4.2: Introduction to Batch Processing**
 - [ ] SUBMODULE: PySpark Fundamentals
 - [ ] Spark concepts: RDD, DataFrame, DataSet
 - [ ] Spark SQL basics
@@ -328,7 +328,7 @@
 - [ ] Temporary views and databases
 - [ ] Performance tuning
 
-- [ ] **MODULE 1.4.3: Data Quality & Validation Framework**
+### MODULE 1.4.3: Data Quality & Validation Framework**
 - [ ] SUBMODULE: Data Quality Implementation
 - [ ] Row-level validation
 - [ ] Aggregate-level validation
@@ -346,7 +346,7 @@
 ## PHASE 1.5: CONTAINERIZATION & DEPLOYMENT
 ### ⏱️ Duration: 3-4 weeks | **DEPENDENCY**: Phase 1.1, 1.3, 1.4 completion
 
-- [ ] **MODULE 1.5.1: Docker Fundamentals**
+### MODULE 1.5.1: Docker Fundamentals**
 - [ ] SUBMODULE: Docker Basics
 - [ ] Containers vs. VMs
 - [ ] Docker images and layers
@@ -372,7 +372,7 @@
 - [ ] Push images to Docker Hub
 - [ ] Set up private ECR repository
 
-- [ ] **MODULE 1.5.2: Introduction to Kubernetes (Conceptual)**
+### MODULE 1.5.2: Introduction to Kubernetes (Conceptual)**
 - [ ] SUBMODULE: Kubernetes Basics
 - [ ] Kubernetes architecture: master, nodes, pods
 - [ ] Deployments, Services, ConfigMaps
@@ -390,7 +390,7 @@
 ## PHASE 1.6: CAPSTONE PROJECT & PORTFOLIO
 ### ⏱️ Duration: 3-4 weeks | **DEPENDENCY**: All previous phases
 
-- [ ] **MODULE 1.6.1: End-to-End Beginner Portfolio Project**
+### MODULE 1.6.1: End-to-End Beginner Portfolio Project**
 - [ ] **PROJECT: E-Commerce Data Pipeline**
     - **Objective**: Build complete production-like pipeline
     - **Components**:
@@ -441,13 +441,13 @@
 ## PHASE 1.7: CERTIFICATIONS & ASSESSMENT
 ### ⏱️ Duration: 2-3 weeks
 
-- [ ] **MODULE 1.7.1: Beginner Level Certifications**
+### MODULE 1.7.1: Beginner Level Certifications**
 - [ ] AWS Cloud Practitioner (optional but recommended)
 - [ ] Google Cloud Associate Cloud Engineer (alternative)
 - [ ] Databricks Academy: Apache Spark fundamentals
 - [ ] Data Engineering Path on Datacamp or Coursera
 
-- [ ] **MODULE 1.7.2: Skill Assessment**
+### MODULE 1.7.2: Skill Assessment**
 - [ ] SQL assessment: LeetCode (50+ Medium problems solved)
 - [ ] Python assessment: HackerRank/LeetCode (30+ problems)
 - [ ] Spark assessment: Build mini-project from scratch
@@ -598,7 +598,7 @@
 ## PHASE 2.1: ADVANCED SQL & DATA WAREHOUSE CONCEPTS
 ### ⏱️ Duration: 3-4 weeks
 
-- [ ] **MODULE 2.1.1: Data Warehouse Architecture**
+### MODULE 2.1.1: Data Warehouse Architecture**
 - [ ] SUBMODULE: Warehouse Fundamentals
 - [ ] OLTP vs. OLAP differences
 - [ ] Star schema and dimensional modeling
@@ -657,7 +657,7 @@
 - [ ] Schema evolution
 - [ ] Time travel
 
-- [ ] **MODULE 2.1.2: Advanced SQL Performance & Optimization**
+### MODULE 2.1.2: Advanced SQL Performance & Optimization**
 - [ ] SUBMODULE: Query Tuning Deep Dive
 - [ ] Execution plans: reading and interpreting
 - [ ] Seek vs. scan operations
@@ -708,7 +708,7 @@
 ## PHASE 2.2: STREAMING DATA & REAL-TIME PROCESSING
 ### ⏱️ Duration: 4-5 weeks | **DEPENDENCY**: Phase 1.4, 2.1
 
-- [ ] **MODULE 2.2.1: Streaming Concepts & Architectures**
+### MODULE 2.2.1: Streaming Concepts & Architectures**
 - [ ] SUBMODULE: Stream Processing Fundamentals
 - [ ] Batch vs. stream vs. lambda architecture
 - [ ] Kappa architecture
@@ -755,7 +755,7 @@
 - [ ] Azure Event Hubs
 - [ ] Choosing platform based on requirements
 
-- [ ] **MODULE 2.2.2: Apache Flink Streaming**
+### MODULE 2.2.2: Apache Flink Streaming**
 - [ ] SUBMODULE: Flink Fundamentals
 - [ ] Flink architecture: JobManager, TaskManager
 - [ ] DataStream API
@@ -782,7 +782,7 @@
 - [ ] Exactly-once sink operations
 - [ ] Savepoints and checkpointing
 
-- [ ] **MODULE 2.2.3: Streaming Data Quality & Monitoring**
+### MODULE 2.2.3: Streaming Data Quality & Monitoring**
 - [ ] SUBMODULE: Real-Time Data Validation
 - [ ] Schema validation in streams
 - [ ] Anomaly detection in streams
@@ -810,7 +810,7 @@
 ## PHASE 2.3: DISTRIBUTED SYSTEMS & ADVANCED SPARK
 ### ⏱️ Duration: 4-5 weeks | **DEPENDENCY**: Phase 1.4, 2.1
 
-- [ ] **MODULE 2.3.1: Distributed Computing Concepts**
+### MODULE 2.3.1: Distributed Computing Concepts**
 - [ ] SUBMODULE: Distributed System Fundamentals
 - [ ] CAP theorem: Consistency, Availability, Partition tolerance
 - [ ] Eventual consistency
@@ -834,7 +834,7 @@
 - [ ] Understand why Spark replaced MapReduce
 - [ ] Grasp HDFS architecture concepts
 
-- [ ] **MODULE 2.3.2: Apache Spark Advanced**
+### MODULE 2.3.2: Apache Spark Advanced**
 - [ ] SUBMODULE: Spark Architecture & Optimization
 - [ ] Cluster managers: Standalone, YARN, Kubernetes
 - [ ] Driver and Executor architecture
@@ -896,7 +896,7 @@
 ## PHASE 2.4: ADVANCED DATA PIPELINE ORCHESTRATION
 ### ⏱️ Duration: 3-4 weeks | **DEPENDENCY**: Phase 1.4, 2.3
 
-- [ ] **MODULE 2.4.1: Advanced Airflow & DAG Patterns**
+### MODULE 2.4.1: Advanced Airflow & DAG Patterns**
 - [ ] SUBMODULE: Airflow Architecture & Operations
 - [ ] Airflow components: Scheduler, Executor, Webserver, Database
 - [ ] Different executors: LocalExecutor, CeleryExecutor, KubernetesExecutor
@@ -939,7 +939,7 @@
 - [ ] Create monitoring dashboard
 - [ ] Set up alerting for failures
 
-- [ ] **MODULE 2.4.2: Alternative Orchestrators**
+### MODULE 2.4.2: Alternative Orchestrators**
 - [ ] SUBMODULE: Dagster
 - [ ] Dagster assets and ops
 - [ ] Data-aware orchestration
@@ -977,7 +977,7 @@
 ## PHASE 2.5: ADVANCED CLOUD PLATFORMS & MANAGED SERVICES
 ### ⏱️ Duration: 4-5 weeks | **DEPENDENCY**: Phase 1.3, 2.1
 
-- [ ] **MODULE 2.5.1: AWS Data Engineering Advanced**
+### MODULE 2.5.1: AWS Data Engineering Advanced**
 - [ ] SUBMODULE: Advanced AWS Services
 - [ ] Lambda: serverless compute, event-driven architecture
 - [ ] Step Functions: workflow orchestration
@@ -1016,7 +1016,7 @@
 - [ ] Implement encryption for 3 services
 - [ ] Set up audit logging
 
-- [ ] **MODULE 2.5.2: Google Cloud Advanced Data Services**
+### MODULE 2.5.2: Google Cloud Advanced Data Services**
 - [ ] SUBMODULE: GCP Data Platform
 - [ ] BigQuery: advanced features, optimization
 - [ ] Dataflow: Apache Beam managed service
@@ -1040,7 +1040,7 @@
 - [ ] AutoML for custom models
 - [ ] Model deployment and serving
 
-- [ ] **MODULE 2.5.3: Azure Data Engineering**
+### MODULE 2.5.3: Azure Data Engineering**
 - [ ] SUBMODULE: Azure Data Stack
 - [ ] Azure Synapse Analytics
 - [ ] Azure Data Factory: visual orchestration
@@ -1055,7 +1055,7 @@
 ## PHASE 2.6: DATA GOVERNANCE & METADATA MANAGEMENT
 ### ⏱️ Duration: 3 weeks | **DEPENDENCY**: Phase 2.1, 2.4
 
-- [ ] **MODULE 2.6.1: Data Governance Framework**
+### MODULE 2.6.1: Data Governance Framework**
 - [ ] SUBMODULE: Governance Fundamentals
 - [ ] Data classification and taxonomy
 - [ ] Data lineage and impact analysis
@@ -1084,7 +1084,7 @@
 - [ ] Implement automated lineage tracking
 - [ ] Create data glossary
 
-- [ ] **MODULE 2.6.2: Data Privacy & Security**
+### MODULE 2.6.2: Data Privacy & Security**
 - [ ] SUBMODULE: Privacy Regulations
 - [ ] GDPR: requirements and implementation
 - [ ] CCPA: California privacy rights
@@ -1115,7 +1115,7 @@
 ## PHASE 2.7: ADVANCED ARCHITECTURE & DESIGN PATTERNS
 ### ⏱️ Duration: 4 weeks | **DEPENDENCY**: All previous Phase 2 modules
 
-- [ ] **MODULE 2.7.1: Data Architecture Patterns**
+### MODULE 2.7.1: Data Architecture Patterns**
 - [ ] SUBMODULE: Modern Architecture Patterns
 - [ ] Lambda architecture (batch + real-time)
 - [ ] Kappa architecture (stream-first)
@@ -1160,7 +1160,7 @@
 - [ ] Implement circuit breaker pattern
 - [ ] Design idempotent operations
 
-- [ ] **MODULE 2.7.2: Cost Optimization**
+### MODULE 2.7.2: Cost Optimization**
 - [ ] SUBMODULE: Cloud Cost Management
 - [ ] Reserved instances vs. on-demand
 - [ ] Spot instances for batch jobs
@@ -1437,7 +1437,7 @@
 ## PHASE 3.1: ADVANCED SYSTEM DESIGN & ARCHITECTURE
 ### ⏱️ Duration: 5-6 weeks
 
-- [ ] **MODULE 3.1.1: Complex System Design Patterns**
+### MODULE 3.1.1: Complex System Design Patterns**
 - [ ] SUBMODULE: High-Throughput System Design
 - [ ] Designing for 1M+ events per second
 - [ ] Multi-tier data ingest architectures
@@ -1489,7 +1489,7 @@
 - [ ] Implement saga pattern for transactions
 - [ ] Build complex event matching
 
-- [ ] **MODULE 3.1.2: Data Consistency & Tradeoffs**
+### MODULE 3.1.2: Data Consistency & Tradeoffs**
 - [ ] SUBMODULE: Consistency Models
 - [ ] Strong consistency implications
 - [ ] Eventual consistency strategies
@@ -1515,7 +1515,7 @@
 - [ ] Implement saga orchestration
 - [ ] Handle distributed rollback
 
-- [ ] **MODULE 3.1.3: Multi-Region & Disaster Recovery**
+### MODULE 3.1.3: Multi-Region & Disaster Recovery**
 - [ ] SUBMODULE: Geo-Distributed Systems
 - [ ] Active-active vs. active-passive
 - [ ] Cross-region replication latency
@@ -1546,7 +1546,7 @@
 ## PHASE 3.2: PERFORMANCE ENGINEERING & OPTIMIZATION
 ### ⏱️ Duration: 5-6 weeks | **DEPENDENCY**: Phase 3.1
 
-- [ ] **MODULE 3.2.1: Query Engine Internals**
+### MODULE 3.2.1: Query Engine Internals**
 - [ ] SUBMODULE: Query Optimizer Deep Dive
 - [ ] Cardinality estimation techniques
 - [ ] Join ordering algorithms
@@ -1586,7 +1586,7 @@
 - [ ] Design index strategy for 1TB+ table
 - [ ] Benchmark index effectiveness
 
-- [ ] **MODULE 3.2.2: Advanced Performance Tuning**
+### MODULE 3.2.2: Advanced Performance Tuning**
 - [ ] SUBMODULE: Storage Optimization
 - [ ] Data type choice impact
 - [ ] String interning and pooling
@@ -1621,7 +1621,7 @@
 - [ ] Implement learned cardinality estimation
 - [ ] Evaluate ML-based approaches
 
-- [ ] **MODULE 3.2.3: Cost Analysis & Optimization**
+### MODULE 3.2.3: Cost Analysis & Optimization**
 - [ ] SUBMODULE: TCO (Total Cost of Ownership)
 - [ ] Compute cost modeling
 - [ ] Storage cost breakdown
@@ -1650,7 +1650,7 @@
 ## PHASE 3.3: ADVANCED DATA FORMATS & PROTOCOLS
 ### ⏱️ Duration: 4-5 weeks | **DEPENDENCY**: Phase 2.1
 
-- [ ] **MODULE 3.3.1: Modern Data Formats Deep Dive**
+### MODULE 3.3.1: Modern Data Formats Deep Dive**
 - [ ] SUBMODULE: Arrow Ecosystem
 - [ ] Arrow columnar format
 - [ ] Flight protocol for data transfer
@@ -1688,7 +1688,7 @@
 - [ ] Benchmark codec performance
 - [ ] Implement custom compression for specific data
 
-- [ ] **MODULE 3.3.2: Protocol Buffers & Schema Evolution**
+### MODULE 3.3.2: Protocol Buffers & Schema Evolution**
 - [ ] SUBMODULE: Protocol Buffers Mastery
 - [ ] Proto3 specification
 - [ ] Message definition best practices
@@ -1718,7 +1718,7 @@
 ## PHASE 3.4: STREAMING AT SCALE & COMPLEX EVENT PROCESSING
 ### ⏱️ Duration: 5-6 weeks | **DEPENDENCY**: Phase 2.2
 
-- [ ] **MODULE 3.4.1: Advanced Stream Processing**
+### MODULE 3.4.1: Advanced Stream Processing**
 - [ ] SUBMODULE: State Management at Scale
 - [ ] Stateful stream processing patterns
 - [ ] State backend architectures
@@ -1758,7 +1758,7 @@
 - [ ] Optimize join performance for high-volume streams
 - [ ] Implement windowed aggregations with late data
 
-- [ ] **MODULE 3.4.2: Streaming Analytics & Metrics**
+### MODULE 3.4.2: Streaming Analytics & Metrics**
 - [ ] SUBMODULE: Real-Time Aggregation
 - [ ] Incremental aggregation algorithms
 - [ ] Approximate aggregation (HyperLogLog, Bloom filters)
@@ -1789,7 +1789,7 @@
 ## PHASE 3.5: OPEN SOURCE CONTRIBUTION & INNOVATION
 ### ⏱️ Duration: 4-6 weeks (Ongoing)
 
-- [ ] **MODULE 3.5.1: Major Open Source Contributions**
+### MODULE 3.5.1: Major Open Source Contributions**
 - [ ] Contributing to Core Projects
 - [ ] Apache Spark (core or modules)
 - [ ] Apache Airflow (operators, hooks)
@@ -1988,7 +1988,7 @@
 ## PHASE 3.8: MENTORSHIP & LEADERSHIP
 ### ⏱️ Duration: Ongoing
 
-- [ ] **MODULE 3.8.1: Technical Mentorship**
+### MODULE 3.8.1: Technical Mentorship**
 - [ ] Mentor 2-3 junior/mid-level engineers
 - [ ] Code review at senior level
 - [ ] Architecture review participation
@@ -1996,7 +1996,7 @@
 - [ ] Knowledge sharing sessions
 - [ ] Career development guidance
 
-- [ ] **MODULE 3.8.2: Technical Leadership**
+### MODULE 3.8.2: Technical Leadership**
 - [ ] Lead system design decisions
 - [ ] Drive architectural improvements
 - [ ] Champion best practices adoption
@@ -2019,7 +2019,7 @@
 ## PHASE 4.1: SYSTEM THINKING & CROSS-DOMAIN MASTERY
 ### ⏱️ Duration: 6-8 weeks
 
-- [ ] **MODULE 4.1.1: Full Stack Data Platform Thinking**
+### MODULE 4.1.1: Full Stack Data Platform Thinking**
 - [ ] SUBMODULE: End-to-End Integration
 - [ ] Data collection strategy (SDKs, APIs, logs)
 - [ ] Quality by design principles
@@ -2042,7 +2042,7 @@
 - [ ] Change management
 - [ ] ROI measurement
 
-- [ ] **MODULE 4.1.2: Emerging Technologies & Research**
+### MODULE 4.1.2: Emerging Technologies & Research**
 - [ ] SUBMODULE: Novel Data Systems
 - [ ] GPU-accelerated databases (RAPIDS, OmniSci)
 - [ ] Quantum computing implications
@@ -2071,7 +2071,7 @@
 ## PHASE 4.2: ADVANCED PROBLEM SOLVING & INNOVATION
 ### ⏱️ Duration: 8+ weeks (Ongoing)
 
-- [ ] **MODULE 4.2.1: Solving Uniquely Hard Problems**
+### MODULE 4.2.1: Solving Uniquely Hard Problems**
 - [ ] Problems that standard tools don't handle
 - [ ] Novel algorithm development
 - [ ] Custom hardware optimization
@@ -2086,7 +2086,7 @@
 - [ ] Anomaly detection with high accuracy
 - [ ] Query optimization for complex workloads
 
-- [ ] **MODULE 4.2.2: Architectural Innovation**
+### MODULE 4.2.2: Architectural Innovation**
 - [ ] Design novel system architecture
 - [ ] Combine unconventional technologies
 - [ ] Challenge conventional wisdom
@@ -2132,7 +2132,7 @@
 ## PHASE 4.4: ORGANIZATIONAL IMPACT & STRATEGY
 ### ⏱️ Duration: Ongoing
 
-- [ ] **MODULE 4.4.1: Technical Strategy**
+### MODULE 4.4.1: Technical Strategy**
 - [ ] SUBMODULE: Technology Roadmap
 - [ ] 3-5 year platform evolution
 - [ ] Emerging tech assessment
@@ -2149,7 +2149,7 @@
 - [ ] Capability building programs
 - [ ] Hiring strategy
 
-- [ ] **MODULE 4.4.2: Business Impact**
+### MODULE 4.4.2: Business Impact**
 - [ ] SUBMODULE: Value Quantification
 - [ ] ROI measurement for data initiatives
 - [ ] Time-to-value optimization
@@ -2169,14 +2169,14 @@
 ## PHASE 4.5: MENTORSHIP & COMMUNITY
 ### ⏱️ Duration: Ongoing
 
-- [ ] **MODULE 4.5.1: Advanced Mentorship**
+### MODULE 4.5.1: Advanced Mentorship**
 - [ ] Mentor architects and tech leads
 - [ ] Career trajectory planning
 - [ ] Leadership development
 - [ ] Building next generation of experts
 - [ ] Setting standard of excellence
 
-- [ ] **MODULE 4.5.2: Community Leadership**
+### MODULE 4.5.2: Community Leadership**
 - [ ] Lead working groups
 - [ ] Conference organization
 - [ ] Academic collaboration
