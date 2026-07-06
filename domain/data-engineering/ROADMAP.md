@@ -1,5 +1,4 @@
-> # 🎯 COMPREHENSIVE DATA ENGINEERING CAREER ROADMAP
-## From Beginner → Expert (Autodidact Optimized)
+> # 🎯 COMPREHENSIVE DATA ENGINEERING CAREER ROADMAP: Beginner → Expert (Autodidact Optimized)
 
 ---
 
