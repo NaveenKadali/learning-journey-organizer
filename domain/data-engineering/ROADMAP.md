@@ -1,9 +1,9 @@
 # 🎯 DATA ENGINEERING CAREER ROADMAP - PART 4
-## Executive Summary, Career Strategy & Tactical Execution Guide
+> # Executive Summary, Career Strategy & Tactical Execution Guide
 
 ---
 
-> # EXECUTIVE SUMMARY & STRATEGIC OVERVIEW
+# EXECUTIVE SUMMARY & STRATEGIC OVERVIEW
 
 ## What is Data Engineering?
 
