@@ -3,8 +3,6 @@
 
 ---
 
-# > EXECUTIVE SUMMARY & LEARNING STRATEGY
-
 ## Pre-Roadmap Requirements
 - **Estimated Timeline**: 18-24 months (Beginner to Expert, 15-20 hrs/week)
 - **Prerequisites**: Basic programming knowledge (any language), mathematics fundamentals
