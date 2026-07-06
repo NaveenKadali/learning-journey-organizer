@@ -30,7 +30,7 @@
 ### ⏱️ Duration: 3-4 weeks
 
 ### MODULE 1.1.1: Programming Fundamentals Deep Dive**
-#### SUBMODULE: Python Mastery (Primary Language)
+##### SUBMODULE: Python Mastery (Primary Language)
 - [ ] Variables, data types, type casting
 - [ ] Control flow: if/else, loops, comprehensions
 - [ ] Functions: definition, parameters, return values, *args, **kwargs
