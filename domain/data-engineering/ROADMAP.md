@@ -30,7 +30,7 @@
 ### ⏱️ Duration: 3-4 weeks
 
 ### MODULE 1.1.1: Programming Fundamentals Deep Dive**
-- [ ] SUBMODULE: Python Mastery (Primary Language)
+### SUBMODULE: Python Mastery (Primary Language)
 - [ ] Variables, data types, type casting
 - [ ] Control flow: if/else, loops, comprehensions
 - [ ] Functions: definition, parameters, return values, *args, **kwargs
@@ -47,7 +47,7 @@
 - [ ] Refactor messy code to follow PEP 8
 - [ ] Create a reusable Python package with setup.py
 
-- [ ] SUBMODULE: Version Control (Git/GitHub)
+### SUBMODULE: Version Control (Git/GitHub)
 - [ ] Git basics: init, add, commit, push, pull
 - [ ] Branching strategies: feature branches, develop/main
 - [ ] Merging, rebasing, resolving conflicts
@@ -60,7 +60,7 @@
 - [ ] Set up CI/CD pipeline with GitHub Actions
 
 ### MODULE 1.1.2: Mathematics & Statistics Essentials**
-- [ ] SUBMODULE: Linear Algebra
+### SUBMODULE: Linear Algebra
 - [ ] Vectors and matrices
 - [ ] Matrix operations: addition, multiplication, transposition
 - [ ] Determinants and inverses
@@ -70,7 +70,7 @@
 - [ ] Implement matrix operations from scratch
 - [ ] Solve linear systems using Python (NumPy)
 
-- [ ] SUBMODULE: Probability & Statistics
+### SUBMODULE: Probability & Statistics
 - [ ] Probability distributions: normal, binomial, Poisson
 - [ ] Descriptive statistics: mean, median, std deviation, quartiles
 - [ ] Correlation and covariance
@@ -81,14 +81,14 @@
 - [ ] Analyze 5 real datasets with statistical methods
 - [ ] Conduct hypothesis tests on data
 
-- [ ] SUBMODULE: Data Analysis Fundamentals
+### SUBMODULE: Data Analysis Fundamentals
 - [ ] Data distribution analysis
 - [ ] Outlier detection methods
 - [ ] Data quality assessment (missing values, duplicates)
 - [ ] Basic time series concepts
 
 ### MODULE 1.1.3: SQL Foundation (Critical Skill)**
-- [ ] SUBMODULE: SQL Basics
+### SUBMODULE: SQL Basics
 - [ ] Database concepts: tables, rows, columns, schemas
 - [ ] SELECT statements, filtering (WHERE), sorting (ORDER BY)
 - [ ] Aggregate functions: COUNT, SUM, AVG, MIN, MAX, GROUP BY, HAVING
@@ -99,7 +99,7 @@
 - [ ] Write 50+ SQL queries on sample databases
 - [ ] Practice on LeetCode Database problems (Easy level)
 
-- [ ] SUBMODULE: SQL Joins & Advanced Queries
+### SUBMODULE: SQL Joins & Advanced Queries
 - [ ] INNER, LEFT, RIGHT, FULL OUTER joins
 - [ ] Self-joins and cross joins
 - [ ] Multiple join scenarios (3+ tables)
@@ -112,7 +112,7 @@
 - [ ] Optimize 5 poorly written queries
 - [ ] Practice on LeetCode Database (Medium level)
 
-- [ ] SUBMODULE: Database Design Fundamentals
+### SUBMODULE: Database Design Fundamentals
 - [ ] Normalization (1NF, 2NF, 3NF, BCNF)
 - [ ] Entity-Relationship Diagrams (ERDs)
 - [ ] Primary keys, foreign keys, constraints
@@ -128,7 +128,7 @@
 ### ⏱️ Duration: 4-5 weeks
 
 ### MODULE 1.2.1: Data Concepts & Ecosystem**
-- [ ] SUBMODULE: Data Engineering Fundamentals
+### SUBMODULE: Data Engineering Fundamentals
 - [ ] Data pipeline architecture: source → ingestion → processing → storage → consumption
 - [ ] Batch vs. Stream processing concepts
 - [ ] Data quality dimensions: accuracy, completeness, consistency, timeliness
@@ -139,7 +139,7 @@
 - [ ] Map 5 real-world data pipelines to architecture
 - [ ] Identify data quality issues in sample datasets
 
-- [ ] SUBMODULE: The Modern Data Stack
+### SUBMODULE: The Modern Data Stack
 - [ ] Cloud data platforms (AWS, GCP, Azure) overview
 - [ ] ETL vs. ELT paradigms
 - [ ] Data lakes vs. data warehouses
@@ -149,7 +149,7 @@
 - [ ] Emerging trends: Data mesh, data fabric
 
 ### MODULE 1.2.2: Python for Data Engineering**
-- [ ] SUBMODULE: NumPy & Pandas Deep Dive
+### SUBMODULE: NumPy & Pandas Deep Dive
 - [ ] NumPy: arrays, operations, broadcasting, performance
 - [ ] Pandas: DataFrames, Series, indexing, slicing
 - [ ] Data cleaning: handling missing values, duplicates, outliers
@@ -161,7 +161,7 @@
 - [ ] Perform exploratory data analysis on 3 datasets
 - [ ] Optimize Pandas operations for 1GB+ files
 
-- [ ] SUBMODULE: Data Validation & Quality
+### SUBMODULE: Data Validation & Quality
 - [ ] Data profiling
 - [ ] Schema validation
 - [ ] Constraint checking
@@ -171,7 +171,7 @@
 - [ ] Build data quality suite for 2 datasets
 - [ ] Create custom validators
 
-- [ ] SUBMODULE: Python Performance & Best Practices
+### SUBMODULE: Python Performance & Best Practices
 - [ ] Profiling and benchmarking
 - [ ] Memory optimization
 - [ ] List comprehensions vs. loops
@@ -183,7 +183,7 @@
 - [ ] Profile memory usage on large data operations
 
 ### MODULE 1.2.3: SQL Advanced for Data Engineering**
-- [ ] SUBMODULE: Performance & Optimization
+### SUBMODULE: Performance & Optimization
 - [ ] Query execution plans (EXPLAIN)
 - [ ] Index types and usage
 - [ ] Query optimization techniques
@@ -194,7 +194,7 @@
 - [ ] Optimize 10 slow queries (50%+ improvement)
 - [ ] Design indexes for specific query patterns
 
-- [ ] SUBMODULE: Advanced SQL Patterns
+### SUBMODULE: Advanced SQL Patterns
 - [ ] Recursive CTEs
 - [ ] JSON/Array operations
 - [ ] Full-text search
@@ -210,7 +210,7 @@
 ### ⏱️ Duration: 3-4 weeks | **DEPENDENCY**: Completion of Phase 1.2
 
 ### MODULE 1.3.1: Cloud Platform Fundamentals (Choose One Primary)**
-- [ ] SUBMODULE: AWS Fundamentals (Recommended for Data Engineering)
+### SUBMODULE: AWS Fundamentals (Recommended for Data Engineering)
 - [ ] AWS Console and CLI basics
 - [ ] Identity and Access Management (IAM): users, roles, policies
 - [ ] Networking: VPC, subnets, security groups
@@ -224,13 +224,13 @@
 - [ ] Set up IAM policies for data access
 - [ ] Create CloudWatch alarms and dashboards
 
-- [ ] SUBMODULE: Alternative: Google Cloud or Azure
+### SUBMODULE: Alternative: Google Cloud or Azure
 - [ ] GCP: Compute Engine, Cloud Storage, BigQuery basics
 - [ ] Azure: Virtual Machines, Blob Storage, Synapse basics
 - [ ] Choose based on target employer or specialization
 
 ### MODULE 1.3.2: Data Storage Deep Dive**
-- [ ] SUBMODULE: Relational Databases
+### SUBMODULE: Relational Databases
 - [ ] PostgreSQL installation and setup
 - [ ] MySQL/MariaDB basics
 - [ ] Connection pooling
@@ -242,7 +242,7 @@
 - [ ] Create complex schemas
 - [ ] Set up automated backups
 
-- [ ] SUBMODULE: NoSQL Databases (Conceptual)
+### SUBMODULE: NoSQL Databases (Conceptual)
 - [ ] MongoDB: document model, CRUD operations, aggregation
 - [ ] DynamoDB: key-value basics, design patterns
 - [ ] Cassandra: distributed database concepts
@@ -251,7 +251,7 @@
 - [ ] Design document schemas for 3 different use cases
 - [ ] Perform CRUD operations and aggregations
 
-- [ ] SUBMODULE: Cloud Storage Solutions
+### SUBMODULE: Cloud Storage Solutions
 - [ ] S3 (AWS): storage classes, access patterns, optimization
 - [ ] GCS (Google Cloud): buckets, operations
 - [ ] Azure Blob Storage: containers, tiers
@@ -269,7 +269,7 @@
 ### ⏱️ Duration: 4-5 weeks | **DEPENDENCY**: Phase 1.2 & 1.3 completion
 
 ### MODULE 1.4.1: ETL Basics & Simple Pipelines**
-- [ ] SUBMODULE: ETL Concepts
+### SUBMODULE: ETL Concepts
 - [ ] Extract: source identification, APIs, databases, files
 - [ ] Transform: data cleaning, validation, enrichment, aggregation
 - [ ] Load: target systems, incremental vs. full loads
@@ -279,7 +279,7 @@
     - **Conceptual Understanding**:
 - [ ] Document 5 ETL pipelines with lineage diagrams
 
-- [ ] SUBMODULE: Building Pipelines with Python
+### SUBMODULE: Building Pipelines with Python
 - [ ] ETL script structure and best practices
 - [ ] Configuration management (YAML, JSON configs)
 - [ ] Logging and error handling
@@ -292,7 +292,7 @@
 - [ ] Add configuration management
 - [ ] Write unit tests for transformations
 
-- [ ] SUBMODULE: Introduction to Airflow (First Orchestrator)
+### SUBMODULE: Introduction to Airflow (First Orchestrator)
 - [ ] Airflow concepts: DAGs, tasks, operators
 - [ ] Installing and running Airflow locally
 - [ ] Creating simple DAGs with Python
@@ -306,7 +306,7 @@
 - [ ] Monitor DAG execution
 
 ### MODULE 1.4.2: Introduction to Batch Processing**
-- [ ] SUBMODULE: PySpark Fundamentals
+### SUBMODULE: PySpark Fundamentals
 - [ ] Spark concepts: RDD, DataFrame, DataSet
 - [ ] Spark SQL basics
 - [ ] DataFrame operations: select, filter, groupby, join
@@ -320,7 +320,7 @@
 - [ ] Join large datasets
 - [ ] Optimize Spark jobs (partitioning, caching)
 
-- [ ] SUBMODULE: Spark SQL Deep Dive
+### SUBMODULE: Spark SQL Deep Dive
 - [ ] Spark SQL engine
 - [ ] Catalyst optimizer
 - [ ] Writing efficient SQL queries in Spark
@@ -329,7 +329,7 @@
 - [ ] Performance tuning
 
 ### MODULE 1.4.3: Data Quality & Validation Framework**
-- [ ] SUBMODULE: Data Quality Implementation
+### SUBMODULE: Data Quality Implementation
 - [ ] Row-level validation
 - [ ] Aggregate-level validation
 - [ ] Schema validation
@@ -347,7 +347,7 @@
 ### ⏱️ Duration: 3-4 weeks | **DEPENDENCY**: Phase 1.1, 1.3, 1.4 completion
 
 ### MODULE 1.5.1: Docker Fundamentals**
-- [ ] SUBMODULE: Docker Basics
+### SUBMODULE: Docker Basics
 - [ ] Containers vs. VMs
 - [ ] Docker images and layers
 - [ ] Dockerfile syntax: FROM, RUN, COPY, CMD, ENTRYPOINT
@@ -362,7 +362,7 @@
 - [ ] Build multi-stage builds
 - [ ] Use Docker Compose for Airflow setup
 
-- [ ] SUBMODULE: Container Registry & Distribution
+### SUBMODULE: Container Registry & Distribution
 - [ ] Docker Hub
 - [ ] AWS ECR (Elastic Container Registry)
 - [ ] Private registries
@@ -373,7 +373,7 @@
 - [ ] Set up private ECR repository
 
 ### MODULE 1.5.2: Introduction to Kubernetes (Conceptual)**
-- [ ] SUBMODULE: Kubernetes Basics
+### SUBMODULE: Kubernetes Basics
 - [ ] Kubernetes architecture: master, nodes, pods
 - [ ] Deployments, Services, ConfigMaps
 - [ ] Basic kubectl commands
@@ -394,36 +394,36 @@
 - [ ] **PROJECT: E-Commerce Data Pipeline**
     - **Objective**: Build complete production-like pipeline
     - **Components**:
-- [ ] SUBMODULE: Data Source Setup
+### SUBMODULE: Data Source Setup
 - [ ] Create sample e-commerce database (PostgreSQL)
 - [ ] Set up REST API mock data source
 - [ ] Create CSV/JSON data files
       
-- [ ] SUBMODULE: Ingestion & Storage
+### SUBMODULE: Ingestion & Storage
 - [ ] Build Python ETL script
 - [ ] Extract from multiple sources (DB, API, files)
 - [ ] Store in S3 with partitioning
 - [ ] Implement incremental loads
       
-- [ ] SUBMODULE: Processing & Transformation
+### SUBMODULE: Processing & Transformation
 - [ ] Build Spark job for data transformation
 - [ ] Aggregate sales data (daily, weekly summaries)
 - [ ] Data quality validation
 - [ ] Store processed data
       
-- [ ] SUBMODULE: Orchestration & Monitoring
+### SUBMODULE: Orchestration & Monitoring
 - [ ] Create Airflow DAG
 - [ ] Schedule pipeline execution
 - [ ] Implement error handling and retries
 - [ ] Add CloudWatch monitoring
       
-- [ ] SUBMODULE: Containerization & Deployment
+### SUBMODULE: Containerization & Deployment
 - [ ] Dockerize all components
 - [ ] Create Docker Compose setup
 - [ ] Deploy to cloud (AWS or GCP)
 - [ ] Document deployment process
       
-- [ ] SUBMODULE: Analytics & Visualization
+### SUBMODULE: Analytics & Visualization
 - [ ] Create SQL queries for business metrics
 - [ ] Basic visualization (Python/SQL output)
 - [ ] Document data schema and lineage
@@ -599,7 +599,7 @@
 ### ⏱️ Duration: 3-4 weeks
 
 ### MODULE 2.1.1: Data Warehouse Architecture**
-- [ ] SUBMODULE: Warehouse Fundamentals
+### SUBMODULE: Warehouse Fundamentals
 - [ ] OLTP vs. OLAP differences
 - [ ] Star schema and dimensional modeling
 - [ ] Fact tables and dimension tables
@@ -614,7 +614,7 @@
 - [ ] Design star schema for financial domain
 - [ ] Implement SCD Type 2 slowly changing dimensions
 
-- [ ] SUBMODULE: Snowflake Deep Dive (Industry Standard)
+### SUBMODULE: Snowflake Deep Dive (Industry Standard)
 - [ ] Architecture: cloud, compute, storage separation
 - [ ] Warehouses, databases, schemas, tables
 - [ ] Data types: native, semi-structured (VARIANT, ARRAY, OBJECT)
@@ -638,7 +638,7 @@
 - [ ] Set up Snowpipe for automatic ingestion
 - [ ] Implement stream-based CDC
 
-- [ ] SUBMODULE: Alternative Warehouses
+### SUBMODULE: Alternative Warehouses
 - [ ] BigQuery (Google Cloud)
 - [ ] BigQuery data model
 - [ ] Partitioning and clustering
@@ -658,7 +658,7 @@
 - [ ] Time travel
 
 ### MODULE 2.1.2: Advanced SQL Performance & Optimization**
-- [ ] SUBMODULE: Query Tuning Deep Dive
+### SUBMODULE: Query Tuning Deep Dive
 - [ ] Execution plans: reading and interpreting
 - [ ] Seek vs. scan operations
 - [ ] Join algorithms: nested loop, hash, sort-merge
@@ -673,7 +673,7 @@
 - [ ] Analyze execution plans for 10 queries
 - [ ] Rewrite queries using CTEs, window functions, subqueries
 
-- [ ] SUBMODULE: Advanced SQL Patterns
+### SUBMODULE: Advanced SQL Patterns
 - [ ] Recursive hierarchical queries
 - [ ] Graph traversal patterns
 - [ ] Sequence pattern detection
@@ -689,7 +689,7 @@
 - [ ] Create funnel analysis from event data
 - [ ] Implement sessionization algorithm
 
-- [ ] SUBMODULE: Data Transformation & Modeling
+### SUBMODULE: Data Transformation & Modeling
 - [ ] Incremental transformation strategies
 - [ ] Handling late-arriving dimensions
 - [ ] Fact table design for specific metrics
@@ -709,7 +709,7 @@
 ### ⏱️ Duration: 4-5 weeks | **DEPENDENCY**: Phase 1.4, 2.1
 
 ### MODULE 2.2.1: Streaming Concepts & Architectures**
-- [ ] SUBMODULE: Stream Processing Fundamentals
+### SUBMODULE: Stream Processing Fundamentals
 - [ ] Batch vs. stream vs. lambda architecture
 - [ ] Kappa architecture
 - [ ] Event-driven architecture
@@ -724,7 +724,7 @@
 - [ ] Design streaming solution for 3 use cases
 - [ ] Compare lambda vs. kappa architectures
 
-- [ ] SUBMODULE: Apache Kafka Mastery
+### SUBMODULE: Apache Kafka Mastery
 - [ ] Kafka architecture: brokers, topics, partitions
 - [ ] Producers: partitioning strategies, compression, batching
 - [ ] Consumers: consumer groups, offset management, rebalancing
@@ -743,7 +743,7 @@
 - [ ] Handle schema evolution
 - [ ] Monitor Kafka cluster health
 
-- [ ] SUBMODULE: Alternative Streaming Platforms
+### SUBMODULE: Alternative Streaming Platforms
 - [ ] AWS Kinesis
 - [ ] Kinesis Data Streams vs. Firehose
 - [ ] Shard allocation and scaling
@@ -756,7 +756,7 @@
 - [ ] Choosing platform based on requirements
 
 ### MODULE 2.2.2: Apache Flink Streaming**
-- [ ] SUBMODULE: Flink Fundamentals
+### SUBMODULE: Flink Fundamentals
 - [ ] Flink architecture: JobManager, TaskManager
 - [ ] DataStream API
 - [ ] Transformations: map, filter, flatMap, keyBy
@@ -773,7 +773,7 @@
 - [ ] Store state and manage state size
 - [ ] Debug and monitor Flink jobs
 
-- [ ] SUBMODULE: Flink SQL & Advanced Features
+### SUBMODULE: Flink SQL & Advanced Features
 - [ ] Flink SQL on streaming data
 - [ ] Continuous queries
 - [ ] Temporal joins
@@ -783,7 +783,7 @@
 - [ ] Savepoints and checkpointing
 
 ### MODULE 2.2.3: Streaming Data Quality & Monitoring**
-- [ ] SUBMODULE: Real-Time Data Validation
+### SUBMODULE: Real-Time Data Validation
 - [ ] Schema validation in streams
 - [ ] Anomaly detection in streams
 - [ ] Late and out-of-order data handling
@@ -794,7 +794,7 @@
 - [ ] Implement anomaly detection
 - [ ] Create dead letter queue handling
 
-- [ ] SUBMODULE: Streaming Metrics & Alerting
+### SUBMODULE: Streaming Metrics & Alerting
 - [ ] Real-time metric calculation
 - [ ] Stream lag monitoring
 - [ ] End-to-end latency measurement
@@ -811,7 +811,7 @@
 ### ⏱️ Duration: 4-5 weeks | **DEPENDENCY**: Phase 1.4, 2.1
 
 ### MODULE 2.3.1: Distributed Computing Concepts**
-- [ ] SUBMODULE: Distributed System Fundamentals
+### SUBMODULE: Distributed System Fundamentals
 - [ ] CAP theorem: Consistency, Availability, Partition tolerance
 - [ ] Eventual consistency
 - [ ] Consensus algorithms: Raft, Paxos (conceptual)
@@ -823,7 +823,7 @@
 - [ ] Analyze trade-offs in 5 real systems
 - [ ] Design fault-tolerant architecture
 
-- [ ] SUBMODULE: MapReduce & Hadoop Ecosystem
+### SUBMODULE: MapReduce & Hadoop Ecosystem
 - [ ] MapReduce fundamentals (historical importance)
 - [ ] HDFS: architecture, replication, fault tolerance
 - [ ] Data locality
@@ -835,7 +835,7 @@
 - [ ] Grasp HDFS architecture concepts
 
 ### MODULE 2.3.2: Apache Spark Advanced**
-- [ ] SUBMODULE: Spark Architecture & Optimization
+### SUBMODULE: Spark Architecture & Optimization
 - [ ] Cluster managers: Standalone, YARN, Kubernetes
 - [ ] Driver and Executor architecture
 - [ ] RDD internals
@@ -852,7 +852,7 @@
 - [ ] Tune parallelism and executor allocation
 - [ ] Measure and improve GC performance
 
-- [ ] SUBMODULE: Spark SQL Deep Dive
+### SUBMODULE: Spark SQL Deep Dive
 - [ ] Catalyst query optimizer internals
 - [ ] Execution plan analysis and optimization
 - [ ] Column-oriented storage benefits
@@ -868,7 +868,7 @@
 - [ ] Implement cost-based optimization
 - [ ] Use hints to optimize queries
 
-- [ ] SUBMODULE: Spark Structured APIs
+### SUBMODULE: Spark Structured APIs
 - [ ] DataFrame vs. RDD performance
 - [ ] Dataset (type-safe RDD)
 - [ ] Streaming DataFrames
@@ -880,7 +880,7 @@
 - [ ] Implement streaming DataFrame application
 - [ ] Use MLlib for feature engineering
 
-- [ ] SUBMODULE: Testing Spark Applications
+### SUBMODULE: Testing Spark Applications
 - [ ] Unit testing with pytest
 - [ ] DataFrameComparison and assertion libraries
 - [ ] Delta Lake for testing
@@ -897,7 +897,7 @@
 ### ⏱️ Duration: 3-4 weeks | **DEPENDENCY**: Phase 1.4, 2.3
 
 ### MODULE 2.4.1: Advanced Airflow & DAG Patterns**
-- [ ] SUBMODULE: Airflow Architecture & Operations
+### SUBMODULE: Airflow Architecture & Operations
 - [ ] Airflow components: Scheduler, Executor, Webserver, Database
 - [ ] Different executors: LocalExecutor, CeleryExecutor, KubernetesExecutor
 - [ ] DAG serialization and parsing
@@ -915,7 +915,7 @@
 - [ ] Set up SLA monitoring
 - [ ] Implement pool-based throttling
 
-- [ ] SUBMODULE: Custom Operators & Hooks
+### SUBMODULE: Custom Operators & Hooks
 - [ ] Built-in operators deep dive
 - [ ] Creating custom operators
 - [ ] Creating custom hooks
@@ -927,7 +927,7 @@
 - [ ] Build 3 custom hooks
 - [ ] Publish to PyPI
 
-- [ ] SUBMODULE: Airflow Monitoring & Debugging
+### SUBMODULE: Airflow Monitoring & Debugging
 - [ ] Logging in Airflow
 - [ ] Log aggregation
 - [ ] Alerts and notifications
@@ -940,7 +940,7 @@
 - [ ] Set up alerting for failures
 
 ### MODULE 2.4.2: Alternative Orchestrators**
-- [ ] SUBMODULE: Dagster
+### SUBMODULE: Dagster
 - [ ] Dagster assets and ops
 - [ ] Data-aware orchestration
 - [ ] Asset materialization
@@ -950,14 +950,14 @@
 - [ ] Build same pipeline in Airflow and Dagster
 - [ ] Evaluate trade-offs
 
-- [ ] SUBMODULE: Prefect
+### SUBMODULE: Prefect
 - [ ] Prefect concepts: Flows and Tasks
 - [ ] Automatic retry and caching
 - [ ] Parameter passing
 - [ ] Deployments and work pools
 - [ ] **Comparative Implementation**: Build sample pipeline
 
-- [ ] SUBMODULE: dbt (Data Build Tool)
+### SUBMODULE: dbt (Data Build Tool)
 - [ ] dbt project structure
 - [ ] Models: staging, marts, intermediate
 - [ ] Tests and assertions
@@ -978,7 +978,7 @@
 ### ⏱️ Duration: 4-5 weeks | **DEPENDENCY**: Phase 1.3, 2.1
 
 ### MODULE 2.5.1: AWS Data Engineering Advanced**
-- [ ] SUBMODULE: Advanced AWS Services
+### SUBMODULE: Advanced AWS Services
 - [ ] Lambda: serverless compute, event-driven architecture
 - [ ] Step Functions: workflow orchestration
 - [ ] Glue: ETL service, Glue Catalog, Glue Data Quality
@@ -1003,7 +1003,7 @@
 - [ ] Query S3 with Redshift Spectrum
 - [ ] Launch and manage EMR cluster
 
-- [ ] SUBMODULE: AWS Security & Compliance
+### SUBMODULE: AWS Security & Compliance
 - [ ] IAM advanced: policies, roles, service control policies
 - [ ] Secrets Manager for credential rotation
 - [ ] KMS encryption: customer-managed keys
@@ -1017,7 +1017,7 @@
 - [ ] Set up audit logging
 
 ### MODULE 2.5.2: Google Cloud Advanced Data Services**
-- [ ] SUBMODULE: GCP Data Platform
+### SUBMODULE: GCP Data Platform
 - [ ] BigQuery: advanced features, optimization
 - [ ] Dataflow: Apache Beam managed service
 - [ ] Pub/Sub: messaging at scale
@@ -1034,14 +1034,14 @@
 - [ ] Deploy Composer environment
 - [ ] Use Data Fusion for ETL
 
-- [ ] SUBMODULE: GCP Machine Learning Integration
+### SUBMODULE: GCP Machine Learning Integration
 - [ ] BigQuery ML for simple models
 - [ ] Vertex AI Feature Store
 - [ ] AutoML for custom models
 - [ ] Model deployment and serving
 
 ### MODULE 2.5.3: Azure Data Engineering**
-- [ ] SUBMODULE: Azure Data Stack
+### SUBMODULE: Azure Data Stack
 - [ ] Azure Synapse Analytics
 - [ ] Azure Data Factory: visual orchestration
 - [ ] Azure Databricks: managed Delta Lake
@@ -1056,7 +1056,7 @@
 ### ⏱️ Duration: 3 weeks | **DEPENDENCY**: Phase 2.1, 2.4
 
 ### MODULE 2.6.1: Data Governance Framework**
-- [ ] SUBMODULE: Governance Fundamentals
+### SUBMODULE: Governance Fundamentals
 - [ ] Data classification and taxonomy
 - [ ] Data lineage and impact analysis
 - [ ] Data quality frameworks and SLOs
@@ -1071,7 +1071,7 @@
 - [ ] Create data quality SLOs
 - [ ] Document data access policies
 
-- [ ] SUBMODULE: Metadata Management
+### SUBMODULE: Metadata Management
 - [ ] Metadata repositories
 - [ ] Apache Atlas for metadata management
 - [ ] OpenMetadata platform
@@ -1085,7 +1085,7 @@
 - [ ] Create data glossary
 
 ### MODULE 2.6.2: Data Privacy & Security**
-- [ ] SUBMODULE: Privacy Regulations
+### SUBMODULE: Privacy Regulations
 - [ ] GDPR: requirements and implementation
 - [ ] CCPA: California privacy rights
 - [ ] HIPAA: health information privacy
@@ -1097,7 +1097,7 @@
 - [ ] Design anonymization strategy
 - [ ] Create retention policies
 
-- [ ] SUBMODULE: Security Best Practices
+### SUBMODULE: Security Best Practices
 - [ ] Role-based access control (RBAC)
 - [ ] Attribute-based access control (ABAC)
 - [ ] Column-level security
@@ -1116,7 +1116,7 @@
 ### ⏱️ Duration: 4 weeks | **DEPENDENCY**: All previous Phase 2 modules
 
 ### MODULE 2.7.1: Data Architecture Patterns**
-- [ ] SUBMODULE: Modern Architecture Patterns
+### SUBMODULE: Modern Architecture Patterns
 - [ ] Lambda architecture (batch + real-time)
 - [ ] Kappa architecture (stream-first)
 - [ ] Medallion architecture (Bronze, Silver, Gold)
@@ -1131,7 +1131,7 @@
 - [ ] Compare kappa vs. lambda trade-offs
 - [ ] Implement medallion layers
 
-- [ ] SUBMODULE: Scalability Patterns
+### SUBMODULE: Scalability Patterns
 - [ ] Horizontal vs. vertical scaling
 - [ ] Partitioning strategies
 - [ ] Sharding techniques
@@ -1144,7 +1144,7 @@
 - [ ] Implement tiered storage strategy
 - [ ] Design multi-region replication
 
-- [ ] SUBMODULE: Reliability & Fault Tolerance
+### SUBMODULE: Reliability & Fault Tolerance
 - [ ] Replication strategies (synchronous, asynchronous)
 - [ ] Failover mechanisms
 - [ ] Circuit breakers and bulkheads
@@ -1161,7 +1161,7 @@
 - [ ] Design idempotent operations
 
 ### MODULE 2.7.2: Cost Optimization**
-- [ ] SUBMODULE: Cloud Cost Management
+### SUBMODULE: Cloud Cost Management
 - [ ] Reserved instances vs. on-demand
 - [ ] Spot instances for batch jobs
 - [ ] Data transfer costs
@@ -1175,7 +1175,7 @@
 - [ ] Implement cost allocation tags
 - [ ] Set up budget alerts
 
-- [ ] SUBMODULE: Query Cost Optimization
+### SUBMODULE: Query Cost Optimization
 - [ ] Materialized views and summary tables
 - [ ] Partitioning for partition elimination
 - [ ] Compression and encoding
@@ -1193,31 +1193,31 @@
 
 - [ ] **PROJECT 1: Real-Time Analytics Platform**
 - [ ] **Architecture Components**:
-- [ ] SUBMODULE: Event Streaming
+### SUBMODULE: Event Streaming
 - [ ] Kafka cluster setup (3-node)
 - [ ] Producer for real-time events
 - [ ] Consumer for data ingestion
 - [ ] Schema Registry with multiple schemas
     
-- [ ] SUBMODULE: Stream Processing
+### SUBMODULE: Stream Processing
 - [ ] Flink/Kafka Streams for windowed aggregation
 - [ ] Real-time metric calculation
 - [ ] State management for user sessions
 - [ ] Event-time processing with watermarks
     
-- [ ] SUBMODULE: Storage Layer
+### SUBMODULE: Storage Layer
 - [ ] Data warehouse (Snowflake/BigQuery)
 - [ ] Real-time cache (Redis)
 - [ ] Time-series database (InfluxDB/TimescaleDB)
 - [ ] S3/Cloud Storage for raw events
     
-- [ ] SUBMODULE: Orchestration & Monitoring
+### SUBMODULE: Orchestration & Monitoring
 - [ ] Airflow/Dagster for batch jobs
 - [ ] Monitoring dashboard
 - [ ] Alert system for SLA violations
 - [ ] End-to-end latency tracking
     
-- [ ] SUBMODULE: API Layer
+### SUBMODULE: API Layer
 - [ ] REST API for metrics query
 - [ ] WebSocket for real-time push
 - [ ] Caching strategy
@@ -1233,30 +1233,30 @@
 
 - [ ] **PROJECT 2: Data Lake with Medallion Architecture**
 - [ ] **Implementation**:
-- [ ] SUBMODULE: Bronze Layer
+### SUBMODULE: Bronze Layer
 - [ ] Ingestion from 5+ heterogeneous sources
 - [ ] Raw data storage with metadata
 - [ ] Data cataloging
     
-- [ ] SUBMODULE: Silver Layer
+### SUBMODULE: Silver Layer
 - [ ] Data cleaning and validation
 - [ ] Schema enforcement
 - [ ] Deduplication
 - [ ] Incremental processing
     
-- [ ] SUBMODULE: Gold Layer
+### SUBMODULE: Gold Layer
 - [ ] Dimensional modeling
 - [ ] Fact and dimension tables
 - [ ] Aggregate tables
 - [ ] Business-ready datasets
     
-- [ ] SUBMODULE: Governance & Quality
+### SUBMODULE: Governance & Quality
 - [ ] Data lineage tracking
 - [ ] Quality checks at each layer
 - [ ] Access control and RBAC
 - [ ] Audit logging
     
-- [ ] SUBMODULE: Orchestration
+### SUBMODULE: Orchestration
 - [ ] DAG for each layer
 - [ ] Error handling and recovery
 - [ ] Monitoring and alerts
@@ -1271,22 +1271,22 @@
 
 - [ ] **PROJECT 3: Data Mesh Implementation (Domain-Driven)**
 - [ ] **Setup**:
-- [ ] SUBMODULE: Domain 1 (e.g., User Events)
+### SUBMODULE: Domain 1 (e.g., User Events)
 - [ ] Data product definition
 - [ ] Self-service pipeline
 - [ ] Quality SLOs
     
-- [ ] SUBMODULE: Domain 2 (e.g., Transactions)
+### SUBMODULE: Domain 2 (e.g., Transactions)
 - [ ] Data product definition
 - [ ] Federation pattern
 - [ ] Contracts definition
     
-- [ ] SUBMODULE: Data Contracts & Governance
+### SUBMODULE: Data Contracts & Governance
 - [ ] Contract enforcement
 - [ ] Schema versioning
 - [ ] Cross-domain lineage
     
-- [ ] SUBMODULE: Platform Services
+### SUBMODULE: Platform Services
 - [ ] Data discovery service
 - [ ] Access management
 - [ ] Monitoring and observability
@@ -1438,7 +1438,7 @@
 ### ⏱️ Duration: 5-6 weeks
 
 ### MODULE 3.1.1: Complex System Design Patterns**
-- [ ] SUBMODULE: High-Throughput System Design
+### SUBMODULE: High-Throughput System Design
 - [ ] Designing for 1M+ events per second
 - [ ] Multi-tier data ingest architectures
 - [ ] Message queue scaling strategies
@@ -1451,7 +1451,7 @@
 - [ ] Optimize for 99.99p latency < 100ms
 - [ ] Design automatic failover for edge cases
 
-- [ ] SUBMODULE: Low-Latency System Design
+### SUBMODULE: Low-Latency System Design
 - [ ] End-to-end latency optimization
 - [ ] Sub-millisecond response requirements
 - [ ] In-memory caching strategies
@@ -1464,7 +1464,7 @@
 - [ ] Implement feature store for ML
 - [ ] Build real-time alerting at scale
 
-- [ ] SUBMODULE: Large-Scale Data Lake Design
+### SUBMODULE: Large-Scale Data Lake Design
 - [ ] Petabyte-scale architecture
 - [ ] Multi-tenant data lakes
 - [ ] Data isolation and security
@@ -1477,7 +1477,7 @@
 - [ ] Multi-tenant isolation strategy
 - [ ] Automated data lifecycle
 
-- [ ] SUBMODULE: Event-Driven Architecture at Scale
+### SUBMODULE: Event-Driven Architecture at Scale
 - [ ] Complex event processing (CEP)
 - [ ] Event choreography vs. orchestration
 - [ ] Sagas for distributed transactions
@@ -1490,7 +1490,7 @@
 - [ ] Build complex event matching
 
 ### MODULE 3.1.2: Data Consistency & Tradeoffs**
-- [ ] SUBMODULE: Consistency Models
+### SUBMODULE: Consistency Models
 - [ ] Strong consistency implications
 - [ ] Eventual consistency strategies
 - [ ] Causal consistency
@@ -1503,7 +1503,7 @@
 - [ ] Design consistency strategy for use case
 - [ ] Implement conflict resolution
 
-- [ ] SUBMODULE: Distributed Transactions
+### SUBMODULE: Distributed Transactions
 - [ ] 2-Phase Commit limitations
 - [ ] Saga pattern deep dive
 - [ ] Transactional outbox pattern
@@ -1516,7 +1516,7 @@
 - [ ] Handle distributed rollback
 
 ### MODULE 3.1.3: Multi-Region & Disaster Recovery**
-- [ ] SUBMODULE: Geo-Distributed Systems
+### SUBMODULE: Geo-Distributed Systems
 - [ ] Active-active vs. active-passive
 - [ ] Cross-region replication latency
 - [ ] Data residency requirements
@@ -1529,7 +1529,7 @@
 - [ ] Implement automatic failover
 - [ ] Design data residency compliance
 
-- [ ] SUBMODULE: Disaster Recovery & Business Continuity
+### SUBMODULE: Disaster Recovery & Business Continuity
 - [ ] RTO and RPO calculation for different scenarios
 - [ ] Backup strategies (incremental, differential, full)
 - [ ] Backup validation and testing
@@ -1547,7 +1547,7 @@
 ### ⏱️ Duration: 5-6 weeks | **DEPENDENCY**: Phase 3.1
 
 ### MODULE 3.2.1: Query Engine Internals**
-- [ ] SUBMODULE: Query Optimizer Deep Dive
+### SUBMODULE: Query Optimizer Deep Dive
 - [ ] Cardinality estimation techniques
 - [ ] Join ordering algorithms
 - [ ] Dynamic programming vs. heuristic approaches
@@ -1560,7 +1560,7 @@
 - [ ] Build query optimizer simulator
 - [ ] Calibrate cost parameters
 
-- [ ] SUBMODULE: Columnar Database Engines
+### SUBMODULE: Columnar Database Engines
 - [ ] Arrow in-memory format
 - [ ] Vectorized execution
 - [ ] SIMD operations
@@ -1573,7 +1573,7 @@
 - [ ] Study DuckDB's vectorized engine
 - [ ] Benchmark compression ratios
 
-- [ ] SUBMODULE: Index Structures & Access Paths
+### SUBMODULE: Index Structures & Access Paths
 - [ ] B-tree internals
 - [ ] LSM trees (Log-Structured Merge)
 - [ ] Bitmap indexes
@@ -1587,7 +1587,7 @@
 - [ ] Benchmark index effectiveness
 
 ### MODULE 3.2.2: Advanced Performance Tuning**
-- [ ] SUBMODULE: Storage Optimization
+### SUBMODULE: Storage Optimization
 - [ ] Data type choice impact
 - [ ] String interning and pooling
 - [ ] Null handling optimization
@@ -1599,7 +1599,7 @@
 - [ ] Improve cache hit rate to 95%+
 - [ ] Minimize page faults
 
-- [ ] SUBMODULE: Query Performance Profiling
+### SUBMODULE: Query Performance Profiling
 - [ ] Flame graphs and profiling
 - [ ] CPU sampling
 - [ ] Memory profiling
@@ -1612,7 +1612,7 @@
 - [ ] Set up continuous performance monitoring
 - [ ] Identify and fix 50% of performance issues
 
-- [ ] SUBMODULE: Machine Learning for Query Optimization
+### SUBMODULE: Machine Learning for Query Optimization
 - [ ] ML-based cardinality estimation
 - [ ] Learned indexes
 - [ ] Query rewriting with ML
@@ -1622,7 +1622,7 @@
 - [ ] Evaluate ML-based approaches
 
 ### MODULE 3.2.3: Cost Analysis & Optimization**
-- [ ] SUBMODULE: TCO (Total Cost of Ownership)
+### SUBMODULE: TCO (Total Cost of Ownership)
 - [ ] Compute cost modeling
 - [ ] Storage cost breakdown
 - [ ] Network transfer costs
@@ -1634,7 +1634,7 @@
 - [ ] Compare cloud providers
 - [ ] Identify cost reduction opportunities
 
-- [ ] SUBMODULE: Resource Utilization
+### SUBMODULE: Resource Utilization
 - [ ] CPU utilization optimization
 - [ ] Memory efficiency
 - [ ] Network bandwidth optimization
@@ -1651,7 +1651,7 @@
 ### ⏱️ Duration: 4-5 weeks | **DEPENDENCY**: Phase 2.1
 
 ### MODULE 3.3.1: Modern Data Formats Deep Dive**
-- [ ] SUBMODULE: Arrow Ecosystem
+### SUBMODULE: Arrow Ecosystem
 - [ ] Arrow columnar format
 - [ ] Flight protocol for data transfer
 - [ ] Arrow compute kernels
@@ -1663,7 +1663,7 @@
 - [ ] Use Flight for efficient data transfer
 - [ ] Benchmark Arrow vs. Parquet
 
-- [ ] SUBMODULE: Iceberg, Hudi, Delta Format Wars
+### SUBMODULE: Iceberg, Hudi, Delta Format Wars
 - [ ] Apache Iceberg: table format, versioning, metadata
 - [ ] Delta Lake: ACID transactions, DML
 - [ ] Apache Hudi: incremental processing
@@ -1675,7 +1675,7 @@
 - [ ] Benchmark performance and cost
 - [ ] Migration between formats
 
-- [ ] SUBMODULE: Codec & Compression Deep Dive
+### SUBMODULE: Codec & Compression Deep Dive
 - [ ] Snappy, Gzip, Zstandard, Brotli
 - [ ] DEFLATE compression
 - [ ] Entropy encoding
@@ -1689,7 +1689,7 @@
 - [ ] Implement custom compression for specific data
 
 ### MODULE 3.3.2: Protocol Buffers & Schema Evolution**
-- [ ] SUBMODULE: Protocol Buffers Mastery
+### SUBMODULE: Protocol Buffers Mastery
 - [ ] Proto3 specification
 - [ ] Message definition best practices
 - [ ] Service definition
@@ -1701,7 +1701,7 @@
 - [ ] Implement gRPC service for data
 - [ ] Benchmark proto vs. JSON performance
 
-- [ ] SUBMODULE: Schema Evolution & Compatibility
+### SUBMODULE: Schema Evolution & Compatibility
 - [ ] Breaking vs. non-breaking changes
 - [ ] Version management strategies
 - [ ] Runtime schema validation
@@ -1719,7 +1719,7 @@
 ### ⏱️ Duration: 5-6 weeks | **DEPENDENCY**: Phase 2.2
 
 ### MODULE 3.4.1: Advanced Stream Processing**
-- [ ] SUBMODULE: State Management at Scale
+### SUBMODULE: State Management at Scale
 - [ ] Stateful stream processing patterns
 - [ ] State backend architectures
 - [ ] RocksDB and embedded stores
@@ -1732,7 +1732,7 @@
 - [ ] Implement state migration without downtime
 - [ ] Manage 100GB+ state efficiently
 
-- [ ] SUBMODULE: Complex Event Processing (CEP)
+### SUBMODULE: Complex Event Processing (CEP)
 - [ ] Pattern detection algorithms
 - [ ] Nondeterministic finite automata (NFA)
 - [ ] Event ordering guarantees
@@ -1744,7 +1744,7 @@
 - [ ] Implement fraud detection system
 - [ ] Build anomaly detection engine
 
-- [ ] SUBMODULE: Streaming Joins & Windowed Operations
+### SUBMODULE: Streaming Joins & Windowed Operations
 - [ ] Stream-stream joins
 - [ ] Stream-table joins (enrichment)
 - [ ] Table-stream joins
@@ -1759,7 +1759,7 @@
 - [ ] Implement windowed aggregations with late data
 
 ### MODULE 3.4.2: Streaming Analytics & Metrics**
-- [ ] SUBMODULE: Real-Time Aggregation
+### SUBMODULE: Real-Time Aggregation
 - [ ] Incremental aggregation algorithms
 - [ ] Approximate aggregation (HyperLogLog, Bloom filters)
 - [ ] Quantile estimation
@@ -1771,7 +1771,7 @@
 - [ ] Build quantile estimation
 - [ ] Create sketch-based histograms
 
-- [ ] SUBMODULE: Feature Engineering in Streaming
+### SUBMODULE: Feature Engineering in Streaming
 - [ ] Feature extraction from raw events
 - [ ] Feature aggregation windows
 - [ ] Time-lagged features
@@ -1823,7 +1823,7 @@
 ### ⏱️ Duration: 6+ weeks (Choose 1-2)
 
 - [ ] **SPECIALIZATION A: Data Lake & Data Mesh Platform Engineer**
-- [ ] SUBMODULE: Lake Architecture
+### SUBMODULE: Lake Architecture
 - [ ] Multi-layer data lake design
 - [ ] Data lakehouse patterns
 - [ ] Unified metadata layer
@@ -1836,7 +1836,7 @@
 - [ ] Implement self-service capabilities
 - [ ] Create cost allocation system
 
-- [ ] SUBMODULE: Data Mesh Platform
+### SUBMODULE: Data Mesh Platform
 - [ ] Domain-driven ownership
 - [ ] Data product standards
 - [ ] Platform federation services
@@ -1851,7 +1851,7 @@
 - [ ] Create domain onboarding automation
 
 - [ ] **SPECIALIZATION B: Machine Learning Ops & Feature Engineering**
-- [ ] SUBMODULE: ML Feature Pipelines
+### SUBMODULE: ML Feature Pipelines
 - [ ] Feature engineering at scale
 - [ ] Feature store architecture (Tecton, Feast)
 - [ ] Online vs. offline feature serving
@@ -1865,7 +1865,7 @@
 - [ ] Monitor feature drift
 - [ ] Version and rollback features
 
-- [ ] SUBMODULE: ML Infrastructure
+### SUBMODULE: ML Infrastructure
 - [ ] Model training pipelines
 - [ ] Experiment tracking systems
 - [ ] Model registry and versioning
@@ -1880,7 +1880,7 @@
 - [ ] Monitor model performance
 
 - [ ] **SPECIALIZATION C: Real-Time Analytics & Streaming Infrastructure**
-- [ ] SUBMODULE: Real-Time OLAP
+### SUBMODULE: Real-Time OLAP
 - [ ] Streaming data warehouse
 - [ ] Time-series databases at scale
 - [ ] Real-time dimension updates
@@ -1892,7 +1892,7 @@
 - [ ] Support millisecond queries
 - [ ] Implement real-time dashboards
 
-- [ ] SUBMODULE: Stream Processing Infrastructure
+### SUBMODULE: Stream Processing Infrastructure
 - [ ] Streaming platform as service
 - [ ] Stream catalog
 - [ ] Sharing stream protocols
@@ -1906,7 +1906,7 @@
 - [ ] Auto-scaling orchestration
 
 - [ ] **SPECIALIZATION D: Data Quality & Observability**
-- [ ] SUBMODULE: Data Quality at Scale
+### SUBMODULE: Data Quality at Scale
 - [ ] Quality framework architecture
 - [ ] Automated quality tests
 - [ ] Quality metrics and SLOs
@@ -1919,7 +1919,7 @@
 - [ ] Create quality alerting system
 - [ ] Develop quality dashboard
 
-- [ ] SUBMODULE: Observability & Monitoring
+### SUBMODULE: Observability & Monitoring
 - [ ] Data pipeline observability
 - [ ] End-to-end tracing
 - [ ] Metric collection and aggregation
@@ -2020,7 +2020,7 @@
 ### ⏱️ Duration: 6-8 weeks
 
 ### MODULE 4.1.1: Full Stack Data Platform Thinking**
-- [ ] SUBMODULE: End-to-End Integration
+### SUBMODULE: End-to-End Integration
 - [ ] Data collection strategy (SDKs, APIs, logs)
 - [ ] Quality by design principles
 - [ ] Unified metadata layer
@@ -2033,7 +2033,7 @@
 - [ ] Integrate 10+ disparate systems
 - [ ] Unified SLO framework
 
-- [ ] SUBMODULE: Organizational Data Culture
+### SUBMODULE: Organizational Data Culture
 - [ ] Data democratization
 - [ ] Self-service analytics adoption
 - [ ] Data literacy programs
@@ -2043,7 +2043,7 @@
 - [ ] ROI measurement
 
 ### MODULE 4.1.2: Emerging Technologies & Research**
-- [ ] SUBMODULE: Novel Data Systems
+### SUBMODULE: Novel Data Systems
 - [ ] GPU-accelerated databases (RAPIDS, OmniSci)
 - [ ] Quantum computing implications
 - [ ] Federated learning infrastructure
@@ -2055,7 +2055,7 @@
 - [ ] POC 2+ emerging technologies
 - [ ] Publish findings
 
-- [ ] SUBMODULE: Industry Trends
+### SUBMODULE: Industry Trends
 - [ ] Serverless data processing
 - [ ] Disaggregated storage-compute
 - [ ] Unified data + AI platforms
@@ -2133,7 +2133,7 @@
 ### ⏱️ Duration: Ongoing
 
 ### MODULE 4.4.1: Technical Strategy**
-- [ ] SUBMODULE: Technology Roadmap
+### SUBMODULE: Technology Roadmap
 - [ ] 3-5 year platform evolution
 - [ ] Emerging tech assessment
 - [ ] Build vs. buy decisions
@@ -2150,7 +2150,7 @@
 - [ ] Hiring strategy
 
 ### MODULE 4.4.2: Business Impact**
-- [ ] SUBMODULE: Value Quantification
+### SUBMODULE: Value Quantification
 - [ ] ROI measurement for data initiatives
 - [ ] Time-to-value optimization
 - [ ] Cost-benefit analysis rigor
@@ -3949,7 +3949,7 @@ Track progress at phase, module, and sub-module levels
 ```
 - [ ] PHASE 1.1: Foundation Prerequisites (3-4 weeks)
 - [ ] MODULE 1.1.1: Programming Fundamentals
-- [ ] SUBMODULE: Python Mastery
+### SUBMODULE: Python Mastery
 - [ ] Variables, data types, control flow
 - [ ] Functions and OOP
 ```
