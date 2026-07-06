@@ -1046,7 +1046,7 @@ function buildSectionAccordion(section, secIdx, phaseListEl) {
   // stays a direct child of .section-accordion — that's required for the
   // open > .section-acc-body CSS selector (and the expand/collapse JS) to work.
   acc.innerHTML = `
-    <div class="section-acc-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="section-acc-header" onclick="toggleSection(this.parentElement)">
       <div class="section-acc-left">
         <div class="section-acc-title-row">
           <span class="section-acc-label">${esc(section.label)}</span>
@@ -1519,8 +1519,41 @@ function applyCurrentFilter() {
 // ═══════════════════════════════════════════
 //  ACCORDION
 // ═══════════════════════════════════════════
-function togglePhase(card)    { card.classList.toggle('open'); }
-function toggleModule(group)  { group.classList.toggle('open'); }
+// Each of these three toggles behaves as an accordion: opening one
+// closes every sibling at the same level (same parent), so at most one
+// section / one phase-card (per section) / one module-group (per parent)
+// is ever open at a time. Clicking an already-open item just closes it.
+
+// Sections are all siblings directly under #main-content (or under the
+// roadmap overview wrap), so "siblings" = every other .section-accordion
+// in the whole roadmap view.
+function toggleSection(acc) {
+  const willOpen = !acc.classList.contains('open');
+  document.querySelectorAll('.section-accordion.open').forEach(other => {
+    if (other !== acc) other.classList.remove('open');
+  });
+  acc.classList.toggle('open', willOpen);
+}
+
+// Phases are siblings within the same .phase-list (i.e. the same
+// section), so only close other phase-cards that share this card's
+// direct parent — phases in a different section are untouched.
+function togglePhase(card) {
+  const willOpen = !card.classList.contains('open');
+  const siblings = card.parentElement ? card.parentElement.querySelectorAll(':scope > .phase-card') : [];
+  siblings.forEach(sib => { if (sib !== card) sib.classList.remove('open'); });
+  card.classList.toggle('open', willOpen);
+}
+
+// Modules (and submodules/topics, which reuse .module-group at deeper
+// levels) are siblings within whichever body they're nested in — close
+// only the other module-groups sharing this group's direct parent.
+function toggleModule(group) {
+  const willOpen = !group.classList.contains('open');
+  const siblings = group.parentElement ? group.parentElement.querySelectorAll(':scope > .module-group') : [];
+  siblings.forEach(sib => { if (sib !== group) sib.classList.remove('open'); });
+  group.classList.toggle('open', willOpen);
+}
 function expandAll()  {
   document.querySelectorAll('.section-accordion').forEach(s=>s.classList.add('open'));
   document.querySelectorAll('.phase-card').forEach(c=>c.classList.add('open'));
