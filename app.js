@@ -1002,20 +1002,14 @@ function renderSupporting(supporting, id) {
     return `<p class="supp-caption">${esc(supporting.text)}</p>`;
   }
   return `<div class="supp-notes" id="supp-${id}">
-    <div class="supp-notes-header" onclick="this.parentElement.classList.toggle('open')">
-      <span class="supp-notes-icon">ⓘ</span>
-      <span class="supp-notes-label">Notes</span>
-      <svg class="supp-notes-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-    </div>
-    <div class="supp-notes-body"><div class="supp-notes-body-inner">${renderSuppBlocks(supporting.blocks)}</div></div>
+    <div class="supp-notes-body-inner">${renderSuppBlocks(supporting.blocks)}</div>
   </div>`;
 }
 // Used for the roadmap-level overview and section dividers — both are
-// "supporting content with no parent accordion to nest inside," so unlike
-// the phase/module Notes panel (which stays closed to protect the
-// checklist), this defaults OPEN, same as submodules/topics do — it's
-// still a real collapsible wrapped to its own heading row, just not
-// hidden by default since there's no checklist here to protect.
+// "supporting content with no parent accordion to nest inside." Notes
+// are no longer their own collapsible; they render directly, always
+// visible, right under whichever header (roadmap / section / phase /
+// module) they belong to.
 // Used only for the roadmap-level overview (no section label to attach to).
 // Returns a ready-to-append DOM element.
 function buildRoadmapOverviewEl(supporting) {
