@@ -1481,34 +1481,227 @@ function clearSearch() {
   applyCurrentFilter();
 }
 function applyCurrentFilter() {
-  const q = (document.getElementById('search')?.value||'').trim().toLowerCase();
+  const q = document.getElementById('search')?.value || '';
   let any = false;
+
+  // State filter (All / Active / Done / Not started) still hides cards —
+  // that's a separate concern from text search below.
   document.querySelectorAll('.phase-card').forEach(card => {
-    const stateMatch = _filter==='all' || card.dataset.state===_filter;
-    let searchMatch  = true;
-    if (q) {
-      const title = card.querySelector('.phase-name')?.textContent.toLowerCase()||'';
-      const tasks = [...card.querySelectorAll('.task-text')].some(t=>t.textContent.toLowerCase().includes(q));
-      searchMatch = tasks || title.includes(q);
-    }
-    const show = stateMatch && searchMatch;
+    const show = _filter === 'all' || card.dataset.state === _filter;
     card.style.display = show ? '' : 'none';
     if (show) any = true;
-    if (show && (q || _filter!=='all')) card.classList.add('open');
   });
-
-  // Section accordions: hide the whole accordion if none of its phases are
-  // visible, and auto-expand it if any are (so a match is never hiding
-  // inside a collapsed section the user just filtered for).
   document.querySelectorAll('.section-accordion').forEach(acc => {
     const visible = [...acc.querySelectorAll('.phase-card')].some(c => c.style.display !== 'none');
     acc.style.display = visible ? '' : 'none';
-    if (visible && (q || _filter !== 'all')) acc.classList.add('open');
   });
 
   const noRes = document.getElementById('no-results');
   if (noRes) noRes.style.display = any ? 'none' : 'block';
+
+  // Text search never hides anything and never forces accordions open —
+  // everything stays exactly as expanded/collapsed as the user left it.
+  // Matches are highlighted instead (see updateSearchHighlights below);
+  // use the ▲/▼ nav buttons to actually jump to one.
+  updateSearchHighlights(q);
 }
+
+// ═══════════════════════════════════════════
+//  SEARCH — highlighting + match navigation
+//
+//  Runs against the ENTIRE roadmap regardless of what's currently
+//  expanded: section labels, phase names, module/submodule/topic titles
+//  (all share .module-title, so one selector covers every depth), task
+//  text, and Notes content. This fixes search only ever seeming to work
+//  on whatever accordion happened to already be open — every leaf below
+//  is queried straight from the DOM, open or not.
+//
+//  Matches are wrapped in <mark class="search-hit"> (yellow), and every
+//  ancestor container of a match — its module-group(s), phase-card, and
+//  section-accordion — gets a yellow outline via .search-highlight. Since
+//  a collapsed accordion only hides its *body* (the header stays visible),
+//  that outline is visible right away at whatever level is currently
+//  shown, and the next level's outline reveals itself the moment you
+//  expand down into it — so no extra JS is needed to "progressively"
+//  reveal the trail, the existing collapse CSS does it for free.
+// ═══════════════════════════════════════════
+let _searchMatches = [];   // ordered <mark class="search-hit"> elements, top-to-bottom
+let _searchIdx = -1;
+
+const SEARCH_LEAF_SELECTOR = [
+  '.section-acc-label', '.phase-name', '.module-title', '.task-text',
+  '.supp-caption', '.supp-notes-body-inner p',
+  '.supp-notes-body-inner li', '.supp-notes-body-inner code'
+].join(', ');
+
+// Wraps every case-insensitive occurrence of `needle` in rawText with a
+// <mark>. Safe to call repeatedly/every keystroke: it always rebuilds from
+// el.textContent (which — since <mark> only adds tags, never characters —
+// stays equal to the original text even after a previous highlight pass).
+function highlightLeafText(rawText, needle) {
+  if (!needle) return { html: esc(rawText), matched: false };
+  const lower = rawText.toLowerCase();
+  let i = 0, out = '', matched = false, found;
+  while ((found = lower.indexOf(needle, i)) !== -1) {
+    matched = true;
+    out += esc(rawText.slice(i, found));
+    out += `<mark class="search-hit">${esc(rawText.slice(found, found + needle.length))}</mark>`;
+    i = found + needle.length;
+  }
+  out += esc(rawText.slice(i));
+  return { html: out, matched };
+}
+
+function updateSearchHighlights(rawQuery) {
+  ensureSearchStyles();
+  const q = rawQuery.trim().toLowerCase();
+
+  // Clear last pass's borders before recomputing this one.
+  document.querySelectorAll('.search-highlight').forEach(el => el.classList.remove('search-highlight'));
+
+  document.querySelectorAll(SEARCH_LEAF_SELECTOR).forEach(el => {
+    const { html, matched } = highlightLeafText(el.textContent, q);
+    el.innerHTML = html;
+    if (!matched) return;
+    // Walk every nested module-group (module → submodule → topic → …)
+    // up from this leaf, then its phase, then its section.
+    let node = el.closest('.module-group');
+    while (node) {
+      node.classList.add('search-highlight');
+      node = node.parentElement ? node.parentElement.closest('.module-group') : null;
+    }
+    el.closest('.phase-card')?.classList.add('search-highlight');
+    el.closest('.section-accordion')?.classList.add('search-highlight');
+  });
+
+  _searchMatches = [...document.querySelectorAll('.search-hit')];
+  _searchIdx = -1;
+  updateSearchNavUI();
+}
+
+// Injects the highlight/border/nav-button styles once. No separate CSS
+// file to add these to, so they're added straight to <head> on first use.
+function ensureSearchStyles() {
+  if (document.getElementById('search-highlight-styles')) return;
+  const style = document.createElement('style');
+  style.id = 'search-highlight-styles';
+  style.textContent = `
+    .search-hit{background:#fde047;color:#1a1a1a;border-radius:2px;padding:0 1px;box-shadow:0 0 0 1px rgba(202,138,4,.35);}
+    .search-hit.search-hit-current{background:#f59e0b;color:#1a1a1a;box-shadow:0 0 0 2px #b45309;}
+    .search-highlight{outline:2px solid #eab308;outline-offset:2px;border-radius:10px;}
+    #search-match-nav{display:inline-flex;align-items:center;gap:6px;margin-left:8px;font-size:12px;white-space:nowrap;}
+    #search-match-nav.hidden{display:none;}
+    .search-nav-btn{background:none;border:1px solid rgba(148,163,184,.4);color:inherit;border-radius:6px;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:11px;line-height:1;padding:0;}
+    .search-nav-btn:hover:not(:disabled){background:rgba(234,179,8,.15);border-color:#eab308;}
+    .search-nav-btn:disabled{opacity:.35;cursor:default;}
+    #search-match-count{opacity:.75;min-width:3.5em;text-align:center;}
+  `;
+  document.head.appendChild(style);
+}
+
+// Builds the ▲ [n/n] ▼ control once, right next to the search box (using
+// #search-clear, or the input itself, as an anchor since there's no
+// dedicated markup for it in the HTML).
+function ensureSearchNavUI() {
+  if (document.getElementById('search-match-nav')) return;
+  const anchor = document.getElementById('search-clear') || document.getElementById('search');
+  if (!anchor || !anchor.parentElement) return;
+  const nav = document.createElement('span');
+  nav.id = 'search-match-nav';
+  nav.className = 'hidden';
+  nav.innerHTML = `
+    <button type="button" class="search-nav-btn" id="search-nav-prev" title="Previous match" onclick="searchPrev()">▲</button>
+    <span id="search-match-count">0/0</span>
+    <button type="button" class="search-nav-btn" id="search-nav-next" title="Next match" onclick="searchNext()">▼</button>`;
+  anchor.insertAdjacentElement('afterend', nav);
+}
+
+function updateSearchNavUI() {
+  ensureSearchNavUI();
+  const nav = document.getElementById('search-match-nav');
+  if (!nav) return;
+  const hasQuery = (document.getElementById('search')?.value || '').trim().length > 0;
+  nav.classList.toggle('hidden', !hasQuery);
+  const total = _searchMatches.length;
+  const current = _searchIdx >= 0 ? _searchIdx + 1 : 0;
+  const countEl = document.getElementById('search-match-count');
+  if (countEl) countEl.textContent = `${current}/${total}`;
+  const disabled = total === 0;
+  const prevBtn = document.getElementById('search-nav-prev');
+  const nextBtn = document.getElementById('search-nav-next');
+  if (prevBtn) prevBtn.disabled = disabled;
+  if (nextBtn) nextBtn.disabled = disabled;
+}
+
+// Opens `el` and closes every sibling at the same level — the same
+// exclusive-accordion rule toggleSection/togglePhase/toggleModule use,
+// just driven programmatically instead of by a click. `global` mirrors
+// toggleSection's document-wide scope (sections aren't guaranteed to share
+// a single parent the way phase-cards/module-groups do).
+function openExclusive(el, siblingSelector, global) {
+  if (global) {
+    document.querySelectorAll(siblingSelector + '.open').forEach(o => { if (o !== el) o.classList.remove('open'); });
+  } else if (el.parentElement) {
+    el.parentElement.querySelectorAll(':scope > ' + siblingSelector).forEach(sib => { if (sib !== el) sib.classList.remove('open'); });
+  }
+  el.classList.add('open');
+}
+
+// Expands exactly the chain of accordions leading to `mark` — its
+// section, its phase, and every module-group from outermost to
+// innermost — closing whatever sibling accordions were open at each
+// level along the way, then leaves everything else untouched.
+function revealSearchMatch(mark) {
+  const moduleChain = [];
+  let node = mark.closest('.module-group');
+  while (node) {
+    moduleChain.unshift(node);
+    node = node.parentElement ? node.parentElement.closest('.module-group') : null;
+  }
+  const phase   = mark.closest('.phase-card');
+  const section = mark.closest('.section-accordion');
+
+  if (section) openExclusive(section, '.section-accordion', true);
+  if (phase)   openExclusive(phase, '.phase-card', false);
+  moduleChain.forEach(mg => openExclusive(mg, '.module-group', false));
+}
+
+function goToSearchMatch(idx) {
+  const m = _searchMatches;
+  if (!m.length) { updateSearchNavUI(); return; }
+  _searchIdx = ((idx % m.length) + m.length) % m.length; // wraps both directions
+
+  document.querySelectorAll('.search-hit-current').forEach(el => el.classList.remove('search-hit-current'));
+  const mark = m[_searchIdx];
+  revealSearchMatch(mark);
+  mark.classList.add('search-hit-current');
+
+  // Let the just-opened accordions finish expanding before scrolling, then
+  // nudge past the sticky header/toolbar/dashboard stack if it still covers it.
+  requestAnimationFrame(() => {
+    mark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => {
+      const stickyBar = document.querySelector('.sticky-bar');
+      const stickyBottom = stickyBar ? stickyBar.getBoundingClientRect().bottom : 0;
+      const rect = mark.getBoundingClientRect();
+      if (rect.top < stickyBottom) window.scrollBy({ top: rect.top - stickyBottom - 12, behavior: 'smooth' });
+    }, 260);
+  });
+
+  updateSearchNavUI();
+}
+function searchNext() { goToSearchMatch(_searchIdx + 1); }
+function searchPrev() { goToSearchMatch(_searchIdx < 0 ? -1 : _searchIdx - 1); }
+
+// Enter (in the search box) jumps to the next match, Shift+Enter to the
+// previous — delegated on document since the #search input is built into
+// the page's own HTML, not created by this script.
+document.addEventListener('keydown', e => {
+  if (e.target && e.target.id === 'search' && e.key === 'Enter') {
+    e.preventDefault();
+    e.shiftKey ? searchPrev() : searchNext();
+  }
+});
 
 // ═══════════════════════════════════════════
 //  ACCORDION
