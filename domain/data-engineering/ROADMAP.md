@@ -1,14 +1,5 @@
 > # 🎯 COMPREHENSIVE DATA ENGINEERING CAREER ROADMAP: Beginner → Expert (Autodidact Optimized)
 
----
-
-## Pre-Roadmap Requirements
-- **Estimated Timeline**: 18-24 months (Beginner to Expert, 15-20 hrs/week)
-- **Prerequisites**: Basic programming knowledge (any language), mathematics fundamentals
-- **Success Metrics**: Portfolio projects, certifications, real-world contributions, interview readiness
-- **Learning Philosophy**: Learn → Build → Deploy → Contribute → Master
-
----
 
 ## Core Learning Pillars (Throughout Entire Journey)
 1. **Foundation**: Programming, SQL, Data Structures
@@ -21,9 +12,7 @@
 ---
 
 # > LEVEL 1: BEGINNER DATA ENGINEER
-## Timeline: 3-4 months | Target: Foundation & First Production-Ready Skills
-
----
+Target: Foundation & First Production-Ready Skills
 
 ## PHASE 1.1: FOUNDATIONAL PREREQUISITES
 ### ⏱️ Duration: 3-4 weeks
