@@ -1405,10 +1405,11 @@ Prerequisites
 
 
 > # 🎯 DATA ENGINEERING CAREER ROADMAP - PART 3
-Level 3 & 4: ADVANCED & EXPERT DATA ENGINEER
-Target: System Design, Innovation, Leadership
 
-LEVEL 3: ADVANCED DATA ENGINEER
+Level 3: ADVANCED
+
+Target: System Design & Achitecture
+
 Prerequisites
 - ✅ Completion of Intermediate Level (Part 2)
 - ✅ 2-3 years data engineering experience OR equivalent skill level
@@ -1988,8 +1989,14 @@ Prerequisites
 
 ---
 
-> # LEVEL 4: EXPERT DATA ENGINEER
-## Prerequisites
+
+> # 🎯 DATA ENGINEERING CAREER ROADMAP - PART 4
+
+LEVEL 4: EXPERT
+
+Target: Innovation and Leadership
+
+Prerequisites
 - ✅ Completion of Advanced Level (Level 3)
 - ✅ 5+ years of comprehensive experience
 - ✅ Recognized expertise in specialized domain
@@ -2428,9 +2435,7 @@ This roadmap is designed to be:
 **Good luck on your Data Engineering journey! 🚀**
 
 
-> # 🎯 DATA ENGINEERING CAREER ROADMAP - PART 4: Executive Summary, Career Strategy & Tactical Execution Guide
-
----
+> # Executive Summary, Career Strategy & Tactical Execution Guide
 
 # EXECUTIVE SUMMARY & STRATEGIC OVERVIEW
 
