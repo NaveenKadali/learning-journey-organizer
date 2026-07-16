@@ -17,6 +17,7 @@
       --c-done:     #22c55e;
       --c-active:   #f97316;
       --c-reset:    #ef4444;
+      --c-search:   #eab308;
       --radius: 10px;
       --font-head: 'Syne', sans-serif;
       --font-body: 'DM Sans', sans-serif;
@@ -475,9 +476,10 @@
     .filter-btn.active.f-notstarted { color:var(--text-muted); }
     .filter-btn.active.f-done       { color:var(--c-done); border-color:rgba(34,197,94,.3); background:rgba(34,197,94,.06); }
 
-    /* Search no longer greedily fills all remaining space (that's what
-       pulled visual weight to the right) — it now has a sane max-width
-       and sits as its own balanced cluster on the right. */
+    /* Search box + match-nav buttons travel together as one cluster so
+       toolbar-inner's space-between still only sees two groups (filters,
+       search) rather than being thrown off by a third item. */
+    .search-cluster { display:flex; align-items:center; gap:6px; }
     .search-wrap { flex:0 1 260px; min-width:140px; max-width:260px; position:relative; }
     .search-icon { position:absolute; left:11px; top:50%; transform:translateY(-50%); color:var(--text-dim); pointer-events:none; }
     .search-input {
@@ -497,12 +499,32 @@
     .search-clear:hover { color:var(--text); }
     .search-clear.visible { display:block; }
 
-    /* Mobile: let the search box take the full row below the filter
+    /* Prev/next match nav — only shown once there's an active query
+       (toggled via .hidden from app.js), sits right of the search box. */
+    .search-nav { display:flex; align-items:center; gap:4px; flex-shrink:0; }
+    .search-nav.hidden { display:none; }
+    .search-nav-btn {
+      display:flex; align-items:center; justify-content:center;
+      width:23px; height:23px; border-radius:6px;
+      background:transparent; border:1px solid var(--border); color:var(--text-dim);
+      cursor:pointer; transition:all .13s; padding:0;
+    }
+    .search-nav-btn:hover:not(:disabled) {
+      border-color:var(--c-search); color:var(--c-search); background:rgba(234,179,8,.08);
+    }
+    .search-nav-btn:disabled { opacity:.35; cursor:default; }
+    .search-nav-count {
+      font-family:var(--font-mono); font-size:.62rem; color:var(--text-dim);
+      min-width:32px; text-align:center; letter-spacing:.02em;
+    }
+
+    /* Mobile: let the search cluster take the full row below the filter
        cluster, rather than squeezing into leftover space. */
     @media (max-width:640px) {
       .toolbar-inner { justify-content:flex-start; }
       .toolbar-left { width:100%; }
-      .search-wrap { flex:1 1 100%; max-width:none; order:2; }
+      .search-cluster { flex:1 1 100%; order:2; }
+      .search-wrap { flex:1 1 auto; max-width:none; }
     }
 
     .more-wrap { position:relative; }
@@ -813,26 +835,16 @@
       font-size:.75rem; color:var(--text-dim); font-style:italic;
       line-height:1.5; margin:0 0 10px 0; padding-left:2px;
     }
-    .supp-notes { margin:0 0 10px 0; }
-    .supp-notes-header {
-      display:flex; align-items:center; gap:6px;
-      padding:5px 9px; border-radius:5px; border:1px solid var(--border);
-      background:transparent; cursor:pointer; user-select:none; transition:all .13s;
+    /* Notes render inline, always visible — no header/chevron/toggle,
+       just a quiet labeled box so it still reads as "supporting info"
+       rather than being mistaken for content at the same level as the
+       checklist above/below it. */
+    .supp-notes {
+      margin:0 0 10px 0; border:1px solid var(--border); border-radius:5px;
+      background:transparent;
     }
-    .supp-notes-header:hover { background:var(--surface2); }
-    .supp-notes.open .supp-notes-header { background:rgba(139,92,246,.07); border-color:rgba(139,92,246,.3); }
-    .supp-notes-icon { font-size:.72rem; flex-shrink:0; opacity:.8; }
-    .supp-notes-label {
-      font-family:var(--font-mono); font-size:.6rem; letter-spacing:.08em;
-      text-transform:uppercase; color:var(--text-dim); flex:1;
-    }
-    .supp-notes.open .supp-notes-label { color:var(--c-progress); }
-    .supp-notes-chevron { color:var(--text-dim); transition:transform .18s; flex-shrink:0; opacity:.5; }
-    .supp-notes.open .supp-notes-chevron { transform:rotate(180deg); opacity:1; }
-    .supp-notes-body { max-height:0; overflow:hidden; transition:max-height .28s cubic-bezier(.4,0,.2,1); }
-    .supp-notes.open .supp-notes-body { max-height:9999px; }
     .supp-notes-body-inner {
-      padding:10px 4px 2px 4px; font-size:.78rem; color:var(--text-dim); line-height:1.55;
+      padding:10px 12px; font-size:.78rem; color:var(--text-dim); line-height:1.55;
     }
     .supp-notes-body-inner p { margin:0 0 8px 0; }
     .supp-notes-body-inner ul, .supp-notes-body-inner ol { margin:0 0 8px 0; padding-left:18px; }
@@ -875,6 +887,28 @@
     .task-item input:checked ~ .task-text {
       color:var(--text-dim); text-decoration:line-through;
       text-decoration-color:var(--text-dim);
+    }
+
+    /* ── SEARCH HIGHLIGHTING ──────────────────────
+       Matches (in section labels, phase names, module/submodule/topic
+       titles, task text, and Notes) get wrapped in <mark class="search-
+       hit">. Every ancestor of a match — its module-group(s), phase-card,
+       and section-accordion — gets an outline ring too. Collapsing an
+       accordion only hides its *body*, never its header, so the ring on
+       an ancestor is visible right away wherever you currently are;
+       expanding one level in reveals the next ring, cascading down to
+       the match itself with no extra JS needed to stage the reveal. */
+    mark.search-hit {
+      background:var(--c-search); color:#1a1a1a;
+      border-radius:3px; padding:0 2px; box-shadow:0 0 0 1px rgba(202,138,4,.4);
+    }
+    mark.search-hit.search-hit-current {
+      background:#f59e0b; box-shadow:0 0 0 2px #b45309;
+    }
+    .section-accordion.search-highlight,
+    .phase-card.search-highlight,
+    .module-group.search-highlight {
+      outline:2px solid var(--c-search); outline-offset:2px; border-radius:var(--radius);
     }
 
     /* ── RESOURCES PANEL ──────────────────────── */
@@ -1232,10 +1266,21 @@
         </div>
       </div>
     </div>
-    <div class="search-wrap">
-      <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input class="search-input" id="search" type="text" placeholder="Search tasks…" oninput="onSearchInput()">
-      <button class="search-clear" id="search-clear" title="Clear search" onclick="clearSearch()">✕</button>
+    <div class="search-cluster">
+      <div class="search-wrap">
+        <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input class="search-input" id="search" type="text" placeholder="Search tasks…" oninput="onSearchInput()">
+        <button class="search-clear" id="search-clear" title="Clear search" onclick="clearSearch()">✕</button>
+      </div>
+      <div class="search-nav hidden" id="search-match-nav">
+        <button type="button" class="search-nav-btn" id="search-nav-prev" title="Previous match (Shift+Enter)" onclick="searchPrev()">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="18 15 12 9 6 15"/></svg>
+        </button>
+        <span class="search-nav-count" id="search-match-count">0/0</span>
+        <button type="button" class="search-nav-btn" id="search-nav-next" title="Next match (Enter)" onclick="searchNext()">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+      </div>
     </div>
   </div>
 </div>
