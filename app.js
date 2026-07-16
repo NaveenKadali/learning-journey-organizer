@@ -1553,7 +1553,6 @@ function highlightLeafText(rawText, needle) {
 }
 
 function updateSearchHighlights(rawQuery) {
-  ensureSearchStyles();
   const q = rawQuery.trim().toLowerCase();
 
   // Clear last pass's borders before recomputing this one.
@@ -1579,45 +1578,10 @@ function updateSearchHighlights(rawQuery) {
   updateSearchNavUI();
 }
 
-// Injects the highlight/border/nav-button styles once. No separate CSS
-// file to add these to, so they're added straight to <head> on first use.
-function ensureSearchStyles() {
-  if (document.getElementById('search-highlight-styles')) return;
-  const style = document.createElement('style');
-  style.id = 'search-highlight-styles';
-  style.textContent = `
-    .search-hit{background:#fde047;color:#1a1a1a;border-radius:2px;padding:0 1px;box-shadow:0 0 0 1px rgba(202,138,4,.35);}
-    .search-hit.search-hit-current{background:#f59e0b;color:#1a1a1a;box-shadow:0 0 0 2px #b45309;}
-    .search-highlight{outline:2px solid #eab308;outline-offset:2px;border-radius:10px;}
-    #search-match-nav{display:inline-flex;align-items:center;gap:6px;margin-left:8px;font-size:12px;white-space:nowrap;}
-    #search-match-nav.hidden{display:none;}
-    .search-nav-btn{background:none;border:1px solid rgba(148,163,184,.4);color:inherit;border-radius:6px;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:11px;line-height:1;padding:0;}
-    .search-nav-btn:hover:not(:disabled){background:rgba(234,179,8,.15);border-color:#eab308;}
-    .search-nav-btn:disabled{opacity:.35;cursor:default;}
-    #search-match-count{opacity:.75;min-width:3.5em;text-align:center;}
-  `;
-  document.head.appendChild(style);
-}
-
-// Builds the ▲ [n/n] ▼ control once, right next to the search box (using
-// #search-clear, or the input itself, as an anchor since there's no
-// dedicated markup for it in the HTML).
-function ensureSearchNavUI() {
-  if (document.getElementById('search-match-nav')) return;
-  const anchor = document.getElementById('search-clear') || document.getElementById('search');
-  if (!anchor || !anchor.parentElement) return;
-  const nav = document.createElement('span');
-  nav.id = 'search-match-nav';
-  nav.className = 'hidden';
-  nav.innerHTML = `
-    <button type="button" class="search-nav-btn" id="search-nav-prev" title="Previous match" onclick="searchPrev()">▲</button>
-    <span id="search-match-count">0/0</span>
-    <button type="button" class="search-nav-btn" id="search-nav-next" title="Next match" onclick="searchNext()">▼</button>`;
-  anchor.insertAdjacentElement('afterend', nav);
-}
-
+// Reflects current match state onto the static ▲ [n/n] ▼ control that
+// lives in the toolbar HTML (#search-match-nav, in .search-cluster next
+// to the search box) — this function only ever updates it, never builds it.
 function updateSearchNavUI() {
-  ensureSearchNavUI();
   const nav = document.getElementById('search-match-nav');
   if (!nav) return;
   const hasQuery = (document.getElementById('search')?.value || '').trim().length > 0;
