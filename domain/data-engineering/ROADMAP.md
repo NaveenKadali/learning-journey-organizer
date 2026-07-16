@@ -1,7 +1,7 @@
 > # 🎯 COMPREHENSIVE DATA ENGINEERING CAREER ROADMAP: Beginner → Expert (Autodidact Optimized)
 
 
-## Core Learning Pillars (Throughout Entire Journey)
+** Core Learning Pillars (Throughout Entire Journey) **
 1. **Foundation**: Programming, SQL, Data Structures
 2. **Infrastructure**: Cloud platforms, containerization, orchestration
 3. **Processing**: Batch & streaming data processing
