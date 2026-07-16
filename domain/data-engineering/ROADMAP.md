@@ -2887,22 +2887,22 @@ End Goal: Expert Level ↑
 
 ---
 
-> # CAREER MILESTONES & TIMELINES
+> ## CAREER MILESTONES & TIMELINES
 
-## 0-6 Months: Foundation Phase
+### 0-6 Months: Foundation Phase
 
-### Target Outcome
+#### Target Outcome
 - **Role**: Data Analyst → Junior Data Engineer
 - **Salary**: $60K-$90K
 
-### Milestones
+#### Milestones
 - [ ] Week 1-4: Master SQL (300+ queries solved)
 - [ ] Week 5-8: Python fundamentals + Pandas
 - [ ] Week 9-10: Linux and Git workflow
 - [ ] Week 11-24: ETL project, data modeling, first pipeline
 - [ ] Complete: 1-2 portfolio projects on GitHub
 
-### Skills Demonstrated
+#### Skills Demonstrated
 - [ ] Write complex SQL queries
 - [ ] Clean and transform data with Pandas
 - [ ] Version control with Git
@@ -2910,13 +2910,13 @@ End Goal: Expert Level ↑
 
 ---
 
-## 6-12 Months: Junior Engineer Phase
+### 6-12 Months: Junior Engineer Phase
 
-### Target Outcome
+#### Target Outcome
 - **Role**: Junior Data Engineer / Data Engineer I
 - **Salary**: $80K-$130K
 
-### Milestones
+#### Milestones
 - [ ] Master Airflow (build 5+ DAGs)
 - [ ] Master one warehouse (Snowflake/BigQuery)
 - [ ] Complete dbt project (20+ models)
@@ -2924,7 +2924,7 @@ End Goal: Expert Level ↑
 - [ ] Complete capstone project
 - [ ] Get first job offer
 
-### Skills Demonstrated
+#### Skills Demonstrated
 - [ ] Orchestrate production pipelines
 - [ ] Design data warehouse schemas
 - [ ] Transform data at scale with dbt
@@ -2933,13 +2933,13 @@ End Goal: Expert Level ↑
 
 ---
 
-## 1-3 Years: Mid-Level Phase
+### 1-3 Years: Mid-Level Phase
 
-### Target Outcome
+#### Target Outcome
 - **Role**: Data Engineer II / Senior Data Engineer
 - **Salary**: $110K-$170K
 
-### Milestones
+#### Milestones
 - [ ] Master Apache Spark (handle TB-scale)
 - [ ] Learn Apache Kafka
 - [ ] Implement CDC pipeline
@@ -2948,7 +2948,7 @@ End Goal: Expert Level ↑
 - [ ] Lead small projects
 - [ ] Mentor 1-2 junior engineers
 
-### Skills Demonstrated
+#### Skills Demonstrated
 - [ ] Handle distributed computing
 - [ ] Build real-time systems
 - [ ] Optimize for cost and performance
@@ -2957,13 +2957,13 @@ End Goal: Expert Level ↑
 
 ---
 
-## 3-5 Years: Senior Phase
+### 3-5 Years: Senior Phase
 
-### Target Outcome
+#### Target Outcome
 - **Role**: Senior Data Engineer
 - **Salary**: $140K-$220K
 
-### Milestones
+#### Milestones
 - [ ] Design enterprise architecture
 - [ ] Lead cross-team projects
 - [ ] Mentor 3-5 engineers
@@ -2972,7 +2972,7 @@ End Goal: Expert Level ↑
 - [ ] Reduce infrastructure costs by 30%+
 - [ ] Improve system reliability to 99.9%+
 
-### Skills Demonstrated
+#### Skills Demonstrated
 - [ ] System architecture and design
 - [ ] Technical leadership
 - [ ] Problem-solving at scale
@@ -2981,13 +2981,13 @@ End Goal: Expert Level ↑
 
 ---
 
-## 5-8 Years: Staff Engineer Phase
+### 5-8 Years: Staff Engineer Phase
 
-### Target Outcome
+#### Target Outcome
 - **Role**: Staff Engineer / Lead Data Engineer
 - **Salary**: $180K-$300K
 
-### Milestones
+#### Milestones
 - [ ] Define data platform strategy
 - [ ] Lead organization-wide initiatives
 - [ ] Mentor 10+ engineers
@@ -2996,7 +2996,7 @@ End Goal: Expert Level ↑
 - [ ] Open source contributions
 - [ ] Shape engineering culture
 
-### Skills Demonstrated
+#### Skills Demonstrated
 - [ ] Strategic thinking
 - [ ] Organizational impact
 - [ ] Mentorship at scale
@@ -3005,13 +3005,13 @@ End Goal: Expert Level ↑
 
 ---
 
-## 8+ Years: Principal/Expert Phase
+### 8+ Years: Principal/Expert Phase
 
-### Target Outcome
+#### Target Outcome
 - **Role**: Principal Engineer / Distinguished Engineer
 - **Salary**: $200K-$400K+
 
-### Milestones
+#### Milestones
 - [ ] Define industry standards
 - [ ] Speak at major conferences
 - [ ] Published research or influential open source
@@ -3020,7 +3020,7 @@ End Goal: Expert Level ↑
 - [ ] Recognized expert in field
 - [ ] Influence broader industry
 
-### Skills Demonstrated
+#### Skills Demonstrated
 - [ ] Visionary thinking
 - [ ] Industry leadership
 - [ ] Innovation
@@ -3029,11 +3029,11 @@ End Goal: Expert Level ↑
 
 ---
 
-> # QUICK-START 90-DAY ACTION PLAN
+> ## QUICK-START 90-DAY ACTION PLAN
 
-## Days 1-14: Week 1-2 (Foundation Setup)
+### Days 1-14: Week 1-2 (Foundation Setup)
 
-### Week 1 Tasks
+#### Week 1 Tasks
 - [ ] Set up development environment (VS Code, Python, Git)
 - [ ] Create GitHub account and set up repositories
 - [ ] Start SQL learning (SQLBolt or Mode Analytics tutorial)
@@ -3041,7 +3041,7 @@ End Goal: Expert Level ↑
 - [ ] Read: "Fundamentals of Data Engineering" intro chapters
 - [ ] Time commitment: 15 hours/week
 
-### Week 2 Tasks
+#### Week 2 Tasks
 - [ ] Continue SQL (joins, GROUP BY, HAVING)
 - [ ] Complete: 50 SQL queries (running total)
 - [ ] Start Python basics (DataCamp or Udemy)
@@ -3051,16 +3051,16 @@ End Goal: Expert Level ↑
 
 ---
 
-## Days 15-30: Week 3-4 (SQL Mastery)
+### Days 15-30: Week 3-4 (SQL Mastery)
 
-### Week 3 Tasks
+#### Week 3 Tasks
 - [ ] Master SQL joins (INNER, LEFT, RIGHT, FULL)
 - [ ] Learn window functions (ROW_NUMBER, RANK, LEAD, LAG)
 - [ ] Complete: 100+ SQL queries (cumulative)
 - [ ] Solve 20 LeetCode database problems
 - [ ] Time commitment: 18 hours/week
 
-### Week 4 Tasks
+#### Week 4 Tasks
 - [ ] SQL CTEs and advanced queries
 - [ ] Query optimization basics
 - [ ] Complete: 150+ SQL queries
@@ -3070,9 +3070,9 @@ End Goal: Expert Level ↑
 
 ---
 
-## Days 31-60: Week 5-8 (Python + Data Engineering Fundamentals)
+### Days 31-60: Week 5-8 (Python + Data Engineering Fundamentals)
 
-### Week 5-6 Tasks
+#### Week 5-6 Tasks
 - [ ] Python fundamentals (variables, functions, loops, OOP)
 - [ ] Pandas basics (DataFrames, cleaning, transformations)
 - [ ] Complete: 30 Pandas exercises
@@ -3080,7 +3080,7 @@ End Goal: Expert Level ↑
 - [ ] ETL concepts deep dive
 - [ ] Time commitment: 16 hours/week
 
-### Week 7-8 Tasks
+#### Week 7-8 Tasks
 - [ ] Python OOP and file I/O
 - [ ] Pandas advanced (groupby, merge, pivot)
 - [ ] Build first ETL script (CSV → PostgreSQL)
@@ -3091,9 +3091,9 @@ End Goal: Expert Level ↑
 
 ---
 
-## Days 61-90: Week 9-12 (First Real Project)
+### Days 61-90: Week 9-12 (First Real Project)
 
-### Week 9-10 Tasks
+#### Week 9-10 Tasks
 - [ ] Learn basic Airflow concepts
 - [ ] Set up local Airflow
 - [ ] Create first simple DAG
@@ -3101,7 +3101,7 @@ End Goal: Expert Level ↑
 - [ ] Design schema for sample project
 - [ ] Time commitment: 16 hours/week
 
-### Week 11-12 Tasks
+#### Week 11-12 Tasks
 - [ ] Build first portfolio project:
 - [ ] **Project**: Sales ETL Pipeline
 - [ ] **Components**:
@@ -3119,7 +3119,7 @@ End Goal: Expert Level ↑
 
 ---
 
-## After 90 Days: Continue with Phase 2
+### After 90 Days: Continue with Phase 2
 
 - [ ] **Days 91-180**: Master Airflow and choose a warehouse (Snowflake/BigQuery)
 - [ ] **Days 181-365**: Build 2-3 more projects, learn Spark basics, deploy to cloud
@@ -3127,88 +3127,88 @@ End Goal: Expert Level ↑
 
 ---
 
-> # INTERVIEW PREPARATION STRATEGY
+> ## INTERVIEW PREPARATION STRATEGY
 
-## By Career Level
+### By Career Level
 
-### Junior Level (0-2 years)
+#### Junior Level (0-2 years)
 
-#### SQL
+##### SQL
 - [ ] 300+ problems on LeetCode/HackerRank
 - [ ] Complex joins and window functions
 - [ ] Query optimization basics
 - [ ] Expected: Solve medium problem in 15 minutes
 
-#### Python
+##### Python
 - [ ] Basic data structures
 - [ ] File I/O and JSON processing
 - [ ] Pandas operations
 - [ ] Expected: Write clean code with good naming
 
-#### Data Engineering Fundamentals
+##### Data Engineering Fundamentals
 - [ ] ETL vs. ELT concepts
 - [ ] Data modeling (star schema, dimensions)
 - [ ] Data warehouse basics
 - [ ] Airflow DAG concepts
 - [ ] Expected: Explain basic pipeline architecture
 
-#### Take-Home Project (If Required)
+##### Take-Home Project (If Required)
 - [ ] Build simple ETL pipeline (4-6 hours)
 - [ ] Clean data and load to warehouse
 - [ ] Write SQL queries for analysis
 - [ ] Document approach
 
-### Mid-Level (3-5 years)
+#### Mid-Level (3-5 years)
 
-#### SQL
+##### SQL
 - [ ] 500+ problems mastered
 - [ ] Complex queries with CTEs, window functions
 - [ ] Query optimization and execution plans
 - [ ] Expected: Optimize underperforming query 50%+
 
-#### Spark
+##### Spark
 - [ ] Explain Spark architecture
 - [ ] DataFrames and SQL
 - [ ] Partitioning and shuffling
 - [ ] Performance tuning
 - [ ] Expected: Optimize Spark job for 10x improvement
 
-#### System Design
+##### System Design
 - [ ] Design data warehouse schema
 - [ ] Design data lake architecture
 - [ ] Design streaming pipeline
 - [ ] Handle 100GB+ datasets
 - [ ] Expected: Defend architectural choices, discuss trade-offs
 
-#### Take-Home Project
+##### Take-Home Project
 - [ ] Real-time analytics system (8-12 hours)
 - [ ] Multiple data sources
 - [ ] Streaming component
 - [ ] Complete monitoring and alerting
 
-### Senior Level (5+ years)
+#### Senior Level (5+ years)
 
-#### Advanced System Design
+##### Advanced System Design
 - [ ] Design petabyte-scale architecture
 - [ ] Multi-region disaster recovery
 - [ ] Cost optimization strategy
 - [ ] Data mesh design
 - [ ] Expected: Design system for 1M events/sec
 
-#### Architecture Review
+##### Architecture Review
 - [ ] Evaluate existing systems
 - [ ] Identify bottlenecks and improvements
 - [ ] Cost-benefit analysis
 - [ ] Expected: Present findings like senior engineer
 
-#### Leadership Assessment
+##### Leadership Assessment
 - [ ] Describe team impact
 - [ ] How you've mentored engineers
 - [ ] Architecture decisions you've led
 - [ ] How you handle disagreement
 - [ ] Expected: Stories demonstrating leadership
 
-#### Take-Home Project
+##### Take-Home Project
 - [ ] Complete platform design (16+ hours)
 - [ ] Multiple components (ingestion, processing, storage)
 - [ ] Deployment strategy
@@ -3217,29 +3217,29 @@ End Goal: Expert Level ↑
 
 ---
 
-## Universal Interview Preparation Strategy
+### Universal Interview Preparation Strategy
 
-### 1-2 Months Before Interviews
+#### 1-2 Months Before Interviews
 
-#### Week 1-2: Diagnostics
+##### Week 1-2: Diagnostics
 - [ ] Solve 20 SQL problems (identify weak areas)
 - [ ] Review your portfolio projects
 - [ ] Prepare 3-5 "impact" stories
 - [ ] Research companies' data stacks
 
-#### Week 3-4: Focus Areas
+##### Week 3-4: Focus Areas
 - [ ] 100+ SQL problems in weak areas
 - [ ] Review your system designs
 - [ ] Practice explaining technical decisions
 - [ ] Mock interviews with friends
 
-#### Week 5-6: Specialization
+##### Week 5-6: Specialization
 - [ ] Deep dive on companies' tech stacks
 - [ ] Practice relevant systems (Spark, Kafka, etc.)
 - [ ] Prepare architecture examples
 - [ ] Behavioral interview prep (STAR method)
 
-#### Week 7-8: Final Polish
+##### Week 7-8: Final Polish
 - [ ] 200+ SQL problems total
 - [ ] 10+ mock interviews
 - [ ] Refine resume and cover letters
@@ -3247,11 +3247,11 @@ End Goal: Expert Level ↑
 
 ---
 
-> # WHAT ACTUALLY MATTERS IN THE REAL MARKET (2024-2026)
+> ## WHAT ACTUALLY MATTERS IN THE REAL MARKET (2024-2026)
 
-## By Importance Ranking
+### By Importance Ranking
 
-### Tier S++ (Deal Breakers - Must Have)
+#### Tier S++ (Deal Breakers - Must Have)
 
 1. **SQL** - *Not negotiable*
    - If you can't write SQL, you can't be a data engineer
@@ -3275,7 +3275,7 @@ End Goal: Expert Level ↑
 
 ---
 
-### Tier S (Highly Valuable - First Job)
+#### Tier S (Highly Valuable - First Job)
 
 1. **Apache Airflow**
    - 60%+ of jobs require it
@@ -3301,7 +3301,7 @@ End Goal: Expert Level ↑
 
 ---
 
-### Tier A (Very Valuable - Mid-Level)
+#### Tier A (Very Valuable - Mid-Level)
 
 1. **Apache Spark**
    - 55% of mid-level+ roles
@@ -3325,7 +3325,7 @@ End Goal: Expert Level ↑
 
 ---
 
-### Tier B (Valuable Specializations)
+#### Tier B (Valuable Specializations)
 
 1. **Data Quality Frameworks** (Great Expectations, Soda)
    - 20% of roles
@@ -3345,7 +3345,7 @@ End Goal: Expert Level ↑
 
 ---
 
-### What's Overrated
+#### What's Overrated
 
 ❌ **Hadoop** - Legacy technology, <5% of new roles
 ❌ **Hive** - Declining, use Spark instead
@@ -3356,7 +3356,7 @@ End Goal: Expert Level ↑
 
 ---
 
-### What People Miss
+#### What People Miss
 
 ✅ **Soft Skills** - Communication, clarity, teamwork
 ✅ **Business Acumen** - Understanding why you're building
@@ -3369,95 +3369,95 @@ End Goal: Expert Level ↑
 
 ---
 
-> # COMMON MISTAKES & HOW TO AVOID THEM
+> ## COMMON MISTAKES & HOW TO AVOID THEM
 
-## Learning Mistakes
+### Learning Mistakes
 
-### ❌ Mistake 1: Only Watching Tutorials
+#### ❌ Mistake 1: Only Watching Tutorials
 - **Problem**: No hands-on practice, false confidence
 - **Solution**: 70% coding, 30% theory. Build projects immediately.
 
-### ❌ Mistake 2: Learning Isolated Tools
+#### ❌ Mistake 2: Learning Isolated Tools
 - **Problem**: Can't see how tools fit together
 - **Solution**: Build end-to-end projects connecting multiple tools.
 
-### ❌ Mistake 3: Skipping SQL Mastery
+#### ❌ Mistake 3: Skipping SQL Mastery
 - **Problem**: Can't optimize queries, bad schema design
 - **Solution**: Spend 6-8 weeks on SQL before moving on. 300+ problems.
 
-### ❌ Mistake 4: Tool Hopping
+#### ❌ Mistake 4: Tool Hopping
 - **Problem**: Shallow knowledge, no mastery
 - **Solution**: Master core tools (SQL, Python, Airflow, one warehouse) before exploring.
 
-### ❌ Mistake 5: Avoiding System Design Thinking
+#### ❌ Mistake 5: Avoiding System Design Thinking
 - **Problem**: Can't design scalable systems
 - **Solution**: Study data architecture early. Read "Designing Data-Intensive Applications."
 
-### ❌ Mistake 6: Perfectionism on First Project
+#### ❌ Mistake 6: Perfectionism on First Project
 - **Problem**: Never ship, lost momentum
 - **Solution**: Build MVP quickly (1 month), iterate after.
 
 ---
 
-## Career Mistakes
+### Career Mistakes
 
-### ❌ Mistake 1: Staying in First Job Too Long
+#### ❌ Mistake 1: Staying in First Job Too Long
 - **Problem**: Stalled growth, market undervalues you
 - **Solution**: Switch jobs every 2-3 years (20-30% raise each time).
 
-### ❌ Mistake 2: Specializing Too Early
+#### ❌ Mistake 2: Specializing Too Early
 - **Problem**: Pigeon-holed, limited opportunities
 - **Solution**: Stay generalist until mid-level, then specialize.
 
-### ❌ Mistake 3: Not Building Network
+#### ❌ Mistake 3: Not Building Network
 - **Problem**: Miss opportunities, limited growth
 - **Solution**: Attend conferences, engage on social media, mentor others.
 
-### ❌ Mistake 4: Poor Portfolio Visibility
+#### ❌ Mistake 4: Poor Portfolio Visibility
 - **Problem**: Employers can't see your work
 - **Solution**: GitHub with quality projects, medium posts, conference talks.
 
-### ❌ Mistake 5: Not Documenting Work
+#### ❌ Mistake 5: Not Documenting Work
 - **Problem**: Impact invisible to others
 - **Solution**: Blog posts, case studies, internal wikis about projects.
 
-### ❌ Mistake 6: Chasing Only Salary
+#### ❌ Mistake 6: Chasing Only Salary
 - **Problem**: Burn out, miss learning opportunities
 - **Solution**: Balance salary with learning, company culture, growth potential.
 
 ---
 
-## Technical Mistakes
+### Technical Mistakes
 
-### ❌ Mistake 1: Premature Optimization
+#### ❌ Mistake 1: Premature Optimization
 - **Problem**: Wasted effort on non-bottlenecks
 - **Solution**: Measure first, optimize based on data.
 
-### ❌ Mistake 2: Ignoring Monitoring
+#### ❌ Mistake 2: Ignoring Monitoring
 - **Problem**: Production disasters catch you off-guard
 - **Solution**: Add monitoring and alerting from day one.
 
-### ❌ Mistake 3: Poor Error Handling
+#### ❌ Mistake 3: Poor Error Handling
 - **Problem**: Cryptic failures, hard to debug
 - **Solution**: Comprehensive logging, meaningful error messages.
 
-### ❌ Mistake 4: Tight Coupling
+#### ❌ Mistake 4: Tight Coupling
 - **Problem**: Changes to one component break others
 - **Solution**: Modular design, clear interfaces from start.
 
-### ❌ Mistake 5: No Data Validation
+#### ❌ Mistake 5: No Data Validation
 - **Problem**: Bad data in, bad analytics out
 - **Solution**: Add validation at ingestion, transformation, loading layers.
 
-### ❌ Mistake 6: Insufficient Testing
+#### ❌ Mistake 6: Insufficient Testing
 - **Problem**: Bugs in production, lost trust
 - **Solution**: Unit tests (transformations), integration tests (pipelines).
 
 ---
 
-> # FINAL PRIORITY CHECKLIST
+> ## FINAL PRIORITY CHECKLIST
 
-## Absolute Must-Have (Beginner → Junior)
+### Absolute Must-Have (Beginner → Junior)
 
 - [ ] **SQL** (Advanced level)
   - Joins, window functions, CTEs, optimization
@@ -3502,7 +3502,7 @@ End Goal: Expert Level ↑
 
 ---
 
-## Should-Have (Junior → Mid-Level)
+### Should-Have (Junior → Mid-Level)
 
 - [ ] **Apache Spark** (PySpark)
   - DataFrames, SQL, optimization
@@ -3519,94 +3519,94 @@ End Goal: Expert Level ↑
   - 20+ model project
   - Estimated time: 2-3 weeks
 
-### *Docker**
+#### *Docker**
   - Containerization, compose
   - Dockerized applications
   - Estimated time: 2-3 weeks
 
-### *Apache Kafka**
+#### *Apache Kafka**
   - Topics, producers, consumers, CDC
   - Real-time pipeline built
   - Estimated time: 4-5 weeks
 
-### *Data Quality Frameworks**
+#### *Data Quality Frameworks**
   - Validation, monitoring, alerts
   - Quality checks for 2+ pipelines
   - Estimated time: 2-3 weeks
 
 ---
 
-## Nice-to-Have (Mid-Level → Senior)
+### Nice-to-Have (Mid-Level → Senior)
 
-### **Terraform**
+#### **Terraform**
   - Infrastructure as code
   - Cloud resources provisioned
   - Estimated time: 2-3 weeks
 
-### ### *Kubernetes** (Basics)
+#### #### *Kubernetes** (Basics)
   - Pods, deployments, services
   - Simple app deployed
   - Estimated time: 3-4 weeks
 
-### ### *Databricks/Delta Lake**
+#### #### *Databricks/Delta Lake**
   - Medallion architecture
   - Production pipeline
   - Estimated time: 3-4 weeks
 
-### - [ ] **Advanced Optimization**
+#### - [ ] **Advanced Optimization**
 - [ ]   - Query tuning, cost reduction
 - [ ]   - 50%+ performance improvement
 - [ ]   - Estimated time: Ongoing
 
-### **Distributed Systems Theory**
+#### **Distributed Systems Theory**
 - [ ]  CAP theorem, consistency models
 - [ ]  System design understanding
 - [ ]  Estimated time: 2-3 weeks
 
-## Optional (Advanced/Specialization)
+### Optional (Advanced/Specialization)
 
-### *Apache Flink** (Streaming specialization)
-### *AI Infrastructure** (ML Ops path)
-### *Data Mesh** (Architecture specialization)
-### *Advanced security** (Compliance path)
-### *Open Source** (Community contribution)
+#### *Apache Flink** (Streaming specialization)
+#### *AI Infrastructure** (ML Ops path)
+#### *Data Mesh** (Architecture specialization)
+#### *Advanced security** (Compliance path)
+#### *Open Source** (Community contribution)
 
 ---
 
-> # FINAL SUCCESS FORMULA
+> ## FINAL SUCCESS FORMULA
 
 ```
 Success = (Deliberate Learning + Consistent Building + Effective Networking) 
           × Specialization × Execution Speed
 ```
 
-> # RESOURCE RECOMMENDATIONS (Ranked by ROI)
+> ## RESOURCE RECOMMENDATIONS (Ranked by ROI)
 
-## Essential Learning Resources
+### Essential Learning Resources
 
-### SQL
+#### SQL
 1. **LeetCode Database** (500 problems) - $$$
 2. **Mode Analytics SQL Tutorial** (free)
 3. **SQL Performance Explained** (book)
 4. **"Fundamentals of Data Engineering"** (book)
 
-### Python
+#### Python
 1. **Python Official Docs** (free)
 2. **DataCamp Python** ($$)
 3. **Real Python** (free + $$)
 
-### Data Engineering
+#### Data Engineering
 1. **DataTalks.Club Zoomcamp** (free + $)
 2. **"Fundamentals of Data Engineering"** (book)
 3. **"Designing Data-Intensive Applications"** (book)
 4. **Databricks Academy** (free)
 
-### Cloud Platforms
+#### Cloud Platforms
 1. **AWS Free Tier** + official tutorials (free)
 2. **GCP Cloud Skill Boost** ($$)
 3. **Pluralsight** ($$)
 
-### Tools
+#### Tools
 1. **Official Documentation** (free)
 2. **YouTube tutorials** (free)
 3. **Udemy courses** ($)
@@ -3614,21 +3614,21 @@ Success = (Deliberate Learning + Consistent Building + Effective Networking)
 
 ---
 
-## Communities & Networking
+### Communities & Networking
 
-### Online Communities
+#### Online Communities
 - r/dataengineering (Reddit)
 - DataTalks.Club (Slack, events)
 - Data Engineering Stack Exchange
 - Discord communities (various)
 
-### Conferences (Annual)
+#### Conferences (Annual)
 - Strata Data & AI
 - Modern Data Stack Summit
 - DataWorks Summit
 - Kafka Summit
 
-### Content Creators to Follow
+#### Content Creators to Follow
 - Seattle Data Guy (YouTube)
 - DataTalks.Club (YouTube, events)
 - Andreas Kretz (YouTube)
@@ -3637,7 +3637,7 @@ Success = (Deliberate Learning + Consistent Building + Effective Networking)
 
 ---
 
-## Final Advice
+### Final Advice
 
 **"The best data engineer is not the one who knows the most tools, but the one who can design systems that work reliably at scale, enable others to use data, and solve real business problems."**
 
@@ -3654,15 +3654,15 @@ Remember
 ---
 
 **Good luck! The data engineering field needs great engineers. Your hard work will pay off.** 🚀
-> # 📦 COMPLETE DATA ENGINEERING ROADMAP - DELIVERABLE SUMMARY
+> ## 📦 COMPLETE DATA ENGINEERING ROADMAP - DELIVERABLE SUMMARY
 
-## 🎯 What You Now Have
+### 🎯 What You Now Have
 
 ---
 
-## 📋 The Complete Package
+### 📋 The Complete Package
 
-### 1. **DataEngineering_Roadmap_Part1.md** (Beginner Level)
+#### 1. **DataEngineering_Roadmap_Part1.md** (Beginner Level)
 **Length**: ~15,000 words | **Phases**: 7 | **Modules**: 50+
 
 **What's Included**:
@@ -3680,7 +3680,7 @@ Remember
 
 ---
 
-### 2. **DataEngineering_Roadmap_Part2.md** (Intermediate Level)
+#### 2. **DataEngineering_Roadmap_Part2.md** (Intermediate Level)
 **Length**: ~16,000 words | **Phases**: 9 | **Modules**: 60+
 
 **What's Included**:
@@ -3699,7 +3699,7 @@ Remember
 
 ---
 
-### 3. **DataEngineering_Roadmap_Part3.md** (Advanced & Expert Levels)
+#### 3. **DataEngineering_Roadmap_Part3.md** (Advanced & Expert Levels)
 **Length**: ~18,000 words | **Phases**: 11 (Advanced) + 6 (Expert) | **Modules**: 80+
 
 **What's Included**:
@@ -3732,9 +3732,9 @@ Remember
 
 ---
 
-## 📊 Statistics & Coverage
+### 📊 Statistics & Coverage
 
-### Technology Coverage
+#### Technology Coverage
 - **Languages**: 3 (Python, SQL, Bash/Linux)
 - **Databases**: 5+ (PostgreSQL, MySQL, MongoDB, DynamoDB, Cassandra)
 - **Data Warehouses**: 3 (Snowflake, BigQuery, Redshift)
@@ -3747,7 +3747,7 @@ Remember
 - **Monitoring**: Prometheus, Grafana, Custom
 - **Total Tools Covered**: 50+
 
-### Career Levels Covered
+#### Career Levels Covered
 - ✅ Trainee/Intern (0-1 year)
 - ✅ Junior Engineer (1-2 years)
 - ✅ Mid-Level Engineer (3-5 years)
@@ -3758,9 +3758,9 @@ Remember
 
 ---
 
-## 📈 Expected Outcomes by Level
+### 📈 Expected Outcomes by Level
 
-### After Part 1 (Beginner → Junior)
+#### After Part 1 (Beginner → Junior)
 - ✅ SQL expert (300+ problems solved)
 - ✅ Python proficient (5+ projects built)
 - ✅ PostgreSQL mastery
@@ -3772,7 +3772,7 @@ Remember
 - **Status**: Ready for junior data engineer role
 - **Estimated Salary**: $80K-$130K
 
-### After Part 2 (Junior → Mid-Level)
+#### After Part 2 (Junior → Mid-Level)
 - ✅ Advanced SQL (window functions, optimization)
 - ✅ Data warehouse design & implementation
 - ✅ Spark advanced (handle TB-scale)
@@ -3785,7 +3785,7 @@ Remember
 - **Status**: Mid-level engineer ready
 - **Estimated Salary**: $110K-$170K
 
-### After Part 3 Advanced (Mid → Senior)
+##### After Part 3 Advanced (Mid → Senior)
 - ✅ System architecture design
 - ✅ Performance engineering (50%+ improvements)
 - ✅ Complex system optimization
@@ -3796,7 +3796,7 @@ Remember
 - **Status**: Senior engineer ready
 - **Estimated Salary**: $140K-$220K
 
-### After Part 3 Expert (Senior → Staff/Principal)
+#### After Part 3 Expert (Senior → Staff/Principal)
 - ✅ Enterprise architecture expertise
 - ✅ Organizational strategy influence
 - ✅ Published thought leadership
