@@ -2247,27 +2247,29 @@ Prerequisites
 
 ---
 
-> # LEARNING RESOURCES & RECOMMENDATIONS
+> # 🎯 DATA ENGINEERING: RESOURCES, CHECKLISTS AND OTHER
 
-## Recommended Books (Ranked by Value)
-### Foundation Level
+## LEARNING RESOURCES & RECOMMENDATIONS
+
+### Recommended Books (Ranked by Value)
+#### Foundation Level
 1. **"Fundamentals of Data Engineering"** - Joe Reis, Matt Housley (Essential)
 2. **"SQL Performance Explained"** - Markus Winand (Deep dive)
 3. **"Python Cookbook"** - David Beazley (Reference)
 
-### Intermediate Level
+#### Intermediate Level
 1. **"Designing Data-Intensive Applications"** - Martin Kleppmann (Seminal work)
 2. **"Learning Spark"** - Jules S. Damji et al. (Spark reference)
 3. **"The Data Warehouse Toolkit"** - Ralph Kimball (Dimensional modeling)
 4. **"Building Microservices"** - Sam Newman (Architecture patterns)
 
-### Advanced Level
+#### Advanced Level
 1. **"Database Internals"** - Alex Petrov (Deep technical)
 2. **"Streaming Systems"** - Tyler Akidau et al. (Definitive guide)
 3. **"Software Architecture: Hard Parts"** - Neal Ford et al. (Trade-offs)
 4. **"The Phoenix Project"** - Gene Kim (Organizational thinking)
 
-## Online Learning Platforms
+### Online Learning Platforms
 - **Coursera**: Data Engineering specializations
 - **DataCamp**: Interactive labs for tools
 - **Udemy**: Tool-specific courses
@@ -2275,7 +2277,7 @@ Prerequisites
 - **O'Reilly**: Book and video access
 - **Educative.io**: Interactive courses
 
-## Hands-On Environments
+### Hands-On Environments
 - **Kaggle**: Datasets and competitions
 - **GitHub Codespaces**: Cloud development environment
 - **Docker**: Local development
@@ -2283,7 +2285,7 @@ Prerequisites
 - **GCP Free Tier**: Alternative cloud
 - **Databricks Community**: Spark playground
 
-## Communities & Networking
+### Communities & Networking
 - **r/dataengineering**: Reddit community
 - **Data Engineering Stack Exchange**: Q&A
 - **DataTalks.Club**: Community and content
@@ -2295,7 +2297,7 @@ Prerequisites
   - Kafka Summit
   - Flink Forward
 
-## Podcasts & Audio Learning
+### Podcasts & Audio Learning
 - Seattle Data Guy (YouTube)
 - Data Engineering Show
 - Data Stack Show
@@ -2304,16 +2306,16 @@ Prerequisites
 
 ---
 
-> # FINAL COMPREHENSIVE CHECKLIST
+## FINAL COMPREHENSIVE CHECKLIST
 
-## Phase Completion Checklist
+### Phase Completion Checklist
 - [ ] **Beginner**: All 7 phases, 1 capstone
 - [ ] **Intermediate**: All 9 phases, 3 capstone projects
 - [ ] **Advanced**: Phases 3.1-3.8, choose 1-2 specializations, capstone
 - [ ] **Expert**: Phases 4.1-4.6, research/publication, mentorship
 
-## Tool Proficiency Checklist
-- [ ] **Must-Have**:
+### Tool Proficiency Checklist
+#### Must-Have:
 - [ ] Python (Expert level)
 - [ ] SQL (Expert level)
 - [ ] PostgreSQL/MySQL (Advanced)
@@ -2322,7 +2324,7 @@ Prerequisites
 - [ ] Docker (Advanced)
 - [ ] Apache Airflow (Advanced)
 
-- [ ] **Should-Have**:
+#### Should-Have:
 - [ ] Cloud Platform (AWS/GCP/Azure - Advanced)
 - [ ] Kafka/Streaming (Advanced)
 - [ ] Data Warehouse (Snowflake/BigQuery - Advanced)
@@ -2330,14 +2332,14 @@ Prerequisites
 - [ ] Kubernetes (Intermediate)
 - [ ] SQL optimization (Advanced)
 
-- [ ] **Nice-to-Have**:
+#### Nice-to-Have:
 - [ ] Scala (Intermediate)
 - [ ] Golang (Basic)
 - [ ] gRPC (Intermediate)
 - [ ] Flink/Kinesis (Advanced)
 - [ ] MLOps tools (Intermediate)
 
-## Interview Preparation Checklist
+### Interview Preparation Checklist
 - [ ] LeetCode: 150+ SQL problems
 - [ ] LeetCode: 100+ coding problems
 - [ ] System design: 50+ design problems
@@ -2345,7 +2347,7 @@ Prerequisites
 - [ ] Company deep dives: 10+ target companies
 - [ ] Mock interviews: 20+ practice sessions
 
-## Portfolio Preparation Checklist
+### Portfolio Preparation Checklist
 - [ ] GitHub profile: Professional README, pinned projects
 - [ ] 5-10 quality projects: Well-documented, tested
 - [ ] Blog: 10+ technical posts (Medium or personal)
@@ -2353,7 +2355,7 @@ Prerequisites
 - [ ] Contributions: Open-source participation visible
 - [ ] Resume: Quantified achievements, metrics
 
-## Career Development Checklist
+### Career Development Checklist
 - [ ] Mentorship: Find mentor(s) at each level
 - [ ] Networking: Attend 2+ conferences/year
 - [ ] Speaking: Give talks at meetups/conferences
@@ -2363,9 +2365,9 @@ Prerequisites
 
 ---
 
-> # COMMON PITFALLS TO AVOID
+## COMMON PITFALLS TO AVOID
 
-## Learning Mistakes
+### Learning Mistakes
 ❌ Watching tutorials without coding
 ❌ Learning isolated tools without understanding patterns
 ❌ Skipping SQL mastery
@@ -2374,7 +2376,7 @@ Prerequisites
 ❌ Ignoring data quality
 ❌ Perfectionism before shipping
 
-## Career Mistakes
+### Career Mistakes
 ❌ Staying in one company too long (no growth)
 ❌ Specializing too early (lose flexibility)
 ❌ Not building network
@@ -2383,7 +2385,7 @@ Prerequisites
 ❌ Avoiding public speaking/writing
 ❌ Chasing salary over learning
 
-## Technical Mistakes
+### Technical Mistakes
 ❌ Premature optimization
 ❌ Ignoring monitoring/observability
 ❌ Poor error handling
@@ -2394,11 +2396,11 @@ Prerequisites
 
 ---
 
-> # FINAL SUCCESS FORMULA
+## FINAL SUCCESS FORMULA
 
 **Consistent Progress = (Daily Learning + Weekly Building + Monthly Shipping) × Networking × Specialization**
 
-## Timeline Summary
+### Timeline Summary
 ```
 Months 1-4:    Beginner Phase 1-3 → Basic proficiency
 Months 5-9:    Beginner Phase 4-7 → Portfolio project
@@ -2409,7 +2411,7 @@ Months 29-36:  Advanced Phases 5-8 → Industry leader
 Months 36+:    Expert Level → Innovation & thought leadership
 ```
 
-## Investment Required
+### Investment Required
 - **Time**: 15-20 hours/week = 1,500-2,000 hours/year
 - **Money**: $500-2,000/year (courses, certifications, conferences)
 - **Effort**: Consistent, focused, daily improvement
@@ -2435,15 +2437,14 @@ This roadmap is designed to be:
 **Good luck on your Data Engineering journey! 🚀**
 
 
-> # Executive Summary, Career Strategy & Tactical Execution Guide
+## Executive Summary, Career Strategy & Tactical Execution Guide
+EXECUTIVE SUMMARY & STRATEGIC OVERVIEW
 
-# EXECUTIVE SUMMARY & STRATEGIC OVERVIEW
-
-## What is Data Engineering?
+### What is Data Engineering?
 
 **Data engineering** is the discipline of designing, building, and maintaining systems that collect, process, store, and deliver data to enable analytics, machine learning, artificial intelligence, and business intelligence initiatives.
 
-### Core Responsibilities
+#### Core Responsibilities
 - [ ] **Data Ingestion**: Collect data from diverse sources (databases, APIs, logs, streams)
 - [ ] **Data Transformation**: Clean, validate, aggregate, and transform raw data
 - [ ] **Data Storage**: Design and manage data warehouses, lakes, lakehouses
@@ -2454,7 +2455,7 @@ This roadmap is designed to be:
 - [ ] **Observability**: Monitor systems, alert on issues, enable debugging
 - [ ] **Reliability Engineering**: Design fault-tolerant, scalable systems
 
-### What Data Engineers Build
+#### What Data Engineers Build
 
 ```
 DATA SOURCES
@@ -2495,9 +2496,9 @@ DATA SOURCES
 
 ---
 
-## Industry Demand & Future Outlook
+### Industry Demand & Future Outlook
 
-### Current Market Situation (2024-2026)
+#### Current Market Situation (2024-2026)
 - ✅ **Extreme High Demand**: Every company needs data engineers
 - ✅ **Competitive Salaries**: $120K-$400K+ depending on level
 - ✅ **Remote Friendly**: 60%+ of roles are remote-capable
@@ -2505,7 +2506,7 @@ DATA SOURCES
 - ⚠️ **Competition Increasing**: More bootcamp graduates entering field
 - ✅ **Skill Shortage**: Few truly excellent engineers relative to demand
 
-### Future Trends (2025-2030)
+#### Future Trends (2025-2030)
 - 📈 **AI Data Infrastructure**: Feature stores, vector databases, RAG pipelines
 - 📈 **Real-Time Analytics**: Sub-second query latency becoming standard
 - 📈 **Data Mesh**: Decentralized, domain-driven data ownership
@@ -2518,7 +2519,7 @@ DATA SOURCES
 
 ---
 
-> # CAREER PROGRESSION LADDER
+## CAREER PROGRESSION LADDER
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
@@ -2580,11 +2581,11 @@ DATA SOURCES
 
 ---
 
-> # TOOLS & TECHNOLOGIES: STRATEGIC PRIORITIZATION
+## TOOLS & TECHNOLOGIES: STRATEGIC PRIORITIZATION
 
-## Tier S++ (MUST LEARN - Non-Negotiable)
+### Tier S++ (MUST LEARN - Non-Negotiable)
 
-### Critical Foundation
+#### Critical Foundation
 - [ ] **SQL** - *Most important skill in data engineering*
   - Query optimization, complex joins, window functions
   - ROI: 10/10 - Every job requires it
@@ -2607,9 +2608,9 @@ DATA SOURCES
 
 ---
 
-## Tier S (Must Learn - First Job)
+### Tier S (Must Learn - First Job)
 
-### Data Warehousing
+#### Data Warehousing
 - [ ] **Snowflake** ⭐ (Highest ROI - 2024)
   - Architecture, virtual warehouses, time travel, zero-copy cloning
   - Job listings: 40%+ of senior roles
@@ -2626,19 +2627,19 @@ DATA SOURCES
   - Job listings: 20%+ of roles
   - Learning time: 4-8 weeks
 
-### Orchestration
+#### Orchestration
 - [ ] **Apache Airflow**
   - DAGs, operators, scheduling, production monitoring
   - Job listings: 60%+ of roles
   - Learning time: 3-6 weeks
 
-### Processing
+#### Processing
 - [ ] **Apache Spark (PySpark)**
   - DataFrames, SQL, optimization, streaming
   - Job listings: 55%+ of roles
   - Learning time: 6-10 weeks
 
-### Cloud Platforms (Pick ONE first)
+#### Cloud Platforms (Pick ONE first)
 - [ ] **AWS** (Recommended for data engineering)
   - S3, EC2, Lambda, Glue, Kinesis, Redshift
   - Job listings: 45% of roles
@@ -2656,9 +2657,9 @@ DATA SOURCES
 
 ---
 
-## Tier A (Should Learn - Mid-Level)
+### Tier A (Should Learn - Mid-Level)
 
-### Streaming & Real-Time
+#### Streaming & Real-Time
 - [ ] **Apache Kafka** (Industry standard)
   - Topics, partitions, consumer groups, schema registry
   - Job listings: 35% of mid-level roles
@@ -2669,7 +2670,7 @@ DATA SOURCES
   - Job listings: 25% of roles
   - Learning time: 3-4 weeks
 
-### Data Engineering Tools
+#### Data Engineering Tools
 - [ ] **dbt (Data Build Tool)** ⭐ (High ROI - 2024)
   - Models, tests, transformations, documentation
   - Job listings: 45% of roles
@@ -2680,7 +2681,7 @@ DATA SOURCES
   - Job listings: 30%+ of roles
   - Learning time: 4-6 weeks
 
-### Infrastructure
+#### Infrastructure
 - [ ] **Docker**
   - Containerization, images, compose
   - Job listings: 50% of roles
@@ -2698,9 +2699,9 @@ DATA SOURCES
 
 ---
 
-## Tier B (Nice to Have - Advanced/Specialization)
+### Tier B (Nice to Have - Advanced/Specialization)
 
-### Advanced Streaming
+#### Advanced Streaming
 - [ ] **Apache Flink**
   - Stream processing, stateful operations, CEP
   - Job listings: 10% of advanced roles
@@ -2709,7 +2710,7 @@ DATA SOURCES
   - Streams, Firehose, Analytics
   - Job listings: 15% of AWS-focused roles
 
-### Data Governance & Catalog
+#### Data Governance & Catalog
 - [ ] **Apache Atlas**
   - Metadata management, lineage tracking
   - Job listings: 8% of roles
@@ -2718,26 +2719,26 @@ DATA SOURCES
   - Data discovery, governance
   - Job listings: 10% of roles
 
-### Advanced Analytics
+#### Advanced Analytics
 - [ ] **Delta Lake / Apache Iceberg / Apache Hudi**
   - Lakehouse platforms, time travel, ACID transactions
   - Job listings: 15% of advanced roles
 
-### Monitoring & Observability
+#### Monitoring & Observability
 - [ ] **Prometheus + Grafana**
   - Metrics, alerting, dashboards
   - Job listings: 20% of roles
 
-### Machine Learning Ops
+#### Machine Learning Ops
 - [ ] **MLflow**
   - Experiment tracking, model registry
   - Job listings: 15% of ML-focused roles
 
 ---
 
-## Tier C (Specialized/Legacy - Only If Needed)
+### Tier C (Specialized/Legacy - Only If Needed)
 
-### Legacy/Historical
+#### Legacy/Historical
 - [ ] **Hadoop** - *Legacy big data system*
   - HDFS, YARN, Hive
   - Job listings: <5% (declining)
@@ -2749,34 +2750,34 @@ DATA SOURCES
 
 ---
 
-## Tools by Category (For Quick Reference)
+### Tools by Category (For Quick Reference)
 
-### Essential (Foundation)
+#### Essential (Foundation)
 ```
 SQL → Python → Linux → Git → Docker
 ```
 
-### Data Storage
+#### Data Storage
 ```
 PostgreSQL → Snowflake/BigQuery/Redshift
 ```
 
-### Processing
+#### Processing
 ```
 Pandas → Spark (PySpark)
 ```
 
-### Orchestration
+#### Orchestration
 ```
 Airflow
 ```
 
-### Streaming
+#### Streaming
 ```
 Kafka → Flink (if specialized)
 ```
 
-### Cloud (Pick 1)
+#### Cloud (Pick 1)
 ```
 AWS (S3, EC2, Lambda, Glue, Redshift, Kinesis)
    OR
@@ -2785,27 +2786,27 @@ GCP (BigQuery, Dataflow, Pub/Sub, Dataproc)
 Azure (Synapse, Data Factory, Cosmos DB)
 ```
 
-### Infrastructure
+#### Infrastructure
 ```
 Docker → Kubernetes (if platform engineering)
 Terraform (IaC)
 ```
 
-### Transformation
+#### Transformation
 ```
 dbt
 ```
 
-### Monitoring
+#### Monitoring
 ```
 Prometheus + Grafana
 ```
 
 ---
 
-> # HIGHEST ROI LEARNING SEQUENCE
+## HIGHEST ROI LEARNING SEQUENCE
 
-## The Most Efficient Path to Employability
+### The Most Efficient Path to Employability
 
 ```
 Start Here ↓
