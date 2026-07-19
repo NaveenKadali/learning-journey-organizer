@@ -3,7 +3,7 @@
 
 ---
 
-# 1. How To Use This Roadmap (Highest-ROI Learning Sequence)
+> # 1. How To Use This Roadmap (Highest-ROI$ Learning Sequence)
 
 **Core principle:** Learn in the order that unlocks the most *employable* capability per hour invested. Don't jump to Kubernetes before you can write a correct SQL join. Don't learn 5 frameworks before you've shipped one real API.
 
@@ -28,7 +28,7 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 
 ---
 
-# 2. LEVEL: BEGINNER (Foundations)
+> #2. LEVEL: BEGINNER (Foundations)
 
 **End Expectation:** You can write clean Python, understand how computers/OS/networks work at a basic level, use Git confidently, model data with SQL, and build a simple working REST API with a database, tested and version-controlled. You are job-ready for internships/junior roles with a portfolio of 2-3 small projects.
 
@@ -181,7 +181,7 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 
 ---
 
-# 3. LEVEL: INTERMEDIATE
+> #3. LEVEL: INTERMEDIATE
 
 **End Expectation:** You can independently design, build, test, containerize, and deploy a production-grade REST API with authentication, proper architecture, an ORM, caching, and CI/CD. You're ready for mid-level backend roles and technical interviews involving practical coding + basic system design.
 
@@ -344,7 +344,7 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 
 ---
 
-# 4. LEVEL: ADVANCED
+> #4. LEVEL: ADVANCED
 
 **End Expectation:** You can design and operate distributed, scalable, observable systems; make informed architectural tradeoffs; handle high-throughput/low-latency requirements; lead technical design discussions. You are ready for Senior Backend Engineer roles and FAANG-style system design interviews.
 
@@ -484,7 +484,7 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 
 ---
 
-# 5. LEVEL: EXPERT
+> #5. LEVEL: EXPERT
 
 **End Expectation:** You operate as a Staff/Principal Engineer or Architect — you set technical direction, make build-vs-buy and architecture decisions with organization-wide impact, mentor senior engineers, and are fluent in the frontier of backend engineering (scale, cost, security, and emerging tech). You pass FAANG Staff-level system design and behavioral (leadership) interview loops.
 
@@ -557,7 +557,7 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 
 ---
 
-# 6. Projects & Portfolio
+> #6. Projects & Portfolio
 
 *Rule of thumb: build 1–2 projects per level minimum, but the quality/depth matters more than count. Every project should be on GitHub with a clear README, and deployed where feasible.*
 
@@ -645,7 +645,7 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 
 ---
 
-# 7. Final Priority Checklist (Master Sequence Summary)
+> #7. Final Priority Checklist (Master Sequence Summary)
 
 Use this as your at-a-glance dependency-ordered master list. Do not reorder across major blocks; some reordering within a block is fine.
 
