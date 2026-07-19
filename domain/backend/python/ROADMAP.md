@@ -5,7 +5,8 @@
 
 > # 1. How To Use This Roadmap (Highest-ROI$ Learning Sequence)
 
-**Core principle:** Learn in the order that unlocks the most *employable* capability per hour invested. Don't jump to Kubernetes before you can write a correct SQL join. Don't learn 5 frameworks before you've shipped one real API.
+**Core principle:** Learn in the order that unlocks the most *employable* capability per hour invested.
+Don't jump to Kubernetes before you can write a correct SQL join. Don't learn 5 frameworks before you've shipped one real API.
 
 **The efficient sequence, in one line:**
 `Programming fundamentals → CS fundamentals (data structures/algorithms/OS/networking basics) → Git → One web framework deeply → Databases (SQL first, then NoSQL) → APIs (REST) → Auth/Security → Testing → Docker → CI/CD → Cloud (1 provider) → System Design fundamentals → Caching/Queues/Async → Microservices → Observability → Scale/Distributed Systems → Staff-level architecture & leadership.`
@@ -30,12 +31,13 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 
 > # 2. LEVEL: BEGINNER (Foundations)
 
-**End Expectation:** You can write clean Python, understand how computers/OS/networks work at a basic level, use Git confidently, model data with SQL, and build a simple working REST API with a database, tested and version-controlled. You are job-ready for internships/junior roles with a portfolio of 2-3 small projects.
+**End Expectation:** You can write clean Python, understand how computers/OS/networks work at a basic level, use Git confidently, model data with SQL, and build a simple working REST API with a database, tested and version-controlled.
+You are job-ready for internships/junior roles with a portfolio of 2-3 small projects.
 
 ## 2.1 Phase 0 — Environment & Tooling Setup
 *Dependency: None. Must be done first.*
 
-#### 2.1.1 Machine Setup
+### 2.1.1 Machine Setup
 - [ ] Install a Unix-like environment (Linux native, macOS, or WSL2 on Windows)
 - [ ] Install Python 3.12+ via `pyenv` (not system Python)
 - [ ] Install a proper code editor: VS Code or JetBrains PyCharm; configure linting/formatting extensions
@@ -43,7 +45,7 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 - [ ] Learn shell basics: piping (`|`), redirection (`>`, `>>`), environment variables, `.bashrc`/`.zshrc`
 - [ ] Install `git` and configure `user.name`/`user.email`, SSH keys for GitHub
 
-#### 2.1.2 Git & GitHub (foundational — needed for everything after)
+### 2.1.2 Git & GitHub (foundational — needed for everything after)
 - [ ] Core concepts: repository, commit, branch, merge, remote
 - [ ] Commands: `init, clone, add, commit, push, pull, fetch, branch, checkout/switch, merge, log, diff, stash`
 - [ ] Writing good commit messages (conventional commits)
@@ -57,7 +59,7 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 ## 2.2 Phase 1 — Programming Fundamentals with Python
 *Dependency: 2.1 complete.*
 
-#### 2.2.1 Core Python Syntax
+### 2.2.1 Core Python Syntax
 - [ ] Variables, data types (int, float, str, bool, None), type casting
 - [ ] Operators: arithmetic, comparison, logical, bitwise, walrus `:=`
 - [ ] Control flow: `if/elif/else`, `for`, `while`, `break/continue/pass`, `match/case`
@@ -70,7 +72,7 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 - [ ] Modules & packages: `import` system, `__init__.py`, relative vs absolute imports
 - [ ] Virtual environments: `venv`, `pip`, `requirements.txt`, intro to `poetry`/`uv`
 
-#### 2.2.2 Object-Oriented Programming (OOP)
+### 2.2.2 Object-Oriented Programming (OOP)
 - [ ] Classes, objects, `__init__`, instance vs class attributes
 - [ ] Encapsulation, inheritance, polymorphism, abstraction
 - [ ] Dunder/magic methods (`__str__, __repr__, __eq__, __len__, __iter__`, etc.)
@@ -79,7 +81,7 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 - [ ] Composition vs inheritance (favor composition — best practice)
 - [ ] Dataclasses (`@dataclass`), `NamedTuple`
 
-#### 2.2.3 Intermediate Python Mechanics
+### 2.2.3 Intermediate Python Mechanics
 - [ ] Iterators & generators (`yield`, generator expressions)
 - [ ] Decorators (function & class decorators, `functools.wraps`)
 - [ ] Context managers (`__enter__/__exit__`, `contextlib`)
@@ -88,7 +90,7 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 - [ ] `itertools` and `functools` essentials
 - [ ] Error handling best practices (fail fast, specific exceptions, logging vs raising)
 
-#### 2.2.4 Computer Science Fundamentals
+### 2.2.4 Computer Science Fundamentals
 *Dependency: basic Python syntax (2.2.1) — needed to implement examples.*
 - [ ] **Data Structures:** arrays, linked lists, stacks, queues, hash maps, trees (binary, BST), heaps, graphs, tries
 - [ ] **Algorithms:** sorting (bubble, merge, quick, heap sort — know complexity of each), searching (linear, binary), recursion & backtracking, two-pointer/sliding-window patterns, BFS/DFS
@@ -97,7 +99,7 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 - [ ] **Operating Systems basics:** processes vs threads, concurrency vs parallelism, scheduling (conceptual), file systems, memory management (virtual memory, paging — conceptual)
 - [ ] **Networking basics:** what is an IP address, DNS, TCP vs UDP, the OSI model (conceptual), how HTTP requests physically travel
 
-#### 2.2.5 Best Practices (Beginner Level)
+### 2.2.5 Best Practices (Beginner Level)
 - [ ] Follow PEP 8; use `black`/`ruff` for formatting/linting
 - [ ] Write docstrings (Google or NumPy style)
 - [ ] Keep functions small and single-purpose (SRP at function level)
@@ -107,13 +109,13 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 ## 2.3 Phase 2 — Databases I: Relational & SQL
 *Dependency: Phase 1 complete.*
 
-#### 2.3.1 Relational Database Fundamentals
+### 2.3.1 Relational Database Fundamentals
 - [ ] What is a DBMS/RDBMS; ACID properties
 - [ ] Tables, rows, columns, primary keys, foreign keys, constraints
 - [ ] Data types in SQL (numeric, text, date/time, boolean, JSON columns)
 - [ ] Relationships: one-to-one, one-to-many, many-to-many (junction tables)
 
-#### 2.3.2 SQL Language
+### 2.3.2 SQL Language
 - [ ] DDL: `CREATE, ALTER, DROP TABLE`
 - [ ] DML: `SELECT, INSERT, UPDATE, DELETE`
 - [ ] Filtering & sorting: `WHERE, ORDER BY, LIMIT/OFFSET, DISTINCT`
@@ -123,13 +125,13 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 - [ ] Window functions (`ROW_NUMBER, RANK, LEAD/LAG, PARTITION BY`)
 - [ ] Transactions: `BEGIN, COMMIT, ROLLBACK`, isolation levels (conceptual intro)
 
-#### 2.3.3 Database Design
+### 2.3.3 Database Design
 - [ ] Normalization (1NF, 2NF, 3NF) and when to denormalize
 - [ ] Entity-Relationship Diagrams (ERD)
 - [ ] Indexing basics: what an index is, when to use one, B-tree index concept
 - [ ] Choosing PostgreSQL as your primary RDBMS (industry standard for backend work)
 
-#### 2.3.4 Python ↔ Database
+### 2.3.4 Python ↔ Database
 - [ ] Using `psycopg2`/`psycopg3` (raw driver) to connect Python to PostgreSQL
 - [ ] SQL injection: what it is, why parameterized queries prevent it (never string-format SQL)
 - [ ] Intro to ORMs conceptually (deep dive comes in Intermediate with SQLAlchemy)
@@ -139,14 +141,14 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 ## 2.4 Phase 3 — Web Fundamentals & First Backend
 *Dependency: Phases 1–2 complete.*
 
-#### 2.4.1 How the Web Works
+### 2.4.1 How the Web Works
 - [ ] Client-server model
 - [ ] HTTP protocol: methods (`GET, POST, PUT, PATCH, DELETE`), status codes, headers, request/response anatomy
 - [ ] URLs, query params, path params
 - [ ] Statelessness of HTTP; cookies & sessions (conceptual)
 - [ ] JSON as the data interchange format
 
-#### 2.4.2 First Framework: FastAPI (recommended) or Flask
+### 2.4.2 First Framework: FastAPI (recommended) or Flask
 - [ ] Why FastAPI: async-native, type-hint driven, auto docs (OpenAPI/Swagger), high performance
 - [ ] Routing: path operations, path/query/body parameters
 - [ ] Request validation with Pydantic models
@@ -155,19 +157,19 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 - [ ] Running with `uvicorn`
 - [ ] Auto-generated docs (`/docs`, `/redoc`)
 
-#### 2.4.3 Building Your First CRUD API
+### 2.4.3 Building Your First CRUD API
 - [ ] Connect FastAPI to PostgreSQL using raw SQL or a lightweight query layer
 - [ ] Implement full CRUD for one resource (e.g., "todos", "books")
 - [ ] Basic input validation & error responses
 - [ ] Environment variables for config (`python-dotenv`)
 
-#### 2.4.4 Beginner Best Practices
+### 2.4.4 Beginner Best Practices
 - [ ] Project structure (routers/services/models separation, even simply)
 - [ ] `.env` files never committed to Git
 - [ ] Basic logging instead of `print()`
 - [ ] README with setup instructions
 
-#### 2.4.5 Emerging/Modern Tools Worth Knowing at This Stage
+### 2.4.5 Emerging/Modern Tools Worth Knowing at This Stage
 - [ ] `uv` as a fast modern Python package/dependency manager (replacing pip/poetry workflows)
 - [ ] `ruff` as an all-in-one linter/formatter (replacing flake8+black+isort in many teams)
 
@@ -188,7 +190,7 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 ## 3.1 Phase 4 — Deepening the Framework & Architecture
 *Dependency: Level 2 complete.*
 
-#### 3.1.1 Framework Mastery (FastAPI deep-dive)
+### 3.1.1 Framework Mastery (FastAPI deep-dive)
 - [ ] Dependency Injection system (`Depends`)
 - [ ] Middleware (custom + built-in: CORS, GZip)
 - [ ] Background tasks
@@ -198,7 +200,7 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 - [ ] File uploads/downloads, streaming responses
 - [ ] WebSockets basics (real-time communication)
 
-#### 3.1.2 Software Architecture & Design Patterns
+### 3.1.2 Software Architecture & Design Patterns
 - [ ] SOLID principles (with Python examples for each)
 - [ ] Layered architecture: routers/controllers → services → repositories → models
 - [ ] Repository pattern, Service layer pattern, Dependency Injection pattern
@@ -206,7 +208,7 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 - [ ] DRY, KISS, YAGNI principles
 - [ ] Domain-Driven Design (DDD) — light intro: entities, value objects, aggregates
 
-#### 3.1.3 Project Structure Best Practices
+### 3.1.3 Project Structure Best Practices
 - [ ] Modular monolith folder structure (`app/api`, `app/core`, `app/models`, `app/services`, `app/db`)
 - [ ] Configuration management across environments (dev/staging/prod)
 - [ ] Dependency management best practices (lockfiles, pinned versions)
@@ -214,26 +216,26 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 ## 3.2 Phase 5 — Databases II: ORMs, NoSQL, and Data Modeling at Scale
 *Dependency: 2.3 (SQL fundamentals) complete.*
 
-#### 3.2.1 ORM Mastery: SQLAlchemy (2.0 style) + Alembic
+### 3.2.1 ORM Mastery: SQLAlchemy (2.0 style) + Alembic
 - [ ] Declarative models, relationships (`relationship()`, back_populates)
 - [ ] Sessions, unit of work pattern, transaction management
 - [ ] Query building, eager vs lazy loading (`joinedload`, `selectinload`) — the N+1 query problem and how to avoid it
 - [ ] Migrations with Alembic: autogenerate, upgrade/downgrade, handling schema drift
 - [ ] Connection pooling basics
 
-#### 3.2.2 Advanced SQL
+### 3.2.2 Advanced SQL
 - [ ] Query optimization: reading `EXPLAIN ANALYZE` output
 - [ ] Indexing strategies: composite indexes, covering indexes, when indexes hurt writes
 - [ ] Database constraints & data integrity at scale
 - [ ] Stored procedures/functions & triggers (know they exist, when to avoid over-using them)
 
-#### 3.2.3 NoSQL Databases
+### 3.2.3 NoSQL Databases
 - [ ] When to use NoSQL vs SQL (decision framework)
 - [ ] **MongoDB:** documents, collections, schema design for documents, aggregation pipeline, indexing
 - [ ] **Redis:** key-value store, data structures (strings, hashes, lists, sets, sorted sets), TTLs, use cases (caching, session store, rate limiting, pub/sub)
 - [ ] Python drivers: `pymongo`, `redis-py`
 
-#### 3.2.4 Caching Fundamentals
+### 3.2.4 Caching Fundamentals
 - [ ] Cache-aside, write-through, write-behind patterns
 - [ ] Cache invalidation strategies (the "hard problem" — know the tradeoffs)
 - [ ] Application-level caching with Redis in FastAPI
@@ -243,7 +245,7 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 ## 3.3 Phase 6 — Authentication, Authorization & Security
 *Dependency: 3.1 complete.*
 
-#### 3.3.1 Authentication
+### 3.3.1 Authentication
 - [ ] Password hashing: bcrypt/argon2, salting, never store plaintext
 - [ ] Session-based auth vs token-based auth
 - [ ] JWT: structure (header/payload/signature), access vs refresh tokens, expiry handling
@@ -251,12 +253,12 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 - [ ] Social login (OAuth with Google/GitHub) basics
 - [ ] Multi-factor authentication (MFA) concepts
 
-#### 3.3.2 Authorization
+### 3.3.2 Authorization
 - [ ] Role-Based Access Control (RBAC)
 - [ ] Attribute-Based Access Control (ABAC) — conceptual
 - [ ] Implementing permission checks/guards in FastAPI dependencies
 
-#### 3.3.3 Application Security Fundamentals (OWASP Top 10)
+### 3.3.3 Application Security Fundamentals (OWASP Top 10)
 - [ ] SQL Injection (prevention via parameterization/ORM)
 - [ ] Cross-Site Scripting (XSS) — relevant even for APIs feeding frontends
 - [ ] Cross-Site Request Forgery (CSRF)
@@ -271,20 +273,20 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 ## 3.4 Phase 7 — Testing
 *Dependency: 3.1–3.3 (need real endpoints/logic to test).*
 
-#### 3.4.1 Testing Fundamentals
+### 3.4.1 Testing Fundamentals
 - [ ] Testing pyramid: unit, integration, end-to-end
 - [ ] `pytest` fundamentals: fixtures, parametrize, markers, `conftest.py`
 - [ ] Mocking & patching (`unittest.mock`, `pytest-mock`)
 - [ ] Test coverage tools (`coverage.py`) — and understanding coverage % is a guide, not a goal
 
-#### 3.4.2 Testing a Backend Application
+### 3.4.2 Testing a Backend Application
 - [ ] Unit testing services/business logic in isolation
 - [ ] Integration testing API endpoints (`TestClient`/`httpx.AsyncClient`)
 - [ ] Testing database interactions (test databases, transactions rollback per test, fixtures/factories)
 - [ ] Using `factory_boy`/`Faker` for test data generation
 - [ ] Testing authentication-protected routes
 
-#### 3.4.3 Best Practices
+### 3.4.3 Best Practices
 - [ ] Arrange-Act-Assert pattern
 - [ ] Test independence & idempotency (no shared state between tests)
 - [ ] TDD basics (know the cycle: red-green-refactor) — a skill to practice, not dogma
@@ -292,14 +294,14 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 ## 3.5 Phase 8 — Containerization & Local Dev Environments
 *Dependency: Can be learned in parallel with 3.1–3.4, but should be solid before Phase 9 (CI/CD).*
 
-#### 3.5.1 Docker
+### 3.5.1 Docker
 - [ ] Images vs containers, Dockerfile syntax
 - [ ] Writing a production-ready Dockerfile for a Python app (multi-stage builds, slim base images, non-root user)
 - [ ] `docker-compose` for local dev (app + Postgres + Redis together)
 - [ ] Volumes, networks, environment variables in Docker
 - [ ] Image layer caching for fast builds
 
-#### 3.5.2 Best Practices
+### 3.5.2 Best Practices
 - [ ] `.dockerignore`
 - [ ] Keeping images small & secure (scanning for vulnerabilities conceptually)
 - [ ] Health checks in containers
@@ -307,11 +309,11 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 ## 3.6 Phase 9 — CI/CD & Version Control Maturity
 *Dependency: 3.4 (tests) + 3.5 (Docker).*
 
-#### 3.6.1 CI/CD Concepts
+### 3.6.1 CI/CD Concepts
 - [ ] Continuous Integration vs Continuous Delivery vs Continuous Deployment
 - [ ] Pipeline stages: lint → test → build → deploy
 
-#### 3.6.2 Tooling
+### 3.6.2 Tooling
 - [ ] GitHub Actions: writing workflows (`.yml`), triggers, jobs, matrix builds
 - [ ] Automating: lint (ruff), test (pytest), build (Docker image), push to registry
 - [ ] Branching strategies: trunk-based vs Git Flow (know both, understand industry trend toward trunk-based)
@@ -320,14 +322,14 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 ## 3.7 Phase 10 — Deploying to the Cloud (Pick One Provider First)
 *Dependency: 3.5, 3.6 complete.*
 
-#### 3.7.1 Cloud Fundamentals (choose AWS as primary — most in-demand)
+### 3.7.1 Cloud Fundamentals (choose AWS as primary — most in-demand)
 - [ ] Core services: EC2, S3, RDS, IAM (roles/policies), VPC basics
 - [ ] Deploying a containerized app: ECS/Fargate or a simpler PaaS (Render/Railway/Fly.io) as a stepping stone
 - [ ] Managed databases (RDS for Postgres) vs self-hosted
 - [ ] Environment configuration & secrets in the cloud (AWS Secrets Manager / SSM Parameter Store)
 - [ ] Domain & DNS basics, HTTPS certificates (Let's Encrypt/ACM)
 
-#### 3.7.2 Best Practices
+### 3.7.2 Best Practices
 - [ ] Infrastructure as Code intro (Terraform basics — resource, provider, state file concepts)
 - [ ] The principle of least privilege for IAM
 - [ ] 12-Factor App methodology (learn all 12 factors — foundational for cloud-native design)
@@ -351,7 +353,7 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 ## 4.1 Phase 11 — Asynchronous Programming & Concurrency Deep Dive
 *Dependency: Level 3 complete (especially 3.1.1 async basics).*
 
-#### 4.1.1 Concurrency Models in Python
+### 4.1.1 Concurrency Models in Python
 - [ ] GIL (Global Interpreter Lock): what it is, how it affects threading vs multiprocessing
 - [ ] `threading` module: when useful (I/O-bound work) despite the GIL
 - [ ] `multiprocessing` module: true parallelism for CPU-bound work
@@ -359,7 +361,7 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 - [ ] `concurrent.futures`: `ThreadPoolExecutor`, `ProcessPoolExecutor`
 - [ ] Choosing the right concurrency model for a given workload (decision framework: I/O-bound async, CPU-bound multiprocessing)
 
-#### 4.1.2 Message Queues & Async Task Processing
+### 4.1.2 Message Queues & Async Task Processing
 - [ ] Why queues: decoupling, buffering, async processing, retries
 - [ ] **Celery** with Redis/RabbitMQ as broker: tasks, workers, beat scheduler, retries, chaining/chords
 - [ ] **RabbitMQ**: exchanges, queues, bindings, routing keys, ack/nack, dead-letter queues
@@ -370,7 +372,7 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 ## 4.2 Phase 12 — System Design Fundamentals
 *Dependency: Level 3 complete.*
 
-#### 4.2.1 Core System Design Concepts
+### 4.2.1 Core System Design Concepts
 - [ ] Scalability: vertical vs horizontal scaling
 - [ ] Load balancing: algorithms (round robin, least connections, consistent hashing), L4 vs L7
 - [ ] CAP theorem, PACELC theorem
@@ -382,7 +384,7 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 - [ ] Rate limiting algorithms: token bucket, leaky bucket, sliding window
 - [ ] API Gateway pattern, Backend-for-Frontend (BFF) pattern
 
-#### 4.2.2 Reliability & Fault Tolerance
+### 4.2.2 Reliability & Fault Tolerance
 - [ ] Failure modes: what fails and how in distributed systems
 - [ ] Retry strategies with exponential backoff + jitter
 - [ ] Circuit breaker pattern (and libraries implementing it)
@@ -390,7 +392,7 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 - [ ] Graceful degradation vs fail-fast
 - [ ] Idempotency keys for safe retries on APIs
 
-#### 4.2.3 Practicing System Design
+### 4.2.3 Practicing System Design
 - [ ] Design common systems end-to-end: URL shortener, rate limiter, news feed, chat system, ride-sharing dispatch, distributed cache, notification system
 - [ ] Estimation practice: back-of-envelope capacity planning (QPS, storage, bandwidth calculations)
 - [ ] Communicating tradeoffs clearly (a core interview + real-job skill)
@@ -398,20 +400,20 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 ## 4.3 Phase 13 — Microservices & Service Communication
 *Dependency: 4.1, 4.2.*
 
-#### 4.3.1 Microservices Architecture
+### 4.3.1 Microservices Architecture
 - [ ] Monolith vs microservices tradeoffs (don't default to microservices — know when NOT to use them)
 - [ ] Service boundaries via Domain-Driven Design (bounded contexts)
 - [ ] Database-per-service pattern; avoiding shared databases across services
 - [ ] Strangler Fig pattern for migrating a monolith
 
-#### 4.3.2 Inter-Service Communication
+### 4.3.2 Inter-Service Communication
 - [ ] Synchronous: REST between services, gRPC (Protocol Buffers, streaming, when gRPC beats REST)
 - [ ] Asynchronous: event-driven architecture, event sourcing (conceptual), CQRS pattern
 - [ ] Service discovery (conceptual: DNS-based, registry-based)
 - [ ] API Gateway implementation
 - [ ] Distributed transactions: 2PC (why it's avoided), Saga pattern (choreography vs orchestration)
 
-#### 4.3.3 Data Consistency Across Services
+### 4.3.3 Data Consistency Across Services
 - [ ] Eventual consistency handling in application logic
 - [ ] Outbox pattern for reliable event publishing
 - [ ] Handling duplicate events / exactly-once processing at the application layer
@@ -419,22 +421,22 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 ## 4.4 Phase 14 — Observability & Production Operations
 *Dependency: Should follow having a deployed service (Level 3) to have something to observe.*
 
-#### 4.4.1 Logging
+### 4.4.1 Logging
 - [ ] Structured logging (JSON logs), correlation IDs/request IDs across services
 - [ ] Log levels used correctly; centralized logging (ELK/EFK stack, or cloud-native equivalents)
 
-#### 4.4.2 Metrics & Monitoring
+### 4.4.2 Metrics & Monitoring
 - [ ] The four golden signals: latency, traffic, errors, saturation
 - [ ] Prometheus: metrics types (counter, gauge, histogram, summary), PromQL basics
 - [ ] Grafana dashboards & alerting
 - [ ] Application Performance Monitoring (APM) tools (Datadog/New Relic conceptually)
 
-#### 4.4.3 Distributed Tracing
+### 4.4.3 Distributed Tracing
 - [ ] Why tracing matters in microservices (find the slow hop)
 - [ ] OpenTelemetry: spans, traces, context propagation
 - [ ] Jaeger/Zipkin basics
 
-#### 4.4.4 Incident Response
+### 4.4.4 Incident Response
 - [ ] SLIs, SLOs, SLAs — definitions and how they drive engineering decisions
 - [ ] Error budgets
 - [ ] On-call basics, runbooks, postmortems (blameless culture)
@@ -442,18 +444,18 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 ## 4.5 Phase 15 — Advanced Cloud & Infrastructure
 *Dependency: 3.7 (cloud basics) + 4.3 (microservices).*
 
-#### 4.5.1 Kubernetes
+### 4.5.1 Kubernetes
 - [ ] Core objects: Pods, Deployments, Services, ConfigMaps, Secrets, Ingress
 - [ ] Scaling: HPA (Horizontal Pod Autoscaler), resource requests/limits
 - [ ] StatefulSets (for databases/stateful workloads — conceptual)
 - [ ] Helm basics for packaging deployments
 - [ ] Rolling updates, readiness/liveness probes
 
-#### 4.5.2 Infrastructure as Code (deeper)
+### 4.5.2 Infrastructure as Code (deeper)
 - [ ] Terraform: modules, state management, remote backends, workspaces
 - [ ] GitOps principles (ArgoCD/Flux conceptually)
 
-#### 4.5.3 Advanced Deployment Strategies
+### 4.5.3 Advanced Deployment Strategies
 - [ ] Blue-green deployments
 - [ ] Canary releases
 - [ ] Feature flags for progressive rollout
@@ -461,13 +463,13 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 ## 4.6 Phase 16 — Performance Engineering
 *Dependency: 4.1–4.4.*
 
-#### 4.6.1 Profiling & Optimization
+### 4.6.1 Profiling & Optimization
 - [ ] Python profiling: `cProfile`, `py-spy`, memory profiling (`memory_profiler`, `tracemalloc`)
 - [ ] Identifying and fixing bottlenecks (CPU vs I/O vs network vs DB)
 - [ ] Database query performance tuning at scale (slow query logs, index tuning, `EXPLAIN ANALYZE` mastery)
 - [ ] Load testing tools: `locust`, `k6`; interpreting results (p50/p95/p99 latency)
 
-#### 4.6.2 High-Throughput API Design
+### 4.6.2 High-Throughput API Design
 - [ ] Connection pooling tuning, keep-alive
 - [ ] Pagination strategies (offset vs cursor-based) — cursor-based for scale
 - [ ] Bulk operations, batching strategies
@@ -491,7 +493,7 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 ## 5.1 Phase 17 — Advanced Distributed Systems Theory
 *Dependency: Level 4 complete.*
 
-#### 5.1.1 Deep Distributed Systems Concepts
+### 5.1.1 Deep Distributed Systems Concepts
 - [ ] Consensus algorithms: Paxos, Raft (understand the problem they solve and how, not just buzzwords)
 - [ ] Vector clocks, Lamport timestamps, causality in distributed systems
 - [ ] Gossip protocols, anti-entropy
@@ -499,7 +501,7 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 - [ ] CRDTs (Conflict-free Replicated Data Types) — conceptual understanding for multi-master systems
 - [ ] Distributed locking (e.g., Redlock) and its pitfalls
 
-#### 5.1.2 Data-Intensive Systems
+### 5.1.2 Data-Intensive Systems
 - [ ] Read *Designing Data-Intensive Applications* concepts thoroughly: storage engines (LSM trees vs B-trees), replication logs, partitioning at depth, batch vs stream processing
 - [ ] Stream processing frameworks (Kafka Streams/Flink) conceptual mastery
 - [ ] Data warehousing vs OLTP vs OLAP; when backend engineers need to know data pipelines
@@ -518,19 +520,19 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 ## 5.3 Phase 19 — Architecture Leadership & Decision-Making
 *Dependency: All prior levels.*
 
-#### 5.3.1 Architectural Decision-Making
+### 5.3.1 Architectural Decision-Making
 - [ ] Writing Architecture Decision Records (ADRs)
 - [ ] Build vs buy analysis frameworks
 - [ ] Cost engineering: cloud cost optimization, understanding unit economics of infrastructure decisions
 - [ ] Technical debt management strategy at the organizational level
 - [ ] Designing for multi-region / disaster recovery (RTO/RPO concepts, active-active vs active-passive)
 
-#### 5.3.2 Cross-Cutting System Design (Staff-level interview topics)
+### 5.3.2 Cross-Cutting System Design (Staff-level interview topics)
 - [ ] Design systems at massive scale: global payment systems, ad auction systems, search infrastructure, social graph systems, real-time collaboration systems (e.g., Google Docs-style)
 - [ ] Multi-region data residency & latency-aware routing
 - [ ] Designing internal developer platforms / paved-road tooling
 
-#### 5.3.3 Leadership & Influence
+### 5.3.3 Leadership & Influence
 - [ ] Technical mentorship of mid/senior engineers
 - [ ] Running effective design reviews
 - [ ] Driving cross-team technical initiatives without direct authority
@@ -563,83 +565,83 @@ This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced�
 
 ## 6.1 Beginner Projects
 
-#### 6.1.1 Project: CLI Task Manager
+### 6.1.1 Project: CLI Task Manager
 - [ ] **Objective:** Build a command-line to-do app with persistent storage
 - [ ] **Tech stack:** Python, SQLite, `argparse` or `click`
 - [ ] **Skills demonstrated:** Core Python, file/DB I/O, CRUD logic, CLI UX
 
-#### 6.1.2 Project: Personal Blog/Notes REST API
+### 6.1.2 Project: Personal Blog/Notes REST API
 - [ ] **Objective:** CRUD API for creating/reading/updating/deleting blog posts
 - [ ] **Tech stack:** Python, FastAPI, PostgreSQL, raw SQL or minimal query layer
 - [ ] **Skills demonstrated:** REST design, HTTP semantics, database schema design, basic validation
 
-#### 6.1.3 Project: Weather/Public-API Aggregator
+### 6.1.3 Project: Weather/Public-API Aggregator
 - [ ] **Objective:** Backend service that calls an external public API, caches results locally, and exposes its own simplified endpoint
 - [ ] **Tech stack:** Python, FastAPI, `httpx`, SQLite/PostgreSQL
 - [ ] **Skills demonstrated:** Third-party API integration, error handling, basic caching logic
 
 ## 6.2 Intermediate Projects
 
-#### 6.2.1 Project: E-Commerce Backend (Core)
+### 6.2.1 Project: E-Commerce Backend (Core)
 - [ ] **Objective:** Multi-resource backend with users, products, orders, and cart, including auth
 - [ ] **Tech stack:** FastAPI, PostgreSQL, SQLAlchemy + Alembic, JWT auth, Docker, pytest
 - [ ] **Skills demonstrated:** Layered architecture, relational data modeling, auth/authz, testing, containerization
 
-#### 6.2.2 Project: URL Shortener with Analytics
+### 6.2.2 Project: URL Shortener with Analytics
 - [ ] **Objective:** Shorten URLs, redirect, and track click analytics with caching for hot links
 - [ ] **Tech stack:** FastAPI, Redis (cache + counters), PostgreSQL, Docker, deployed to a cloud PaaS
 - [ ] **Skills demonstrated:** Caching strategy, high-read optimization, deployment, basic system design
 
-#### 6.2.3 Project: Real-Time Chat/Notification Service
+### 6.2.3 Project: Real-Time Chat/Notification Service
 - [ ] **Objective:** WebSocket-based chat or notification system with persistence
 - [ ] **Tech stack:** FastAPI WebSockets, Redis pub/sub, PostgreSQL
 - [ ] **Skills demonstrated:** Real-time communication, pub/sub patterns, connection management
 
-#### 6.2.4 Project: CI/CD-Complete Deployment Pipeline
+### 6.2.4 Project: CI/CD-Complete Deployment Pipeline
 - [ ] **Objective:** Take any prior project and add a full GitHub Actions pipeline (lint→test→build→deploy) to AWS
 - [ ] **Tech stack:** GitHub Actions, Docker, AWS (ECS/Fargate or EC2), Terraform (basic)
 - [ ] **Skills demonstrated:** CI/CD, IaC basics, cloud deployment, 12-factor practices
 
 ## 6.3 Advanced Projects
 
-#### 6.3.1 Project: Distributed Job Processing Platform
+### 6.3.1 Project: Distributed Job Processing Platform
 - [ ] **Objective:** System accepting jobs via API, queuing them, processing async with workers, with retries and status tracking
 - [ ] **Tech stack:** FastAPI, Celery + RabbitMQ/Redis, PostgreSQL, Docker Compose, Prometheus/Grafana
 - [ ] **Skills demonstrated:** Async task processing, idempotency, observability, fault tolerance
 
-#### 6.3.2 Project: Microservices E-Commerce Platform (evolve 6.2.1)
+### 6.3.2 Project: Microservices E-Commerce Platform (evolve 6.2.1)
 - [ ] **Objective:** Split the monolithic e-commerce backend into services (users, orders, inventory, payments) communicating via REST/gRPC and events
 - [ ] **Tech stack:** FastAPI/gRPC, Kafka or RabbitMQ, per-service PostgreSQL, Docker, Kubernetes (local via kind/minikube), API Gateway
 - [ ] **Skills demonstrated:** Service boundaries, event-driven architecture, Saga pattern, K8s deployment
 
-#### 6.3.3 Project: Rate Limiter / API Gateway as a Service
+### 6.3.3 Project: Rate Limiter / API Gateway as a Service
 - [ ] **Objective:** Build a standalone rate-limiting/gateway service usable in front of any API
 - [ ] **Tech stack:** FastAPI or Go (stretch), Redis (token bucket implementation), Docker
 - [ ] **Skills demonstrated:** Algorithm implementation (token bucket/sliding window), systems thinking, reusability as a platform component
 
-#### 6.3.4 Project: Full Observability Stack Integration
+### 6.3.4 Project: Full Observability Stack Integration
 - [ ] **Objective:** Instrument any prior project with structured logs, metrics, and distributed tracing end-to-end
 - [ ] **Tech stack:** OpenTelemetry, Prometheus, Grafana, Jaeger, ELK/EFK
 - [ ] **Skills demonstrated:** Production-grade observability, debugging distributed systems
 
 ## 6.4 Expert-Level Projects
 
-#### 6.4.1 Project: Multi-Region, Highly-Available SaaS Backend
+### 6.4.1 Project: Multi-Region, Highly-Available SaaS Backend
 - [ ] **Objective:** Design and (at least partially) implement a backend deployable across multiple regions with failover, read replicas, and data residency handling
 - [ ] **Tech stack:** Kubernetes (multi-cluster), Terraform, PostgreSQL with cross-region replication, CDN, global load balancing
 - [ ] **Skills demonstrated:** Distributed systems at scale, disaster recovery design, infra-as-code mastery
 
-#### 6.4.2 Project: Custom Distributed Cache or Mini Database Engine
+### 6.4.2 Project: Custom Distributed Cache or Mini Database Engine
 - [ ] **Objective:** Build a simplified distributed key-value store from scratch (replication, partitioning, basic consensus)
 - [ ] **Tech stack:** Python (or Go/Rust for performance credibility), Raft implementation or use of an existing library to study
 - [ ] **Skills demonstrated:** Deep distributed-systems theory applied practically — a strong Staff-level portfolio signal
 
-#### 6.4.3 Project: AI-Augmented Backend Platform
+### 6.4.3 Project: AI-Augmented Backend Platform
 - [ ] **Objective:** Production-grade RAG backend: ingestion pipeline, vector search, LLM orchestration, caching, cost controls
 - [ ] **Tech stack:** FastAPI, pgvector/Qdrant, async task pipelines, observability stack, LLM API integration
 - [ ] **Skills demonstrated:** Modern AI-systems integration, cost-aware architecture, staying current with emerging trends
 
-#### 6.4.4 Project: Open Source Contribution / Internal Platform Tool
+### 6.4.4 Project: Open Source Contribution / Internal Platform Tool
 - [ ] **Objective:** Contribute meaningfully to a major open-source backend project (Django, FastAPI, SQLAlchemy, Celery, etc.) or build an internal developer platform tool (e.g., service scaffolding CLI, deployment dashboard)
 - [ ] **Skills demonstrated:** Real-world large-codebase navigation, code review collaboration, platform-engineering thinking — the strongest possible signal for Staff/Principal roles
 
