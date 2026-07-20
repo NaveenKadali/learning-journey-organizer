@@ -72,7 +72,18 @@ You are job-ready for internships/junior roles with a portfolio of 2-3 small pro
 - [ ] Modules & packages: `import` system, `__init__.py`, relative vs absolute imports
 - [ ] Virtual environments: `venv`, `pip`, `requirements.txt`, intro to `poetry`/`uv`
 
-### 2.2.2 Object-Oriented Programming (OOP)
+### 2.2.2 Beinner Python Modules
+Focus on Python's built-in standard library to learn core automation, file formatting, and basic data structures without needing to install external packages. 
+
+- [ ] math: Provides mathematical functions like trigonometry, logs, and essential constants like Pi. 
+- [ ] random: Used for generating pseudo-random numbers, shuffling sequences, and choosing random elements. 
+- [ ] os: Allows interacting with the operating system to create folders, navigate paths, and list directory contents. 
+- [ ] pathlib: Offers modern, object-oriented syntax to manage file paths smoothly across Windows and Mac. 
+- [ ] datetime: Crucial for working with dates, times, tracking intervals, and parsing calendar timestamps. 
+- [ ] json: Essential for parsing JSON text files directly into Python dictionaries and vice versa.
+
+
+### 2.2.3 Object-Oriented Programming (OOP)
 - [ ] Classes, objects, `__init__`, instance vs class attributes
 - [ ] Encapsulation, inheritance, polymorphism, abstraction
 - [ ] Dunder/magic methods (`__str__, __repr__, __eq__, __len__, __iter__`, etc.)
@@ -81,7 +92,7 @@ You are job-ready for internships/junior roles with a portfolio of 2-3 small pro
 - [ ] Composition vs inheritance (favor composition — best practice)
 - [ ] Dataclasses (`@dataclass`), `NamedTuple`
 
-### 2.2.3 Intermediate Python Mechanics
+### 2.2.4 Intermediate Python Mechanics
 - [ ] Iterators & generators (`yield`, generator expressions)
 - [ ] Decorators (function & class decorators, `functools.wraps`)
 - [ ] Context managers (`__enter__/__exit__`, `contextlib`)
@@ -90,7 +101,7 @@ You are job-ready for internships/junior roles with a portfolio of 2-3 small pro
 - [ ] `itertools` and `functools` essentials
 - [ ] Error handling best practices (fail fast, specific exceptions, logging vs raising)
 
-### 2.2.4 Computer Science Fundamentals
+### 2.2.5 Computer Science Fundamentals
 *Dependency: basic Python syntax (2.2.1) — needed to implement examples.*
 - [ ] **Data Structures:** arrays, linked lists, stacks, queues, hash maps, trees (binary, BST), heaps, graphs, tries
 - [ ] **Algorithms:** sorting (bubble, merge, quick, heap sort — know complexity of each), searching (linear, binary), recursion & backtracking, two-pointer/sliding-window patterns, BFS/DFS
@@ -99,7 +110,7 @@ You are job-ready for internships/junior roles with a portfolio of 2-3 small pro
 - [ ] **Operating Systems basics:** processes vs threads, concurrency vs parallelism, scheduling (conceptual), file systems, memory management (virtual memory, paging — conceptual)
 - [ ] **Networking basics:** what is an IP address, DNS, TCP vs UDP, the OSI model (conceptual), how HTTP requests physically travel
 
-### 2.2.5 Best Practices (Beginner Level)
+### 2.2.6 Best Practices (Beginner Level)
 - [ ] Follow PEP 8; use `black`/`ruff` for formatting/linting
 - [ ] Write docstrings (Google or NumPy style)
 - [ ] Keep functions small and single-purpose (SRP at function level)
@@ -190,7 +201,21 @@ You are job-ready for internships/junior roles with a portfolio of 2-3 small pro
 ## 3.1 Phase 4 — Deepening the Framework & Architecture
 *Dependency: Level 2 complete.*
 
-### 3.1.1 Framework Mastery (FastAPI deep-dive)
+### 3.1.1 Intermediate Python Modules
+⚙️ Intermediate Level (Automation & Foundational Data Science) 
+Transition here once you are comfortable with Object-Oriented Programming (OOP). This level introduces popular external tools available via PyPI. 
+
+- [ ] requests: The industry-standard tool to send clean HTTP requests and pull information from APIs. 
+- [ ] collections: Extends standard data types with specialized containers like , , and . 
+- [ ] itertools: Generates highly efficient iterators for optimized loops, permutations, and combinations. 
+- [ ] argparse: Allows you to easily build elegant, custom command-line interfaces (CLIs) for your scripts. 
+- [ ] BeautifulSoup: Used widely to parse HTML/XML text and scrape data from public web pages. 
+- [ ] NumPy: The definitive tool for high-performance vector mathematics and multi-dimensional matrix operations. 
+- [ ] Pandas: Offers robust data manipulation frameworks (DataFrames) for cleaning, analyzing, and restructuring data. 
+- [ ] Matplotlib / Seaborn: Essential libraries for converting technical data sets into clean, aesthetic charts and visual graphs. [11, 13, 14, 17, 18]  
+
+
+### 3.1.2 Framework Mastery (FastAPI deep-dive)
 - [ ] Dependency Injection system (`Depends`)
 - [ ] Middleware (custom + built-in: CORS, GZip)
 - [ ] Background tasks
@@ -200,7 +225,7 @@ You are job-ready for internships/junior roles with a portfolio of 2-3 small pro
 - [ ] File uploads/downloads, streaming responses
 - [ ] WebSockets basics (real-time communication)
 
-### 3.1.2 Software Architecture & Design Patterns
+### 3.1.3 Software Architecture & Design Patterns
 - [ ] SOLID principles (with Python examples for each)
 - [ ] Layered architecture: routers/controllers → services → repositories → models
 - [ ] Repository pattern, Service layer pattern, Dependency Injection pattern
@@ -208,7 +233,7 @@ You are job-ready for internships/junior roles with a portfolio of 2-3 small pro
 - [ ] DRY, KISS, YAGNI principles
 - [ ] Domain-Driven Design (DDD) — light intro: entities, value objects, aggregates
 
-### 3.1.3 Project Structure Best Practices
+### 3.1.4 Project Structure Best Practices
 - [ ] Modular monolith folder structure (`app/api`, `app/core`, `app/models`, `app/services`, `app/db`)
 - [ ] Configuration management across environments (dev/staging/prod)
 - [ ] Dependency management best practices (lockfiles, pinned versions)
@@ -351,13 +376,16 @@ You are job-ready for internships/junior roles with a portfolio of 2-3 small pro
 **End Expectation:** You can design and operate distributed, scalable, observable systems; make informed architectural tradeoffs; handle high-throughput/low-latency requirements; lead technical design discussions. You are ready for Senior Backend Engineer roles and FAANG-style system design interviews.
 
 ## 4.1 Phase 11 — Asynchronous Programming & Concurrency Deep Dive
-*Dependency: Level 3 complete (especially 3.1.1 async basics).*
+*Dependency: Level 3 complete (especially 3.1.1 async basics).* 
 
-### 4.1.1 Concurrency Models in Python
+### 4.1.1 Advanced/Concurrency Models in Python
 - [ ] GIL (Global Interpreter Lock): what it is, how it affects threading vs multiprocessing
 - [ ] `threading` module: when useful (I/O-bound work) despite the GIL
 - [ ] `multiprocessing` module: true parallelism for CPU-bound work
 - [ ] `asyncio` deep dive: event loop internals, tasks, futures, `gather`, `wait_for`, cancellation, timeouts
+- [ ] `subprocess`: Executes external system commands and manages inputs/outputs directly from your script. 
+- [ ] `logging`: Implements standard tracking for applications by outputting structural error logs instead of using  statements. 
+- [ ] `re`: Provides regular expression compilation to match, extract, and manipulate deep textual patterns.
 - [ ] `concurrent.futures`: `ThreadPoolExecutor`, `ProcessPoolExecutor`
 - [ ] Choosing the right concurrency model for a given workload (decision framework: I/O-bound async, CPU-bound multiprocessing)
 
