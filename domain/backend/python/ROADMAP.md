@@ -62,7 +62,9 @@ You are job-ready for internships/junior roles with a portfolio of 2-3 small pro
 ### 2.2.1 Core Python Syntax
 - [ ] Variables, data types (int, float, str, bool, None), type casting
 - [ ] Operators: arithmetic, comparison, logical, bitwise, walrus `:=`
-- [ ] Control flow: `if/elif/else`, `for`, `while`, `break/continue/pass`, `match/case`
+- [ ] basic input / output: print() and input()
+- [ ] Control flow: `if/elif/else` `match/case`
+- [ ] Loops and Flow Control Statements `for`, `while`, `break/continue/pass`
 - [ ] Data structures: `list, tuple, dict, set, frozenset` — methods, comprehensions, slicing
 - [ ] Strings: formatting (f-strings), methods, encoding/decoding, regex (`re` module)
 - [ ] Functions: parameters, `*args/**kwargs`, default values, closures, scope (LEGB), recursion
