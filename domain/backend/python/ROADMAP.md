@@ -67,7 +67,8 @@ You are job-ready for internships/junior roles with a portfolio of 2-3 small pro
 - [ ] Loops and Flow Control Statements `for`, `while`, `break/continue/pass`
 - [ ] Data structures: `list, tuple, dict, set, frozenset` — methods, comprehensions, slicing
 - [ ] Strings: formatting (f-strings), methods, encoding/decoding, regex (`re` module)
-- [ ] Functions: parameters, `*args/**kwargs`, default values, closures, scope (LEGB), recursion
+- [ ] Functions: parameters, `*args/**kwargs`, default values
+- [ ] closures, scope (LEGB), recursion
 - [ ] Lambda expressions, `map/filter/reduce`
 - [ ] Exception handling: `try/except/else/finally`, custom exceptions, exception chaining
 - [ ] File I/O: reading/writing text & binary files, context managers (`with`)
