@@ -3,7 +3,7 @@
 
 ---
 
-# 1. Dependencies, Blockers & the Highest-ROI Learning Sequence
+> # 1. Dependencies, Blockers & the Highest-ROI Learning Sequence
 *Read this section first. It exists specifically to flag bottlenecks before you hit them.*
 
 ## 1.1 The One-Line Sequence
@@ -39,7 +39,7 @@
 
 ---
 
-# 2. LEVEL: BEGINNER — Testing Foundations & Programming Basics
+> # 2. LEVEL: BEGINNER — Testing Foundations & Programming Basics
 *Dependency: None. Start here regardless of background.*
 
 **End Expectation:** You understand testing as a formal discipline (not "clicking around looking for bugs"), can write professional test cases and bug reports, and are comfortable writing structured Python code. You are not yet automating anything — that's intentional.
