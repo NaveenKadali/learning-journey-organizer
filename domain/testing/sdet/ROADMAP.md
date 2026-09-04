@@ -181,7 +181,7 @@
 
 ---
 
-# 3. LEVEL: BEGINNER → INTERMEDIATE — Automation Tester Foundations
+> # 3. LEVEL: BEGINNER → INTERMEDIATE — Automation Tester Foundations
 *Dependency: Level 2 (Beginner) fully complete — especially Python fundamentals and Git.*
 
 **End Expectation:** You can automate real test cases for both APIs and web UIs, structure them into a basic reusable framework, and explain *why* you built it that way. This is your first genuinely automatable, portfolio-worthy skill set.
@@ -283,7 +283,7 @@
 
 ---
 
-# 4. LEVEL: INTERMEDIATE — Automation Tester Proficiency
+> # 4. LEVEL: INTERMEDIATE — Automation Tester Proficiency
 *Dependency: Level 3 fully complete. This is the level at which "Automation Tester" as a job title is fully, comfortably achieved.*
 
 **End Expectation:** You can independently own automation for a real product across UI, API, and mobile; integrate BDD where useful; run suites reliably in CI with good reporting; and collaborate fluently with developers and manual QA. You are fully job-ready for Automation Tester / SDET-I roles.
@@ -364,7 +364,7 @@
 
 ---
 
-# 5. LEVEL: ADVANCED — Transitioning from Automation Tester to SDET
+> # 5. LEVEL: ADVANCED — Transitioning from Automation Tester to SDET
 *Dependency: Level 4 fully complete. This is where software-engineering depth is deliberately layered on top of your automation craft.*
 
 **End Expectation:** You think and build like a software engineer who specializes in quality — designing test architecture, testing distributed/microservices systems, running performance and security testing, and operating comfortably with cloud/DevOps tooling. Ready for Senior Automation Engineer / SDET / SDET II roles.
@@ -459,7 +459,7 @@
 
 ---
 
-# 6. LEVEL: EXPERT — SDET Leadership / Architect
+> # 6. LEVEL: EXPERT — SDET Leadership / Architect
 *Dependency: Level 5 fully complete, plus real team/production experience for the leadership-heavy modules.*
 
 **End Expectation:** You set quality engineering vision and strategy for a team or organization, architect test infrastructure that scales across teams, drive engineering culture around quality, and stay ahead of emerging practices like AI-assisted testing. Ready for Staff SDET, SDET Architect, or QE Manager/Director roles.
