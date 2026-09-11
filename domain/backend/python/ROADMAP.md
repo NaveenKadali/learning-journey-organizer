@@ -28,11 +28,10 @@ Don't jump to Kubernetes before you can write a correct SQL join. Don't learn 5 
 This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced→Senior, Expert→Staff/Principal.
 
 ---
-
 > # 1.1 Baseline Evaluation
 Absolutely. Your approach is actually **much closer to how I’d recommend learning SDE** if you already have the basic programming foundation: instead of doing “DSA → courses → frameworks → build random projects,” we can work backwards from real software.
 
-### 1\. Programming fundamentals
+## 1\. Programming fundamentals
 
 - [ ] Variables, functions, loops, conditionals
 - [ ] Arrays/lists, maps/dictionaries, sets
@@ -43,7 +42,7 @@ Absolutely. Your approach is actually **much closer to how I’d recommend learn
 - [ ] Reading someone else's code
 - [ ] Basic data structures and their trade-offs
 
- ### 2\. How programs actually run
+## 2\. How programs actually run
 
 - [ ] Source code → compilation/interpreting → execution
 - [ ] Processes vs threads
@@ -55,7 +54,7 @@ Absolutely. Your approach is actually **much closer to how I’d recommend learn
 - [ ] Command line / terminal
 - [ ] Basic Linux/Unix commands
 
- ### 3\. Networking
+## 3\. Networking
 
  This one is **very important** for our reverse-engineering approach.
 
@@ -75,9 +74,9 @@ Absolutely. Your approach is actually **much closer to how I’d recommend learn
 - [ ] Browser → server communication
 - [ ] Basic idea of TLS/SSL
 
-### 4\. Databases
+## 4\. Databases
 
- - [ ] What a database is
+- [ ] What a database is
 - [ ] Relational vs NoSQL databases
 - [ ] Tables, rows, columns
 - [ ] Primary keys
@@ -90,7 +89,7 @@ Absolutely. Your approach is actually **much closer to how I’d recommend learn
 - [ ] Basic database normalization
 - [ ] Why an application doesn't simply store everything in files
 
-### 5\. Web/backend fundamentals
+## 5\. Web/backend fundamentals
 
 - [ ] Client vs server
 - [ ] Backend routing
@@ -105,8 +104,7 @@ Absolutely. Your approach is actually **much closer to how I’d recommend learn
 - [ ] Logging
 - [ ] Configuration/secrets
 
-### 6\. Frontend fundamentals
-
+## 6\. Frontend fundamentals
 > Since you already understand frontend vs backend:
 
 - [ ] HTML/CSS basics
@@ -120,7 +118,7 @@ Absolutely. Your approach is actually **much closer to how I’d recommend learn
 - [ ] State management concept
 - [ ] Basic frontend routing
 
-### 7\. Software engineering fundamentals
+## 7\. Software engineering fundamentals
 
 - [ ] Unit tests
 - [ ] Integration tests
@@ -135,8 +133,7 @@ Absolutely. Your approach is actually **much closer to how I’d recommend learn
 - [ ] Branching/merging strategies
 - [ ] Semantic commits aren't necessary, but understanding good commit structure is useful
 
-### 8\. Git/GitHub — beyond the basics
-
+## 8\. Git/GitHub — beyond the basics
 > You said you know Git/GitHub, so specifically:
 
 - [ ] Branch
@@ -151,7 +148,7 @@ Absolutely. Your approach is actually **much closer to how I’d recommend learn
 - [ ] GitHub Issues
 - [ ] GitHub Actions — even conceptually
 
-### 9\. Architecture concepts
+## 9\. Architecture concepts
 > Don't worry if this section is weak. We're going to **learn most of it by reverse engineering**.
 
 - [ ] Monolith
@@ -171,10 +168,9 @@ Absolutely. Your approach is actually **much closer to how I’d recommend learn
 - [ ] WebSockets
 - [ ] Rate limiting
 
-### 10\. One final thing: can you investigate?
+## 10\. One final thing: can you investigate?
 > “You have a website. Open DevTools and figure out what happens when you log in.”
-
- Can you independently:
+- Can you independently:
 
 - [ ] 1. Inspect the page?
 - [ ] 2. Open the Network tab?
