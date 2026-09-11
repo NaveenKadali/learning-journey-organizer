@@ -12,10 +12,10 @@ Don't jump to Kubernetes before you can write a correct SQL join. Don't learn 5 
 `Programming fundamentals → CS fundamentals (data structures/algorithms/OS/networking basics) → Git → One web framework deeply → Databases (SQL first, then NoSQL) → APIs (REST) → Auth/Security → Testing → Docker → CI/CD → Cloud (1 provider) → System Design fundamentals → Caching/Queues/Async → Microservices → Observability → Scale/Distributed Systems → Staff-level architecture & leadership.`
 
 **Why this order (ROI logic):**
-- Employers hire for "can you build a correct, secure, working CRUD API with a database and tests" *before* anything else — that's 80% of junior/mid backend jobs. Master that first.
-- Git and testing are cheap to learn early and multiply the value of everything after.
-- Cloud/DevOps/Kubernetes are high-value but low-ROI if learned before you can code well — they're operational multipliers, not substitutes for engineering skill.
-- System design and distributed systems are what separate mid from senior/staff — they require the fundamentals to already be automatic.
+- [ ] Employers hire for "can you build a correct, secure, working CRUD API with a database and tests" *before* anything else — that's 80% of junior/mid backend jobs. Master that first.
+- [ ] Git and testing are cheap to learn early and multiply the value of everything after.
+- [ ] Cloud/DevOps/Kubernetes are high-value but low-ROI if learned before you can code well — they're operational multipliers, not substitutes for engineering skill.
+- [ ] System design and distributed systems are what separate mid from senior/staff — they require the fundamentals to already be automatic.
 
 **Time allocation guideline** (assuming ~15-20 hrs/week, self-taught):
 | Level | Duration | Cumulative |
@@ -28,6 +28,165 @@ Don't jump to Kubernetes before you can write a correct SQL join. Don't learn 5 
 This mirrors real hiring bands: Beginner→Junior, Intermediate→Mid, Advanced→Senior, Expert→Staff/Principal.
 
 ---
+
+> # 1.1 Baseline Evaluation
+Absolutely. Your approach is actually **much closer to how I’d recommend learning SDE** if you already have the basic programming foundation: instead of doing “DSA → courses → frameworks → build random projects,” we can work backwards from real software.
+
+### 1\. Programming fundamentals
+
+- [ ] Variables, functions, loops, conditionals
+- [ ] Arrays/lists, maps/dictionaries, sets
+- [ ] Classes/objects and basic OOP
+- [ ] Error/exception handling
+- [ ] Modules/packages/imports
+- [ ] Basic debugging
+- [ ] Reading someone else's code
+- [ ] Basic data structures and their trade-offs
+
+ ### 2\. How programs actually run
+
+- [ ] Source code → compilation/interpreting → execution
+- [ ] Processes vs threads
+- [ ] Memory: stack vs heap
+- [ ] CPU, RAM, disk at a basic level
+- [ ] What an operating system does
+- [ ] Files and directories
+- [ ] Environment variables
+- [ ] Command line / terminal
+- [ ] Basic Linux/Unix commands
+
+ ### 3\. Networking
+
+ This one is **very important** for our reverse-engineering approach.
+
+- [ ] What an IP address is
+- [ ] What DNS does
+- [ ] What a port is
+- [ ] TCP vs UDP
+- [ ] HTTP/HTTPS
+- [ ] Request vs response
+- [ ] HTTP methods: GET, POST, PUT/PATCH, DELETE
+- [ ] HTTP status codes
+- [ ] Headers
+- [ ] Cookies
+- [ ] Sessions
+- [ ] JSON
+- [ ] REST APIs
+- [ ] Browser → server communication
+- [ ] Basic idea of TLS/SSL
+
+### 4\. Databases
+
+ - [ ] What a database is
+- [ ] Relational vs NoSQL databases
+- [ ] Tables, rows, columns
+- [ ] Primary keys
+- [ ] Foreign keys
+- [ ] Relationships
+- [ ] SQL basics: SELECT, INSERT, UPDATE, DELETE
+- [ ] JOINs
+- [ ] Indexes
+- [ ] Transactions
+- [ ] Basic database normalization
+- [ ] Why an application doesn't simply store everything in files
+
+### 5\. Web/backend fundamentals
+
+- [ ] Client vs server
+- [ ] Backend routing
+- [ ] Controllers/handlers
+- [ ] Middleware
+- [ ] Authentication vs authorization
+- [ ] Password hashing
+- [ ] Sessions vs tokens/JWT
+- [ ] CRUD
+- [ ] API design
+- [ ] Request validation
+- [ ] Logging
+- [ ] Configuration/secrets
+
+### 6\. Frontend fundamentals
+
+> Since you already understand frontend vs backend:
+
+- [ ] HTML/CSS basics
+- [ ] JavaScript fundamentals
+- [ ] DOM
+- [ ] Browser storage
+- [ ] Browser DevTools
+- [ ] Network tab
+- [ ] Calling APIs from frontend
+- [ ] Async programming / promises
+- [ ] State management concept
+- [ ] Basic frontend routing
+
+### 7\. Software engineering fundamentals
+
+- [ ] Unit tests
+- [ ] Integration tests
+- [ ] End-to-end tests
+- [ ] Test doubles/mocks
+- [ ] Code formatting/linting
+- [ ] Dependency/package management
+- [ ] Semantic versioning
+- [ ] Environment separation: development/staging/production
+- [ ] CI/CD — at least conceptually
+- [ ] Code review
+- [ ] Branching/merging strategies
+- [ ] Semantic commits aren't necessary, but understanding good commit structure is useful
+
+### 8\. Git/GitHub — beyond the basics
+
+> You said you know Git/GitHub, so specifically:
+
+- [ ] Branch
+- [ ] Merge
+- [ ] Rebase
+- [ ] Resolve merge conflicts
+- [ ] `git log` / inspecting history
+- [ ] `git diff`
+- [ ] Revert vs reset
+- [ ] Pull requests
+- [ ] `.gitignore`
+- [ ] GitHub Issues
+- [ ] GitHub Actions — even conceptually
+
+### 9\. Architecture concepts
+> Don't worry if this section is weak. We're going to **learn most of it by reverse engineering**.
+
+- [ ] Monolith
+- [ ] Microservices
+- [ ] Layered architecture
+- [ ] Client-server architecture
+- [ ] API gateway
+- [ ] Load balancer
+- [ ] Caching
+- [ ] Message queues
+- [ ] Background jobs
+- [ ] Horizontal vs vertical scaling
+- [ ] Database replication
+- [ ] Database sharding
+- [ ] CDN
+- [ ] Object/file storage
+- [ ] WebSockets
+- [ ] Rate limiting
+
+### 10\. One final thing: can you investigate?
+> “You have a website. Open DevTools and figure out what happens when you log in.”
+
+ Can you independently:
+
+- [ ] 1. Inspect the page?
+- [ ] 2. Open the Network tab?
+- [ ] 3. Ide ntify the request?
+- [ ] 4. Inspect its URL, method, headers and body?
+- [ ] 5. Inspect the response?
+- [ ] 6. Determine what cookies/tokens are involved?
+- [ ] 7. Identify which backend API was called?
+- [ ] 8. Form a hypothesis about how the system works?
+- [ ] 9. Reproduce the request yourself?
+- [ ] 10. Build a simplified version?
+
 
 > # 2. LEVEL: BEGINNER (Foundations)
 
