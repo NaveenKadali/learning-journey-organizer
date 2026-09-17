@@ -1,4 +1,4 @@
-# 🤖 My Agent Engineer Journey · 2026 Roadmap
+# 🤖 My Agent Engineer Journey · Roadmap
 
 > **26 weeks · 9 phases · 62 modules · 3 capstones**  
 > Tracking my progress through the [Agent Engineer 2026 Roadmap](https://ch-balaji.github.io/ai-engineer-roadmap/)
